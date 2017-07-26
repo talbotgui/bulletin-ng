@@ -1,0 +1,5 @@
+<h3>Liste des fichiers disponibles</h3>
+<md-select [(ngModel)]="fichierSelectionne" (change)="onSelectFichier()" placeholder="ficher à charger">
+  <md-option *ngFor="let fichier of fichiers" [value]="fichier">{{fichier}}</md-option>
+</md-select>
+

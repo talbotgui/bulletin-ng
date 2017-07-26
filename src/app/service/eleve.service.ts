@@ -5,10 +5,17 @@ import * as model from '../model/model';
 @Injectable()
 export class EleveService {
 
+  private anneeChargee: model.Annee;
+
+  setAnneeChargee(annee: model.Annee): void {
+    this.anneeChargee = annee;
+  }
+
   getListeEleve(): model.Eleve[] {
-    let eleves: model.Eleve[] = new Array<model.Eleve>();
-    eleves.push(new model.Eleve('1', 'TBT', 'G'));
-    eleves.push(new model.Eleve('2', 'TBT', 'M'));
-    return eleves;
+    if (this.anneeChargee) {
+      return this.anneeChargee.eleves;
+    } else {
+      return [];
+    }
   }
 }
