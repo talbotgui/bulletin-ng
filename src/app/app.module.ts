@@ -13,7 +13,8 @@ import 'hammerjs';
 import {AppComponent} from './app.component';
 import {TabCompetenceComponent} from './tab-competence/tab-competence.component';
 import {TabEleveComponent} from './tab-eleve/tab-eleve.component';
-import {SauvegardeComponent} from './sauvegarde/sauvegarde.component';
+import {DivSauvegardeComponent} from './div-sauvegarde/div-sauvegarde.component';
+import {DialogChargementComponent} from './div-sauvegarde/dialog-chargement.component';
 
 // Les composants injectables
 import {EleveService} from './service/eleve.service';
@@ -29,7 +30,10 @@ import {AppRoutingModule} from './app-routing.module';
   bootstrap: [AppComponent],
 
   // Tous les composants applicatifs de l'application
-  declarations: [AppComponent, TabCompetenceComponent, TabEleveComponent, SauvegardeComponent],
+  declarations: [AppComponent, TabCompetenceComponent, TabEleveComponent, DivSauvegardeComponent, DialogChargementComponent],
+
+  // Tous les composants à afficher dans un Dialog
+  entryComponents: [DialogChargementComponent],
 
   // Les composants injectables
   providers: [EleveService, SauvegardeService],

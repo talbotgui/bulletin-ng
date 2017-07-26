@@ -2,9 +2,8 @@ import {Component, OnInit} from '@angular/core';
 
 import {SauvegardeService} from '../service/sauvegarde.service';
 
-
-@Component({selector: 'sauvegarde', templateUrl: './sauvegarde.component.html', styleUrls: ['./sauvegarde.component.css']})
-export class SauvegardeComponent implements OnInit {
+@Component({selector: 'dialog-chargement', templateUrl: './dialog-chargement.component.html'})
+export class DialogChargementComponent implements OnInit {
 
   // Liste des fichier disponibles
   fichiers: String[];
@@ -26,5 +25,4 @@ export class SauvegardeComponent implements OnInit {
   onSelectFichier() {
     this.sauvegardeService.chargeAnneeDuFichier(this.fichierSelectionne);
   }
-
 }
