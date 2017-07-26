@@ -9,23 +9,28 @@ import * as model from '../model/model';
 @Injectable()
 export class SauvegardeService {
 
-  private headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-  private headersJSON = new HttpHeaders().set('Content-Type', 'application/json');
+  private readonly serveurUrl = 'http://192.168.1.52/download/upload.php';
+  private readonly headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+  private readonly headersJSON = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient, private eleveService: EleveService) {}
 
+  /**
+   * Récupère la liste des fichiers de sauvegarde disponibles sur le serveur
+   */
   getlisteSauvegardesDuServeur(): Observable<{fichiers: String[]}> {
     const corp = 'methode=liste';
     const params = {headers: this.headers};
-    return this.http.post('http://192.168.1.52/download/upload.php', corp, params);
+    return this.http.post(this.serveurUrl, corp, params);
   }
 
-
+  /**
+   * Charge le contenu d'un fichier et l'envoie au service "eleveService.setAnneeChargee"
+   */
   chargeAnneeDuFichier(fichier: String): void {
-    const url = 'http://192.168.1.52/download/upload.php';
     const corp = 'methode=charge&nomFichier=' + fichier;
     const params = {headers: this.headers};
-    this.http.post<model.Annee>(url, corp, params).subscribe(
+    this.http.post<model.Annee>(this.serveurUrl, corp, params).subscribe(
       dataOk => {
         this.eleveService.setAnneeChargee(dataOk);
       }
