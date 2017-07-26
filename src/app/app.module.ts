@@ -1,4 +1,4 @@
-// Les modules Angular importés
+// Les modules Angular importï¿½s
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
@@ -10,11 +10,12 @@ import {TabCompetenceComponent} from './tab-competence/tab-competence.component'
 import {TabEleveComponent} from './tab-eleve/tab-eleve.component';
 
 // Les composants injectables
+import {EleveService} from './service/eleve.service';
 
 // Le composant contenant les routes
 import {AppRoutingModule} from './app-routing.module';
 
-// Déclaration du module
+// Dï¿½claration du module
 @NgModule({
 
   // Le composant principal
@@ -24,15 +25,15 @@ import {AppRoutingModule} from './app-routing.module';
   declarations: [AppComponent, TabCompetenceComponent, TabEleveComponent],
 
   // Les composants injectables
-  providers: [],
+  providers: [EleveService],
 
-  // Les modules importés
+  // Les modules importï¿½s
   imports: [
 
     // Des modules classiques
     BrowserModule, FormsModule, HttpModule,
 
-    // Déclaration des routes
+    // Dï¿½claration des routes
     AppRoutingModule
   ]
 })

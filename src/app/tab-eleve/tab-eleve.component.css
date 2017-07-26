@@ -1,0 +1,3 @@
+ul.listeEleves { height: 40px; }
+ul.listeEleves li { display: inline; background-color: gray; margin: 0px 2px 0px 2px; padding: 0px 10px 0px 10px; }
+ul.listeEleves li.eleveSelectionne { background-color: blue; }
