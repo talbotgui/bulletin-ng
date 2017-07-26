@@ -10,6 +10,7 @@ import * as model from '../model/model';
 export class SauvegardeService {
 
   private headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+  private headersJSON = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient, private eleveService: EleveService) {}
 
@@ -21,7 +22,13 @@ export class SauvegardeService {
 
 
   chargeAnneeDuFichier(fichier: String): void {
-    let annee: model.Annee = null;
-    this.eleveService.setAnneeChargee(annee);
+    const url = 'http://192.168.1.52/download/upload.php';
+    const corp = 'methode=charge&nomFichier=' + fichier;
+    const params = {headers: this.headers};
+    this.http.post<model.Annee>(url, corp, params).subscribe(
+      dataOk => {
+        this.eleveService.setAnneeChargee(dataOk);
+      }
+    );
   }
 }
