@@ -1,9 +1,13 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body { background-color:lightgray; font:12px/18px Arial,sans-serif; }
+
 button {
 	background: #d0e5f5 url("./assets/images/bouton-fond.png") 50% 50% repeat-x; 
 	border: 1px solid #79b7e7; border-radius: 5px; 
 	font-weight: bold; color: #1d5987; padding: 5px 20px; 
 }
+
+label { margin: 0px 10px 0px 20px; }
+
 .mat-select { width: 300px; }

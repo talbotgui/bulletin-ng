@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {MaterialModule, MdSelectModule} from '@angular/material';
+import {MaterialModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 // Import de hammer (cf. documentation)
@@ -45,7 +45,7 @@ import {AppRoutingModule} from './app-routing.module';
     BrowserModule, FormsModule, HttpClientModule,
 
     // Le module des composants WEB riches
-    MaterialModule, BrowserAnimationsModule, MdSelectModule,
+    MaterialModule, BrowserAnimationsModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule,
 
     // D�claration des routes
     AppRoutingModule

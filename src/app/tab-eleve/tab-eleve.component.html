@@ -1,26 +1,38 @@
-<h3>Liste des élèves</h3>
-<ul class="listeEleves">
-	<li *ngFor="let eleve of eleves" (click)="onSelectEleve(eleve)" [class.eleveSelectionne]="eleve === eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</li>
-</ul>
 
+<!-- Liste des élèves -->
+<md-chip-list class="listeEleves" [selectable]="true">
+	<md-chip *ngFor="let eleve of eleves" (click)="onSelectEleve(eleve)" [class.eleveSelectionne]="eleve === eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</md-chip>
+</md-chip-list>
+
+<!-- Formulaire de modification -->
 <div *ngIf="eleveSelectionne">
-	<h2>Détails de l'élève {{eleveSelectionne.nom}} {{eleveSelectionne.prenom}}</h2>
   
 	<fieldset>
 		<legend>Elève</legend>
-		<label for="nom">Nom</label><input [(ngModel)]="eleveSelectionne.nom" name="nom" />
-		<br/><label for="prenom">Prénom</label><input [(ngModel)]="eleveSelectionne.prenom" name="prenom" />
-		<br/><label for="dateNaissance">Date de naissance</label><input [(ngModel)]="eleveSelectionne.dateNaissance" name="dateNaissance" type="date" />
+		<input [(ngModel)]="eleveSelectionne.nom" name="nom" placeholder="Nom"/>
+		<input [(ngModel)]="eleveSelectionne.prenom" name="prenom" placeholder="Prénom"/>
+		<md-input-container>
+			<input mdInput [mdDatepicker]="naissanceDatepicker" [(ngModel)]="eleveSelectionne.dateNaissance" name="dateNaissance" placeholder="Date de naissance">
+			<button mdSuffix [mdDatepickerToggle]="naissanceDatepicker"></button>
+		</md-input-container>
+		<md-datepicker #naissanceDatepicker></md-datepicker>
 	</fieldset>
 	<fieldset>
 		<legend>Famille</legend>
-		<label for="pere">Père</label><input [(ngModel)]="eleveSelectionne.pere" name="pere" />
-		<br/><label for="mere">Mère</label><input [(ngModel)]="eleveSelectionne.mere" name="mere" />
-		<br/><label for="fratrie">Fratrie</label><input [(ngModel)]="eleveSelectionne.fratrie" name="fratrie" />
+		<textarea [(ngModel)]="eleveSelectionne.pere" name="pere" placeholder="Père"></textarea>
+		<textarea [(ngModel)]="eleveSelectionne.mere" name="mere" placeholder="Mère"></textarea>
+		<textarea [(ngModel)]="eleveSelectionne.fratrie" name="fratrie" placeholder="Fratrie"></textarea>
+		<textarea [(ngModel)]="eleveSelectionne.accueil" name="accueil" placeholder="Informations diverses"></textarea>
 	</fieldset>
 	<fieldset>
 		<legend>Contacts</legend>
-		<label for="adresses">Adresses</label><input [(ngModel)]="eleveSelectionne.adresses" name="adresses" />
-		<br/><label for="telephones">Téléphones</label><input [(ngModel)]="eleveSelectionne.telephones" name="telephones" type="tel" />
+		<textarea [(ngModel)]="eleveSelectionne.adresses" name="adresses" placeholder="Adresses"></textarea>
+		<textarea [(ngModel)]="eleveSelectionne.telephones" name="telephones" type="tel" placeholder="Téléphones"></textarea>
+	</fieldset>
+	<fieldset>
+		<legend>Date de bilans (PPI, PAP et ESS)</legend>
+		<textarea [(ngModel)]="eleveSelectionne.datesPPA" name="datesPPA" placeholder="Dates PPA"></textarea>
+		<textarea [(ngModel)]="eleveSelectionne.datesPAP" name="datesPAP" placeholder="Dates PAP (PPS)"></textarea>
+		<textarea [(ngModel)]="eleveSelectionne.datesESS" name="datesESS" placeholder="Dates ESS"></textarea>
 	</fieldset>
 </div>
