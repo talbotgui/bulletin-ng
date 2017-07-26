@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 
 import {SauvegardeService} from '../service/sauvegarde.service';
 
-@Component({selector: 'dialog-chargement', templateUrl: './dialog-chargement.component.html'})
+@Component({
+  selector: 'dialog-chargement', templateUrl: './dialog-chargement.component.html', styleUrls: ['./dialog-chargement.component.css']
+})
 export class DialogChargementComponent implements OnInit {
 
   // Liste des fichier disponibles
@@ -17,7 +19,14 @@ export class DialogChargementComponent implements OnInit {
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
     this.sauvegardeService.getlisteSauvegardesDuServeur().subscribe((val) => {
-      this.fichiers = val.fichiers;
+      this.fichiers = val.fichiers
+        .filter(function(element: string) {
+          return element.toUpperCase().endsWith('JSON');
+        })
+        .sort(function(a: string, b: string) {
+          return b.localeCompare(a);
+        })
+        .slice(2, val.fichiers.length);
     });
   }
 

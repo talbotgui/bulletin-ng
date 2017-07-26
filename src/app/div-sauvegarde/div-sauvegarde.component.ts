@@ -10,7 +10,7 @@ export class DivSauvegardeComponent {
 
   // A la demande de chargement d'un fichier
   ouvreDialogChargement() {
-    this.dialog.open(DialogChargementComponent);
+    this.dialog.open(DialogChargementComponent, {height: '180px', width: '350px'});
   }
 
 }
