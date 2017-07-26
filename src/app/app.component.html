@@ -1,8 +1,19 @@
-<div-sauvegarde></div-sauvegarde>
+<div id="page">
+	<div id="entete">
+		<div id="entete-titre"><h1>Application de gestion de ma classe</h1></div>
+		<div id="entete-actions">
+			<div-sauvegarde></div-sauvegarde>
+		</div>
+	</div>
 
-<nav>
-	<a routerLink="/tab-competence-route" routerLinkActive="active">Compétences</a>
-	<a routerLink="/tab-eleve-route" routerLinkActive="active">Elèves</a>
-</nav>
-
-<router-outlet></router-outlet>
+	<div id="menu">
+		<nav>
+			<a routerLink="/tab-competence-route" routerLinkActive="active">Compétences</a>
+			<a routerLink="/tab-eleve-route" routerLinkActive="active">Elèves</a>
+		</nav>
+	</div>
+	
+	<div id="contenu">
+		<router-outlet></router-outlet>
+	</div>
+</div>
