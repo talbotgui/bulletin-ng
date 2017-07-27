@@ -21,4 +21,13 @@ export class EleveService {
       return [];
     }
   }
+
+  /** Donne la liste complète des compétences */
+  getListeCompetence(): model.Competence[] {
+    if (this.anneeChargee) {
+      return this.anneeChargee.competences;
+    } else {
+      return [];
+    }
+  }
 }
