@@ -5,7 +5,7 @@
 </md-chip-list>
 
 <!-- Formulaire de modification -->
-<div *ngIf="eleveSelectionne">
+<div *ngIf="eleveSelectionne" class="formulaireEleve">
   
 	<fieldset>
 		<legend>Elève</legend>
@@ -17,19 +17,19 @@
 		</md-input-container>
 		<md-datepicker #naissanceDatepicker></md-datepicker>
 	</fieldset>
-	<fieldset>
+	<fieldset class="famille">
 		<legend>Famille</legend>
 		<textarea [(ngModel)]="eleveSelectionne.pere" name="pere" placeholder="Père"></textarea>
 		<textarea [(ngModel)]="eleveSelectionne.mere" name="mere" placeholder="Mère"></textarea>
 		<textarea [(ngModel)]="eleveSelectionne.fratrie" name="fratrie" placeholder="Fratrie"></textarea>
 		<textarea [(ngModel)]="eleveSelectionne.accueil" name="accueil" placeholder="Informations diverses"></textarea>
 	</fieldset>
-	<fieldset>
+	<fieldset class="contacts">
 		<legend>Contacts</legend>
 		<textarea [(ngModel)]="eleveSelectionne.adresses" name="adresses" placeholder="Adresses"></textarea>
 		<textarea [(ngModel)]="eleveSelectionne.telephones" name="telephones" placeholder="Téléphones"></textarea>
 	</fieldset>
-	<fieldset>
+	<fieldset class="bilans">
 		<legend>Date de bilans (PPI, PAP et ESS)</legend>
 		<textarea [(ngModel)]="eleveSelectionne.datesPPA" name="datesPPA" placeholder="Dates PPA"></textarea>
 		<textarea [(ngModel)]="eleveSelectionne.datesPAP" name="datesPAP" placeholder="Dates PAP (PPS)"></textarea>
