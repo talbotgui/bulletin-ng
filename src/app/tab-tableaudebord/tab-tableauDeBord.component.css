@@ -1,0 +1,2 @@
+.filtres md-chip { margin-bottom: 5px; }
+.filtres md-chip.filtreSelectionne { color: white; background-color: #6b6159; font-weight: bold; }

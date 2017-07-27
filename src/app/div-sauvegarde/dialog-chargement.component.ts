@@ -8,10 +8,10 @@ import {SauvegardeService} from '../service/sauvegarde.service';
 export class DialogChargementComponent implements OnInit {
 
   // Liste des fichier disponibles
-  fichiers: String[];
+  fichiers: string[];
 
   // Fichier sélectionné
-  fichierSelectionne: String;
+  fichierSelectionne: string;
 
   // Un constructeur pour se faire injecter les dépendances
   constructor(private sauvegardeService: SauvegardeService) {}
@@ -20,12 +20,8 @@ export class DialogChargementComponent implements OnInit {
   ngOnInit(): void {
     this.sauvegardeService.getlisteSauvegardesDuServeur().subscribe((val) => {
       this.fichiers = val.fichiers
-        .filter(function(element: string) {
-          return element.toUpperCase().endsWith('JSON');
-        })
-        .sort(function(a: string, b: string) {
-          return b.localeCompare(a);
-        })
+        .filter(element => element.toUpperCase().endsWith('JSON'))
+        .sort((a, b) => b.localeCompare(a))
         .slice(2, val.fichiers.length);
     });
   }

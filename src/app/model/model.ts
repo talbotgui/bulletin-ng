@@ -7,6 +7,11 @@ export class Cursus {
 }
 
 export class Eleve {
+  static readonly CODE_STATUT_DANS_LA_CLASSE = '2';
+  static readonly STATUT_ELEVE: Map<string, string> = new Map([
+    ['0', 'hors établissement'], ['1', 'dans l\'établissement'], [Eleve.CODE_STATUT_DANS_LA_CLASSE, 'dans la classe']
+  ]);
+
   id: string; nom: string; prenom: string; dateNaissance: Date;
   pere: string; mere: string; fratrie: string;
   adresses: string; telephones:
@@ -44,4 +49,27 @@ export class Annee {
   libellesTypeTempsJournal: string[];
   eleves: Eleve[]; competences: Competence[]; notes: Note[]; journal: Journal[];
   dateDerniereSauvegarde: Date; historique: Historique[]; erreursChargement: String[];
+}
+
+export class LigneTableauDeBord {
+  readonly nomDomaine: string;
+  aides: Note[] = [];
+  constations: Note[] = [];
+  constructor(nomDomaine: string) {
+    this.nomDomaine = nomDomaine;
+  }
+  propageConstat(constat: string) {
+    if (this.constations) {
+      for (let constation of this.constations) {
+        constation.constat = constat;
+      }
+    }
+  }
+  propageModaliteAide(modaliteAide: string) {
+    if (this.aides) {
+      for (let aide of this.aides) {
+        aide.modalitesAide = modaliteAide;
+      }
+    }
+  }
 }

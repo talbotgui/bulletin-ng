@@ -18,7 +18,7 @@ export class SauvegardeService {
   /**
    * Récupère la liste des fichiers de sauvegarde disponibles sur le serveur
    */
-  getlisteSauvegardesDuServeur(): Observable<{fichiers: String[]}> {
+  getlisteSauvegardesDuServeur(): Observable<{fichiers: string[]}> {
     const corp = 'methode=liste';
     const params = {headers: this.headers};
     return this.http.post(this.serveurUrl, corp, params);
@@ -27,7 +27,7 @@ export class SauvegardeService {
   /**
    * Charge le contenu d'un fichier et l'envoie au service "eleveService.setAnneeChargee"
    */
-  chargeAnneeDuFichier(fichier: String): void {
+  chargeAnneeDuFichier(fichier: string): void {
     const corp = 'methode=charge&nomFichier=' + fichier;
     const params = {headers: this.headers};
     this.http.post<model.Annee>(this.serveurUrl, corp, params).subscribe(

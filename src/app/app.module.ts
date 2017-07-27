@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {MaterialModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule} from '@angular/material';
+import {CdkTableModule} from '@angular/cdk';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {TreeModule} from 'angular-tree-component';
@@ -17,6 +18,7 @@ import {TabCompetenceComponent} from './tab-competence/tab-competence.component'
 import {TabEleveComponent} from './tab-eleve/tab-eleve.component';
 import {DivSauvegardeComponent} from './div-sauvegarde/div-sauvegarde.component';
 import {DialogChargementComponent} from './div-sauvegarde/dialog-chargement.component';
+import {TabTableauDeBordComponent} from './tab-tableaudebord/tab-tableauDeBord.component';
 
 // Les composants injectables
 import {DataService} from './service/data.service';
@@ -32,7 +34,9 @@ import {AppRoutingModule} from './app-routing.module';
   bootstrap: [AppComponent],
 
   // Tous les composants applicatifs de l'application
-  declarations: [AppComponent, TabCompetenceComponent, TabEleveComponent, DivSauvegardeComponent, DialogChargementComponent],
+  declarations: [AppComponent, TabCompetenceComponent, TabEleveComponent, DivSauvegardeComponent,
+    DialogChargementComponent, TabTableauDeBordComponent
+  ],
 
   // Tous les composants à afficher dans un Dialog
   entryComponents: [DialogChargementComponent],
@@ -47,7 +51,7 @@ import {AppRoutingModule} from './app-routing.module';
     BrowserModule, FormsModule, HttpClientModule,
 
     // Le module des composants WEB riches
-    MaterialModule, BrowserAnimationsModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule, TreeModule,
+    MaterialModule, BrowserAnimationsModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule, TreeModule, CdkTableModule,
 
     // Déclaration des routes
     AppRoutingModule

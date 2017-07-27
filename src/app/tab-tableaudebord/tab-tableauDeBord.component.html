@@ -1,0 +1,20 @@
+
+<!-- Filtres -->
+<md-chip-list class="filtres" [selectable]="true">
+	<md-chip *ngFor="let eleve of eleves" (click)="onSelectEleve(eleve)" [class.filtreSelectionne]="eleve === eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</md-chip>
+</md-chip-list>
+<md-chip-list class="filtres" [selectable]="true">
+	<md-chip *ngFor="let periode of periodes" (click)="onSelectPeriode(periode)" [class.filtreSelectionne]="periode === periodeSelectionnee">{{periode.nom}}</md-chip>
+</md-chip-list>
+
+<!-- Formulaire de modification -->
+<div *ngIf="eleveSelectionne && periodeSelectionnee" class="">
+	<md-table #table [dataSource]="dataSource">
+		<ng-container cdkColumnDef="nomDomaine">
+			<md-header-cell *cdkHeaderCellDef>Nom de domaine</md-header-cell>
+			<md-cell *cdkCellDef="let ligne">{{ligne.nomDomaine}}</md-cell>
+		</ng-container>
+		<md-header-row *cdkHeaderRowDef="colonnes"></md-header-row>
+		<md-row *cdkRowDef="let row; columns: colonnes"></md-row>
+	</md-table>
+</div>
