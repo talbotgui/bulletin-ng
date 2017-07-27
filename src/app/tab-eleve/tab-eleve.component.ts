@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MdChipsModule} from '@angular/material';
 
-import {EleveService} from '../service/eleve.service';
+import {DataService} from '../service/data.service';
 import * as model from '../model/model';
 
 @Component({selector: 'tab-eleve', templateUrl: './tab-eleve.component.html', styleUrls: ['./tab-eleve.component.css']})
@@ -14,11 +14,11 @@ export class TabEleveComponent implements OnInit {
   eleveSelectionne: model.Eleve;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private eleveService: EleveService) {}
+  constructor(private dataService: DataService) {}
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
-    this.eleves = this.eleveService.getListeEleve();
+    this.eleves = this.dataService.getListeEleve();
   }
 
   // A la sélection d'un élève

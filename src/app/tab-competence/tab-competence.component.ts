@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import * as model from '../model/model';
-import {EleveService} from '../service/eleve.service';
+import {DataService} from '../service/data.service';
 
 export class Noeud {constructor(public id: string, public idParent: string, public name: string, public children: Noeud[]) {} }
 
@@ -12,13 +12,13 @@ export class TabCompetenceComponent implements OnInit {
   noeuds = [];
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private eleveService: EleveService) {}
+  constructor(private dataService: DataService) {}
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
 
     // Récupère la liste des compétences
-    const competences: model.Competence[] = this.eleveService.getListeCompetence();
+    const competences: model.Competence[] = this.dataService.getListeCompetence();
 
     // Initialise une Map des TreeData pour retrouver les parents et y insérer les enfants
     const mapNoeuds: Map<string, Noeud> = new Map<string, Noeud>();

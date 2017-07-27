@@ -3,7 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import * as _ from 'lodash';
 import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 
-import {EleveService} from '../service/eleve.service';
+import {DataService} from '../service/data.service';
 import * as model from '../model/model';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class SauvegardeService {
   private readonly headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
   private readonly headersJSON = new HttpHeaders().set('Content-Type', 'application/json');
 
-  constructor(private http: HttpClient, private eleveService: EleveService) {}
+  constructor(private http: HttpClient, private dataService: DataService) {}
 
   /**
    * Récupère la liste des fichiers de sauvegarde disponibles sur le serveur
@@ -32,7 +32,7 @@ export class SauvegardeService {
     const params = {headers: this.headers};
     this.http.post<model.Annee>(this.serveurUrl, corp, params).subscribe(
       dataOk => {
-        this.eleveService.setAnneeChargee(dataOk);
+        this.dataService.setAnneeChargee(dataOk);
       }
     );
   }

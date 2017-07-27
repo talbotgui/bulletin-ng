@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import * as model from '../model/model';
 
 @Injectable()
-export class EleveService {
+export class DataService {
 
   /** Données chargées et en cours d'édition */
   private anneeChargee: model.Annee;

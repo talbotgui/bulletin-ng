@@ -19,7 +19,7 @@ import {DivSauvegardeComponent} from './div-sauvegarde/div-sauvegarde.component'
 import {DialogChargementComponent} from './div-sauvegarde/dialog-chargement.component';
 
 // Les composants injectables
-import {EleveService} from './service/eleve.service';
+import {DataService} from './service/data.service';
 import {SauvegardeService} from './service/sauvegarde.service';
 
 // Le composant contenant les routes
@@ -38,7 +38,7 @@ import {AppRoutingModule} from './app-routing.module';
   entryComponents: [DialogChargementComponent],
 
   // Les composants injectables
-  providers: [EleveService, SauvegardeService],
+  providers: [DataService, SauvegardeService],
 
   // Les modules import�s
   imports: [
