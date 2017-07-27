@@ -21,8 +21,7 @@ export class TabTableauDeBordComponent implements OnInit {
   periodeSelectionnee: model.Periode;
 
   // Contenu du tableau de bord
-  colonnes = ['nomDomaine'];
-  dataSource: MyDataSource;
+  lignes: model.LigneTableauDeBord[];
 
   // Un constructeur pour se faire injecter les dépendances
   constructor(private dataService: DataService) {}
@@ -44,23 +43,11 @@ export class TabTableauDeBordComponent implements OnInit {
   }
   rechargeLesLignes() {
     if (this.eleveSelectionne && this.periodeSelectionnee) {
-      this.dataSource = new MyDataSource(this.dataService.getListeLigneTableauDeBord(this.eleveSelectionne, this.periodeSelectionnee));
+      this.lignes = this.dataService.getListeLigneTableauDeBord(this.eleveSelectionne, this.periodeSelectionnee);
 
     } else {
-      this.dataSource = new MyDataSource([]);
+      this.lignes = [];
     }
   }
 
-}
-export class MyDataSource extends DataSource<any> {
-  constructor(private lignes: model.LigneTableauDeBord[]) {
-    super();
-  }
-
-  /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<any> {
-    return Observable.of(this.lignes);
-  }
-
-  disconnect() {}
 }

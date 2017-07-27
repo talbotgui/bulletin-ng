@@ -9,12 +9,18 @@
 
 <!-- Formulaire de modification -->
 <div *ngIf="eleveSelectionne && periodeSelectionnee" class="">
-	<md-table #table [dataSource]="dataSource">
-		<ng-container cdkColumnDef="nomDomaine">
-			<md-header-cell *cdkHeaderCellDef>Nom de domaine</md-header-cell>
-			<md-cell *cdkCellDef="let ligne">{{ligne.nomDomaine}}</md-cell>
-		</ng-container>
-		<md-header-row *cdkHeaderRowDef="colonnes"></md-header-row>
-		<md-row *cdkRowDef="let row; columns: colonnes"></md-row>
-	</md-table>
+	<table class="tableauDeBord">
+		<thead><tr>
+			<th>Elément du programme évalué</th>
+			<th>Positionnement et objectif d'apprentissage</th>
+			<th>Nom du domaine</th>
+		</tr></thead>
+		<tbody *ngFor="let ligne of lignes">
+			<tr *ngFor="let sousLigne of ligne.sousLignes">
+				<td>{{sousLigne.competence.text}}</td>
+				<td><span *ngFor="let note of sousLigne.constatations">{{note.valeur}} </span>
+				<td>{{ligne.nomDomaine}}</td>
+			</tr>
+		</tbody>
+	</table>
 </div>

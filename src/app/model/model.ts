@@ -50,26 +50,63 @@ export class Annee {
   eleves: Eleve[]; competences: Competence[]; notes: Note[]; journal: Journal[];
   dateDerniereSauvegarde: Date; historique: Historique[]; erreursChargement: String[];
 }
-
-export class LigneTableauDeBord {
-  readonly nomDomaine: string;
+export class SousLigneTableauDeBord {
+  competence: Competence;
   aides: Note[] = [];
-  constations: Note[] = [];
-  constructor(nomDomaine: string) {
-    this.nomDomaine = nomDomaine;
+  constatations: Note[] = [];
+  get constat(): string {
+    if (this.constatations && this.constatations.length > 0) {
+      return this.constatations[0].constat;
+    }
+    return '';
   }
-  propageConstat(constat: string) {
-    if (this.constations) {
-      for (let constation of this.constations) {
-        constation.constat = constat;
+  get aide(): string {
+    if (this.aides && this.aides.length > 0) {
+      return this.aides[0].modalitesAide;
+    }
+    return '';
+  }
+  set constat(value: string) {
+    if (this.constatations) {
+      for (let constation of this.constatations) {
+        constation.constat = value;
       }
     }
   }
-  propageModaliteAide(modaliteAide: string) {
+  set aide(value: string) {
     if (this.aides) {
       for (let aide of this.aides) {
-        aide.modalitesAide = modaliteAide;
+        aide.modalitesAide = value;
       }
     }
+  }
+}
+export class LigneTableauDeBord {
+  nomDomaine: string;
+  sousLignes: SousLigneTableauDeBord[];
+  constructor(nomDomaine: string, constatations: Note[] = [], aides: Note[] = [], mapCompetences: Map<string, Competence>) {
+    this.nomDomaine = nomDomaine;
+    this.sousLignes = [];
+
+    // Creation des sousLignes pour les aides
+    for (let i = 0; i < constatations.length; i++) {
+      const constatation = constatations[i];
+
+      // Création ou réutilisation de la sousLigne
+      let sousLigne: SousLigneTableauDeBord;
+      if (i === 0 || constatation.idItem === constatations[i - 1].idItem) {
+        sousLigne = new SousLigneTableauDeBord();
+        sousLigne.competence = mapCompetences.get(constatation.idItem);
+        this.sousLignes.push(sousLigne);
+      } else {
+        sousLigne = this.sousLignes[this.sousLignes.length - 1];
+      }
+
+      // Ajout de l'aide dans les aides de la sousLigne
+      sousLigne.constatations.push(constatation);
+    }
+
+    // Creation/complétion des sousLignes pour les constations
+    // TODO:à compléter
   }
 }
