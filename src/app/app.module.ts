@@ -6,6 +6,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {MaterialModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import {TreeModule} from 'angular-tree-component';
+
 // Import de hammer (cf. documentation)
 import 'hammerjs';
 
@@ -45,9 +47,9 @@ import {AppRoutingModule} from './app-routing.module';
     BrowserModule, FormsModule, HttpClientModule,
 
     // Le module des composants WEB riches
-    MaterialModule, BrowserAnimationsModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule,
+    MaterialModule, BrowserAnimationsModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule, TreeModule,
 
-    // D�claration des routes
+    // Déclaration des routes
     AppRoutingModule
   ]
 })
