@@ -1,7 +1,7 @@
 #page { width:1400px; margin:auto; background-color:white; }
 #entete { height: 90px; margin: 0px 3px 0px 3px; background-image:url('../assets/images/entete-fond.png'); }
 #entete-titre { float: left; text-align: center; color: darkblue; height: 100%; font-size: 15px; line-height: 40px; width: 1250px; }
-#entete-actions { float: right; width: 100px; height: 100%; padding-top: 30px; }
+#entete-actions { float: right; width: 125px; height: 100%; padding-top: 30px; }
 #contenu { width:100%; margin-top:15px; }
 
 nav a { padding: 5px 10px; text-decoration: none; margin-right: 10px; margin-top: 10px; display: inline-block; background-color: #eee; border-radius: 4px; }

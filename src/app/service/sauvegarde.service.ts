@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import * as _ from 'lodash';
 import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
+import {MdSnackBar} from '@angular/material';
 
 import {DataService} from '../service/data.service';
 import * as model from '../model/model';
@@ -13,7 +14,7 @@ export class SauvegardeService {
   private readonly headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
   private readonly headersJSON = new HttpHeaders().set('Content-Type', 'application/json');
 
-  constructor(private http: HttpClient, private dataService: DataService) {}
+  constructor(private http: HttpClient, private dataService: DataService, public snackBar: MdSnackBar) {}
 
   /**
    * Récupère la liste des fichiers de sauvegarde disponibles sur le serveur
@@ -35,6 +36,10 @@ export class SauvegardeService {
 
         // Sauvegarde de l'instance dans le service DataService
         this.dataService.setAnneeChargee(dataOk);
+
+        // notification
+        const message = 'Fichier \'' + fichier + '\' chargé depuis le serveur';
+        this.snackBar.open(message, null, {duration: 3000});
       }
     );
   }
@@ -60,7 +65,8 @@ export class SauvegardeService {
     // Post
     this.http.post<model.Annee>(this.serveurUrl, paramsSansBug, {headers: this.headers}).subscribe(
       dataOk => {
-        console.log('ok=' + dataOk);
+        const message = 'Données sauvegardées sur le serveur dans le fichier \'' + nomFichier + '\'';
+        this.snackBar.open(message, null, {duration: 3000});
       },
       error => {
         console.log('error=' + error);

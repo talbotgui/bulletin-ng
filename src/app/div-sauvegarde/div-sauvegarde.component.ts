@@ -8,7 +8,10 @@ import {SauvegardeService} from '../service/sauvegarde.service';
 @Component({selector: 'div-sauvegarde', templateUrl: './div-sauvegarde.component.html'})
 export class DivSauvegardeComponent {
 
-  constructor(public dialog: MdDialog, private dataService: DataService, private sauvegardeService: SauvegardeService) {}
+  constructor(
+    public dialog: MdDialog, private dataService: DataService,
+    private sauvegardeService: SauvegardeService
+  ) {}
 
   // A la demande de chargement d'un fichier
   ouvreDialogChargement() {

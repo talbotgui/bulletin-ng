@@ -55,21 +55,22 @@ export class DataService {
   setAnneeChargee(annee: model.Annee): void {
 
     // Les MAP sont chargées comme des objets classiques avec des attributs. Donc reconstruction manuelle des MAP
-    const mapLibelleStatutEleveMap: Map<string, string> = new Map<string, string>();
-    for (let k in annee.mapLibelleStatutEleve) {
-      if (annee.mapLibelleStatutEleve.hasOwnProperty(k)) {
-        mapLibelleStatutEleveMap.set(k, annee.mapLibelleStatutEleve[k]);
+    if (annee) {
+      const mapLibelleStatutEleveMap: Map<string, string> = new Map<string, string>();
+      for (let k in annee.mapLibelleStatutEleve) {
+        if (annee.mapLibelleStatutEleve.hasOwnProperty(k)) {
+          mapLibelleStatutEleveMap.set(k, annee.mapLibelleStatutEleve[k]);
+        }
       }
-    }
-    annee.mapLibelleStatutEleveMap = mapLibelleStatutEleveMap;
-    const mapLibelleNotesMap: Map<string, string> = new Map<string, string>();
-    for (let k in annee.mapLibelleNotes) {
-      if (annee.mapLibelleNotes.hasOwnProperty(k)) {
-        mapLibelleNotesMap.set(k, annee.mapLibelleNotes[k]);
+      annee.mapLibelleStatutEleveMap = mapLibelleStatutEleveMap;
+      const mapLibelleNotesMap: Map<string, string> = new Map<string, string>();
+      for (let k in annee.mapLibelleNotes) {
+        if (annee.mapLibelleNotes.hasOwnProperty(k)) {
+          mapLibelleNotesMap.set(k, annee.mapLibelleNotes[k]);
+        }
       }
+      annee.mapLibelleNotesMap = mapLibelleNotesMap;
     }
-    annee.mapLibelleNotesMap = mapLibelleNotesMap;
-
 
     this.anneeChargee = annee;
   }

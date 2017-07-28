@@ -21,8 +21,7 @@ export class DialogChargementComponent implements OnInit {
     this.sauvegardeService.getlisteSauvegardesDuServeur().subscribe((val) => {
       this.fichiers = val.fichiers
         .filter(element => element.toUpperCase().endsWith('JSON'))
-        .sort((a, b) => b.localeCompare(a))
-        .slice(2, val.fichiers.length);
+        .sort((a, b) => b.localeCompare(a));
     });
   }
 
