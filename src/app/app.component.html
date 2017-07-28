@@ -6,7 +6,7 @@
 		</div>
 	</div>
 
-	<div id="menu">
+	<div id="menu" *ngIf="!!anneeChargee">
 		<nav md-tab-nav-bar>
 			<a md-tab-link routerLink="/tab-competence-route" routerLinkActive="active">Compétences</a>
 			<a md-tab-link routerLink="/tab-eleve-route" routerLinkActive="active">Elèves</a>
@@ -14,7 +14,7 @@
 		</nav>
 	</div>
 	
-	<div id="contenu">
+	<div id="contenu" *ngIf="!!anneeChargee">
 		<router-outlet></router-outlet>
 	</div>
 </div>
