@@ -1,7 +1,7 @@
 <h2 md-dialog-title>Chargement d'une sauvegarde</h2>
 
 <md-dialog-content>
-	<md-select [(ngModel)]="fichierSelectionne" placeholder="ficher à charger">
+	<md-select [(ngModel)]="fichierSelectionne" placeholder="fichier à charger">
 	  <md-option *ngFor="let fichier of fichiers" [value]="fichier">{{fichier}}</md-option>
 	</md-select>
 </md-dialog-content>

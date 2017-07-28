@@ -46,32 +46,53 @@ export class DataService {
   }
 
   /** Fournit les lignes de données pour un tableau de bord. */
-  getListeLigneTableauDeBord(eleve: model.Eleve, periode: model.Periode): model.LigneTableauDeBord[] {
+  getListeLigneTableauDeBord(eleve: model.Eleve, periodeEvaluee: model.Periode): model.LigneTableauDeBord[] {
     const liste: model.LigneTableauDeBord[] = [];
+    const indexPeriodeEvaluee = this.anneeChargee.periodes.findIndex(p => p === periodeEvaluee);
+    let periodePreparee = null;
+    if (indexPeriodeEvaluee < this.anneeChargee.periodes.length - 1) {
+      periodePreparee = this.anneeChargee.periodes[indexPeriodeEvaluee + 1];
+    }
 
     // Création de la map des compétences
     const mapCompetences: Map<string, model.Competence> = this.calculMapCompetences();
 
     // Récupération des notes de l'élève sur la période évaluée triées par compétence
     const notesElevePeriodeEvaluee = this.anneeChargee.notes
-      .filter(note => note.idEleve === eleve.id && periode.debut <= note.date && note.date <= periode.fin)
+      .filter(note => note.idEleve === eleve.id && periodeEvaluee.debut <= note.date && note.date <= periodeEvaluee.fin)
       .sort((a, b) => a.idItem.localeCompare(b.idItem));
+    // Récupération des notes de l'élève sur la période préparée triées par compétence
+    let notesElevePeriodePreparee = [];
+    if (periodePreparee) {
+      notesElevePeriodePreparee = this.anneeChargee.notes
+        .filter(note => note.idEleve === eleve.id && periodePreparee.debut <= note.date && note.date <= periodePreparee.fin)
+        .sort((a, b) => a.idItem.localeCompare(b.idItem));
+    }
 
     // Création d'une map avec toutes les notes regroupées par idCompetenceNiveau3
-    const mapNotesElevePeriodeEvaluees: Map<string, model.Note[]> = new Map();
+    const mapNotesEleve: Map<string, {eval: model.Note[], prepa: model.Note[]}> = new Map();
     for (let i = 0; i < notesElevePeriodeEvaluee.length; i++) {
       const note = notesElevePeriodeEvaluee[i];
       const idCompetenceNiveau3 = this.calculIdCompetenceNiveau3(note.idItem, mapCompetences);
-      if (!mapNotesElevePeriodeEvaluees.get(idCompetenceNiveau3)) {
-        mapNotesElevePeriodeEvaluees.set(idCompetenceNiveau3, [note]);
+      if (!mapNotesEleve.get(idCompetenceNiveau3)) {
+        mapNotesEleve.set(idCompetenceNiveau3, {eval: [note], prepa: []});
       } else {
-        mapNotesElevePeriodeEvaluees.get(idCompetenceNiveau3).push(note);
+        mapNotesEleve.get(idCompetenceNiveau3).eval.push(note);
+      }
+    }
+    for (let i = 0; i < notesElevePeriodePreparee.length; i++) {
+      const note = notesElevePeriodePreparee[i];
+      const idCompetenceNiveau3 = this.calculIdCompetenceNiveau3(note.idItem, mapCompetences);
+      if (!mapNotesEleve.get(idCompetenceNiveau3)) {
+        mapNotesEleve.set(idCompetenceNiveau3, {eval: [], prepa: [note]});
+      } else {
+        mapNotesEleve.get(idCompetenceNiveau3).prepa.push(note);
       }
     }
 
-    mapNotesElevePeriodeEvaluees.forEach((notesEvaluees: model.Note[], idCompetenceNiveau3: string) => {
+    mapNotesEleve.forEach((notes: {eval: model.Note[], prepa: model.Note[]}, idCompetenceNiveau3: string) => {
       const nomDomaine = mapCompetences.get(idCompetenceNiveau3).text;
-      liste.push(new model.LigneTableauDeBord(nomDomaine, notesEvaluees, [], mapCompetences));
+      liste.push(new model.LigneTableauDeBord(nomDomaine, notes.eval, notes.prepa, mapCompetences));
     });
 
     return liste;

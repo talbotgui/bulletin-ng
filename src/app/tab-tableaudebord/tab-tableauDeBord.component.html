@@ -13,13 +13,21 @@
 		<thead><tr>
 			<th>Elément du programme évalué</th>
 			<th>Positionnement et objectif d'apprentissage</th>
+			<th>Acquisition, progrès et difficultés</th>
 			<th>Nom du domaine</th>
+			<th>Constat sur la période</th>
+			<th>Modalité d'aide pour la période suivante</th>
+			<th>Elément du programme à travailler</th>
 		</tr></thead>
 		<tbody *ngFor="let ligne of lignes">
 			<tr *ngFor="let sousLigne of ligne.sousLignes">
-				<td>{{sousLigne.competence.text}}</td>
-				<td><span *ngFor="let note of sousLigne.constatations">{{note.valeur}} </span>
+				<td><span *ngIf="sousLigne.constatation">{{sousLigne.competence.text}}</span></td>
+				<td><span *ngIf="sousLigne.constatation">{{sousLigne.constatation.valeur}}</span></td>
+				<td><span *ngIf="sousLigne.constatation">{{sousLigne.constatation.commentaire}}</span></td>
 				<td>{{ligne.nomDomaine}}</td>
+				<td>{{ligne.constat}} </td>
+				<td>{{ligne.aide}} </td>
+				<td><span *ngIf="sousLigne.aide">{{sousLigne.competence.text}}</span></td>
 			</tr>
 		</tbody>
 	</table>

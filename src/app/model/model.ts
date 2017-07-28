@@ -51,62 +51,44 @@ export class Annee {
   dateDerniereSauvegarde: Date; historique: Historique[]; erreursChargement: String[];
 }
 export class SousLigneTableauDeBord {
-  competence: Competence;
-  aides: Note[] = [];
-  constatations: Note[] = [];
-  get constat(): string {
-    if (this.constatations && this.constatations.length > 0) {
-      return this.constatations[0].constat;
-    }
-    return '';
-  }
-  get aide(): string {
-    if (this.aides && this.aides.length > 0) {
-      return this.aides[0].modalitesAide;
-    }
-    return '';
-  }
-  set constat(value: string) {
-    if (this.constatations) {
-      for (let constation of this.constatations) {
-        constation.constat = value;
-      }
-    }
-  }
-  set aide(value: string) {
-    if (this.aides) {
-      for (let aide of this.aides) {
-        aide.modalitesAide = value;
-      }
-    }
+  competence: Competence; aide: Note; constatation: Note;
+  constructor(competence: Competence, constatation: Note, aide: Note) {
+    this.competence = competence;
+    this.constatation = constatation;
+    this.aide = aide;
   }
 }
 export class LigneTableauDeBord {
   nomDomaine: string;
   sousLignes: SousLigneTableauDeBord[];
+
+  set constat(value: string) {}
+  get constat() {return 'constatYY';}
+  set aide(value: string) {}
+  get aide() {return 'aideXX';}
+
   constructor(nomDomaine: string, constatations: Note[] = [], aides: Note[] = [], mapCompetences: Map<string, Competence>) {
     this.nomDomaine = nomDomaine;
     this.sousLignes = [];
 
-    // Creation des sousLignes pour les aides
-    for (let i = 0; i < constatations.length; i++) {
-      const constatation = constatations[i];
-
-      // Création ou réutilisation de la sousLigne
-      let sousLigne: SousLigneTableauDeBord;
-      if (i === 0 || constatation.idItem === constatations[i - 1].idItem) {
-        sousLigne = new SousLigneTableauDeBord();
-        sousLigne.competence = mapCompetences.get(constatation.idItem);
-        this.sousLignes.push(sousLigne);
-      } else {
-        sousLigne = this.sousLignes[this.sousLignes.length - 1];
-      }
-
-      // Ajout de l'aide dans les aides de la sousLigne
-      sousLigne.constatations.push(constatation);
+    // Creation des sousLignes pour les constations
+    for (let constatation of constatations) {
+      this.sousLignes.push(new SousLigneTableauDeBord(mapCompetences.get(constatation.idItem), constatation, null));
     }
 
     // Creation/complétion des sousLignes pour les constations
-    // TODO:à compléter
+    for (let aide of aides) {
+
+      // Recherche de la sousLigne par identifiant de competence
+      let sousLigneTrouvee = this.sousLignes.find(l => l.competence.id === aide.idItem);
+      if (sousLigneTrouvee) {
+        sousLigneTrouvee.aide = aide;
+      }
+
+      // Si pas trouvé, création d'une sousLigne
+      else {
+        this.sousLignes.push(new SousLigneTableauDeBord(mapCompetences.get(aide.idItem), null, aide));
+      }
+    }
   }
 }
