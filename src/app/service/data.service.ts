@@ -48,7 +48,7 @@ export class DataService {
   /** Donne le libellé d'une note */
   getLibelleNote(note: model.Note): string {
     if (this.anneeChargee) {
-      return this.anneeChargee.mapLibelleStatutEleve.get(note.valeur);
+      return this.anneeChargee.mapLibelleNotes.get(note.valeur);
     } else {
       return '';
     }
