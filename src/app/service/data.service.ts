@@ -8,6 +8,11 @@ export class DataService {
   /** Données chargées et en cours d'édition */
   private anneeChargee: model.Annee;
 
+  /** Pour savoir si une année est chargée */
+  isAnneeChargee(): boolean {
+    return !!this.anneeChargee;
+  }
+
   /** Initialisation des données chargées et en cours d'édition. */
   setAnneeChargee(annee: model.Annee): void {
     this.anneeChargee = annee;
