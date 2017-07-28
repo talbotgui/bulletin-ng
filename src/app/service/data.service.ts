@@ -59,6 +59,15 @@ export class DataService {
     }
   }
 
+  /** Donne la map des status d'élève */
+  getMapLibelleStatutEleve(): Map<string, string> {
+    if (this.anneeChargee) {
+      return this.anneeChargee.mapLibelleStatutEleve;
+    } else {
+      return new Map<string, string>();
+    }
+  }
+
   /** Fournit les lignes de données pour un tableau de bord. */
   getListeLigneTableauDeBord(eleve: model.Eleve, periodeEvaluee: model.Periode): model.LigneTableauDeBord[] {
     const liste: model.LigneTableauDeBord[] = [];

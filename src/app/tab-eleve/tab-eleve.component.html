@@ -16,6 +16,9 @@
 			<button mdSuffix [mdDatepickerToggle]="naissanceDatepicker"></button>
 		</md-input-container>
 		<md-datepicker #naissanceDatepicker></md-datepicker>
+		<md-select [(ngModel)]="eleveSelectionne.statut" placeholder="Statut">
+			<md-option *ngFor="let entry of mapStatutEleve | mapValues" [value]="entry.key">{{entry.val}}</md-option>
+		</md-select>
 	</fieldset>
 	<fieldset class="famille">
 		<legend>Famille</legend>

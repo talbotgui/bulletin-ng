@@ -13,12 +13,17 @@ export class TabEleveComponent implements OnInit {
   // Elève en cours d'édition
   eleveSelectionne: model.Eleve;
 
+  // Map des status d'élève
+  Object = Object;
+  mapStatutEleve: Map<string, string>;
+
   // Un constructeur pour se faire injecter les dépendances
   constructor(private dataService: DataService) {}
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
     this.eleves = this.dataService.getListeEleve();
+    this.mapStatutEleve = this.dataService.getMapLibelleStatutEleve();
   }
 
   // A la sélection d'un élève

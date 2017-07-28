@@ -11,3 +11,4 @@ button {
 label { margin: 0px 10px 0px 20px; }
 
 .mat-select { width: 300px; }
+.mat-select-trigger { font-size: 13px; }
