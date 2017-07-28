@@ -62,10 +62,30 @@ export class LigneTableauDeBord {
   nomDomaine: string;
   sousLignes: SousLigneTableauDeBord[];
 
-  set constat(value: string) {}
-  get constat() {return 'constatYY';}
-  set aide(value: string) {}
-  get aide() {return 'aideXX';}
+  set constat(value: string) {
+    for (let sousLigne of this.sousLignes) {
+      sousLigne.constatation.constat = value;
+    }
+  }
+  get constat() {
+    if (this.sousLignes && this.sousLignes.length > 0 && this.sousLignes[0].constatation) {
+      return this.sousLignes[0].constatation.constat;
+    } else {
+      return '';
+    }
+  }
+  set aide(value: string) {
+    for (let sousLigne of this.sousLignes) {
+      sousLigne.aide.modalitesAide = value;
+    }
+  }
+  get aide() {
+    if (this.sousLignes && this.sousLignes.length > 0 && this.sousLignes[0].aide) {
+      return this.sousLignes[0].aide.modalitesAide;
+    } else {
+      return '';
+    }
+  }
 
   constructor(nomDomaine: string, constatations: Note[] = [], aides: Note[] = [], mapCompetences: Map<string, Competence>) {
     this.nomDomaine = nomDomaine;

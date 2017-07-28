@@ -100,7 +100,7 @@ export class DataService {
 
   private calculIdCompetenceNiveau3(idCompetence: string, mapCompetences: Map<string, model.Competence>): string {
     const ancetres: string[] = this.calculListeAncetres(idCompetence, mapCompetences);
-    return ancetres[ancetres.length - 3];
+    return ancetres[ancetres.length - 4];
   }
   private calculListeAncetres(idCompetence: string, mapCompetences: Map<string, model.Competence>): string[] {
     const ancetres = [];
