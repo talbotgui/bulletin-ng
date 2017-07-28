@@ -13,8 +13,64 @@ export class DataService {
     return !!this.anneeChargee;
   }
 
+  // Transforme une copie des données en cours en JSON
+  transformeAnneeEnJson(): string {
+
+    // Clone de la structure avant modification pour sauvegarde
+    const anneeAsauvegarder = Object.assign({}, this.anneeChargee);
+
+    // Suppression des Map recalculées
+    delete anneeAsauvegarder.mapLibelleNotesMap;
+    delete anneeAsauvegarder.mapLibelleStatutEleveMap;
+
+    return JSON.stringify(anneeAsauvegarder, null, 2);
+  }
+
+  // Prépare la sauvegarde et calcul le nom du fichier de sauvegarde
+  prepareSauvegardeEtCalculNomFichier(): string {
+
+    // Mise à jour de la date de dernière modification
+    const date = new Date();
+    this.anneeChargee.dateDerniereSauvegarde = date;
+
+    // Calcul du nom du fichier
+    const y = date.getFullYear();
+    const mo = this.formateNombre(date.getMonth() + 1);
+    const d = this.formateNombre(date.getDate());
+    const h = this.formateNombre(date.getHours());
+    const mi = this.formateNombre(date.getMinutes());
+    const s = this.formateNombre(date.getSeconds());
+
+    return y + '-' + mo + '-' + d + '-' + h + 'h' + mi + 'm' + s + 's.json';
+  }
+  private formateNombre(n: number) {
+    if (n < 10) {
+      return '0' + n;
+    } else {
+      return '' + n;
+    }
+  }
+
   /** Initialisation des données chargées et en cours d'édition. */
   setAnneeChargee(annee: model.Annee): void {
+
+    // Les MAP sont chargées comme des objets classiques avec des attributs. Donc reconstruction manuelle des MAP
+    const mapLibelleStatutEleveMap: Map<string, string> = new Map<string, string>();
+    for (let k in annee.mapLibelleStatutEleve) {
+      if (annee.mapLibelleStatutEleve.hasOwnProperty(k)) {
+        mapLibelleStatutEleveMap.set(k, annee.mapLibelleStatutEleve[k]);
+      }
+    }
+    annee.mapLibelleStatutEleveMap = mapLibelleStatutEleveMap;
+    const mapLibelleNotesMap: Map<string, string> = new Map<string, string>();
+    for (let k in annee.mapLibelleNotes) {
+      if (annee.mapLibelleNotes.hasOwnProperty(k)) {
+        mapLibelleNotesMap.set(k, annee.mapLibelleNotes[k]);
+      }
+    }
+    annee.mapLibelleNotesMap = mapLibelleNotesMap;
+
+
     this.anneeChargee = annee;
   }
 
@@ -53,7 +109,7 @@ export class DataService {
   /** Donne le libellé d'une note */
   getLibelleNote(note: model.Note): string {
     if (this.anneeChargee) {
-      return this.anneeChargee.mapLibelleNotes.get(note.valeur);
+      return this.anneeChargee.mapLibelleNotesMap.get(note.valeur);
     } else {
       return '';
     }
@@ -62,7 +118,7 @@ export class DataService {
   /** Donne la map des status d'élève */
   getMapLibelleStatutEleve(): Map<string, string> {
     if (this.anneeChargee) {
-      return this.anneeChargee.mapLibelleStatutEleve;
+      return this.anneeChargee.mapLibelleStatutEleveMap;
     } else {
       return new Map<string, string>();
     }

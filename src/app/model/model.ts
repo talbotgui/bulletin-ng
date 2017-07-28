@@ -46,7 +46,8 @@ export class Annee {
   libellesTypeTempsJournal: string[];
   eleves: Eleve[]; competences: Competence[]; notes: Note[]; journal: Journal[];
   dateDerniereSauvegarde: Date; historique: Historique[]; erreursChargement: String[];
-  mapLibelleStatutEleve: Map<string, string>; mapLibelleNotes: Map<string, string>;
+  mapLibelleStatutEleve: Object; mapLibelleNotes: Object;
+  mapLibelleStatutEleveMap: Map<string, string>; mapLibelleNotesMap: Map<string, string>;
 }
 export class SousLigneTableauDeBord {
   competence: Competence; aide: Note; constatation: Note;

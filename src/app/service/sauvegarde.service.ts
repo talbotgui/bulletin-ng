@@ -32,24 +32,38 @@ export class SauvegardeService {
     const params = {headers: this.headers};
     this.http.post<model.Annee>(this.serveurUrl, corp, params).subscribe(
       dataOk => {
-        // Les MAP sont chargées comme des objets classiques avec des attributs. Donc reconstruction manuelle des MAP
-        const mapLibelleStatutEleve: Map<string, string> = new Map<string, string>();
-        for (let k in dataOk.mapLibelleStatutEleve) {
-          if (dataOk.mapLibelleStatutEleve.hasOwnProperty(k)) {
-            mapLibelleStatutEleve.set(k, dataOk.mapLibelleStatutEleve[k]);
-          }
-        }
-        dataOk.mapLibelleStatutEleve = mapLibelleStatutEleve;
-        const mapLibelleNotes: Map<string, string> = new Map<string, string>();
-        for (let k in dataOk.mapLibelleNotes) {
-          if (dataOk.mapLibelleNotes.hasOwnProperty(k)) {
-            mapLibelleNotes.set(k, dataOk.mapLibelleNotes[k]);
-          }
-        }
-        dataOk.mapLibelleNotes = mapLibelleNotes;
 
         // Sauvegarde de l'instance dans le service DataService
         this.dataService.setAnneeChargee(dataOk);
+      }
+    );
+  }
+
+  /**
+   * Charge le contenu d'un fichier et l'envoie au service "eleveService.setAnneeChargee"
+   */
+  sauvegardeAnneeDansFichier(): void {
+
+    // Préparation des données
+    const nomFichier = this.dataService.prepareSauvegardeEtCalculNomFichier();
+    const contenuFichier = this.dataService.transformeAnneeEnJson();
+
+    // Préparation des paramètres
+    const params = new HttpParams()
+      .append('methode', 'sauvegarde')
+      .append('nomFichier', nomFichier)
+      .append('contenuFichier', contenuFichier);
+
+    // Problème d'encodage des caractères '+'
+    const paramsSansBug = params.toString().replace(/\+/g, '%2B');
+
+    // Post
+    this.http.post<model.Annee>(this.serveurUrl, paramsSansBug, {headers: this.headers}).subscribe(
+      dataOk => {
+        console.log('ok=' + dataOk);
+      },
+      error => {
+        console.log('error=' + error);
       }
     );
   }
