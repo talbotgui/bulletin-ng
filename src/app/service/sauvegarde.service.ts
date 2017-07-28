@@ -32,6 +32,23 @@ export class SauvegardeService {
     const params = {headers: this.headers};
     this.http.post<model.Annee>(this.serveurUrl, corp, params).subscribe(
       dataOk => {
+        // Les MAP sont chargées comme des objets classiques avec des attributs. Donc reconstruction manuelle des MAP
+        const mapLibelleStatutEleve: Map<string, string> = new Map<string, string>();
+        for (let k in dataOk.mapLibelleStatutEleve) {
+          if (dataOk.mapLibelleStatutEleve.hasOwnProperty(k)) {
+            mapLibelleStatutEleve.set(k, dataOk.mapLibelleStatutEleve[k]);
+          }
+        }
+        dataOk.mapLibelleStatutEleve = mapLibelleStatutEleve;
+        const mapLibelleNotes: Map<string, string> = new Map<string, string>();
+        for (let k in dataOk.mapLibelleNotes) {
+          if (dataOk.mapLibelleNotes.hasOwnProperty(k)) {
+            mapLibelleNotes.set(k, dataOk.mapLibelleNotes[k]);
+          }
+        }
+        dataOk.mapLibelleNotes = mapLibelleNotes;
+
+        // Sauvegarde de l'instance dans le service DataService
         this.dataService.setAnneeChargee(dataOk);
       }
     );

@@ -8,9 +8,6 @@ export class Cursus {
 
 export class Eleve {
   static readonly CODE_STATUT_DANS_LA_CLASSE = '2';
-  static readonly STATUT_ELEVE: Map<string, string> = new Map([
-    ['0', 'hors établissement'], ['1', 'dans l\'établissement'], [Eleve.CODE_STATUT_DANS_LA_CLASSE, 'dans la classe']
-  ]);
 
   id: string; nom: string; prenom: string; dateNaissance: Date;
   pere: string; mere: string; fratrie: string;
@@ -49,6 +46,7 @@ export class Annee {
   libellesTypeTempsJournal: string[];
   eleves: Eleve[]; competences: Competence[]; notes: Note[]; journal: Journal[];
   dateDerniereSauvegarde: Date; historique: Historique[]; erreursChargement: String[];
+  mapLibelleStatutEleve: Map<string, string>; mapLibelleNotes: Map<string, string>;
 }
 export class SousLigneTableauDeBord {
   competence: Competence; aide: Note; constatation: Note;

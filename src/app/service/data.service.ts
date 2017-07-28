@@ -45,6 +45,15 @@ export class DataService {
     }
   }
 
+  /** Donne le libellé d'une note */
+  getLibelleNote(note: model.Note): string {
+    if (this.anneeChargee) {
+      return this.anneeChargee.mapLibelleStatutEleve.get(note.valeur);
+    } else {
+      return '';
+    }
+  }
+
   /** Fournit les lignes de données pour un tableau de bord. */
   getListeLigneTableauDeBord(eleve: model.Eleve, periodeEvaluee: model.Periode): model.LigneTableauDeBord[] {
     const liste: model.LigneTableauDeBord[] = [];

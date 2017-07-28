@@ -22,7 +22,7 @@
 		<tbody *ngFor="let ligne of lignes">
 			<tr *ngFor="let sousLigne of ligne.sousLignes; let i = index">
 				<td class="periodeEvaluee"><span *ngIf="sousLigne.constatation">{{sousLigne.competence.text}}</span></td>
-				<td class="periodeEvaluee"><span *ngIf="sousLigne.constatation">{{sousLigne.constatation.valeur}}</span></td>
+				<td class="periodeEvaluee"><span *ngIf="sousLigne.constatation"><compo-note [note]="sousLigne.constatation"></compo-note></span></td>
 				<td class="periodeEvaluee"><span *ngIf="sousLigne.constatation">{{sousLigne.constatation.commentaire}}</span></td>
 				<td class="domaine" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.nomDomaine}}</td>
 				<td class="periodeEvaluee">{{ligne.constat}} </td>
