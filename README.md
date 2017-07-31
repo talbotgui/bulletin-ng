@@ -27,7 +27,27 @@ Pipes :
 * exemple : {{dateNaissance | date:"dd/MM/yy"}}
 * exemple : <li *ngFor="let i of collection | slice:1:3">{{i}}</li> 
 * exemple : {{monAttribut | async"}} pour se lier à un Observable et être notifié
-* exemple : {{note.valeur | i18nSelect: libellesNote}} avec libellesNote une Map<string, string>
+* exemple : {{note.valeur | i18nSelect: libellesNote}} avec libellesNote un Objet {'clef1':'valeur1','clef2':'valeur2'} et non une Map<string, string>
+
+Constante :
+* à déclarer dans providers: [..., {provide: 'maConstante', useValue:'azertyuiop'}, ...]
+* à utiliser dans constructor(..., @Inject('maConstante') public maConstante, ...)
+
+Interfaces implémentables dans un composant : OnInit, AfterContentInit
+
+Exemple de directive : pour logger le clic sur tous un ensemble de boutons
+* <button [track]="unBouton">coucou</button>
+* @Directive({selector: '[track]'}) export class TrackDirective {
+  @Input() track;
+  @HostListener('click')
+  onClick(){ console.log(this.track); }
+}
+
+Validation de formulaire :
+* il faut un form avec les attributs novalidate et #toto="ngForm"
+* l'attribut 'required' sur les champs obligatoires
+* une div avec le message d'erreur (pristine = inchangé) : <div [hidden]="inputNom.valid || inputNom.pristine" class="alert alert-danger">Le nom est obligatoire</div>
+
 
 # Documentation Angular CLI :
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.4.
