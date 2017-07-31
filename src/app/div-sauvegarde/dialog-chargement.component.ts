@@ -20,7 +20,7 @@ export class DialogChargementComponent implements OnInit {
   ngOnInit(): void {
     this.sauvegardeService.getlisteSauvegardesDuServeur().subscribe((val) => {
       this.fichiers = val.fichiers
-        .filter(element => element.toUpperCase().endsWith('JSON'))
+        .filter((element) => element.toUpperCase().endsWith('JSON'))
         .sort((a, b) => b.localeCompare(a));
     });
   }

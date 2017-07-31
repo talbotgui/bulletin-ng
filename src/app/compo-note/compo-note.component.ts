@@ -1,7 +1,4 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {MdChipsModule} from '@angular/material';
-import {DataSource} from '@angular/cdk';
-import {Observable} from 'rxjs/Rx';
 
 import {DataService} from '../service/data.service';
 import * as model from '../model/model';

@@ -23,8 +23,8 @@ export class TabCompetenceComponent implements OnInit {
     // Initialise une Map des TreeData pour retrouver les parents et y insérer les enfants
     const mapNoeuds: Map<string, Noeud> = new Map<string, Noeud>();
 
-    // Pour chaque compétence, 
-    for (let competence of competences) {
+    // Pour chaque compétence,
+    for (const competence of competences) {
 
       // création du noeud et ajout dans la map
       const noeud: Noeud = new Noeud(competence.id, competence.parent, competence.text, null);

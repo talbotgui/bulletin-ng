@@ -11,8 +11,8 @@ export class Eleve {
 
   id: string; nom: string; prenom: string; dateNaissance: Date;
   pere: string; mere: string; fratrie: string;
-  adresses: string; telephones:
-  string; statut: string; bilans: string; cursus: Cursus[];
+  adresses: string; telephones: string;
+  statut: string; bilans: string; cursus: Cursus[];
   dateAdmission: Date; accueil: Date; datesPPA: Date; datesPAP: Date; datesESS: Date;
   constructor(id: string, nom: string, prenom: string) {
     this.id = id; this.nom = nom; this.prenom = prenom;
@@ -45,8 +45,8 @@ export class Annee {
   enteteEdition: string; enseignant: string; cycleNiveau: string;
   libellesTypeTempsJournal: string[];
   eleves: Eleve[]; competences: Competence[]; notes: Note[]; journal: Journal[];
-  dateDerniereSauvegarde: Date; historique: Historique[]; erreursChargement: String[];
-  mapLibelleStatutEleve: Object; mapLibelleNotes: Object;
+  dateDerniereSauvegarde: Date; historique: Historique[]; erreursChargement: string[];
+  mapLibelleStatutEleve: object; mapLibelleNotes: object;
   mapLibelleStatutEleveMap: Map<string, string>; mapLibelleNotesMap: Map<string, string>;
 }
 export class SousLigneTableauDeBord {
@@ -62,7 +62,7 @@ export class LigneTableauDeBord {
   sousLignes: SousLigneTableauDeBord[];
 
   set constat(value: string) {
-    for (let sousLigne of this.sousLignes) {
+    for (const sousLigne of this.sousLignes) {
       sousLigne.constatation.constat = value;
     }
   }
@@ -74,7 +74,7 @@ export class LigneTableauDeBord {
     }
   }
   set aide(value: string) {
-    for (let sousLigne of this.sousLignes) {
+    for (const sousLigne of this.sousLignes) {
       sousLigne.aide.modalitesAide = value;
     }
   }
@@ -91,15 +91,15 @@ export class LigneTableauDeBord {
     this.sousLignes = [];
 
     // Creation des sousLignes pour les constations
-    for (let constatation of constatations) {
+    for (const constatation of constatations) {
       this.sousLignes.push(new SousLigneTableauDeBord(mapCompetences.get(constatation.idItem), constatation, null));
     }
 
     // Creation/complétion des sousLignes pour les constations
-    for (let aide of aides) {
+    for (const aide of aides) {
 
       // Recherche de la sousLigne par identifiant de competence
-      let sousLigneTrouvee = this.sousLignes.find(l => l.competence.id === aide.idItem);
+      const sousLigneTrouvee = this.sousLignes.find((l) => l.competence.id === aide.idItem);
       if (sousLigneTrouvee) {
         sousLigneTrouvee.aide = aide;
       }

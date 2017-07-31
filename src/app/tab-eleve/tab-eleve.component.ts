@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {MdChipsModule} from '@angular/material';
 
 import {DataService} from '../service/data.service';
 import * as model from '../model/model';

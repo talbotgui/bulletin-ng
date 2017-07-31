@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {MdDialog, MdDialogRef} from '@angular/material';
+import {MdDialog} from '@angular/material';
 
 import {DialogChargementComponent} from './dialog-chargement.component';
 import {DataService} from '../service/data.service';

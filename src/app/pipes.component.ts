@@ -4,8 +4,8 @@ import {Pipe, PipeTransform} from '@angular/core';
 @Pipe({name: 'mapValues'})
 export class MapValuesPipe implements PipeTransform {
 
-  transform(value: any, args?: any[]): {key: string, val: string}[] {
-    let returnArray = [];
+  transform(value: any, args?: any[]): Array<{key: string, val: string}> {
+    const returnArray = [];
 
     value.forEach((entryVal, entryKey) => {
       returnArray.push({
