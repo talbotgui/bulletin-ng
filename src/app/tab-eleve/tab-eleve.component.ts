@@ -23,7 +23,7 @@ export class TabEleveComponent implements OnInit {
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
     this.eleves = this.dataService.getListeEleve();
-    this.mapStatutEleve = this.dataService.getMapLibelleStatutEleve();
+    this.mapStatutEleve = this.dataService.getMapLibelleStatutEleveMap();
   }
 
   // A la sélection d'un élève

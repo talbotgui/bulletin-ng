@@ -12,14 +12,14 @@ export class ComposantNoteComponent implements OnInit {
   // Note fournie en entrée
   @Input() note: model.Note;
 
-  // Libellé à afficher
-  libelleNote: string;
+  // Libellés des notes
+  libellesNote: any;
 
   // Un constructeur pour se faire injecter les dépendances
   constructor(private dataService: DataService) {}
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
-    this.libelleNote = this.dataService.getLibelleNote(this.note);
+    this.libellesNote = this.dataService.getMapLibelleNote();
   }
 }

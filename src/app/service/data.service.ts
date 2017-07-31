@@ -107,17 +107,17 @@ export class DataService {
     }
   }
 
-  /** Donne le libellé d'une note */
-  getLibelleNote(note: model.Note): string {
+  /** Donne la map des libellés de note */
+  getMapLibelleNote(): any {
     if (this.anneeChargee) {
-      return this.anneeChargee.mapLibelleNotesMap.get(note.valeur);
+      return this.anneeChargee.mapLibelleNotes;
     } else {
-      return '';
+      return new Map<string, string>();
     }
   }
 
   /** Donne la map des status d'élève */
-  getMapLibelleStatutEleve(): Map<string, string> {
+  getMapLibelleStatutEleveMap(): Map<string, string> {
     if (this.anneeChargee) {
       return this.anneeChargee.mapLibelleStatutEleveMap;
     } else {
