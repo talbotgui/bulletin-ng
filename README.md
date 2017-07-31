@@ -4,6 +4,8 @@
 
 # Quelques astuces Angular à retenir :
 
+Au besoin, pour réinstaller Angular/cli : npm install -g @angular/cli --no-optional
+
 Dans une interpolation, pour naviguer sans risque : unObjet?.unAttributPotentiellementUndefined
 '?.' est le Safe Navigation Operator.
 
