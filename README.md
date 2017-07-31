@@ -58,7 +58,13 @@ Validation de formulaire :
 * l'attribut 'required' sur les champs obligatoires
 * une div avec le message d'erreur (pristine = inchangé) : <div [hidden]="inputNom.valid || inputNom.pristine" class="alert alert-danger">Le nom est obligatoire</div>
 
+Pour la validation des radios, c'est l'input qui est invalide et le label est à coté. Astuce CSS : .ng-invalid + label:after { content:'sélectionne en un'; }
+
 Faire une boucle *ngFor et avoir l'index : *ngFor="let aze of azes; let i=index"
+
+Afficher/masquer un élément :
+* *ngIf supprime l'élément du DOM
+* [hidden] change la valeur de l'attribut display (none/block)
 
 # Documentation Angular CLI :
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.4.
