@@ -43,11 +43,22 @@ Exemple de directive : pour logger le clic sur tous un ensemble de boutons
   onClick(){ console.log(this.track); }
 }
 
+Pour faire des checkbox dans un *ngFor :
+<div *ngFor="let aze of azes">
+  <input [id]="aze", name="monChamp" ngModel [value]="aze" type="radio"></input>
+  <label [attr.for]="aze">{{aze}}</label>
+</div>
+
+Ajouter remplacer ngModel par [ngModel]="azes[0]" pour définir une valeur par défaut
+  
+Créer une variable locale à la page HTML (sans lien avec un attribut du composant) : #toto="NgForm" ou #toto="NgModel"
+
 Validation de formulaire :
 * il faut un form avec les attributs novalidate et #toto="ngForm"
 * l'attribut 'required' sur les champs obligatoires
 * une div avec le message d'erreur (pristine = inchangé) : <div [hidden]="inputNom.valid || inputNom.pristine" class="alert alert-danger">Le nom est obligatoire</div>
 
+Faire une boucle *ngFor et avoir l'index : *ngFor="let aze of azes; let i=index"
 
 # Documentation Angular CLI :
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.4.
