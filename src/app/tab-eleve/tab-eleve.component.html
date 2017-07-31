@@ -1,12 +1,12 @@
 
 <!-- Liste des élèves -->
 <md-chip-list class="listeEleves" [selectable]="true">
-	<md-chip *ngFor="let eleve of eleves" (click)="onSelectEleve(eleve)" [class.eleveSelectionne]="eleve === eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</md-chip>
+	<md-chip *ngFor="let eleve of eleves" (click)="onSelectEleve(eleve); eleveForm.reset(eleve);" [class.eleveSelectionne]="eleve === eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</md-chip>
 </md-chip-list>
 
 <!-- Formulaire de modification -->
-<div *ngIf="eleveSelectionne" class="formulaireEleve">
-	<form novalidate #eleveForm="ngForm">
+<form novalidate #eleveForm="ngForm">
+	<div *ngIf="eleveSelectionne" class="formulaireEleve">
 		<fieldset>
 			<legend>Elève</legend>
 			<div [hidden]="inputNom.valid || inputNom.pristine" class="alert-danger">Le nom est obligatoire</div>
@@ -43,5 +43,5 @@
 			<textarea [(ngModel)]="eleveSelectionne.datesPAP" name="datesPAP" placeholder="Dates PAP (PPS)"></textarea>
 			<textarea [(ngModel)]="eleveSelectionne.datesESS" name="datesESS" placeholder="Dates ESS"></textarea>
 		</fieldset>
-	</form>
-</div>
+	</div>
+</form>
