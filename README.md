@@ -72,6 +72,7 @@ Dans les tests, si l'erreur "Uncaught NetworkError: Failed to execute 'send' on 
 Par exemple : un composant appel un mock dans le onInit mais le mock a été 'reset' et ne renvoie rien.
 
 Pour les tests, cheat sheet pour Jasmine : http://blog.bandzarewicz.com/blog/2012/03/08/jasmine-cheat-sheet/
+Pour débugger des tests Karma depuis VsCode : http://blog.mlewandowski.com/Debugging-Karma-tests-with-VSCode.html
 
 # Documentation Angular CLI :
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.4.
