@@ -1,75 +1,86 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { MdSnackBarModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import * as mockito from 'ts-mockito';
 
-// import * as model from '../model/model';
-// import { Jdd } from '../model/model-jdd';
+import * as model from '../model/model';
 import { DataService } from '../service/data.service';
 import { SauvegardeService } from '../service/sauvegarde.service';
 
 describe('SauvegardeService', () => {
 
   let dataServiceMock: DataService;
+  let dataServiceMock2: DataService;
+  let sauvegardeService: SauvegardeService;
+  let http: HttpTestingController;
+
+  beforeAll(() => {
+    // Creation du mock de DataService
+    dataServiceMock = mockito.mock(DataService);
+  });
 
   // Pour réinitialiser le composant de test avant chaque test
   beforeEach(() => {
+    // Reset des mock
+    mockito.reset(dataServiceMock);
 
-    // Creation du mock de DataService
-    dataServiceMock = mockito.mock(DataService);
-
+    // Creation de l'environnement de test du composant
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MdSnackBarModule],
+      imports: [HttpClientTestingModule, MdSnackBarModule, BrowserAnimationsModule],
       providers: [
         SauvegardeService,
         { provide: DataService, useValue: dataServiceMock }
       ]
-    });
+    }).compileComponents();
+
+    // Récupération des instances de composants
+    sauvegardeService = TestBed.get(SauvegardeService);
+    http = TestBed.get(HttpTestingController);
+    dataServiceMock2 = TestBed.get(DataService);
   });
 
-  it('Premier test', () => {
-
+  it('getlisteSauvegardesDuServeur', () => {
     // Arrange
-    const sauvegardeService: SauvegardeService = TestBed.get(SauvegardeService);
-    const http: HttpTestingController = TestBed.get(HttpTestingController);
-    const jdd = ['a', 'b', 'cd'];
+    const jdd = ['a', 'b', 'c', 'd'];
+    const requestDefinition = function (req: HttpRequest<any>) {
+      return req.url === 'http://192.168.1.52/download/upload.php'
+        && req.body === 'methode=liste'
+        && req.method === 'POST';
+    };
 
-    // Act
+    // Act : appel au service et récupération du résultat + réponse à la requete HTTP déclenchée dans le service
     let resultats;
-    sauvegardeService.getlisteSauvegardesDuServeur().subscribe((val) => {
-      resultats = val;
-    });
+    sauvegardeService.getlisteSauvegardesDuServeur().subscribe((val) => { resultats = val; });
+    http.expectOne(requestDefinition).flush(jdd);
 
-    http.expectOne({ url: 'http://192.168.1.52/download/upload.php', method: 'POST' }).flush(jdd);
-
-    // Assert
+    // Assert : valeurs retournées et pas d'autre requete HTTP
     expect(resultats).toEqual(jdd);
+    http.verify();
   });
 
-  it('expects a GET request', inject([HttpClient, HttpTestingController], (http: HttpClient, httpMock: HttpTestingController) => {
-    // Make an HTTP GET request, and expect that it return an object of the form {name: 'Test Data'}.
-    http.get('/data').subscribe((data) => expect(data['name']).toEqual('Test Data'));
+  it('chargeAnneeDuFichier', () => {
+    // Arrange
+    const anneeRetournee = new model.Annee();
+    const nomFichier = 'nomDeMonFichier';
+    const requestDefinition = function (req: HttpRequest<any>) {
+      return req.url === 'http://192.168.1.52/download/upload.php'
+        && req.body === 'methode=charge&nomFichier=' + nomFichier
+        && req.method === 'POST';
+    };
 
-    // At this point, the request is pending, and no response has been sent. The next step is to expect that the request happened.
-    const req = httpMock.expectOne('/data');
+    // Act : appel au service et récupération du résultat + réponse à la requete HTTP déclenchée dans le service
+    sauvegardeService.chargeAnneeDuFichier(nomFichier);
+    http.expectOne(requestDefinition).flush(anneeRetournee);
 
-    // If no request with that URL was made, or if multiple requests match,
-    // expectOne() would throw. However this test makes only one request to
-    // this URL, so it will match and return a mock request. The mock request
-    // can be used to deliver a response or make assertions against the
-    // request. In this case, the test asserts that the request is a GET.
-    expect(req.request.method).toEqual('GET');
-
-    // Next, fulfill the request by transmitting a response.
-    req.flush({ name: 'Test Data' });
-
-    // Finally, assert that there are no outstanding requests.
-    httpMock.verify();
-  }));
-
-  afterEach(inject([HttpTestingController], (httpMock: HttpTestingController) => {
-    httpMock.verify();
-  }));
+    // Assert : valeurs retournées et pas d'autre requete HTTP
+    const dataService: DataService = TestBed.get(DataService);
+    console.log('OUI1 =>' + (dataService === dataServiceMock));
+    console.log('OUI2 =>' + (dataService === dataServiceMock2));
+    console.log('OUI3 =>' + (dataServiceMock === dataServiceMock2));
+    mockito.verify(dataServiceMock2.setAnneeChargee(mockito.anything())).once();
+    http.verify();
+  });
 
 });

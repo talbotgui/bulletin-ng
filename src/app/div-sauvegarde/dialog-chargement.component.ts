@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {SauvegardeService} from '../service/sauvegarde.service';
+import { SauvegardeService } from '../service/sauvegarde.service';
 
 @Component({
   selector: 'dialog-chargement', templateUrl: './dialog-chargement.component.html', styleUrls: ['./dialog-chargement.component.css']
@@ -14,7 +14,7 @@ export class DialogChargementComponent implements OnInit {
   fichierSelectionne: string;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private sauvegardeService: SauvegardeService) {}
+  constructor(private sauvegardeService: SauvegardeService) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
