@@ -1,6 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
+import { MdSnackBarModule } from '@angular/material';
 import * as mockito from 'ts-mockito';
 
 // import * as model from '../model/model';
@@ -19,12 +20,31 @@ describe('SauvegardeService', () => {
     dataServiceMock = mockito.mock(DataService);
 
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, MdSnackBarModule],
       providers: [
         SauvegardeService,
         { provide: DataService, useValue: dataServiceMock }
       ]
     });
+  });
+
+  it('Premier test', () => {
+
+    // Arrange
+    const sauvegardeService: SauvegardeService = TestBed.get(SauvegardeService);
+    const http: HttpTestingController = TestBed.get(HttpTestingController);
+    const jdd = ['a', 'b', 'cd'];
+
+    // Act
+    let resultats;
+    sauvegardeService.getlisteSauvegardesDuServeur().subscribe((val) => {
+      resultats = val;
+    });
+
+    http.expectOne({ url: 'http://192.168.1.52/download/upload.php', method: 'POST' }).flush(jdd);
+
+    // Assert
+    expect(resultats).toEqual(jdd);
   });
 
   it('expects a GET request', inject([HttpClient, HttpTestingController], (http: HttpClient, httpMock: HttpTestingController) => {
