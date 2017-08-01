@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import * as model from '../model/model';
 
@@ -127,7 +127,7 @@ export class DataService {
   getListeLigneTableauDeBord(eleve: model.Eleve, periodeEvaluee: model.Periode): model.LigneTableauDeBord[] {
 
     // Si aucune année chargée, aucune données
-    if (!this.anneeChargee) {
+    if (!this.anneeChargee || !eleve || !periodeEvaluee) {
       return [];
     }
 
@@ -154,11 +154,11 @@ export class DataService {
     }
 
     // Création d'une map avec toutes les notes regroupées par idCompetenceNiveau3
-    const mapNotesEleve: Map<string, {eval: model.Note[], prepa: model.Note[]}> = new Map();
+    const mapNotesEleve: Map<string, { eval: model.Note[], prepa: model.Note[] }> = new Map();
     notesElevePeriodeEvaluee.forEach((note, i) => {
       const idCompetenceNiveau3 = this.calculIdCompetenceNiveau3(note.idItem, mapCompetences);
       if (!mapNotesEleve.get(idCompetenceNiveau3)) {
-        mapNotesEleve.set(idCompetenceNiveau3, {eval: [note], prepa: []});
+        mapNotesEleve.set(idCompetenceNiveau3, { eval: [note], prepa: [] });
       } else {
         mapNotesEleve.get(idCompetenceNiveau3).eval.push(note);
       }
@@ -166,13 +166,13 @@ export class DataService {
     notesElevePeriodePreparee.forEach((note, i) => {
       const idCompetenceNiveau3 = this.calculIdCompetenceNiveau3(note.idItem, mapCompetences);
       if (!mapNotesEleve.get(idCompetenceNiveau3)) {
-        mapNotesEleve.set(idCompetenceNiveau3, {eval: [], prepa: [note]});
+        mapNotesEleve.set(idCompetenceNiveau3, { eval: [], prepa: [note] });
       } else {
         mapNotesEleve.get(idCompetenceNiveau3).prepa.push(note);
       }
     });
 
-    mapNotesEleve.forEach((notes: {eval: model.Note[], prepa: model.Note[]}, idCompetenceNiveau3: string) => {
+    mapNotesEleve.forEach((notes: { eval: model.Note[], prepa: model.Note[] }, idCompetenceNiveau3: string) => {
       const nomDomaine = mapCompetences.get(idCompetenceNiveau3).text;
       liste.push(new model.LigneTableauDeBord(nomDomaine, notes.eval, notes.prepa, mapCompetences));
     });

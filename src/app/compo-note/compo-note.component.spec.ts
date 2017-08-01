@@ -1,11 +1,11 @@
-import {ComponentFixture, TestBed, async} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {DebugElement} from '@angular/core';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 import * as mockito from 'ts-mockito';
 
 import * as model from '../model/model';
-import {DataService} from '../service/data.service';
-import {ComposantNoteComponent} from './compo-note.component';
+import { DataService } from '../service/data.service';
+import { ComposantNoteComponent } from './compo-note.component';
 
 describe('ComposantNoteComponent', () => {
 
@@ -19,13 +19,14 @@ describe('ComposantNoteComponent', () => {
   beforeEach(async(() => {
 
     // Creation du mock de DataService
+    const data = { 0: 'non atteint', 1: 'atteint partiellement', 2: 'atteint', 3: 'dépassé', n: 'non évalué', a: 'absent' };
     dataServiceMock = mockito.mock(DataService);
-    mockito.when(dataServiceMock.getMapLibelleNote()).thenReturn({"0": "non atteint", "1": "atteint partiellement", "2": "atteint", "3": "dépassé", "n": "non évalué", "a": "absent"});
+    mockito.when(dataServiceMock.getMapLibelleNote()).thenReturn(data);
 
     // Creation de l'équivalent de app.module.ts pour le test
     TestBed.configureTestingModule({
       declarations: [ComposantNoteComponent],
-      providers: [{provide: DataService, useValue: mockito.instance(dataServiceMock)}]
+      providers: [{ provide: DataService, useValue: mockito.instance(dataServiceMock) }]
     })
 
       // Compilation de l'HTML et du CSS
@@ -52,7 +53,7 @@ describe('ComposantNoteComponent', () => {
   it('avec une note, le texte est ', () => {
 
     // Arrange : modification de la note dans le composant
-    const valeur = "1";
+    const valeur = '1';
     comp.note = new model.Note();
     comp.note.valeur = valeur;
 
@@ -64,7 +65,6 @@ describe('ComposantNoteComponent', () => {
     expect(comp.libellesNote).not.toBeNull();
     expect(el.className).toBe('note_' + valeur);
     // assertion inactive car elle ne fonctionne pas alors que la classe est bonne
-    //expect(el.textContent).toBe('atteint partiellement');
+    // expect(el.textContent).toBe('atteint partiellement');
   });
-
 });
