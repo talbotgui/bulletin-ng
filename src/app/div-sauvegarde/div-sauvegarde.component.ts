@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MdDialog } from '@angular/material';
 
 import { DialogChargementComponent } from './dialog-chargement.component';
+import { DialogSauvegardeComponent } from './dialog-sauvegarde.component';
 import { DataService } from '../service/data.service';
 import { SauvegardeService } from '../service/sauvegarde.service';
 
@@ -20,7 +21,7 @@ export class DivSauvegardeComponent {
 
   // A la demande de sauvegarde
   ouvreDialogSauvegarde() {
-    this.sauvegardeService.sauvegardeAnneeDansFichier();
+    this.dialog.open(DialogSauvegardeComponent, { height: '145px', width: '350px' });
   }
 
   // Condition d'affichage des boutons

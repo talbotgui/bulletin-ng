@@ -54,6 +54,12 @@ export class SauvegardeService {
     this.snackBar.open(message, null, { duration: 3000 });
   }
 
+  sauvegardeAnneeDansUnBlob(): { nomFichier: string, blob: Blob } {
+    const nomFichier = this.dataService.prepareSauvegardeEtCalculNomFichier();
+    const contenuFichier = this.dataService.transformeAnneeEnJson();
+    const blob = new Blob([contenuFichier], { type: "text/plain;charset=utf-8" });
+    return { nomFichier: nomFichier, blob: blob };
+  }
   /**
    * Sauvegarde sur le serveur distant le contenu de l'année en cours d'édition.
    */
