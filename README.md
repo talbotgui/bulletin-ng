@@ -74,6 +74,11 @@ Par exemple : un composant appel un mock dans le onInit mais le mock a été 're
 Pour les tests, cheat sheet pour Jasmine : http://blog.bandzarewicz.com/blog/2012/03/08/jasmine-cheat-sheet/
 Pour débugger des tests Karma depuis VsCode : http://blog.mlewandowski.com/Debugging-Karma-tests-with-VSCode.html
 Mockito : ne pas oublier de créer l'instance après avoir créer le mock : https://github.com/NagRock/ts-mockito
+Karma :
+* Pour lancer les tests : ng test
+* Pour lancer les tests avec couverture de code : ng test --code-coverage --reporters=coverage-istanbul
+
+Pour lancer les tests avec PhantomJS : ng test --config=karma-ic.conf.js
 
 # Documentation Angular CLI :
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.4.

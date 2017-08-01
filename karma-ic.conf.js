@@ -13,7 +13,7 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-coverage'),
-      require('karma-chrome-launcher'),
+      require('karma-phantomjs-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-junit-reporter'),
       require('karma-coverage-istanbul-reporter'),
@@ -31,14 +31,10 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     // Active la surveillance des fichiers et la ré-exécution des tests en cas de modification
     autoWatch: true,
-    // Délai d'attente pour l'exécution des tests après la détection de la modification d'un fichier (pour permettre la sauvegarde d'autres fichiers)
-    autoWatchBatchDelay: 800,
     // Execution unique des tests
-    singleRun: false,
-    // Configuration particulière pour démarrer Chrome en debug et permettre à VSCode de s'y connecter
-    customLaunchers: { ChromeDebugging: { base: 'Chrome', flags: ['--remote-debugging-port=9333'] } },
+    singleRun: true,
     // Le(s) browser(s) à utiliser pour les tests
-    browsers: ['ChromeDebugging'],
+    browsers: ['PhantomJS'],
     // Configuration pour Istanbul
     coverageIstanbulReporter: {
       // Types des rapports
