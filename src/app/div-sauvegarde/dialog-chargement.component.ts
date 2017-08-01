@@ -15,7 +15,7 @@ export class DialogChargementComponent implements OnInit {
   fichierSelectionne: string;
 
   // Données chargées depuis le chargement local
-  private jsonChargeDepuisFichierLocal = null;
+  jsonChargeDepuisFichierLocal = null;
 
   // Un constructeur pour se faire injecter les dépendances
   constructor(private sauvegardeService: SauvegardeService, private dataService: DataService) { }

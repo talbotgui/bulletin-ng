@@ -2,9 +2,11 @@
 
 <md-dialog-content>
 	<span>Sauvegarde locale</span>
-	<input (change)="onSelectFichierLocal($event)" type="file" />
+	<label [class]="jsonChargeDepuisFichierLocal ? 'inputFile inputFileDone' : 'inputFile'"> 
+		<input (change)="onSelectFichierLocal($event)" type="file"/>
+	</label>
 
-	<br/><br/>
+	<br/>
 
 	<span>Sauvegarde du serveur</span>
 	<md-select [(ngModel)]="fichierSelectionne">
