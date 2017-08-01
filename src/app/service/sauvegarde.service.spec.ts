@@ -42,7 +42,7 @@ describe('SauvegardeService', () => {
   it('getlisteSauvegardesDuServeur', () => {
     // Arrange
     const jdd = ['a', 'b', 'c', 'd'];
-    const requestDefinition = function (req: HttpRequest<any>) {
+    const requestDefinition = (req: HttpRequest<any>) => {
       return req.url === 'http://192.168.1.52/download/upload.php'
         && req.body === 'methode=liste'
         && req.method === 'POST';
@@ -62,7 +62,7 @@ describe('SauvegardeService', () => {
     // Arrange
     const anneeRetournee = new model.Annee();
     const nomFichier = 'nomDeMonFichier';
-    const requestDefinition = function (req: HttpRequest<any>) {
+    const requestDefinition = (req: HttpRequest<any>) => {
       return req.url === 'http://192.168.1.52/download/upload.php'
         && req.body === 'methode=charge&nomFichier=' + nomFichier
         && req.method === 'POST';
@@ -74,6 +74,28 @@ describe('SauvegardeService', () => {
 
     // Assert : valeurs retournées et pas d'autre requete HTTP
     mockito.verify(dataServiceMock.setAnneeChargee(mockito.anyOfClass(model.Annee))).once();
+    http.verify();
+  });
+
+  it('sauvegardeAnneeDansFichier', () => {
+    // Arrange
+    const nomFichier = 'nomDeMonFichier';
+    mockito.when(dataServiceMock.prepareSauvegardeEtCalculNomFichier()).thenReturn(nomFichier);
+    const contenuDuFichier = 'blaBlaBlaBla';
+    mockito.when(dataServiceMock.transformeAnneeEnJson()).thenReturn(contenuDuFichier);
+    const requestDefinition = (req: HttpRequest<any>) => {
+      return req.url === 'http://192.168.1.52/download/upload.php'
+        && req.body === 'methode=sauvegarde&nomFichier=' + nomFichier + '&contenuFichier=' + contenuDuFichier
+        && req.method === 'POST';
+    };
+
+    // Act : appel au service et récupération du résultat + réponse à la requete HTTP déclenchée dans le service
+    sauvegardeService.sauvegardeAnneeDansFichier();
+    http.expectOne(requestDefinition).flush('');
+
+    // Assert : valeurs retournées et pas d'autre requete HTTP
+    mockito.verify(dataServiceMock.prepareSauvegardeEtCalculNomFichier()).once();
+    mockito.verify(dataServiceMock.transformeAnneeEnJson()).once();
     http.verify();
   });
 
