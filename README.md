@@ -1,22 +1,16 @@
-# Bulletin
-
-
-
-# Quelques astuces Angular à retenir :
+# Quelques astuces Angular à retenir (https://angular.io/guide/cheatsheet) :
 
 Au besoin, pour réinstaller Angular/cli : npm install -g @angular/cli --no-optional
 
-Dans une interpolation, pour naviguer sans risque : unObjet?.unAttributPotentiellementUndefined
-'?.' est le Safe Navigation Operator.
+Dans une interpolation, pour naviguer sans risque, il suffit d'utiliser le Safe Navigation Operator ('?.') : unObjet?.unAttributPotentiellementUndefined
 
 Two way binding :
 * [ngModel]="monAttribut" si la valeur change dans le JS, le DOM est mis à jour
 * (ngModel)="monAttribut" si le DOM change, la valeur du JS est mise à jour
 
-Exemple de binding :
-<div [style.background-color]="getStyle()">
+Exemple de binding : <div [style.background-color]="getStyle()">
 
-Événement : 
+Évènement : 
 * déclencher du code : (click)="auClick()"
 * récupérer l'event : (click)="auClick($event)"
 
@@ -68,17 +62,21 @@ Afficher/masquer un élément :
 * *ngIf supprime l'élément du DOM
 * [hidden] change la valeur de l'attribut display (none/block)
 
-Dans les tests, si l'erreur "Uncaught NetworkError: Failed to execute 'send' on 'XMLHttpRequest': Failed to load 'ng:///DynamicTestModule/ComposantNoteComponent.ngfactory.js'. thrown" survient, c'est un problème de données/objets non fournits en entrée d'un composant.
-Par exemple : un composant appel un mock dans le onInit mais le mock a été 'reset' et ne renvoie rien.
+# Pour tester une application Angular et ses composants :
 
-Pour les tests, cheat sheet pour Jasmine : http://blog.bandzarewicz.com/blog/2012/03/08/jasmine-cheat-sheet/
-Pour débugger des tests Karma depuis VsCode : http://blog.mlewandowski.com/Debugging-Karma-tests-with-VSCode.html
-Mockito : ne pas oublier de créer l'instance après avoir créer le mock : https://github.com/NagRock/ts-mockito
-Karma :
+Dans les tests, si l'erreur "Uncaught NetworkError: Failed to execute 'send' on 'XMLHttpRequest': Failed to load 'ng:///DynamicTestModule/ComposantNoteComponent.ngfactory.js'. thrown" survient, c'est un problème de données/objets non fournis en entrée d'un composant. Par exemple : un composant appel un mock dans le onInit mais le mock a été 'reset' et ne renvoie rien.
+
+Ne jamais oublier de créer l'instance après avoir créer le mock avec Mockito
+
+Quelques liens :
+* cheat sheet pour Jasmine : http://blog.bandzarewicz.com/blog/2012/03/08/jasmine-cheat-sheet/
+* débugger des tests Karma depuis VsCode : http://blog.mlewandowski.com/Debugging-Karma-tests-with-VSCode.html
+* Mockito : https://github.com/NagRock/ts-mockito
+
+Quelques commandes :
 * Pour lancer les tests : ng test
 * Pour lancer les tests avec couverture de code : ng test --code-coverage --reporters=coverage-istanbul
-
-Pour lancer les tests avec PhantomJS : ng test --config=karma-ic.conf.js
+* Pour lancer les tests avec PhantomJS : ng test --config=karma-ic.conf.js
 
 # Documentation Angular CLI :
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.4.
