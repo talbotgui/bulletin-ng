@@ -12,7 +12,6 @@ import { SauvegardeService } from '../service/sauvegarde.service';
 describe('SauvegardeService', () => {
 
   let dataServiceMock: DataService;
-  let dataServiceMock2: DataService;
   let sauvegardeService: SauvegardeService;
   let http: HttpTestingController;
 
@@ -31,14 +30,13 @@ describe('SauvegardeService', () => {
       imports: [HttpClientTestingModule, MdSnackBarModule, BrowserAnimationsModule],
       providers: [
         SauvegardeService,
-        { provide: DataService, useValue: dataServiceMock }
+        { provide: DataService, useValue: mockito.instance(dataServiceMock) }
       ]
     }).compileComponents();
 
     // Récupération des instances de composants
     sauvegardeService = TestBed.get(SauvegardeService);
     http = TestBed.get(HttpTestingController);
-    dataServiceMock2 = TestBed.get(DataService);
   });
 
   it('getlisteSauvegardesDuServeur', () => {
@@ -75,11 +73,7 @@ describe('SauvegardeService', () => {
     http.expectOne(requestDefinition).flush(anneeRetournee);
 
     // Assert : valeurs retournées et pas d'autre requete HTTP
-    const dataService: DataService = TestBed.get(DataService);
-    console.log('OUI1 =>' + (dataService === dataServiceMock));
-    console.log('OUI2 =>' + (dataService === dataServiceMock2));
-    console.log('OUI3 =>' + (dataServiceMock === dataServiceMock2));
-    mockito.verify(dataServiceMock2.setAnneeChargee(mockito.anything())).once();
+    mockito.verify(dataServiceMock.setAnneeChargee(mockito.anyOfClass(model.Annee))).once();
     http.verify();
   });
 
