@@ -13,9 +13,7 @@ export class SauvegardeService {
   private readonly serveurUrl = 'http://192.168.1.52/download/upload.php';
   private readonly headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
-  constructor(private http: HttpClient, private dataService: DataService, public snackBar: MdSnackBar) {
-    console.log(dataService);
-  }
+  constructor(private http: HttpClient, private dataService: DataService, public snackBar: MdSnackBar) { }
 
   /**
    * Récupère la liste des fichiers de sauvegarde disponibles sur le serveur
