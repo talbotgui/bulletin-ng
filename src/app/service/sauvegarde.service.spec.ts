@@ -99,4 +99,32 @@ describe('SauvegardeService', () => {
     http.verify();
   });
 
+  it('sauvegardeAnneeDansUnBlob', () => {
+    // Arrange
+    const nomFichier = 'nomDeMonFichier';
+    mockito.when(dataServiceMock.prepareSauvegardeEtCalculNomFichier()).thenReturn(nomFichier);
+    const contenuDuFichier = 'blaBlaBlaBla';
+    mockito.when(dataServiceMock.transformeAnneeEnJson()).thenReturn(contenuDuFichier);
+
+    // Act
+    const resultat = sauvegardeService.sauvegardeAnneeDansUnBlob();
+
+    // Assert
+    expect(resultat.nomFichier).toBe(nomFichier);
+    expect(resultat.blob.size).toBe(12);
+    mockito.verify(dataServiceMock.prepareSauvegardeEtCalculNomFichier()).once();
+    mockito.verify(dataServiceMock.transformeAnneeEnJson()).once();
+  });
+
+  it('chargeAnneeDepuisText', () => {
+    // Arrange
+    const contenuDuFichier = '{}';
+
+    // Act
+    sauvegardeService.chargeAnneeDepuisText(contenuDuFichier);
+
+    // Assert
+    mockito.verify(dataServiceMock.setAnneeChargee(mockito.anything())).once();
+  });
+
 });
