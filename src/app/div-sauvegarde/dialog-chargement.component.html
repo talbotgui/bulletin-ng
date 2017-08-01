@@ -1,16 +1,18 @@
 <h2 md-dialog-title>Chargement d'une sauvegarde</h2>
 
 <md-dialog-content>
-	<md-select [(ngModel)]="fichierSelectionne" placeholder="fichier à charger">
-	  <md-option *ngFor="let fichier of fichiers" [value]="fichier">{{fichier}}</md-option>
+	<span>Sauvegarde locale</span>
+	<input (change)="onSelectFichierLocal($event)" type="file" />
+
+	<br/><br/>
+
+	<span>Sauvegarde du serveur</span>
+	<md-select [(ngModel)]="fichierSelectionne">
+		<md-option *ngFor="let fichier of fichiers" [value]="fichier">{{fichier}}</md-option>
 	</md-select>
 </md-dialog-content>
 
 <md-dialog-actions>
-  <button md-dialog-close>Annuler</button>
-  <button md-dialog-close (click)="onSelectFichier()">Charger</button>
+	<button md-dialog-close>Annuler</button>
+	<button md-dialog-close (click)="onDemandeChargement()">Charger</button>
 </md-dialog-actions>
-
-
-
-

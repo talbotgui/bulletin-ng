@@ -25,7 +25,7 @@ export class SauvegardeService {
   }
 
   /**
-   * Charge le contenu d'un fichier et l'envoie au service "eleveService.setAnneeChargee"
+   * Charge le contenu d'un fichier et l'envoie au service "dataService.setAnneeChargee"
    */
   chargeAnneeDuFichier(fichier: string): void {
     const corp = 'methode=charge&nomFichier=' + fichier;
@@ -44,7 +44,18 @@ export class SauvegardeService {
   }
 
   /**
-   * Charge le contenu d'un fichier et l'envoie au service "eleveService.setAnneeChargee"
+   * Parse le texte et l'envoie au service "dataService.setAnneeChargee"
+   */
+  chargeAnneeDepuisText(contenu: string): void {
+    // Sauvegarde de l'instance dans le service DataService
+    this.dataService.setAnneeChargee(JSON.parse(contenu));
+    // notification
+    const message = 'Fichier chargé depuis un fichier local';
+    this.snackBar.open(message, null, { duration: 3000 });
+  }
+
+  /**
+   * Sauvegarde sur le serveur distant le contenu de l'année en cours d'édition.
    */
   sauvegardeAnneeDansFichier(): void {
 
