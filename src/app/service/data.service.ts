@@ -29,6 +29,11 @@ export class DataService {
   // Prépare la sauvegarde et calcul le nom du fichier de sauvegarde
   prepareSauvegardeEtCalculNomFichier(): string {
 
+    // Si aucune année chargée, rien à faire
+    if (!this.anneeChargee) {
+      return '';
+    }
+
     // Mise à jour de la date de dernière modification
     const date = new Date();
     this.anneeChargee.dateDerniereSauvegarde = date;
@@ -105,7 +110,7 @@ export class DataService {
     if (this.anneeChargee) {
       return this.anneeChargee.mapLibelleNotes;
     } else {
-      return new Map<string, string>();
+      return {};
     }
   }
 
@@ -120,6 +125,12 @@ export class DataService {
 
   /** Fournit les lignes de données pour un tableau de bord. */
   getListeLigneTableauDeBord(eleve: model.Eleve, periodeEvaluee: model.Periode): model.LigneTableauDeBord[] {
+
+    // Si aucune année chargée, aucune données
+    if (!this.anneeChargee) {
+      return [];
+    }
+
     const liste: model.LigneTableauDeBord[] = [];
     const indexPeriodeEvaluee = this.anneeChargee.periodes.findIndex((p) => p === periodeEvaluee);
     let periodePreparee = null;

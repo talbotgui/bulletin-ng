@@ -68,6 +68,9 @@ Afficher/masquer un élément :
 * *ngIf supprime l'élément du DOM
 * [hidden] change la valeur de l'attribut display (none/block)
 
+Dans les tests, si l'erreur "Uncaught NetworkError: Failed to execute 'send' on 'XMLHttpRequest': Failed to load 'ng:///DynamicTestModule/ComposantNoteComponent.ngfactory.js'. thrown" survient, c'est un problème de données/objets non fournits en entrée d'un composant.
+Par exemple : un composant appel un mock dans le onInit mais le mock a été 'reset' et ne renvoie rien.
+
 # Documentation Angular CLI :
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.4.
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
