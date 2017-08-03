@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "preinstall": "node package.preinstall.js",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
