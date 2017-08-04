@@ -1,3 +1,4 @@
+"use strict"
 const fs = require('fs');
 
 // creates fake 'fsevents' node module to fix VS errors
