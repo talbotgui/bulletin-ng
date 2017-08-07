@@ -13,5 +13,6 @@ exports.config = {
 	onPrepare() {
 		require('ts-node').register({ project: 'e2e/tsconfig.e2e.json' });
 		jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
-	}
+	},
+	chromeOptions: { args: [ "--headless", "--disable-gpu", "--window-size=800x600" ] }
 };
