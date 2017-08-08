@@ -22,6 +22,7 @@ import { DialogChargementComponent } from './div-sauvegarde/dialog-chargement.co
 import { DialogSauvegardeComponent } from './div-sauvegarde/dialog-sauvegarde.component';
 import { TabTableauDeBordComponent } from './tab-tableaudebord/tab-tableauDeBord.component';
 import { ComposantNoteComponent } from './compo-note/compo-note.component';
+import { ComposantCompetenceeComponent } from './compo-competence/compo-competence.component';
 import { DialogLigneTableauDeBordComponent } from './tab-tableaudebord/dialog-ligneTableauDeBord.component';
 
 // Les composants injectables
@@ -40,7 +41,7 @@ import { AppRoutingModule } from './app-routing.module';
   // Tous les composants applicatifs de l'application
   declarations: [AppComponent, TabCompetenceComponent, TabEleveComponent, DivSauvegardeComponent,
     DialogChargementComponent, DialogSauvegardeComponent, TabTableauDeBordComponent, ComposantNoteComponent,
-    MapValuesPipe, DialogLigneTableauDeBordComponent
+    MapValuesPipe, DialogLigneTableauDeBordComponent, ComposantCompetenceeComponent
   ],
 
   // Tous les composants à afficher dans un Dialog
