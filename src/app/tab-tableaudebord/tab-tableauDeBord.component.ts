@@ -1,7 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MdDialog } from '@angular/material';
 
-import {DataService} from '../service/data.service';
+import { DataService } from '../service/data.service';
 import * as model from '../model/model';
+
+import { DialogLigneTableauDeBordComponent } from './dialog-ligneTableauDeBord.component';
 
 @Component({
   selector: 'tab-tableauDeBord', templateUrl: './tab-tableauDeBord.component.html',
@@ -21,7 +24,7 @@ export class TabTableauDeBordComponent implements OnInit {
   lignes: model.LigneTableauDeBord[];
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, public dialog: MdDialog) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
@@ -46,5 +49,8 @@ export class TabTableauDeBordComponent implements OnInit {
       this.lignes = [];
     }
   }
-
+  onSelectLigne(laLigne: model.LigneTableauDeBord) {
+    const dialog = this.dialog.open(DialogLigneTableauDeBordComponent).componentInstance;
+    dialog.ligne = laLigne;
+  }
 }

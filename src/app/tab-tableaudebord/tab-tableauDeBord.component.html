@@ -1,4 +1,3 @@
-
 <!-- Filtres -->
 <md-chip-list class="filtres" [selectable]="true">
 	<md-chip *ngFor="let eleve of eleves" (click)="onSelectEleve(eleve)" [class.filtreSelectionne]="eleve === eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</md-chip>
@@ -10,15 +9,17 @@
 <!-- Formulaire de modification -->
 <div *ngIf="eleveSelectionne && periodeSelectionnee" class="">
 	<table class="tableauDeBord">
-		<thead><tr>
-			<th>Elément du programme évalué</th>
-			<th>Positionnement et objectif d'apprentissage</th>
-			<th>Acquisition, progrès et difficultés</th>
-			<th>Nom du domaine</th>
-			<th>Constat sur la période</th>
-			<th>Modalité d'aide pour la période suivante</th>
-			<th>Elément du programme à travailler</th>
-		</tr></thead>
+		<thead>
+			<tr>
+				<th>Elément du programme évalué</th>
+				<th>Positionnement et objectif d'apprentissage</th>
+				<th>Acquisition, progrès et difficultés</th>
+				<th>Nom du domaine</th>
+				<th>Constat sur la période</th>
+				<th>Modalité d'aide pour la période suivante</th>
+				<th>Elément du programme à travailler</th>
+			</tr>
+		</thead>
 		<tbody *ngFor="let ligne of lignes">
 			<tr *ngFor="let sousLigne of ligne.sousLignes; let i = index">
 				<td class="periodeEvaluee"><span *ngIf="sousLigne.constatation">{{sousLigne.competence.text}}</span></td>
@@ -28,6 +29,7 @@
 				<td class="periodeEvaluee" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.constat}} </td>
 				<td class="periodePreparee" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.aide}} </td>
 				<td class="periodePreparee"><span *ngIf="sousLigne.aide">{{sousLigne.competence.text}}</span></td>
+				<td><button (click)="onSelectLigne(ligne)">...</button></td>
 			</tr>
 		</tbody>
 	</table>

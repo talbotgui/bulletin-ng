@@ -1,0 +1,51 @@
+<h2 md-dialog-title>Evaluation et préparation d'un domaine</h2>
+
+<md-dialog-content>
+	<fieldset>
+		<legend>Domaine :</legend>
+		{{ligne.nomDomaine}}
+	</fieldset>
+	<br/>
+	<fieldset>
+		<legend>Evaluations sur la période évaluées :</legend>
+		<textarea [(ngModel)]="ligne.constat" name="constat" placeholder="Constat sur la période évaluée" rows="8" cols="80"></textarea>
+		<br/>
+		<table class="ligneTableauDeBord">
+			<thead>
+				<tr>
+					<th>Elément du programme évalué</th>
+					<th>Positionnement et objectif d'apprentissage</th>
+					<th>Acquisition, progrès et difficultés</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let sousLigne of ligne.sousLignes; let i = index">
+					<td class="periodeEvaluee"><span *ngIf="sousLigne.constatation">{{sousLigne.competence.text}}</span></td>
+					<td class="periodeEvaluee"><span *ngIf="sousLigne.constatation"><compo-note [note]="sousLigne.constatation"></compo-note></span></td>
+					<td class="periodeEvaluee"><span *ngIf="sousLigne.constatation"><textarea [(ngModel)]="sousLigne.constatation.commentaire" name="commentaire" rows="2" cols="20"></textarea></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>
+	<br/>
+	<fieldset>
+		<legend>Préparation pour la période préparée :</legend>
+		<textarea [(ngModel)]="ligne.aide" name="aide" placeholder="Aide pour la période préparée" rows="8" cols="80"></textarea>
+		<br/>
+		<table class="ligneTableauDeBord">
+			<thead>
+				<tr>
+					<th>Elément du programme à travailler</th>
+			</thead>
+			<tbody>
+				<tr *ngFor="let sousLigne of ligne.sousLignes; let i = index">
+					<td class="periodePreparee"><span *ngIf="sousLigne.aide">{{sousLigne.competence.text}}</span></td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>
+</md-dialog-content>
+
+<md-dialog-actions>
+	<button md-dialog-close>Fermer</button>
+</md-dialog-actions>
