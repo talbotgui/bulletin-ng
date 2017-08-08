@@ -22,11 +22,16 @@ export class DialogChargementComponent implements OnInit {
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
-    this.sauvegardeService.getlisteSauvegardesDuServeur().subscribe((val) => {
-      this.fichiers = val.fichiers
-        .filter((element) => element.toUpperCase().endsWith('JSON'))
-        .sort((a, b) => b.localeCompare(a));
-    });
+    this.sauvegardeService.getlisteSauvegardesDuServeur().subscribe(
+      (val) => {
+        this.fichiers = val.fichiers
+          .filter((element) => element.toUpperCase().endsWith('JSON'))
+          .sort((a, b) => b.localeCompare(a));
+      },
+      (error) => {
+        console.error('Pas de serveur de données disponible');
+      }
+    );
   }
 
   onSelectFichierLocal(event: any) {
