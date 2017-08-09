@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { TreeModule } from 'angular-tree-component';
 import { MapValuesPipe } from './pipes.component';
+import { AttributesToMapPipe } from './pipes.component';
 
 // Import de hammer (cf. documentation)
 import 'hammerjs';
@@ -41,7 +42,7 @@ import { AppRoutingModule } from './app-routing.module';
   // Tous les composants applicatifs de l'application
   declarations: [AppComponent, TabCompetenceComponent, TabEleveComponent, DivSauvegardeComponent,
     DialogChargementComponent, DialogSauvegardeComponent, TabTableauDeBordComponent, ComposantNoteComponent,
-    MapValuesPipe, DialogLigneTableauDeBordComponent, ComposantCompetenceeComponent
+    MapValuesPipe, AttributesToMapPipe, DialogLigneTableauDeBordComponent, ComposantCompetenceeComponent
   ],
 
   // Tous les composants à afficher dans un Dialog
