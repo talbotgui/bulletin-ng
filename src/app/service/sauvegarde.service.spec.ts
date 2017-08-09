@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import * as mockito from 'ts-mockito';
 
 import * as model from '../model/model';
+import { donnees } from './donneesDeTest/donnees08AvecBeaucoupDeNotes';
 import { DataService } from '../service/data.service';
 import { SauvegardeService } from '../service/sauvegarde.service';
 
@@ -116,9 +117,20 @@ describe('SauvegardeService', () => {
     mockito.verify(dataServiceMock.transformeAnneeEnJson()).once();
   });
 
-  it('chargeAnneeDepuisText', () => {
+  it('chargeAnneeDepuisText - fichier minimaliste', () => {
     // Arrange
     const contenuDuFichier = '{}';
+
+    // Act
+    sauvegardeService.chargeAnneeDepuisText(contenuDuFichier);
+
+    // Assert
+    mockito.verify(dataServiceMock.setAnneeChargee(mockito.anything())).once();
+  });
+
+  it('chargeAnneeDepuisText - fichier minimal', () => {
+    // Arrange
+    const contenuDuFichier = JSON.stringify(donnees, null, 2);
 
     // Act
     sauvegardeService.chargeAnneeDepuisText(contenuDuFichier);

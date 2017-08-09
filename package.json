@@ -12,7 +12,7 @@
     "test-ic": "ng test --config=karma-ic.conf.js --code-coverage --reporters=coverage-istanbul,junit",
     "lint": "ng lint",
     "e2e": "ng e2e",
-	"e2e-ic": "ng e2e --config=protractor-ic.conf.js"
+    "e2e-ic": "ng e2e --config=protractor-ic.conf.js"
   },
   "private": true,
   "dependencies": {
