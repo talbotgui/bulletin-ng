@@ -48,7 +48,7 @@ describe('bulletin App', () => {
     //
     const DIV = selectors.DivSauvegarder;
     const DIALOG = selectors.DivSauvegarderDialogChargement;
-    const cheminFichierTest = path.resolve('../src/assets/testData/', 'donnees08AvecBeaucoupDeNotes.json');
+    const cheminFichierTest = path.resolve('./testData/', 'donnees08AvecBeaucoupDeNotes.json');
     page.navigateToRoot();
     page.click(DIV.BUTTON_CHARGER);
     //
