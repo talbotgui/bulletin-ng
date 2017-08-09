@@ -1,24 +1,40 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { DataService } from '../service/data.service';
 import * as model from '../model/model';
 
 @Component({ selector: 'compo-competence', templateUrl: './compo-competence.component.html', styleUrls: ['./compo-competence.component.css'] })
-export class ComposantCompetenceeComponent implements OnInit {
+export class ComposantCompetenceeComponent {
 
-  // id de compétence fourni en entrée
-  @Input() idCompetence: string;
+  // Mode d'affichage
+  @Input() lectureSeule: boolean;
 
-  // Compétence sélectionnée pour le moment
-  competence: model.Competence;
+  // Note avec sa competence
+  @Input() note: model.Note;
+
+  // Libellé complet de la compétence sélectionnée
+  get libelleCompletCompetenceSelectionnee(): string {
+    if (this.note) {
+      return this.dataService.getLibelleCompletCompetence(this.note.idItem);
+    } else {
+      return '';
+    }
+  }
+
+  // Liste des enfants
+  get listeCompetenceEnfant(): model.Competence[] {
+    if (this.note) {
+      return this.dataService.getListeCompetencesEnfant(this.note.idItem);
+    } else {
+      return [];
+    }
+  }
 
   // Un constructeur pour se faire injecter les dépendances
   constructor(private dataService: DataService) { }
 
-  // Appel au service à l'initialisation du composant
-  ngOnInit(): void {
-    console.info("coucou : " + this.idCompetence);
-    this.competence = new model.Competence();
-    this.competence.text = this.idCompetence;
+  // Pour remonter d'un niveau
+  selectionneParent() {
+    this.note.idItem = this.dataService.getCompetence(this.note.idItem).parent;
   }
 }

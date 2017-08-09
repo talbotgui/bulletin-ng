@@ -20,7 +20,7 @@
 			</thead>
 			<tbody>
 				<tr *ngFor="let sousLigne of ligne.sousLignes; let i = index">
-					<td><span *ngIf="sousLigne.constatation"><compo-competence [idCompetence]="sousLigne.competence.id" ></compo-competence></span></td>
+					<td><span *ngIf="sousLigne.constatation"><compo-competence [note]="sousLigne.constatation" [lectureSeule]="false" ></compo-competence></span></td>
 					<td><span *ngIf="sousLigne.constatation"><compo-note [note]="sousLigne.constatation"></compo-note></span></td>
 					<td><span *ngIf="sousLigne.constatation"><textarea [(ngModel)]="sousLigne.constatation.commentaire" name="commentaire" rows="2" cols="20"></textarea></span></td>
 				</tr>
@@ -39,7 +39,7 @@
 			</thead>
 			<tbody>
 				<tr *ngFor="let sousLigne of ligne.sousLignes; let i = index">
-					<td><span *ngIf="sousLigne.aide"><compo-competence [idCompetence]="sousLigne.competence.id" ></compo-competence></span></td>
+					<td><span *ngIf="sousLigne.aide"><compo-competence [note]="sousLigne.aide" [lectureSeule]="false"></compo-competence></span></td>
 				</tr>
 			</tbody>
 		</table>

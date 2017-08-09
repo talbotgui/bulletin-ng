@@ -1,1 +1,11 @@
-{{competence.text}}
+<span>
+    <button *ngIf="!lectureSeule" class="retour" (click)="selectionneParent()">&lt;=</button>
+    <span *ngIf="!lectureSeule">&nbsp;</span>{{libelleCompletCompetenceSelectionnee}}
+</span>
+
+<div *ngIf="!lectureSeule">
+    <select required #inputStatut="ngModel" [(ngModel)]="note.idItem" name="competence" *ngIf="!!listeCompetenceEnfant && listeCompetenceEnfant.length>0">
+        <option [value]="note.idItem"></option>        
+        <option *ngFor="let competence of listeCompetenceEnfant" [value]="competence.id">{{competence.text}}</option>
+    </select>
+</div>

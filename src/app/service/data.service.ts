@@ -8,9 +8,69 @@ export class DataService {
   /** Données chargées et en cours d'édition */
   private anneeChargee: model.Annee;
 
+  /** Données de cache utilisées pour ne pas parcourir anneeChargee constamment */
+  private cacheMapCompetence: Map<string, model.Competence>;
+  private cacheMapLibelleCompletCompetence: Map<string, string>;
+  private cacheMapListeCompetencesEnfant: Map<string, model.Competence[]>;
+
   /** Pour savoir si une année est chargée */
   isAnneeChargee(): boolean {
     return !!this.anneeChargee;
+  }
+
+  getCompetence(idCompetence: string): model.Competence {
+    let competence = this.cacheMapCompetence.get(idCompetence);
+    if (competence) {
+      return competence;
+    } else if (this.anneeChargee) {
+      for (const c of this.anneeChargee.competences) {
+        if (c.id === idCompetence) {
+          competence = c;
+          break;
+        }
+      }
+      this.cacheMapCompetence.set(idCompetence, competence);
+    }
+    return competence;
+  }
+  getLibelleCompletCompetence(idCompetence: string): string {
+    let libelle = this.cacheMapLibelleCompletCompetence.get(idCompetence);
+    if (libelle) {
+      return libelle;
+    } else if (this.anneeChargee) {
+      libelle = '';
+      let idCompetenceEnfant = idCompetence;
+      for (let i = this.anneeChargee.competences.length - 1; i !== 0; i--) {
+        if (this.anneeChargee.competences[i].id === idCompetenceEnfant) {
+          libelle = this.anneeChargee.competences[i].text + ' > ' + libelle;
+          idCompetenceEnfant = this.anneeChargee.competences[i].parent;
+        }
+      }
+      libelle = libelle.substr(0, libelle.length - 3);
+      this.cacheMapLibelleCompletCompetence.set(idCompetence, libelle);
+    } else {
+      libelle = '';
+    }
+    return libelle;
+  }
+
+  getListeCompetencesEnfant(idCompetence: string): model.Competence[] {
+    let liste = this.cacheMapListeCompetencesEnfant.get(idCompetence);
+    if (liste) {
+      return liste;
+    } else if (this.anneeChargee) {
+      liste = [];
+      for (const competence of this.anneeChargee.competences) {
+        if (competence.parent === idCompetence) {
+          liste.push(competence);
+        }
+      }
+      this.cacheMapListeCompetencesEnfant.set(idCompetence, liste);
+    } else {
+      liste = [];
+    }
+    return liste;
+
   }
 
   // Transforme une copie des données en cours en JSON
@@ -71,6 +131,9 @@ export class DataService {
     }
 
     this.anneeChargee = annee;
+    this.cacheMapCompetence = new Map<string, model.Competence>();
+    this.cacheMapLibelleCompletCompetence = new Map<string, string>();
+    this.cacheMapListeCompetencesEnfant = new Map<string, model.Competence[]>();
   }
 
   /** Donne la liste complète des élèves */

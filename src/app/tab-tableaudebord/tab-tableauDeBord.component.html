@@ -22,13 +22,13 @@
 		</thead>
 		<tbody *ngFor="let ligne of lignes">
 			<tr *ngFor="let sousLigne of ligne.sousLignes; let i = index">
-				<td class="periodeEvaluee"><span *ngIf="sousLigne.constatation">{{sousLigne.competence.text}}</span></td>
+				<td class="periodeEvaluee"><span *ngIf="sousLigne.constatation"><compo-competence [note]="sousLigne.constatation" [lectureSeule]="true" ></compo-competence></span></td>
 				<td class="periodeEvaluee"><span *ngIf="sousLigne.constatation"><compo-note [note]="sousLigne.constatation"></compo-note></span></td>
 				<td class="periodeEvaluee"><span *ngIf="sousLigne.constatation">{{sousLigne.constatation.commentaire}}</span></td>
 				<td class="domaine" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.nomDomaine}}</td>
 				<td class="periodeEvaluee" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.constat}} </td>
 				<td class="periodePreparee" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.aide}} </td>
-				<td class="periodePreparee"><span *ngIf="sousLigne.aide">{{sousLigne.competence.text}}</span></td>
+				<td class="periodePreparee"><span *ngIf="sousLigne.aide"><compo-competence [note]="sousLigne.aide" [lectureSeule]="true" ></compo-competence></span></td>
 				<td><button (click)="onSelectLigne(ligne)">...</button></td>
 			</tr>
 		</tbody>
