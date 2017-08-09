@@ -14,4 +14,7 @@ export class BulletinPage {
   isVisible(selector) {
     return element(selector).isPresent();
   }
+  type(selector, text): void {
+    element(selector).sendKeys(text);
+  }
 }

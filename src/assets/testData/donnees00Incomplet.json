@@ -1,0 +1,2921 @@
+﻿{
+  "anneeScolaire": "2016-2017",
+  "periodes": [
+	{ "nom": "Période 1", "debut": "2016-09-01T00:00:00.000Z", "fin": "2016-10-19T00:00:00.000Z" },
+	{ "id": 2, "nom": "Période 2", "debut": "2016-11-03T00:00:00.000Z", "fin": "2016-12-17T00:00:00.000Z" },
+	{ "id": 3, "nom": "Période 3", "debut": "2017-01-03T00:00:00.000Z", "fin": "2017-02-11T00:00:00.000Z" },
+	{ "id": 4, "nom": "Période 4", "debut": "2017-02-27T00:00:00.000Z", "fin": "2017-04-08T00:00:00.000Z" },
+	{ "id": 5, "nom": "Période 5", "debut": "2017-04-24T00:00:00.000Z", "fin": "2017-07-08T00:00:00.000Z" }
+  ],
+  "mapLibelleNotes": { "0": "non atteint", "1": "atteint partiellement", "2": "atteint", "3": "dépassé", "n": "non évalué", "a": "absent" },
+  "mapLibelleStatutEleve": { "0": "hors établissement", "1": "dans l'établissement", "2": "dans la classe" },
+  "libellesTypeTempsJournal": [ "Apprentissage", "Entraînement", "Réinvestissement", "Evaluation" ],
+  "eleves": [
+    {
+      "pere": "M. NOM0 PAPA", "mere": "Mme NOM0 MAMAN", "fratrie": "Frere1 NOM0, Soeur1 NOM0",
+      "adresses": "1 rue de la boulangerie", "telephones": "01 01 01 01 01",
+      "statut": "0",
+      "bilans": "<h2 align=\"center\">2016-2017<br></h2><h2><u>Accompagnement éducatif</u></h2><ul><li>Référent : </li><li>Temps éducatif :</li></ul><br><hr><h2><u>Prise en charge pédagogique</u></h2><ul><li>Référent : </li><li>Temps scolaire : </li><</ul>",
+      "cursus": [
+        { "annee": "2012", "niveau": "PS", "etablissement": "", "accompagnement": "" },
+        { "annee": "2013", "niveau": "MS", "etablissement": "", "accompagnement": "" },
+        { "annee": "2014", "niveau": "GS", "etablissement": "", "accompagnement": "" },
+        { "annee": "2015", "niveau": "CP", "etablissement": "", "accompagnement": "" },
+        { "annee": "2016", "niveau": "CE1", "etablissement": "", "accompagnement": "" }
+      ],
+      "dateAdmission": "2015-09-01T00:00:00.000Z", 
+	  "accueil": "", "datesPPA": "", "datesPAP": "", "datesESS": ""
+    },
+	{
+      "id": "evnr1v6a",
+      "nom": "NOM1",
+      "prenom": "PRENOM1",
+      "dateNaissance": "2009-01-01T00:00:00.000Z",
+      "pere": "M. NOM1 PAPA",
+      "mere": "Mme NOM1 MAMAN",
+      "fratrie": "Frere1 NOM1, Soeur1 NOM1",
+      "adresses": "1 rue de l'éqlise",
+      "telephones": "01 01 01 01 01",
+      "statut": "2",
+      "bilans": "<h2 align=\"center\">2016-2017<br></h2><h2><u>Accompagnement éducatif</u></h2><ul><li>Référent : </li><li>Temps éducatif :</li></ul><br><hr><h2><u>Prise en charge pédagogique</u></h2><ul><li>Référent : </li><li>Temps scolaire : </li><</ul>",
+      "cursus": [
+        { "annee": "2012", "niveau": "PS", "etablissement": "", "accompagnement": "" },
+        { "annee": "2013", "niveau": "MS", "etablissement": "", "accompagnement": "" },
+        { "annee": "2014", "niveau": "GS", "etablissement": "", "accompagnement": "" },
+        { "annee": "2015", "niveau": "CP", "etablissement": "", "accompagnement": "" },
+        { "annee": "2016", "niveau": "CE1", "etablissement": "", "accompagnement": "" }
+      ],
+      "dateAdmission": "2015-09-01T00:00:00.000Z",
+      "accueil": "",
+      "datesPPA": "",
+      "datesPAP": "",
+      "datesESS": ""
+    },
+    {
+      "id": "rvns1q6a",
+      "nom": "NOM2",
+      "prenom": "PRENOM2",
+      "dateNaissance": "2009-01-01T00:00:00.000Z",
+      "pere": "M. NOM2 PAPA",
+      "mere": "Mme NOM2 MAMAN",
+      "fratrie": "Frere1 NOM2, Soeur1 NOM2",
+      "adresses": "1 rue de la mairie",
+      "telephones": "01 01 01 01 01",
+      "statut": "2",
+      "bilans": "<h2 align=\"center\">2016-2017<br></h2><h2><u>Accompagnement éducatif</u></h2><ul><li>Référent : </li><li>Temps éducatif :</li></ul><br><hr><h2><u>Prise en charge pédagogique</u></h2><ul><li>Référent : </li><li>Temps scolaire : </li><</ul>",
+      "cursus": [
+        { "annee": "2012", "niveau": "PS", "etablissement": "", "accompagnement": "" },
+        { "annee": "2013", "niveau": "MS", "etablissement": "", "accompagnement": "" },
+        { "annee": "2014", "niveau": "GS", "etablissement": "", "accompagnement": "" },
+        { "annee": "2015", "niveau": "CP", "etablissement": "", "accompagnement": "" },
+        { "annee": "2016", "niveau": "CE1", "etablissement": "", "accompagnement": "" }
+      ],
+      "dateAdmission": "2015-09-01T00:00:00.000Z",
+      "accueil": "",
+      "datesPPA": "",
+      "datesPAP": "",
+      "datesESS": ""
+    },
+    {
+      "id": "lkjsf2d3",
+      "nom": "NOM3",
+      "prenom": "PRENOM3",
+      "dateNaissance": "2009-01-01T00:00:00.000Z",
+      "pere": "M. NOM3 PAPA",
+      "mere": "Mme NOM3 MAMAN",
+      "fratrie": "Frere1 NOM3, Soeur1 NOM3",
+      "adresses": "1 rue de l'étang",
+      "telephones": "01 01 01 01 01",
+      "statut": "2",
+      "bilans": "<h2 align=\"center\">2016-2017<br></h2><h2><u>Accompagnement éducatif</u></h2><ul><li>Référent : </li><li>Temps éducatif :</li></ul><br><hr><h2><u>Prise en charge pédagogique</u></h2><ul><li>Référent : </li><li>Temps scolaire : </li><</ul>",
+      "cursus": [
+        { "annee": "2012", "niveau": "PS", "etablissement": "", "accompagnement": "" },
+        { "annee": "2013", "niveau": "MS", "etablissement": "", "accompagnement": "" },
+        { "annee": "2014", "niveau": "GS", "etablissement": "", "accompagnement": "" },
+        { "annee": "2015", "niveau": "CP", "etablissement": "", "accompagnement": "" },
+        { "annee": "2016", "niveau": "CE1", "etablissement": "", "accompagnement": "" }
+      ],
+      "dateAdmission": "2015-09-01T00:00:00.000Z",
+      "accueil": "",
+      "datesPPA": "",
+      "datesPAP": "",
+      "datesESS": ""
+    }
+  ],
+  "competences": [
+    {
+      "id": "niveau1",
+      "text": "CYCLE 2 (CP-CE2)",
+      "parent": "#"
+    },
+    {
+      "id": "j1_1",
+      "text": "Français",
+      "parent": "niveau1"
+    },
+    {
+      "id": "j1_2",
+      "text": "Comprendre et s'exprimer à l'oral",
+      "parent": "j1_1"
+    },
+    {
+      "id": "j1_3",
+      "text": "Ecouter pour comprendre des messages oraux (adressés par un adulte ou un pairs) ou des textes lus par un adulte",
+      "parent": "j1_2"
+    },
+    {
+      "id": "j1_263",
+      "text": "maintien d'une attention orientée en fonction d'un but",
+      "parent": "j1_3"
+    },
+    {
+      "id": "j1_264",
+      "text": "repérage et mémorisation des informations importantes, enchainement mental de ces informations",
+      "parent": "j1_3"
+    },
+    {
+      "id": "j1_265",
+      "text": "mobilisation des références culturelles nécessaires pour comprendre le message ou le texte",
+      "parent": "j1_3"
+    },
+    {
+      "id": "j1_266",
+      "text": "attention portée au vocabulaire et à la mémorisation",
+      "parent": "j1_3"
+    },
+    {
+      "id": "j1_267",
+      "text": "repérage d'éventuelles difficultés de compréhension",
+      "parent": "j1_3"
+    },
+    {
+      "id": "j1_4",
+      "text": "Dire pour être entendu et compris en situation d'adresse à un auditoire ou de présentation de texte",
+      "parent": "j1_2"
+    },
+    {
+      "id": "j1_268",
+      "text": "prise en compte des récepteurs ou des interlocuteurs",
+      "parent": "j1_4"
+    },
+    {
+      "id": "j1_269",
+      "text": "mobilisation de techniques qui font qu'on est écouté (articulation, débit, volume, intonation...)",
+      "parent": "j1_4"
+    },
+    {
+      "id": "j1_270",
+      "text": "organisation du discours",
+      "parent": "j1_4"
+    },
+    {
+      "id": "j1_271",
+      "text": "mémorisation des textes en situation de récitation et d'interprétation",
+      "parent": "j1_4"
+    },
+    {
+      "id": "j1_272",
+      "text": "lecture en situation de mise en voix d'un texte",
+      "parent": "j1_4"
+    },
+    {
+      "id": "j1_15",
+      "text": "Participer à des échanges dans des situations diversifiées",
+      "parent": "j1_2"
+    },
+    {
+      "id": "j1_273",
+      "text": "respect des règles régulant les échanges",
+      "parent": "j1_15"
+    },
+    {
+      "id": "j1_274",
+      "text": "conscience et prise en compte des enjeux",
+      "parent": "j1_15"
+    },
+    {
+      "id": "j1_275",
+      "text": "organisation du propos",
+      "parent": "j1_15"
+    },
+    {
+      "id": "j1_276",
+      "text": "moyen de l'expression (vocabulaire, syntaxe...)",
+      "parent": "j1_15"
+    },
+    {
+      "id": "j1_277",
+      "text": "Adopter une distance critique par rapport au langage produit",
+      "parent": "j1_2"
+    },
+    {
+      "id": "j1_278",
+      "text": "règles régulant les échanges, repérage du respect ou non de ces règles dans les propos d'un pair, aide à la reformulation",
+      "parent": "j1_277"
+    },
+    {
+      "id": "j1_279",
+      "text": "prise en compte de règles explicites établies collectivement",
+      "parent": "j1_277"
+    },
+    {
+      "id": "j1_280",
+      "text": "autocorrection après écoute (reformulations)",
+      "parent": "j1_277"
+    },
+    {
+      "id": "j1_8",
+      "text": "Lire",
+      "parent": "j1_1"
+    },
+    {
+      "id": "j1_9",
+      "text": "Identifier des mots de manière de plus en plus aisée",
+      "parent": "j1_8"
+    },
+    {
+      "id": "j1_281",
+      "text": "discrimination auditive fine et analyse des constituants des mots (conscience phonologique)",
+      "parent": "j1_9"
+    },
+    {
+      "id": "j1_282",
+      "text": "discrimination visuelle et connaissance des lettres",
+      "parent": "j1_9"
+    },
+    {
+      "id": "j1_283",
+      "text": "correspondances graphophonologiques, combinatoire (construction des syllabes simples et complexes)",
+      "parent": "j1_9"
+    },
+    {
+      "id": "j1_284",
+      "text": "mémorisation des composantes du code",
+      "parent": "j1_9"
+    },
+    {
+      "id": "j1_285",
+      "text": "mémorisation de mots fréquents et irréguliers",
+      "parent": "j1_9"
+    },
+    {
+      "id": "j1_16",
+      "text": "Comprendre un texte",
+      "parent": "j1_8"
+    },
+    {
+      "id": "j1_286",
+      "text": "mobilisation de la compétence de décodage",
+      "parent": "j1_16"
+    },
+    {
+      "id": "j1_287",
+      "text": "mise en oeuvre (guidée puis autonome) d'une démarche pour décourir et comprendre un texte",
+      "parent": "j1_16"
+    },
+    {
+      "id": "j1_288",
+      "text": "mobilisation des expériences antérieures de lecture et des connaissances qui en sont issues (sur des univers, des personnages types...)",
+      "parent": "j1_16"
+    },
+    {
+      "id": "j1_289",
+      "text": "mobilisation de connaissances lexicales et de connaissances portant sur l'univers évoqué par les textes ",
+      "parent": "j1_16"
+    },
+    {
+      "id": "j1_17",
+      "text": "Pratiquer différentes formes de lecture",
+      "parent": "j1_8"
+    },
+    {
+      "id": "j1_290",
+      "text": "mobilisation de la démarche permettant de comprendre",
+      "parent": "j1_17"
+    },
+    {
+      "id": "j1_291",
+      "text": "prise en compte des enjeux de la lecture notamment : lire pour réaliser quelque chose, pour s'informer, pour comprendre une histoire...",
+      "parent": "j1_17"
+    },
+    {
+      "id": "j1_292",
+      "text": "mobilisation des connaissances lexicales en lien avec le texte lu",
+      "parent": "j1_17"
+    },
+    {
+      "id": "j1_293",
+      "text": "repérage des lieux de lecture",
+      "parent": "j1_17"
+    },
+    {
+      "id": "j1_294",
+      "text": "prise de repères dans les manuels, dans les ouvrages documentaires",
+      "parent": "j1_17"
+    },
+    {
+      "id": "j1_18",
+      "text": "Lire à voix haute",
+      "parent": "j1_8"
+    },
+    {
+      "id": "j1_295",
+      "text": "mobilisation de la compétence de décodage et de la compréhension du texte",
+      "parent": "j1_18"
+    },
+    {
+      "id": "j1_296",
+      "text": "identification et prise en compte des marques de ponctuation",
+      "parent": "j1_18"
+    },
+    {
+      "id": "j1_297",
+      "text": "recherche d'effets à produire sur l'auditoire en lien avec la compréhension (expressivité)",
+      "parent": "j1_18"
+    },
+    {
+      "id": "j1_19",
+      "text": "Contrôler sa compréhension",
+      "parent": "j1_8"
+    },
+    {
+      "id": "j1_298",
+      "text": "justifications possibles de son interprétation ou de ses réponses avec appui sur le texte et sur les autres connaissances mobilisées",
+      "parent": "j1_19"
+    },
+    {
+      "id": "j1_299",
+      "text": "repérage de ses difficultés, tentatives pour les expliquer",
+      "parent": "j1_19"
+    },
+    {
+      "id": "j1_300",
+      "text": "maintien d'une attitude active et réflexive: vigilance relative à l'objectif, demande d'aide, mise en oeuvre de stratégies pour résoudre ses difficultés",
+      "parent": "j1_19"
+    },
+    {
+      "id": "j1_10",
+      "text": "Ecrire",
+      "parent": "j1_1"
+    },
+    {
+      "id": "j1_21",
+      "text": "Copier de manière experte",
+      "parent": "j1_10"
+    },
+    {
+      "id": "j1_301",
+      "text": "maîtrise des gestes de l'écriture cursive éxécutés avec une vitesse et une sureté croissante",
+      "parent": "j1_21"
+    },
+    {
+      "id": "j1_302",
+      "text": "correspondances entre diverses écritures des lettres pour transcrire un texte",
+      "parent": "j1_21"
+    },
+    {
+      "id": "j1_303",
+      "text": "stratégie de copie pour dépasser la copie lettre à lettre: prise d'indices, mémorisation de mots puis de groupe de mots",
+      "parent": "j1_21"
+    },
+    {
+      "id": "j1_304",
+      "text": "lecture : relire pour vérifier la conformité",
+      "parent": "j1_21"
+    },
+    {
+      "id": "j1_305",
+      "text": "maniement du traitement de texte pour la mise en page de courts textes",
+      "parent": "j1_21"
+    },
+    {
+      "id": "j1_22",
+      "text": "Produire des écrits en commençant à s'approprier une démarche",
+      "parent": "j1_10"
+    },
+    {
+      "id": "j1_306",
+      "text": "identification de caractéristiques propres à différents genres de texte",
+      "parent": "j1_22"
+    },
+    {
+      "id": "j1_307",
+      "text": "mise en oeuvre (guidée puis autonome) d'une démarche de production de texte:  trouver et organiser ses idées, élaborer et écrire des phrases ",
+      "parent": "j1_22"
+    },
+    {
+      "id": "j1_308",
+      "text": "connaissances sur la langue (mémoire orthographique, règles d'accord, ponctuation...)",
+      "parent": "j1_22"
+    },
+    {
+      "id": "j1_309",
+      "text": "mobilisation des outils à disposition dans la classe liés à l'étude de la langue",
+      "parent": "j1_22"
+    },
+    {
+      "id": "j1_23",
+      "text": "Réviser et améliorer l'écrit qu'on a produit",
+      "parent": "j1_10"
+    },
+    {
+      "id": "j1_310",
+      "text": "repérage de dysfonctionnements dans les textes produits (omissions, incohérences, redites...)",
+      "parent": "j1_23"
+    },
+    {
+      "id": "j1_311",
+      "text": "mobilisation des connaissances portant sur le genre d'écrit à produire et sur la langue",
+      "parent": "j1_23"
+    },
+    {
+      "id": "j1_312",
+      "text": "vigilance orthographique, exercée d'abord sur les points désignés par le professeur puis progressivement étendue",
+      "parent": "j1_23"
+    },
+    {
+      "id": "j1_313",
+      "text": "utilisation d'outils aidant à la correction: outils élaborés en classe, correcteur orthographique, guide de relecture...",
+      "parent": "j1_23"
+    },
+    {
+      "id": "j1_11",
+      "text": "Comprendre le fonctionnement de la langue",
+      "parent": "j1_1"
+    },
+    {
+      "id": "j1_12",
+      "text": "Maitriser les relations entre oral et écrit",
+      "parent": "j1_11"
+    },
+    {
+      "id": "j1_28",
+      "text": "correspondances graphophonologiques",
+      "parent": "j1_12"
+    },
+    {
+      "id": "j1_29",
+      "text": "valeur sonore de certaines lettres selon le contexte",
+      "parent": "j1_12"
+    },
+    {
+      "id": "j1_30",
+      "text": "composition de certains graphèmes selon la lettre qui suit",
+      "parent": "j1_12"
+    },
+    {
+      "id": "j1_24",
+      "text": "Mémoriser et se remémorer l'orthographe de mots fréquents et de mots irréguliers dont le sens est connu",
+      "parent": "j1_11"
+    },
+    {
+      "id": "j1_31",
+      "text": "vocabulaire des activités scolaires, vocabulaire spécialisé lié aux apprentissages disciplinaires",
+      "parent": "j1_24"
+    },
+    {
+      "id": "j1_32",
+      "text": "séries de mots relevant d'un même champ lexical, correspondant à une famille de mots, ayant une analogie morphologique... ",
+      "parent": "j1_24"
+    },
+    {
+      "id": "j1_33",
+      "text": "mots invariables",
+      "parent": "j1_24"
+    },
+    {
+      "id": "j1_25",
+      "text": "Identifier les principaux constituants d'une phrase simple en relation avec sa cohérence sémantique",
+      "parent": "j1_11"
+    },
+    {
+      "id": "j1_34",
+      "text": "identification d'un groupe nominal",
+      "parent": "j1_25"
+    },
+    {
+      "id": "j1_35",
+      "text": "identification du verbe (connaissance des propriétés permettant de l'identifer)",
+      "parent": "j1_25"
+    },
+    {
+      "id": "j1_36",
+      "text": "classes de mots : noms, verbes, déterminants, adjectifs, pronoms, mots invariables",
+      "parent": "j1_25"
+    },
+    {
+      "id": "j1_237",
+      "text": "phrases affirmatives et négatives (notamment les transformations liées à l'identification du verbe)",
+      "parent": "j1_25"
+    },
+    {
+      "id": "j1_238",
+      "text": "ponctuation de fin de phrases et signes du discours rapporté",
+      "parent": "j1_25"
+    },
+    {
+      "id": "j1_26",
+      "text": "Raisonner pour résoudre des problèmes orthographiques, d'accord essentiellement",
+      "parent": "j1_11"
+    },
+    {
+      "id": "j1_239",
+      "text": "compréhension : des éléments de la phrase fonctionnent ensemble, la notion de chaîne d'accord pour déterminant-nom-adjectif (nombre et genre)",
+      "parent": "j1_26"
+    },
+    {
+      "id": "j1_240",
+      "text": "compréhension : écrire ne consiste pas seulement à coder les sons",
+      "parent": "j1_26"
+    },
+    {
+      "id": "j1_241",
+      "text": "la relation sujet-verbe (identification dans des situations simples)",
+      "parent": "j1_26"
+    },
+    {
+      "id": "j1_248",
+      "text": "notion de nombre et de genre",
+      "parent": "j1_26"
+    },
+    {
+      "id": "j1_249",
+      "text": "marques d'accord pour les noms et les adjectifs (nombre et genre)",
+      "parent": "j1_26"
+    },
+    {
+      "id": "j1_250",
+      "text": "découverte, en lien avec les activités d'oral et de lexique, d'autres formes de pluriel et de genre (féminin pour certain noms et adjectifs)",
+      "parent": "j1_26"
+    },
+    {
+      "id": "j1_251",
+      "text": "marque de pluriel pour les verbes de la 3ème personne (ent)",
+      "parent": "j1_26"
+    },
+    {
+      "id": "j1_27",
+      "text": "Comprendre comment se forment les verbes et orthographier les formes verbales les plus fréquentes",
+      "parent": "j1_11"
+    },
+    {
+      "id": "j1_252",
+      "text": "familiarisation avec l'indicatif présent, imparfait, futur, des verbes être, avoir, aller, faire, dire, venir, pouvoir, voir, vouloir, prendre",
+      "parent": "j1_27"
+    },
+    {
+      "id": "j1_253",
+      "text": "familiarisation avec l'indicatif présent, imparfait, futur, des verbes dont l'infinitif se termine en -ER",
+      "parent": "j1_27"
+    },
+    {
+      "id": "j1_255",
+      "text": "mémorisation des formes les plus fréquentes (3ème personne du singulier et du pluriel)",
+      "parent": "j1_27"
+    },
+    {
+      "id": "j1_257",
+      "text": "compréhension de la construction de la forme conjuguée du verbe (radical-terminaison) ",
+      "parent": "j1_27"
+    },
+    {
+      "id": "j1_258",
+      "text": "mémorisation des marques régulières liées à des personnes (-ons, -ez, -nt)",
+      "parent": "j1_27"
+    },
+    {
+      "id": "j1_314",
+      "text": "familiarisation avec l'infinitif, le participe passé",
+      "parent": "j1_27"
+    },
+    {
+      "id": "j1_315",
+      "text": "notions de temps simples et de temps composés, formation du passé composé",
+      "parent": "j1_27"
+    },
+    {
+      "id": "j1_316",
+      "text": "notions de marques liées au temps (imparfait et futur en particulier)",
+      "parent": "j1_27"
+    },
+    {
+      "id": "j1_317",
+      "text": "mémorisation des verbes être et avoir au présent, à l'imparfait et au futur",
+      "parent": "j1_27"
+    },
+    {
+      "id": "j1_318",
+      "text": "homophones: les formes verbales a/à, est/et, ont/on, sont/son",
+      "parent": "j1_27"
+    },
+    {
+      "id": "j1_13",
+      "text": "Identifier les relations entre les mots, entre les mots et leur contexte d'utilisation et s'en servir pour mieux comprendre ",
+      "parent": "j1_11"
+    },
+    {
+      "id": "j1_319",
+      "text": "familles de mots, dérivation (préfixes et suffixes)",
+      "parent": "j1_13"
+    },
+    {
+      "id": "j1_320",
+      "text": "catégorisation et relations entre termes génériques et termes spécifiques",
+      "parent": "j1_13"
+    },
+    {
+      "id": "j1_321",
+      "text": "synonymie, antonymie pour les adjectifs et les verbes",
+      "parent": "j1_13"
+    },
+    {
+      "id": "j1_322",
+      "text": "polysémie et relation avec les contextes d'emploi",
+      "parent": "j1_13"
+    },
+    {
+      "id": "j1_323",
+      "text": "sens propre et sens figuré",
+      "parent": "j1_13"
+    },
+    {
+      "id": "j1_324",
+      "text": "registres (familier, courant, soutenu)",
+      "parent": "j1_13"
+    },
+    {
+      "id": "j1_14",
+      "text": "Etendre ses connaissances lexicales, mémoriser et réutiliser des mots nouvellement appris",
+      "parent": "j1_11"
+    },
+    {
+      "id": "j1_325",
+      "text": "définition d'un mot, compréhension d'un article du dictionnaire",
+      "parent": "j1_14"
+    },
+    {
+      "id": "j1_326",
+      "text": "mobilisation des mots nouveaux en situation d'écriture avec appui éventuel sur des outils",
+      "parent": "j1_14"
+    },
+    {
+      "id": "j1_5",
+      "text": "Langues vivantes",
+      "parent": "niveau1"
+    },
+    {
+      "id": "j1_331",
+      "text": "Approches culturelles",
+      "parent": "j1_5"
+    },
+    {
+      "id": "j1_340",
+      "text": "découvrir quelques aspects culturels d'une langue vivante étrangère et régionale",
+      "parent": "j1_331"
+    },
+    {
+      "id": "j1_341",
+      "text": "identifier quelques grands repères culturels de l'environnement quotidien des élèves du même âge dans les pays ou les régions étudiés ",
+      "parent": "j1_340"
+    },
+    {
+      "id": "j1_359",
+      "text": "familiarisation avec la thématique de l'enfant",
+      "parent": "j1_340"
+    },
+    {
+      "id": "j1_360",
+      "text": "familiarisation avec la thématique de la classe",
+      "parent": "j1_340"
+    },
+    {
+      "id": "j1_361",
+      "text": "familiarisation avec a thématique de l'univers enfantin",
+      "parent": "j1_340"
+    },
+    {
+      "id": "j1_332",
+      "text": "Activités langagières",
+      "parent": "j1_5"
+    },
+    {
+      "id": "j1_333",
+      "text": "Comprendre l'oral",
+      "parent": "j1_332"
+    },
+    {
+      "id": "j1_337",
+      "text": "comprendre les consignes de la classe",
+      "parent": "j1_333"
+    },
+    {
+      "id": "j1_362",
+      "text": "utiliser quelques mots familiers et expressions très courantes",
+      "parent": "j1_333"
+    },
+    {
+      "id": "j1_363",
+      "text": "suivre le fil d'une histoire très courte",
+      "parent": "j1_333"
+    },
+    {
+      "id": "j1_364",
+      "text": "suivre des instructions très courtes et très simples",
+      "parent": "j1_333"
+    },
+    {
+      "id": "j1_365",
+      "text": "répertoire élèmentaire de mots et d'expressions simples relatifs à des situations concrètes particulières",
+      "parent": "j1_333"
+    },
+    {
+      "id": "j1_334",
+      "text": "S'exprimer oralement en continu",
+      "parent": "j1_332"
+    },
+    {
+      "id": "j1_338",
+      "text": "reproduire un modèle oral",
+      "parent": "j1_334"
+    },
+    {
+      "id": "j1_366",
+      "text": "utiliser des expressions courtes ou phrases proches des modèles rencontrés lors des apprentissages pour se décrire",
+      "parent": "j1_334"
+    },
+    {
+      "id": "j1_367",
+      "text": "lire à haute voix de manière expressive un texte bref",
+      "parent": "j1_334"
+    },
+    {
+      "id": "j1_368",
+      "text": "raconter une histoire courte à partir d'images ou de modèles déjà rencontrés",
+      "parent": "j1_334"
+    },
+    {
+      "id": "j1_369",
+      "text": "répertoire élèmentaire de mots sur les lieux d'habitation et les personnes de l'entourage de l'enfant",
+      "parent": "j1_334"
+    },
+    {
+      "id": "j1_370",
+      "text": "syntaxe de la description simple",
+      "parent": "j1_334"
+    },
+    {
+      "id": "j1_335",
+      "text": "Prendre part à une conversation",
+      "parent": "j1_332"
+    },
+    {
+      "id": "j1_339",
+      "text": "saluer, se présenter",
+      "parent": "j1_335"
+    },
+    {
+      "id": "j1_371",
+      "text": "demander à quelqu'un de ses nouvelles, réagir, et donner de ses nouvelles",
+      "parent": "j1_335"
+    },
+    {
+      "id": "j1_372",
+      "text": "formuler des souhaits basiques",
+      "parent": "j1_335"
+    },
+    {
+      "id": "j1_373",
+      "text": "utiliser des formules de politesse",
+      "parent": "j1_335"
+    },
+    {
+      "id": "j1_374",
+      "text": "répondre à des questions sur des sujets familiers",
+      "parent": "j1_335"
+    },
+    {
+      "id": "j1_375",
+      "text": "épeler des mots et des noms familiers",
+      "parent": "j1_335"
+    },
+    {
+      "id": "j1_376",
+      "text": "répertoire élèmentaire de mots sur des sujets familiers",
+      "parent": "j1_335"
+    },
+    {
+      "id": "j1_377",
+      "text": "syntaxe de conversation simple (question-réponse)",
+      "parent": "j1_335"
+    },
+    {
+      "id": "j1_378",
+      "text": "situations de communication",
+      "parent": "j1_335"
+    },
+    {
+      "id": "j1_7",
+      "text": "Enseignements artistiques",
+      "parent": "niveau1"
+    },
+    {
+      "id": "j1_62",
+      "text": "Arts plastiques",
+      "parent": "j1_7"
+    },
+    {
+      "id": "j1_64",
+      "text": "La représentation du monde",
+      "parent": "j1_62"
+    },
+    {
+      "id": "j1_345",
+      "text": "utiliser le dessin dans toute sa diversité comme moyen d'expression",
+      "parent": "j1_64"
+    },
+    {
+      "id": "j1_346",
+      "text": "employer divers outils dont ceux numériques pour représenter",
+      "parent": "j1_64"
+    },
+    {
+      "id": "j1_347",
+      "text": "prendre en compte l'influence de ces outils, supports, matériaux, gestes sur la représetnations en 2D et 3D",
+      "parent": "j1_64"
+    },
+    {
+      "id": "j1_348",
+      "text": "connaître diverses formes artistiques de représentation du mon de (oeuvres contemporaines, du passé, occidentales, extra-occidentales...)",
+      "parent": "j1_64"
+    },
+    {
+      "id": "j1_336",
+      "text": "L'expression des émotions",
+      "parent": "j1_62"
+    },
+    {
+      "id": "j1_342",
+      "text": "exprimer sa sensibilité et son imagination en s'emparant des élèments de langage plastique",
+      "parent": "j1_336"
+    },
+    {
+      "id": "j1_349",
+      "text": "expérimenter les effets des couleurs, des matériaux... en explorant l'organisation et la composition plastique",
+      "parent": "j1_336"
+    },
+    {
+      "id": "j1_350",
+      "text": "exprimer ses émotions et sa sensibilité en confrontant sa perception à celle d'autres élèves",
+      "parent": "j1_336"
+    },
+    {
+      "id": "j1_343",
+      "text": "La narration et le témoignage par les images",
+      "parent": "j1_62"
+    },
+    {
+      "id": "j1_352",
+      "text": "réaliser des productions plastiques pour raconter, témoigner",
+      "parent": "j1_343"
+    },
+    {
+      "id": "j1_353",
+      "text": "transformer ou restructurer des images ou des objets",
+      "parent": "j1_343"
+    },
+    {
+      "id": "j1_354",
+      "text": "articuler le texte et l'image à des fins d'illustration et de création",
+      "parent": "j1_343"
+    },
+    {
+      "id": "j1_63",
+      "text": "Education musicale",
+      "parent": "j1_7"
+    },
+    {
+      "id": "j1_65",
+      "text": "Chanter",
+      "parent": "j1_63"
+    },
+    {
+      "id": "j1_381",
+      "text": "reproduire un modèle mélodique, rythmique",
+      "parent": "j1_65"
+    },
+    {
+      "id": "j1_382",
+      "text": "chanter une mélodie simple avec une intonation juste ",
+      "parent": "j1_65"
+    },
+    {
+      "id": "j1_383",
+      "text": "chanter une comptine, un chant par imitation",
+      "parent": "j1_65"
+    },
+    {
+      "id": "j1_384",
+      "text": "interpréter un chant avec expressivité en respectant ses phrases musicales",
+      "parent": "j1_65"
+    },
+    {
+      "id": "j1_385",
+      "text": "mobiliser son corps pour interpréter",
+      "parent": "j1_65"
+    },
+    {
+      "id": "j1_386",
+      "text": "les principaux registres vocaux",
+      "parent": "j1_65"
+    },
+    {
+      "id": "j1_387",
+      "text": "éléments constitutifs d'une production vocale ",
+      "parent": "j1_65"
+    },
+    {
+      "id": "j1_388",
+      "text": "répertoire varié de chansons et de comptines",
+      "parent": "j1_65"
+    },
+    {
+      "id": "j1_389",
+      "text": "éléments de vocabulaire concernant l'usage musicale de la voix",
+      "parent": "j1_65"
+    },
+    {
+      "id": "j1_66",
+      "text": "Ecouter, comparer",
+      "parent": "j1_63"
+    },
+    {
+      "id": "j1_390",
+      "text": "décrire et comparer les éléments sonores, identifier des élèments communs et contrastés",
+      "parent": "j1_66"
+    },
+    {
+      "id": "j1_391",
+      "text": "repérer une organisation simple : récurrence d'une mélodie, d'un motif rythmique, d'un thème...",
+      "parent": "j1_66"
+    },
+    {
+      "id": "j1_392",
+      "text": "comparer des musiques et identifier des ressemblances et des différences",
+      "parent": "j1_66"
+    },
+    {
+      "id": "j1_393",
+      "text": "lexique élémentaire pour décrire la musique (timbre, hauteur, intensité, tempo...)",
+      "parent": "j1_66"
+    },
+    {
+      "id": "j1_394",
+      "text": "quelques grandes oeuvres du patrimoine ",
+      "parent": "j1_66"
+    },
+    {
+      "id": "j1_395",
+      "text": "repères simples dans l'espace et le temps",
+      "parent": "j1_66"
+    },
+    {
+      "id": "j1_67",
+      "text": "Explorer, imaginer",
+      "parent": "j1_63"
+    },
+    {
+      "id": "j1_396",
+      "text": "expérimenter les paramètres du son  (intensité, hauteur, timbre, durée...)",
+      "parent": "j1_67"
+    },
+    {
+      "id": "j1_397",
+      "text": "imaginer des représentations graphiques ou corporelles de la musique",
+      "parent": "j1_67"
+    },
+    {
+      "id": "j1_398",
+      "text": "inventer une organisation simple à partir d'élèments sonores travaillés",
+      "parent": "j1_67"
+    },
+    {
+      "id": "j1_399",
+      "text": "éléments de vocabulaire liés au son (intensité, hauteur, timbre, durée...)",
+      "parent": "j1_67"
+    },
+    {
+      "id": "j1_400",
+      "text": "posture du musicien (écouter, respecter l'autre, jouer ensemble)",
+      "parent": "j1_67"
+    },
+    {
+      "id": "j1_401",
+      "text": "diversité des matériaux sonores",
+      "parent": "j1_67"
+    },
+    {
+      "id": "j1_380",
+      "text": "Echanger, partager",
+      "parent": "j1_63"
+    },
+    {
+      "id": "j1_402",
+      "text": "exprimer ses émotions, ses sentiments et ses préférences artistiques",
+      "parent": "j1_380"
+    },
+    {
+      "id": "j1_403",
+      "text": "écouter et respecter l'avis des autres et l'expression de leur sensibilité",
+      "parent": "j1_380"
+    },
+    {
+      "id": "j1_404",
+      "text": "respecter les règles et les exigences d'une production musicale collective",
+      "parent": "j1_380"
+    },
+    {
+      "id": "j1_405",
+      "text": "vocabulaire adapté à l'expression de son avis",
+      "parent": "j1_380"
+    },
+    {
+      "id": "j1_406",
+      "text": "conditions d'un travail collectif (concentration, écoute, respect...)",
+      "parent": "j1_380"
+    },
+    {
+      "id": "j1_407",
+      "text": "règles et contraintes d'un travail collectif",
+      "parent": "j1_380"
+    },
+    {
+      "id": "j1_261",
+      "text": "Education physique et sportive",
+      "parent": "niveau1"
+    },
+    {
+      "id": "j1_408",
+      "text": "Produire une performance maximale, mesurée à une échéance donnée ",
+      "parent": "j1_261"
+    },
+    {
+      "id": "j1_20",
+      "text": "transformer sa motricité spontanée pour maîtriser des actions motrices : courir, sauter, lancer",
+      "parent": "j1_408"
+    },
+    {
+      "id": "j1_37",
+      "text": "utiliser sa main d'adresse et son pied d'appel, construire une adresse gestuelle et corporelle bilatérale",
+      "parent": "j1_408"
+    },
+    {
+      "id": "j1_38",
+      "text": "mobiliser de façon optimale ses ressources pour produire des efforts à des intensités variables",
+      "parent": "j1_408"
+    },
+    {
+      "id": "j1_39",
+      "text": "pendant l'action, prendre des repères extèrieurs à son corps pour percevoir : espace, temps, durée, effort",
+      "parent": "j1_408"
+    },
+    {
+      "id": "j1_40",
+      "text": "respecter les règles de sécurité édictées par le professeur",
+      "parent": "j1_408"
+    },
+    {
+      "id": "j1_409",
+      "text": "Adapter ses déplacements à des environnements variés (activités de natation, de roule, de glisse, d'équitation, d'orientation, d'escalade...)",
+      "parent": "j1_261"
+    },
+    {
+      "id": "j1_41",
+      "text": "transformer sa motricité spontanée pour maitriser des actions motrices",
+      "parent": "j1_409"
+    },
+    {
+      "id": "j1_42",
+      "text": "s'engager sans appréhension pour se déplacer dans différents environnements",
+      "parent": "j1_409"
+    },
+    {
+      "id": "j1_43",
+      "text": "lire le milieu et adaper ses déplacements à ses contraintes",
+      "parent": "j1_409"
+    },
+    {
+      "id": "j1_44",
+      "text": "respecter les règles essentielles de sécurité",
+      "parent": "j1_409"
+    },
+    {
+      "id": "j1_45",
+      "text": "reconnaître une situation à risque",
+      "parent": "j1_409"
+    },
+    {
+      "id": "j1_410",
+      "text": "S'exprimer devant les autres par une prestation artistique et/ou acrobatique",
+      "parent": "j1_261"
+    },
+    {
+      "id": "j1_46",
+      "text": "s'exposer aux autres : s'engager avec facilité dans des situations d'expression personnelle sans crainte de se montrer",
+      "parent": "j1_410"
+    },
+    {
+      "id": "j1_47",
+      "text": "exploiter le pouvoir expressif du corps en transformant sa motricité et en construisant un répertoire d'actions nouvelles à visée esthétique",
+      "parent": "j1_410"
+    },
+    {
+      "id": "j1_48",
+      "text": "s'engager en sécurité dans des situations acrobatiques en constuisant de nouveaux pouvoirs moteurs",
+      "parent": "j1_410"
+    },
+    {
+      "id": "j1_49",
+      "text": "synchroniser ses actions avec celles de ses partenaires",
+      "parent": "j1_410"
+    },
+    {
+      "id": "j1_411",
+      "text": "Conduire et maîtriser un affrontement collectif ou interindividuel",
+      "parent": "j1_261"
+    },
+    {
+      "id": "j1_50",
+      "text": "rechercher le gain du jeu ou  de la rencontre",
+      "parent": "j1_411"
+    },
+    {
+      "id": "j1_51",
+      "text": "comprendre le but du jeu et orienter ses actions vers la cible",
+      "parent": "j1_411"
+    },
+    {
+      "id": "j1_52",
+      "text": "accepter l'opposition et la coopération",
+      "parent": "j1_411"
+    },
+    {
+      "id": "j1_53",
+      "text": "s'adapter aux actions d'un adversaire",
+      "parent": "j1_411"
+    },
+    {
+      "id": "j1_54",
+      "text": "coordonner des actions motrices simples",
+      "parent": "j1_411"
+    },
+    {
+      "id": "j1_55",
+      "text": "s'informer, prendre des repères pour agir seul ou avec les autres",
+      "parent": "j1_411"
+    },
+    {
+      "id": "j1_56",
+      "text": "respecter les règles essentielles de jeu et de sécurité",
+      "parent": "j1_411"
+    },
+    {
+      "id": "j1_262",
+      "text": "Enseignement moral et civique",
+      "parent": "niveau1"
+    },
+    {
+      "id": "j1_57",
+      "text": "La sensibilité : soi et les autres",
+      "parent": "j1_262"
+    },
+    {
+      "id": "j1_102",
+      "text": "Identifier et partager des émotions, des sentiments, dans des situations et à propos d'objets diversifiés",
+      "parent": "j1_57"
+    },
+    {
+      "id": "j1_215",
+      "text": "connaissance et reconnaissance des émotions de base",
+      "parent": "j1_102"
+    },
+    {
+      "id": "j1_216",
+      "text": "connaissance et structuration du vocabulaire des sentiments et des émotions",
+      "parent": "j1_102"
+    },
+    {
+      "id": "j1_219",
+      "text": "expérience de la diversité des expressions des émotions et des sentiments",
+      "parent": "j1_102"
+    },
+    {
+      "id": "j1_232",
+      "text": "Se situer et exprimer en respectant les codes de la communication orale, les règles de l'échange, et le statut de l'interlocuteur",
+      "parent": "j1_57"
+    },
+    {
+      "id": "j1_234",
+      "text": "Prendre soin de soi et des autres",
+      "parent": "j1_57"
+    },
+    {
+      "id": "j1_235",
+      "text": "le soin du langage : la politesse",
+      "parent": "j1_234"
+    },
+    {
+      "id": "j1_236",
+      "text": "le soin du corps, de l'environnement immédiat et plus lointain",
+      "parent": "j1_234"
+    },
+    {
+      "id": "j1_242",
+      "text": "le soin des biens personnels et collectifs",
+      "parent": "j1_234"
+    },
+    {
+      "id": "j1_243",
+      "text": "l'intégrité de la personne",
+      "parent": "j1_234"
+    },
+    {
+      "id": "j1_244",
+      "text": "Accepter les différences",
+      "parent": "j1_57"
+    },
+    {
+      "id": "j1_245",
+      "text": "le respect des pairs et des adultes",
+      "parent": "j1_244"
+    },
+    {
+      "id": "j1_246",
+      "text": "les atteintes à la personne d'autrui",
+      "parent": "j1_244"
+    },
+    {
+      "id": "j1_247",
+      "text": "le respect des différences, interconnaissance et tolérance",
+      "parent": "j1_244"
+    },
+    {
+      "id": "j1_254",
+      "text": "la conscience de la diversité des croyances et des convictions",
+      "parent": "j1_244"
+    },
+    {
+      "id": "j1_256",
+      "text": "Identifier les symboles de la République : le drapeau, l'hymne national, les monuments, la fête nationale",
+      "parent": "j1_57"
+    },
+    {
+      "id": "j1_259",
+      "text": "Apprendre à coopérer",
+      "parent": "j1_57"
+    },
+    {
+      "id": "j1_58",
+      "text": "Le droit à la règle : des principes pour vivre avec les autres",
+      "parent": "j1_262"
+    },
+    {
+      "id": "j1_260",
+      "text": "Adapter sa tenue, son langage et son comportement aux différents contextes de vie et aux différents interlocuteurs",
+      "parent": "j1_58"
+    },
+    {
+      "id": "j1_327",
+      "text": "initiation aux différents registres de langue",
+      "parent": "j1_260"
+    },
+    {
+      "id": "j1_328",
+      "text": "Respecter les autres et les règles de la vie collective, participer à la définition de règles communes dans le cadre adéquat",
+      "parent": "j1_58"
+    },
+    {
+      "id": "j1_344",
+      "text": "les règles de vie de la classe, de l'école",
+      "parent": "j1_328"
+    },
+    {
+      "id": "j1_351",
+      "text": "les droits et devoirs de l'enfant, de l'élève",
+      "parent": "j1_328"
+    },
+    {
+      "id": "j1_356",
+      "text": "Comprendre que la règle commune peut autoriser, interdire, obliger (APER)",
+      "parent": "j1_58"
+    },
+    {
+      "id": "j1_357",
+      "text": "Connaître ses droits et les moyens de les faire valoir",
+      "parent": "j1_58"
+    },
+    {
+      "id": "j1_358",
+      "text": "Comprendre qu'il existe une certaine gradation des sanctions et que celle-ci est éducative (accompagnement, réparation...)",
+      "parent": "j1_58"
+    },
+    {
+      "id": "j1_379",
+      "text": "Connaître quelques principes et valeurs d'une société démocratique",
+      "parent": "j1_58"
+    },
+    {
+      "id": "j1_412",
+      "text": "les valeurs : liberté, égalité, laicité",
+      "parent": "j1_379"
+    },
+    {
+      "id": "j1_413",
+      "text": "l'égalité de droit entre les femmes et les hommes",
+      "parent": "j1_379"
+    },
+    {
+      "id": "j1_414",
+      "text": "les droits et les devoirs de la personne, de l'élève, du citoyen",
+      "parent": "j1_379"
+    },
+    {
+      "id": "j1_59",
+      "text": "Le jugement : penser par soi-même et avec les autres",
+      "parent": "j1_262"
+    },
+    {
+      "id": "j1_415",
+      "text": "Exposer une courte argumentation pour exprimer et justifier un point de vue et un choix personnels",
+      "parent": "j1_59"
+    },
+    {
+      "id": "j1_416",
+      "text": "le choix et sa justification",
+      "parent": "j1_415"
+    },
+    {
+      "id": "j1_417",
+      "text": "connaissance de quelques structures simples de l'argumentation (connecteurs logiques et lexique)",
+      "parent": "j1_415"
+    },
+    {
+      "id": "j1_418",
+      "text": "les raisons qui font juger une action bonne ou mauvaise",
+      "parent": "j1_415"
+    },
+    {
+      "id": "j1_419",
+      "text": "S'affirmer dans un débat sans imposer son point de vue aux autres et accepter le point de vue des autres",
+      "parent": "j1_59"
+    },
+    {
+      "id": "j1_420",
+      "text": "les règles de la discussion en groupe",
+      "parent": "j1_419"
+    },
+    {
+      "id": "j1_421",
+      "text": "initation aux règles du débat",
+      "parent": "j1_419"
+    },
+    {
+      "id": "j1_422",
+      "text": "initiation à l'argumentation",
+      "parent": "j1_419"
+    },
+    {
+      "id": "j1_423",
+      "text": "les préjugés et les stéréotypes",
+      "parent": "j1_419"
+    },
+    {
+      "id": "j1_424",
+      "text": "Aborder la laicité comme liberté de penser et de croire/ne pas croire",
+      "parent": "j1_59"
+    },
+    {
+      "id": "j1_425",
+      "text": "initiation aux différences entre penser, croire, savoir",
+      "parent": "j1_424"
+    },
+    {
+      "id": "j1_426",
+      "text": "Différencier son intérêt particulier de l'intérêt général",
+      "parent": "j1_59"
+    },
+    {
+      "id": "j1_427",
+      "text": "la notion de bien commun dans la classe, dans l'école",
+      "parent": "j1_426"
+    },
+    {
+      "id": "j1_428",
+      "text": "les valeurs personnelles et collectives",
+      "parent": "j1_426"
+    },
+    {
+      "id": "j1_60",
+      "text": "L'engagement : agir individuellement et collectivement",
+      "parent": "j1_262"
+    },
+    {
+      "id": "j1_429",
+      "text": "Respecter les engagements pris envers soi-même et envers les autres",
+      "parent": "j1_60"
+    },
+    {
+      "id": "j1_430",
+      "text": "s'impliquer dans la vie scolaire",
+      "parent": "j1_429"
+    },
+    {
+      "id": "j1_431",
+      "text": "l'engagement moral : loyauté, promesse, confiance",
+      "parent": "j1_429"
+    },
+    {
+      "id": "j1_432",
+      "text": "Réaliser un projet collectif",
+      "parent": "j1_60"
+    },
+    {
+      "id": "j1_433",
+      "text": "Coopérer en vue d'un objectif commun",
+      "parent": "j1_60"
+    },
+    {
+      "id": "j1_434",
+      "text": "Expliquer en mots simple la fraternité et la solidarité",
+      "parent": "j1_60"
+    },
+    {
+      "id": "j1_435",
+      "text": "Prendre des responsabilités dans la classe et dans l'école",
+      "parent": "j1_60"
+    },
+    {
+      "id": "j1_437",
+      "text": "la participation démocratique",
+      "parent": "j1_435"
+    },
+    {
+      "id": "j1_438",
+      "text": "la responsabilité",
+      "parent": "j1_435"
+    },
+    {
+      "id": "j1_439",
+      "text": "le développement durable",
+      "parent": "j1_435"
+    },
+    {
+      "id": "j1_441",
+      "text": "S'impliquer dans la vie collective à différents niveaux (APS)",
+      "parent": "j1_60"
+    },
+    {
+      "id": "j1_329",
+      "text": "Questionner le monde",
+      "parent": "niveau1"
+    },
+    {
+      "id": "j1_442",
+      "text": "Questionner le monde du vivant, de la matière et des objets",
+      "parent": "j1_329"
+    },
+    {
+      "id": "j1_443",
+      "text": "Qu'est-ce que la matière?",
+      "parent": "j1_442"
+    },
+    {
+      "id": "j1_450",
+      "text": "Identifier les trois états de la matière et observer des changements d'états",
+      "parent": "j1_443"
+    },
+    {
+      "id": "j1_451",
+      "text": "Identifier un changement d'état de l'eau dans un phénomène de la vie quotidienne",
+      "parent": "j1_443"
+    },
+    {
+      "id": "j1_444",
+      "text": "Comment reconnaître le monde vivant?",
+      "parent": "j1_442"
+    },
+    {
+      "id": "j1_452",
+      "text": "Connaître des caractéristiques du monde vivant, ses intéractions, sa diversité",
+      "parent": "j1_444"
+    },
+    {
+      "id": "j1_453",
+      "text": "Reconnaître des comportements favorables à sa santé",
+      "parent": "j1_444"
+    },
+    {
+      "id": "j1_445",
+      "text": "Les objets techniques",
+      "parent": "j1_442"
+    },
+    {
+      "id": "j1_454",
+      "text": "Comprendre la fonction et le fonctionnement d'objets fabriqués",
+      "parent": "j1_445"
+    },
+    {
+      "id": "j1_455",
+      "text": "Réaliser quelques objets et circuits électriques simples, en respectant les règles élémentaires de sécurité",
+      "parent": "j1_445"
+    },
+    {
+      "id": "j1_456",
+      "text": "Commencer à s'approprier un environnement numérique",
+      "parent": "j1_445"
+    },
+    {
+      "id": "j1_446",
+      "text": "Questionner l'espace et le temps",
+      "parent": "j1_329"
+    },
+    {
+      "id": "j1_447",
+      "text": "Se situer dans l'espace",
+      "parent": "j1_446"
+    },
+    {
+      "id": "j1_457",
+      "text": "Se repérer dans l'espace et le représenter",
+      "parent": "j1_447"
+    },
+    {
+      "id": "j1_458",
+      "text": "Situer un lieu sur une carte, un globe ou un écran informatique",
+      "parent": "j1_447"
+    },
+    {
+      "id": "j1_448",
+      "text": "Se situer dans le temps",
+      "parent": "j1_446"
+    },
+    {
+      "id": "j1_459",
+      "text": "Se repérer dans l'espace et le représenter",
+      "parent": "j1_448"
+    },
+    {
+      "id": "j1_460",
+      "text": "Repérer et situer quelques évènements dans un temps long",
+      "parent": "j1_448"
+    },
+    {
+      "id": "j1_449",
+      "text": "Explorer les organisations du monde",
+      "parent": "j1_329"
+    },
+    {
+      "id": "j1_461",
+      "text": "Comparer les modes de vie",
+      "parent": "j1_449"
+    },
+    {
+      "id": "j1_464",
+      "text": "comparer des modes de vie à différentes époques ou de différentes cultures",
+      "parent": "j1_461"
+    },
+    {
+      "id": "j1_465",
+      "text": "quelques éléments tels que l'alimentation, l'habitat, les outils, la guerre...",
+      "parent": "j1_461"
+    },
+    {
+      "id": "j1_466",
+      "text": "quelques représentations du monde à travers le temps historique",
+      "parent": "j1_461"
+    },
+    {
+      "id": "j1_467",
+      "text": "les modes de vie caractéristiques dans quelques espaces emblématiques",
+      "parent": "j1_461"
+    },
+    {
+      "id": "j1_462",
+      "text": "Comprendre qu'un espace est organisé",
+      "parent": "j1_449"
+    },
+    {
+      "id": "j1_468",
+      "text": "découvrir le quartier, le village, la ville : ses principaux espaces et ses principales fonctions",
+      "parent": "j1_462"
+    },
+    {
+      "id": "j1_469",
+      "text": "reconnaître différents paysages : le slittoraux, les massifs montagneux, les campagnes, les villes, les déserts",
+      "parent": "j1_462"
+    },
+    {
+      "id": "j1_463",
+      "text": "Identifier des paysages",
+      "parent": "j1_449"
+    },
+    {
+      "id": "j1_330",
+      "text": "Mathématiques",
+      "parent": "niveau1"
+    },
+    {
+      "id": "j1_233",
+      "text": "Nombres et calculs",
+      "parent": "j1_330"
+    },
+    {
+      "id": "j1_355",
+      "text": "Comprendre et utiliser des nombres entiers pour dénombrer, ordonner, repérer, comparer",
+      "parent": "j1_233"
+    },
+    {
+      "id": "j1_436",
+      "text": "dénombrer, constituer et comparer des collections",
+      "parent": "j1_355"
+    },
+    {
+      "id": "j1_440",
+      "text": "utiliser diverses stratégies de dénombrement : décomposition, recomposition, unités intermédiaires...",
+      "parent": "j1_355"
+    },
+    {
+      "id": "j1_470",
+      "text": "repérer un rang ou une position dans une file ou sur une piste",
+      "parent": "j1_355"
+    },
+    {
+      "id": "j1_471",
+      "text": "faire le lien entre le rang dans une liste et le nombre d'élèments qui le précèdent (ordinaux et cardinaux)",
+      "parent": "j1_355"
+    },
+    {
+      "id": "j1_472",
+      "text": "comparer, ranger, encadrer, intercaler des nombres entiers en utilisant les symboles (&lt;,&gt;,=)",
+      "parent": "j1_355"
+    },
+    {
+      "id": "j1_474",
+      "text": "Nommer, lire, écire, représenter des nombres entiers",
+      "parent": "j1_233"
+    },
+    {
+      "id": "j1_475",
+      "text": "utiliser diverses représentations des nombres",
+      "parent": "j1_474"
+    },
+    {
+      "id": "j1_476",
+      "text": "passer d'une représentation à l'autre, en particulier associer les noms des nombres à leur écritures chiffrées",
+      "parent": "j1_474"
+    },
+    {
+      "id": "j1_477",
+      "text": "interpréter les noms des nombres à l'aide des unités de numération et des écritures arithmétiques",
+      "parent": "j1_474"
+    },
+    {
+      "id": "j1_478",
+      "text": "associer un nombre enier à une position sur une demi droite graduée, ainsi qu'à la distance de ce point à l'origine",
+      "parent": "j1_474"
+    },
+    {
+      "id": "j1_479",
+      "text": "associer un nombre ou un encadrement à une grandeuren mesurant celle-ci à l'aide d'une unité",
+      "parent": "j1_474"
+    },
+    {
+      "id": "j1_480",
+      "text": "Résoudre des problèmes en utilisant des nombres entiers et le calcul",
+      "parent": "j1_233"
+    },
+    {
+      "id": "j1_481",
+      "text": "résoudre des problèmes issus de situations de la vie quotidienne ou adapté de jeux conduisant à utiliser les 4 opérations",
+      "parent": "j1_480"
+    },
+    {
+      "id": "j1_482",
+      "text": "problèmes relevant des structures additives (+/-)",
+      "parent": "j1_480"
+    },
+    {
+      "id": "j1_483",
+      "text": "problèmes relevant des structures multiplicatives (x/:)",
+      "parent": "j1_480"
+    },
+    {
+      "id": "j1_484",
+      "text": "modéliser ces problèmes à l'aide d'écritures mathématiques",
+      "parent": "j1_480"
+    },
+    {
+      "id": "j1_485",
+      "text": "sens des symboles (+/-/x/:)",
+      "parent": "j1_480"
+    },
+    {
+      "id": "j1_486",
+      "text": "Organisation et gestion de données",
+      "parent": "j1_233"
+    },
+    {
+      "id": "j1_487",
+      "text": "exploiter des données numériques pour répondre à des questions",
+      "parent": "j1_486"
+    },
+    {
+      "id": "j1_488",
+      "text": "pésenter et organiser des mesures sous forme de tableaux",
+      "parent": "j1_486"
+    },
+    {
+      "id": "j1_489",
+      "text": "modes de représentation de données numériques : tableaux, graphiques...",
+      "parent": "j1_486"
+    },
+    {
+      "id": "j1_490",
+      "text": "Calculer avec des nombres entiers",
+      "parent": "j1_233"
+    },
+    {
+      "id": "j1_491",
+      "text": "mémoriser des faits numériques et des procédures",
+      "parent": "j1_490"
+    },
+    {
+      "id": "j1_492",
+      "text": "mémoriser la table d'addition",
+      "parent": "j1_490"
+    },
+    {
+      "id": "j1_493",
+      "text": "mémoriser la table de multiplication",
+      "parent": "j1_490"
+    },
+    {
+      "id": "j1_494",
+      "text": "utiliser la décomposition additive et multiplicative (de 10, de 100), compléments à la dizaine supérieure, doubles et moitiés...",
+      "parent": "j1_490"
+    },
+    {
+      "id": "j1_495",
+      "text": "élaborer ou choisir des stratégies de calcul à l'oral ou à l'écrit",
+      "parent": "j1_490"
+    },
+    {
+      "id": "j1_473",
+      "text": "vérifier la vraisemblance d'un résultat, notamment en estimant un ordre de grandeur",
+      "parent": "j1_490"
+    },
+    {
+      "id": "j1_497",
+      "text": "Calculer mentalement pour obtenir un résultat exact ou évaluer un ordre de grandeur",
+      "parent": "j1_233"
+    },
+    {
+      "id": "j1_498",
+      "text": "Calculer en utilisant des écritures en ligne additives, soustractives, multiplicatives, mixtes",
+      "parent": "j1_233"
+    },
+    {
+      "id": "j1_499",
+      "text": "Mettre en oeuvre un algorithme de calcul posé pour l'addition, la soustraction, la multiplication",
+      "parent": "j1_233"
+    },
+    {
+      "id": "j1_496",
+      "text": "Grandeurs et mesures",
+      "parent": "j1_330"
+    },
+    {
+      "id": "j1_500",
+      "text": "Comparer, estimer, mesurer des longueurs, des masses, des contenances, des durées",
+      "parent": "j1_496"
+    },
+    {
+      "id": "j1_501",
+      "text": "comparer des objets selon plusieurs grandeurs et identifier quand il s'agit d'une longueur, d'une masse, d'une contenance, d'une durée",
+      "parent": "j1_500"
+    },
+    {
+      "id": "j1_502",
+      "text": "comparer des masses, des longueurs et des contenances, directement, en introduisant la comparaison à un objet intermédiaire ou par mesurage",
+      "parent": "j1_500"
+    },
+    {
+      "id": "j1_503",
+      "text": "estimer les ordres de grandeurs de quelques longueurs, masses, contenances en relation avec les unités métriques. Vérifier éventuellement avec un instrument",
+      "parent": "j1_500"
+    },
+    {
+      "id": "j1_504",
+      "text": "mesurer des longueurs avec un instrument adapté, notamment en reportant une unité",
+      "parent": "j1_500"
+    },
+    {
+      "id": "j1_505",
+      "text": "mesurer des contenances et des masses avec des instruments adpatés",
+      "parent": "j1_500"
+    },
+    {
+      "id": "j1_506",
+      "text": "encadrer une grandeur par deux nombres entiers d'unités",
+      "parent": "j1_500"
+    },
+    {
+      "id": "j1_507",
+      "text": "exprimer une mesure dans une ou plusieurs unités choisies ou imposées",
+      "parent": "j1_500"
+    },
+    {
+      "id": "j1_508",
+      "text": "comparer, estimer, mesurer des durées (minute, heure, jour, semaine, mois, année, siècle, millénaire) ",
+      "parent": "j1_500"
+    },
+    {
+      "id": "j1_509",
+      "text": "dans des cas simples, représenter une grandeur par une longueur, notamment une demi-droite graduée",
+      "parent": "j1_500"
+    },
+    {
+      "id": "j1_510",
+      "text": "Résoudre des problèmes impliquant des longueurs, des masses, des contenances, des prix",
+      "parent": "j1_496"
+    },
+    {
+      "id": "j1_511",
+      "text": "résoudre des problèmes, notamment de mesurage et de comparaison, en utilisant les opérations sur les grandeurs ou sur les nombres",
+      "parent": "j1_510"
+    },
+    {
+      "id": "j1_512",
+      "text": "résoudre des problèmes impliquant des conversions simples d'une unité usuelle à une autre",
+      "parent": "j1_510"
+    },
+    {
+      "id": "j1_513",
+      "text": "Espace et géométrie",
+      "parent": "j1_330"
+    },
+    {
+      "id": "j1_514",
+      "text": "Se repérer et se déplacer en utilisant des repères",
+      "parent": "j1_513"
+    },
+    {
+      "id": "j1_515",
+      "text": "se repérer dans son environnement proche",
+      "parent": "j1_514"
+    },
+    {
+      "id": "j1_516",
+      "text": "situer des objets ou des personnes les uns par rapport aux autres ou par rapport à  d'autres repères",
+      "parent": "j1_514"
+    },
+    {
+      "id": "j1_517",
+      "text": "produire des représentations des espaces familiers et moins familiers",
+      "parent": "j1_514"
+    },
+    {
+      "id": "j1_518",
+      "text": "s'orienter et se déplacer en utilisant des repères",
+      "parent": "j1_514"
+    },
+    {
+      "id": "j1_519",
+      "text": "coder et décoder pour prévoir, représenter et réaliser des déplacements dans des espaces familiers, sur un quadrillage, sur un écran",
+      "parent": "j1_514"
+    },
+    {
+      "id": "j1_520",
+      "text": "Reconnaître, nommer, décrire, reproduire quelques solides",
+      "parent": "j1_513"
+    },
+    {
+      "id": "j1_521",
+      "text": "reconnaître et trier les solides usuels parmi des solides variés",
+      "parent": "j1_520"
+    },
+    {
+      "id": "j1_522",
+      "text": "décrire et comparer des solides en utilisant le vocabulaire approprié",
+      "parent": "j1_520"
+    },
+    {
+      "id": "j1_523",
+      "text": "reproduire des solides",
+      "parent": "j1_520"
+    },
+    {
+      "id": "j1_524",
+      "text": "fabriquer un cube à partir d'un patron fourni",
+      "parent": "j1_520"
+    },
+    {
+      "id": "j1_525",
+      "text": "Reconnaître, nommer, décrire, reproduire, construire quelques figures géométriques",
+      "parent": "j1_513"
+    },
+    {
+      "id": "j1_527",
+      "text": "décrire, reproduire des figures ou des assemblages de figures planes sur papier quadrillé ou uni",
+      "parent": "j1_525"
+    },
+    {
+      "id": "j1_528",
+      "text": "utiliser la règle, le compas ou l'équerre comme instrument de tracé",
+      "parent": "j1_525"
+    },
+    {
+      "id": "j1_529",
+      "text": "reconnaître et nommer les figures usuelles",
+      "parent": "j1_525"
+    },
+    {
+      "id": "j1_530",
+      "text": "reconnaître et décrire à partir des côtés et des angles droits : carré, rectangle, triangle rectangle",
+      "parent": "j1_525"
+    },
+    {
+      "id": "j1_531",
+      "text": "construire carré, rectangle, triangle rectangle sur un support uni  connaissant la longueur des côtés",
+      "parent": "j1_525"
+    },
+    {
+      "id": "j1_532",
+      "text": "construire un cercle connaissant son centre et un point, ou son centre et son rayon",
+      "parent": "j1_525"
+    },
+    {
+      "id": "j1_526",
+      "text": "Reconnaître et utiliser les notions d'alignement, d'angle droit, d'égalité de longueurs, de milieu et de symétrie",
+      "parent": "j1_513"
+    },
+    {
+      "id": "j1_533",
+      "text": "utiliser la règle pour repérer et produire des alignements",
+      "parent": "j1_526"
+    },
+    {
+      "id": "j1_534",
+      "text": "repérer et produire des angles droits à l'aide d'un gabarit, d'une équerre",
+      "parent": "j1_526"
+    },
+    {
+      "id": "j1_535",
+      "text": "reporter une longueur sur une droite déjà tracée",
+      "parent": "j1_526"
+    },
+    {
+      "id": "j1_536",
+      "text": "repérer ou trouver le milieu d'un segment",
+      "parent": "j1_526"
+    },
+    {
+      "id": "j1_537",
+      "text": "reconnaître si une figure présente un axe de symétrie (à trouver)",
+      "parent": "j1_526"
+    },
+    {
+      "id": "j1_538",
+      "text": "compléter une figure pour qu'elle soit symétrique par rapport à un axe donné",
+      "parent": "j1_526"
+    },
+    {
+      "id": "niveau2",
+      "text": "CYCLE 3 (CM1-6ème)",
+      "parent": "#"
+    },
+    {
+      "id": "j1_68",
+      "text": "Français",
+      "parent": "niveau2"
+    },
+    {
+      "id": "j1_69",
+      "text": "Langage oral",
+      "parent": "j1_68"
+    },
+    {
+      "id": "j1_70",
+      "text": "Ecouter pour comprendre un message oral, un propos, un discours, un texte lu",
+      "parent": "j1_69"
+    },
+    {
+      "id": "j1_542",
+      "text": "maintien d'une attention orientée en fonction du but",
+      "parent": "j1_70"
+    },
+    {
+      "id": "j1_543",
+      "text": "identification et mémorisation des informations importantes, enchainements et mise en relation de ces informations ainsi que des informations implicites",
+      "parent": "j1_70"
+    },
+    {
+      "id": "j1_544",
+      "text": "repérage et prise en compte des différents genres de discours, du lexique et des références culturelles liées au domaine du message ou du texte entendu ",
+      "parent": "j1_70"
+    },
+    {
+      "id": "j1_545",
+      "text": "repérage d'éventuelles difficultés de compréhension, verbalisation de ces difficultés et des moyens d'y répondre ",
+      "parent": "j1_70"
+    },
+    {
+      "id": "j1_546",
+      "text": "vigilance critique par rapport au langage écouté",
+      "parent": "j1_70"
+    },
+    {
+      "id": "j1_71",
+      "text": "Parler en prenant en compte son auditoire pour partager un point de vue personnel, pour oraliser une oeuvre de la littérature orale, pour tenir un propos élaboré et continu relevant d'un genre de l'oral",
+      "parent": "j1_69"
+    },
+    {
+      "id": "j1_539",
+      "text": "mobilisation des ressources de la voix et du corps pour être entendu et compris",
+      "parent": "j1_71"
+    },
+    {
+      "id": "j1_540",
+      "text": "organisation et structuration du propos selon le genre de discours, mobilisation des formes, des tournures et du lexique appropriés",
+      "parent": "j1_71"
+    },
+    {
+      "id": "j1_541",
+      "text": "technique de mise en voix des textes littéaires",
+      "parent": "j1_71"
+    },
+    {
+      "id": "j1_549",
+      "text": "technique de mémorisation des textes présentés ou interprétés",
+      "parent": "j1_71"
+    },
+    {
+      "id": "j1_72",
+      "text": "Participer à des échanges dans des situations de communication diversifiées",
+      "parent": "j1_69"
+    },
+    {
+      "id": "j1_547",
+      "text": "prise en compte de la parole des différents interlocuteurs dans un débat et identification des points de vue exprimés",
+      "parent": "j1_72"
+    },
+    {
+      "id": "j1_548",
+      "text": "présentation d'une idée, d'un point de vue en tenant compte des autres points de vue exprimés",
+      "parent": "j1_72"
+    },
+    {
+      "id": "j1_550",
+      "text": "mobilisation de stratégie argumentative",
+      "parent": "j1_72"
+    },
+    {
+      "id": "j1_551",
+      "text": "respect des règles conversationnelles",
+      "parent": "j1_72"
+    },
+    {
+      "id": "j1_552",
+      "text": "organisation du propos",
+      "parent": "j1_72"
+    },
+    {
+      "id": "j1_553",
+      "text": "construction et mobilisation de moyens d'expression",
+      "parent": "j1_72"
+    },
+    {
+      "id": "j1_554",
+      "text": "mise à distance de l'expérience et mobilisation des connaissances ",
+      "parent": "j1_72"
+    },
+    {
+      "id": "j1_555",
+      "text": "identification et vérification de ce qui relève du singulier, de l'exemple, du général...",
+      "parent": "j1_72"
+    },
+    {
+      "id": "j1_556",
+      "text": "lexique des enseignements et des disciplines",
+      "parent": "j1_72"
+    },
+    {
+      "id": "j1_101",
+      "text": "Adopter une attitude critique par rapport au langage produit",
+      "parent": "j1_69"
+    },
+    {
+      "id": "j1_557",
+      "text": "règles régulant les échanges, repérage du respect ou non de ces règles dans les propos d'un pair et aide à la reformulation ",
+      "parent": "j1_101"
+    },
+    {
+      "id": "j1_558",
+      "text": "prise en compte de critères d'évaluation explicites élaborés collectivement pour les présentations orales",
+      "parent": "j1_101"
+    },
+    {
+      "id": "j1_559",
+      "text": "autocorrection après écoute (reformulation)",
+      "parent": "j1_101"
+    },
+    {
+      "id": "j1_560",
+      "text": "fonctionnement de la syntaxe de la langue orale et comparaison avec l'écrit",
+      "parent": "j1_101"
+    },
+    {
+      "id": "j1_561",
+      "text": "relevé et emploi de mots, d'expressions et de formulations",
+      "parent": "j1_101"
+    },
+    {
+      "id": "j1_73",
+      "text": "Lecture et compréhension de l'écrit",
+      "parent": "j1_68"
+    },
+    {
+      "id": "j1_74",
+      "text": "Renforcer la fluidité de la lecture",
+      "parent": "j1_73"
+    },
+    {
+      "id": "j1_566",
+      "text": "mémoriser des mots fréquents et irréguliers",
+      "parent": "j1_74"
+    },
+    {
+      "id": "j1_567",
+      "text": "mettre en oeuvre de manière efficace et rapide le décodage",
+      "parent": "j1_74"
+    },
+    {
+      "id": "j1_568",
+      "text": "prendre en compte des groupes syntaxiques, des marques de ponctuation",
+      "parent": "j1_74"
+    },
+    {
+      "id": "j1_76",
+      "text": "Comprendre un texte littéraire et l'interpréter",
+      "parent": "j1_73"
+    },
+    {
+      "id": "j1_564",
+      "text": "mise en oeuvre d'une démarche de compréhension à partir d'un texte entendu ou lu (personnages, actions, chronologie, informations explicites...)",
+      "parent": "j1_76"
+    },
+    {
+      "id": "j1_565",
+      "text": "identification du genre et de ses enjeux",
+      "parent": "j1_76"
+    },
+    {
+      "id": "j1_569",
+      "text": "mobilisation des expériences antérieures de lecture et des connaissances qui en sont issues",
+      "parent": "j1_76"
+    },
+    {
+      "id": "j1_77",
+      "text": "Comprendre des textes, des documents, des images et les interpréter",
+      "parent": "j1_73"
+    },
+    {
+      "id": "j1_78",
+      "text": "Contrôler sa compréhension et adopter un comportement de lecteur autonome",
+      "parent": "j1_73"
+    },
+    {
+      "id": "j1_80",
+      "text": "Ecriture",
+      "parent": "j1_68"
+    },
+    {
+      "id": "j1_81",
+      "text": "Copier un texte d'au moins quinze lignes sans erreur avec une présentation soignée et adaptée",
+      "parent": "j1_80"
+    },
+    {
+      "id": "j1_82",
+      "text": "Utiliser ses connaissances pour mieux réfléchir, mieux écrire un texte",
+      "parent": "j1_80"
+    },
+    {
+      "id": "j1_83",
+      "text": "Répondre à une question par une phrase complète à l'écrit",
+      "parent": "j1_80"
+    },
+    {
+      "id": "j1_108",
+      "text": "Rédiger un texte d'une quinzaine de lignes en utilisant ses connaissances en vocabulaire et en grammaire (récit, description, dialogue, texte poétique, compte-rendu...)",
+      "parent": "j1_80"
+    },
+    {
+      "id": "j1_84",
+      "text": "Etude de la langue: Vocabulaire",
+      "parent": "j1_68"
+    },
+    {
+      "id": "j1_85",
+      "text": "Comprendre des mots nouveaux et les utiliser à bon escient",
+      "parent": "j1_84"
+    },
+    {
+      "id": "j1_86",
+      "text": "Maitriser quelques relations de sens entre les mots",
+      "parent": "j1_84"
+    },
+    {
+      "id": "j1_87",
+      "text": "Maitriser quelques relations concernant la forme et le sens des mots",
+      "parent": "j1_84"
+    },
+    {
+      "id": "j1_88",
+      "text": "Savoir utiliser un dictionnaire (papier et/ou numérique)",
+      "parent": "j1_84"
+    },
+    {
+      "id": "j1_90",
+      "text": "Etude de la langue: Grammaire",
+      "parent": "j1_68"
+    },
+    {
+      "id": "j1_91",
+      "text": "Distinguer les mots selon leur nature",
+      "parent": "j1_90"
+    },
+    {
+      "id": "j1_92",
+      "text": "Identifier les fonctions des mots dans la phrase",
+      "parent": "j1_90"
+    },
+    {
+      "id": "j1_93",
+      "text": "Conjuguer les vebes et utiliser les temps à bon escient",
+      "parent": "j1_90"
+    },
+    {
+      "id": "j1_94",
+      "text": "Maitriser l'orthographe grammaticale",
+      "parent": "j1_90"
+    },
+    {
+      "id": "j1_95",
+      "text": "Maitriser l'orthographe lexicale",
+      "parent": "j1_90"
+    },
+    {
+      "id": "j1_96",
+      "text": "Etude de la langue: Orthographe",
+      "parent": "j1_68"
+    },
+    {
+      "id": "j1_99",
+      "text": "Orthographier correctement un texte simple de dix lignes (rédaction ou dictée) en se référant aux règles connues d'ortographe et de grammaire ainsi qu'à la connaissance du vocabulaire",
+      "parent": "j1_96"
+    },
+    {
+      "id": "j1_110",
+      "text": "Langues vivantes",
+      "parent": "niveau2"
+    },
+    {
+      "id": "j1_111",
+      "text": "Réagir et dialoguer",
+      "parent": "j1_110"
+    },
+    {
+      "id": "j1_112",
+      "text": "Communiquer, au besoin avec des pauses pour chercher ses mots",
+      "parent": "j1_111"
+    },
+    {
+      "id": "j1_113",
+      "text": "Se présenter, présenter quelqu'un, demander à quelqu'un de ses nouvelles en utilisant les formes de politesse les plus élèmentaires, accueil, prise de congé",
+      "parent": "j1_111"
+    },
+    {
+      "id": "j1_114",
+      "text": "Répondre à des questions et en poser (sujets familiers ou besoins immédiats)",
+      "parent": "j1_111"
+    },
+    {
+      "id": "j1_115",
+      "text": "Epeler des mots familiers",
+      "parent": "j1_111"
+    },
+    {
+      "id": "j1_116",
+      "text": "Comprendre à l'oral",
+      "parent": "j1_110"
+    },
+    {
+      "id": "j1_117",
+      "text": "Comprendre les consignes de la classe",
+      "parent": "j1_116"
+    },
+    {
+      "id": "j1_118",
+      "text": "Comprendre des mots familiers et des expressions très courantes",
+      "parent": "j1_116"
+    },
+    {
+      "id": "j1_119",
+      "text": "Suivre des instructions courtes et simples",
+      "parent": "j1_116"
+    },
+    {
+      "id": "j1_120",
+      "text": "Parler en continu",
+      "parent": "j1_110"
+    },
+    {
+      "id": "j1_121",
+      "text": "Reproduire un modèle oral",
+      "parent": "j1_120"
+    },
+    {
+      "id": "j1_122",
+      "text": "Utiliser des expressions et des phrases proches des modèles rencontrés lors des aprentissages",
+      "parent": "j1_120"
+    },
+    {
+      "id": "j1_123",
+      "text": "Lire à haute voix et de manière expressive un texte bref après répétition",
+      "parent": "j1_120"
+    },
+    {
+      "id": "j1_124",
+      "text": "Lire",
+      "parent": "j1_110"
+    },
+    {
+      "id": "j1_125",
+      "text": "Comprendre des textes courts et simples en s'appuyant sur des élèments connus (indications, informations)",
+      "parent": "j1_124"
+    },
+    {
+      "id": "j1_126",
+      "text": "Se faire une idée du contenu d'un texte informatif simple, accompagné éventuellement d'un document visuel",
+      "parent": "j1_124"
+    },
+    {
+      "id": "j1_128",
+      "text": "Ecrire",
+      "parent": "j1_110"
+    },
+    {
+      "id": "j1_129",
+      "text": "Copier des mots isolés et des textes courts",
+      "parent": "j1_128"
+    },
+    {
+      "id": "j1_130",
+      "text": "Ecrire un message électronique simple ou une carte postale en référence à des modèles",
+      "parent": "j1_128"
+    },
+    {
+      "id": "j1_131",
+      "text": "Renseigner un questionnaire",
+      "parent": "j1_128"
+    },
+    {
+      "id": "j1_132",
+      "text": "Produire de manière autonome quelques phrases",
+      "parent": "j1_128"
+    },
+    {
+      "id": "j1_133",
+      "text": "Ecrire sous la dictée des expressions connues",
+      "parent": "j1_128"
+    },
+    {
+      "id": "j1_134",
+      "text": "Enseignements artistiques",
+      "parent": "niveau2"
+    },
+    {
+      "id": "j1_135",
+      "text": "Nombres et Calcul",
+      "parent": "j1_134"
+    },
+    {
+      "id": "j1_136",
+      "text": "Ecrire, nommer, comparer les nombres entiers (milliard), les nombres décimaux (centièmes) et quelques fractions simples",
+      "parent": "j1_135"
+    },
+    {
+      "id": "j1_140",
+      "text": "Restituer et utiliser les tables d'addition et de multipication de 2 à 9",
+      "parent": "j1_135"
+    },
+    {
+      "id": "j1_138",
+      "text": "Utiliser les techniques opératoires des quatre opérations sur les nombres entiers et décimaux",
+      "parent": "j1_135"
+    },
+    {
+      "id": "j1_139",
+      "text": "Ajouter deux fractions décimales ou deuxfractions simples de même dénominateur",
+      "parent": "j1_135"
+    },
+    {
+      "id": "j1_141",
+      "text": "Calculer mentalement en utilisant les quatre opérations",
+      "parent": "j1_135"
+    },
+    {
+      "id": "j1_142",
+      "text": "Estimer un ordre de grandeur d'un résultat",
+      "parent": "j1_135"
+    },
+    {
+      "id": "j1_159",
+      "text": "Résoudre des problème relevant des quatre opérations",
+      "parent": "j1_135"
+    },
+    {
+      "id": "j1_143",
+      "text": "Utiliser la calculatrice",
+      "parent": "j1_135"
+    },
+    {
+      "id": "j1_144",
+      "text": "Géométrie",
+      "parent": "j1_134"
+    },
+    {
+      "id": "j1_146",
+      "text": "Reconnaitre, nommer et décrire les figures et les solides usuels",
+      "parent": "j1_144"
+    },
+    {
+      "id": "j1_147",
+      "text": "Utiliser la règle, l'équerre et le compas pour vérifer la nature des figures planes usuelles et les construire avec soin et précision",
+      "parent": "j1_144"
+    },
+    {
+      "id": "j1_148",
+      "text": "Percevoir et reconnaitre parallèles et perpendiculaires",
+      "parent": "j1_144"
+    },
+    {
+      "id": "j1_150",
+      "text": "Résoudre un problème de reproduction, de construction",
+      "parent": "j1_144"
+    },
+    {
+      "id": "j1_151",
+      "text": "Grandeurs et mesures",
+      "parent": "j1_134"
+    },
+    {
+      "id": "j1_152",
+      "text": "Utiliser des instruments de mesure",
+      "parent": "j1_151"
+    },
+    {
+      "id": "j1_153",
+      "text": "Connaitre et utiliser les formules du périmètre et de l'aire d'un carré, d'un rectangle, et d'un triangle",
+      "parent": "j1_151"
+    },
+    {
+      "id": "j1_154",
+      "text": "Utiliser les unités de mesures usuelles",
+      "parent": "j1_151"
+    },
+    {
+      "id": "j1_61",
+      "text": "Résoudre des problèmes dont la résolution implique des conversions",
+      "parent": "j1_151"
+    },
+    {
+      "id": "j1_155",
+      "text": "Organisation et gestion des données",
+      "parent": "j1_134"
+    },
+    {
+      "id": "j1_156",
+      "text": "Lire, interpréter et constuire quelques représentations simples (tableaux, graphiques)",
+      "parent": "j1_155"
+    },
+    {
+      "id": "j1_157",
+      "text": "Savoir organiser des informations numériques ou géométriques, justifier et apprécier la vraisemblance d'un résultat",
+      "parent": "j1_155"
+    },
+    {
+      "id": "j1_158",
+      "text": "Résoudre un problème mettant en jeu une situation de proportionnalité",
+      "parent": "j1_155"
+    },
+    {
+      "id": "j1_75",
+      "text": "Education physique et sportive",
+      "parent": "niveau2"
+    },
+    {
+      "id": "j1_89",
+      "text": "Pratiquer une démarche scientifique ou technologique",
+      "parent": "j1_75"
+    },
+    {
+      "id": "j1_100",
+      "text": "Pratiquer une démarche d'investigation: savoir observer, questionner",
+      "parent": "j1_89"
+    },
+    {
+      "id": "j1_109",
+      "text": "Manipuler et expérimenter, formuler une hypothèse et la tester, argumenter et mettre à l'essai plusieur pistes de solutions",
+      "parent": "j1_89"
+    },
+    {
+      "id": "j1_127",
+      "text": "Exprimer et exploiter les résutats d'une mesure et d'une recherche en utilisant un vocabulaire scientifique à l'écrit ou à l'oral",
+      "parent": "j1_89"
+    },
+    {
+      "id": "j1_97",
+      "text": "Maitriser des connaissances dans divers domaines scientifiques, les mobiliser dans des contextes scientifiques différents et dans des activités de la vie courante",
+      "parent": "j1_75"
+    },
+    {
+      "id": "j1_137",
+      "text": "Le ciel et la Terre",
+      "parent": "j1_97"
+    },
+    {
+      "id": "j1_145",
+      "text": "Les planètes",
+      "parent": "j1_137"
+    },
+    {
+      "id": "j1_149",
+      "text": "Lumières et ombres",
+      "parent": "j1_137"
+    },
+    {
+      "id": "j1_160",
+      "text": "Volcans et séïsmes",
+      "parent": "j1_137"
+    },
+    {
+      "id": "j1_161",
+      "text": "La matière",
+      "parent": "j1_97"
+    },
+    {
+      "id": "j1_162",
+      "text": "L'eau",
+      "parent": "j1_161"
+    },
+    {
+      "id": "j1_163",
+      "text": "L'air",
+      "parent": "j1_161"
+    },
+    {
+      "id": "j1_164",
+      "text": "Mélanges et solutions",
+      "parent": "j1_161"
+    },
+    {
+      "id": "j1_165",
+      "text": "Les déchets",
+      "parent": "j1_161"
+    },
+    {
+      "id": "j1_166",
+      "text": "L'énergie",
+      "parent": "j1_97"
+    },
+    {
+      "id": "j1_168",
+      "text": "L'unité et la diversité du vivant",
+      "parent": "j1_97"
+    },
+    {
+      "id": "j1_169",
+      "text": "Le fonctionnement du vivant",
+      "parent": "j1_97"
+    },
+    {
+      "id": "j1_170",
+      "text": "Le fonctionnement du corps humain et la santé",
+      "parent": "j1_97"
+    },
+    {
+      "id": "j1_171",
+      "text": "Les mouvements corporels",
+      "parent": "j1_170"
+    },
+    {
+      "id": "j1_172",
+      "text": "Les fonctions de nutrition",
+      "parent": "j1_170"
+    },
+    {
+      "id": "j1_173",
+      "text": "Reproduction et éducation à la sexualité",
+      "parent": "j1_170"
+    },
+    {
+      "id": "j1_174",
+      "text": "Les êtres vivants dans leur environnement",
+      "parent": "j1_97"
+    },
+    {
+      "id": "j1_175",
+      "text": "Les objets techniques",
+      "parent": "j1_97"
+    },
+    {
+      "id": "j1_176",
+      "text": "Circuits électriques",
+      "parent": "j1_175"
+    },
+    {
+      "id": "j1_177",
+      "text": "Equilibre et transmission de mouvements",
+      "parent": "j1_175"
+    },
+    {
+      "id": "j1_98",
+      "text": "Environnement et développement durable",
+      "parent": "j1_75"
+    },
+    {
+      "id": "j1_178",
+      "text": "Mobiliser ses connaissances pour comprendre quelques questions liées à l'environnement et au développement durable. Agir en conséquence",
+      "parent": "j1_98"
+    },
+    {
+      "id": "j1_179",
+      "text": "Enseignement moral et civique",
+      "parent": "niveau2"
+    },
+    {
+      "id": "j1_6",
+      "text": "S'approprier un environnement informatique de travail",
+      "parent": "j1_179"
+    },
+    {
+      "id": "j1_180",
+      "text": "Connaitre et maitriser les fonctions de base d'un ordinateur et de ses périphériques",
+      "parent": "j1_6"
+    },
+    {
+      "id": "j1_167",
+      "text": "Adopter une attitude responsable",
+      "parent": "j1_179"
+    },
+    {
+      "id": "j1_181",
+      "text": "Prendre conscience des enjeux citoyens de l'usage de l'informatique et de l'internet",
+      "parent": "j1_167"
+    },
+    {
+      "id": "j1_182",
+      "text": "Adopter une attitude critique face aux résultats obtenus",
+      "parent": "j1_167"
+    },
+    {
+      "id": "j1_183",
+      "text": "Créer, produire, traiter, exploiter des données",
+      "parent": "j1_179"
+    },
+    {
+      "id": "j1_184",
+      "text": "Produire un document numérique (texte, image, son)",
+      "parent": "j1_183"
+    },
+    {
+      "id": "j1_185",
+      "text": "Utiliser l'outil informatique pour présenter un travail",
+      "parent": "j1_183"
+    },
+    {
+      "id": "j1_186",
+      "text": "S'informer, se documenter",
+      "parent": "j1_179"
+    },
+    {
+      "id": "j1_187",
+      "text": "Lire un document numérique",
+      "parent": "j1_186"
+    },
+    {
+      "id": "j1_188",
+      "text": "Chercher des informations par voie électronique",
+      "parent": "j1_186"
+    },
+    {
+      "id": "j1_189",
+      "text": "Découvrir les richesses et les limites des ressources de l'internet",
+      "parent": "j1_186"
+    },
+    {
+      "id": "j1_190",
+      "text": "Communiquer, échanger",
+      "parent": "j1_179"
+    },
+    {
+      "id": "j1_191",
+      "text": "Echanger avec les technologies de l'information et de la communication",
+      "parent": "j1_190"
+    },
+    {
+      "id": "j1_192",
+      "text": "Histoire et Géographie",
+      "parent": "niveau2"
+    },
+    {
+      "id": "j1_193",
+      "text": "Avoir des repères relevant du temps et de l'espace",
+      "parent": "j1_192"
+    },
+    {
+      "id": "j1_194",
+      "text": "Identifier les périodes de l'Histoire au programme",
+      "parent": "j1_193"
+    },
+    {
+      "id": "j1_195",
+      "text": "Connaitre et mémoriser les principaux repères chronologiques",
+      "parent": "j1_193"
+    },
+    {
+      "id": "j1_196",
+      "text": "Connaitre les principaux caractères géographiques, physiques et humains de la région où vit l'élève, de la France et de l'UE",
+      "parent": "j1_193"
+    },
+    {
+      "id": "j1_197",
+      "text": "Repérer les principaux caractères sur des cartes à différentes échelles",
+      "parent": "j1_193"
+    },
+    {
+      "id": "j1_198",
+      "text": "Comprendre une ou deux questions liées au développement durable et agir en conséquence",
+      "parent": "j1_193"
+    },
+    {
+      "id": "j1_199",
+      "text": "Avoir des repères littéraires",
+      "parent": "j1_192"
+    },
+    {
+      "id": "j1_200",
+      "text": "Lire des oeuvres majeures du patrimoine et de la littérature pour la jeunesse",
+      "parent": "j1_199"
+    },
+    {
+      "id": "j1_201",
+      "text": "Etablir des liens entre les textes lus",
+      "parent": "j1_199"
+    },
+    {
+      "id": "j1_202",
+      "text": "Lire et pratiquer différents langages",
+      "parent": "j1_192"
+    },
+    {
+      "id": "j1_203",
+      "text": "Lire et utiliser des textes, des cartes, des croquis, des graphiques",
+      "parent": "j1_202"
+    },
+    {
+      "id": "j1_204",
+      "text": "Pratiquer les arts, et avoir des repères en histoire des arts",
+      "parent": "j1_192"
+    },
+    {
+      "id": "j1_205",
+      "text": "Distinguer les grandes catégories de la création artistique: littérature, musique, danse, théatre, cinéma, dessin, peinture, sculpture, architecture...)",
+      "parent": "j1_204"
+    },
+    {
+      "id": "j1_206",
+      "text": "Reconnaitre et décrire des oeuvres préalablement étudiées",
+      "parent": "j1_204"
+    },
+    {
+      "id": "j1_207",
+      "text": "Pratiquer le dessin et les diverses formes d'expression visuelles et plastiques",
+      "parent": "j1_204"
+    },
+    {
+      "id": "j1_208",
+      "text": "Interpréter de mémoire une chanson, participer à un jeu rythmique, repérer des élèments musicaux caractéristiques simples",
+      "parent": "j1_204"
+    },
+    {
+      "id": "j1_209",
+      "text": "Inventer et réaliser des textes, des oeuvres plastiques, des chorégraphies ou des enchainements à visée artistique ou expressive",
+      "parent": "j1_204"
+    },
+    {
+      "id": "j1_210",
+      "text": "Sciences et Technologie",
+      "parent": "niveau2"
+    },
+    {
+      "id": "j1_211",
+      "text": "Connaitre les principes et fondements de la vie sociale et civique",
+      "parent": "j1_210"
+    },
+    {
+      "id": "j1_212",
+      "text": "Reconnaitre les emblèmes et les symboles de la République Française et de l'UE",
+      "parent": "j1_211"
+    },
+    {
+      "id": "j1_217",
+      "text": "Comprendre les notions de droits et devoirs, les accepter et les mettre en application",
+      "parent": "j1_211"
+    },
+    {
+      "id": "j1_218",
+      "text": "Avoir conscience de la dignité de la personne et en tirer les conséquences au quotidien",
+      "parent": "j1_211"
+    },
+    {
+      "id": "j1_213",
+      "text": "Avoir un comportement responsable",
+      "parent": "j1_210"
+    },
+    {
+      "id": "j1_214",
+      "text": "Respecter les autres et les règles de la vie collective",
+      "parent": "j1_213"
+    },
+    {
+      "id": "j1_220",
+      "text": "Respecter tous les autres, et notamment appliquer les principes de l'égalité fille/garçon",
+      "parent": "j1_213"
+    },
+    {
+      "id": "j1_221",
+      "text": "Mathématiques",
+      "parent": "niveau2"
+    },
+    {
+      "id": "j1_222",
+      "text": "S'appuyer sur des méthodes de travail pour être autonome",
+      "parent": "j1_221"
+    },
+    {
+      "id": "j1_223",
+      "text": "Respecter des consignes simples en autonomie",
+      "parent": "j1_222"
+    },
+    {
+      "id": "j1_224",
+      "text": "Etre persévérant dans toutes les activités",
+      "parent": "j1_222"
+    },
+    {
+      "id": "j1_225",
+      "text": "Commencer à s'avoir s'auto-évaluer dans des situations simples",
+      "parent": "j1_222"
+    },
+    {
+      "id": "j1_226",
+      "text": "Soutenir une écoute prolongée (lecture, musique, spectacle)",
+      "parent": "j1_222"
+    },
+    {
+      "id": "j1_227",
+      "text": "S'impliquer dans un projet individuel ou collectif",
+      "parent": "j1_222"
+    },
+    {
+      "id": "j1_228",
+      "text": "Avoir une bonne maitrise de son corps et une pratique physique (artistique ou sportive)",
+      "parent": "j1_221"
+    },
+    {
+      "id": "j1_229",
+      "text": "Se respecter en respectant les principales règles d'hygiène de vie, accomplir les gestes quotidiens sans risquer de se faire mal",
+      "parent": "j1_228"
+    },
+    {
+      "id": "j1_230",
+      "text": "Réaliser une performance mesurée dans les activités athlétiques et en natation",
+      "parent": "j1_228"
+    },
+    {
+      "text": "Se déplacer en s'adaptant à son environnement",
+      "parent": "j1_228"
+    }
+  ]
+}
