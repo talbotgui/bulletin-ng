@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Subscriber } from 'rxjs/Subscriber';
 
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { MdSnackBar } from '@angular/material';
@@ -10,15 +11,24 @@ import { DataService } from '../service/data.service';
 @Injectable()
 export class SauvegardeService {
 
+  private static horsReseau: boolean = false;
+
   private readonly serveurUrl = 'http://192.168.1.52/download/upload.php';
   private readonly headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
   constructor(private http: HttpClient, private dataService: DataService, public snackBar: MdSnackBar) { }
 
+  travailleHorsReseau() {
+    SauvegardeService.horsReseau = true;
+  }
+
   /**
    * Récupère la liste des fichiers de sauvegarde disponibles sur le serveur
    */
   getlisteSauvegardesDuServeur(): Observable<{ fichiers: string[] }> {
+    if (SauvegardeService.horsReseau) {
+      return new Observable<{ fichiers: string[] }>((subscriber: Subscriber<{ fichiers: string[] }>) => subscriber.next({ fichiers: [] }));
+    }
     const corp = 'methode=liste';
     const params = { headers: this.headers };
     return this.http.post(this.serveurUrl, corp, params);
@@ -28,6 +38,9 @@ export class SauvegardeService {
    * Charge le contenu d'un fichier et l'envoie au service "dataService.setAnneeChargee"
    */
   chargeAnneeDuFichier(fichier: string): void {
+    if (SauvegardeService.horsReseau) {
+      return;
+    }
     const corp = 'methode=charge&nomFichier=' + fichier;
     const params = { headers: this.headers };
     this.http.post<model.Annee>(this.serveurUrl, corp, params).subscribe(
@@ -64,6 +77,9 @@ export class SauvegardeService {
    * Sauvegarde sur le serveur distant le contenu de l'année en cours d'édition.
    */
   sauvegardeAnneeDansFichier(): void {
+    if (SauvegardeService.horsReseau) {
+      return null;
+    }
 
     // Préparation des données
     const nomFichier = this.dataService.prepareSauvegardeEtCalculNomFichier();

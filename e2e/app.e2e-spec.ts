@@ -2,6 +2,7 @@ import { BulletinPage } from './app.po';
 import * as selectors from './selectors';
 import * as path from 'path';
 
+
 /**
  * Pour que chaque test soit autonome, chaque test contient un scénario qui redémarre de l'ouverture de la page.
  * Les étapes de préparation du test sont dans la partie Arrange (de Arrange/Act/Assert) si et seulement si ces étapes ont été testées dans un autre test.
@@ -21,7 +22,8 @@ describe('bulletin App', () => {
     page.navigateToRoot();
     //
     expect(page.getText(selectors.APP.TITLE)).toEqual('Application de gestion de ma classe');
-    expect(page.getText(selectors.DivSauvegarder.BUTTON_CHARGER)).toEqual('Charger');
+    expect(page.isVisible(selectors.DivSauvegarder.BUTTON_CHARGER)).toBeTruthy('le bouton charger est visible');
+    expect(page.isVisible(selectors.DivSauvegarder.BUTTON_SAUVEGARDER)).toBeFalsy('le bouton sauvegarder n\'est pas visible');
   });
 
   it('Affichage de la popup de chargement', () => {
@@ -48,17 +50,18 @@ describe('bulletin App', () => {
     //
     const DIV = selectors.DivSauvegarder;
     const DIALOG = selectors.DivSauvegarderDialogChargement;
-    const cheminFichierTest = path.resolve('./testData/', 'donnees08AvecBeaucoupDeNotes.json');
+    const cheminFichierTest = path.resolve('./e2e/testData/', 'donnees08AvecBeaucoupDeNotes.json');
     page.navigateToRoot();
     page.click(DIV.BUTTON_CHARGER);
     //
-    page.click(DIALOG.INPUTFILE_LOCAL_LABEL_NOT_DONE);
     page.type(DIALOG.INPUTFILE_LOCAL, cheminFichierTest);
     expect(page.isVisible(DIALOG.INPUTFILE_LOCAL_LABEL_DONE)).toBeTruthy('l\'input a la bonne classe');
     expect(page.isVisible(DIALOG.INPUTFILE_LOCAL_LABEL_NOT_DONE)).toBeFalsy('l\'input a la bonne classe2');
     page.click(DIALOG.BUTTON_CHARGER);
+    page.patiente(500);
     //
-    expect(page.isVisible(DIV.BUTTON_CHARGER)).toBeFalsy('le bouton charger n\'est pas là');
-    expect(page.isVisible(DIV.BUTTON_SAUVEGARDER)).toBeTruthy('le bouton sauvegarder est là');
+    expect(page.isVisible(DIALOG.BUTTON_CHARGER)).toBeFalsy();
+    expect(page.isVisible(DIV.BUTTON_CHARGER)).toBeFalsy('le bouton charger n\'est pas visible');
+    expect(page.isVisible(DIV.BUTTON_SAUVEGARDER)).toBeTruthy('le bouton sauvegarder est visible');
   });
 });

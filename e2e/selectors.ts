@@ -4,8 +4,8 @@ export class APP {
   static TITLE = by.css('app-root h1');
 }
 export class DivSauvegarder {
-  static BUTTON_CHARGER = by.xpath('//div-sauvegarde/button[1]');
-  static BUTTON_SAUVEGARDER = by.xpath('//div-sauvegarde/button[2]');
+  static BUTTON_CHARGER = by.xpath('//div-sauvegarde/button[text()="Charger"]');
+  static BUTTON_SAUVEGARDER = by.xpath('//div-sauvegarde/button[text()="Sauvegarder"]');
 }
 
 export class DivSauvegarderDialogChargement {

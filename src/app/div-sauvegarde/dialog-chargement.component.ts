@@ -27,9 +27,6 @@ export class DialogChargementComponent implements OnInit {
         this.fichiers = val.fichiers
           .filter((element) => element.toUpperCase().endsWith('JSON'))
           .sort((a, b) => b.localeCompare(a));
-      },
-      (error) => {
-        console.error('Pas de serveur de données disponible');
       }
     );
   }
