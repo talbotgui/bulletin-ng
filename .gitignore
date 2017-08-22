@@ -1,5 +1,6 @@
 # misc & compiled output
 /build/*
+/dist/*
 package-lock.json
 
 # dependencies
