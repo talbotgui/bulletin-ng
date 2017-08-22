@@ -23,7 +23,7 @@ pipeline {
 			agent any
 			steps {
 				sh "npm install --no-optional"
-				sh "npm run build-prod | sed -r 's/\\x1B\\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g'"
+				sh "npm run build-prod"
 				stash name:'modules', includes: 'node_modules/**'
 				stash name:'binaires', includes: 'dist/**'
 			}
