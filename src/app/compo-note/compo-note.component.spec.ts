@@ -2,8 +2,10 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import * as mockito from 'ts-mockito';
+import { FormsModule } from '@angular/forms';
 
 import * as model from '../model/model';
+import { AttributesToMapPipe } from '../pipes.component';
 import { DataService } from '../service/data.service';
 import { ComposantNoteComponent } from './compo-note.component';
 
@@ -25,8 +27,9 @@ describe('ComposantNoteComponent', () => {
 
     // Creation de l'équivalent de app.module.ts pour le test
     TestBed.configureTestingModule({
-      declarations: [ComposantNoteComponent],
-      providers: [{ provide: DataService, useValue: mockito.instance(dataServiceMock) }]
+      declarations: [ComposantNoteComponent, AttributesToMapPipe],
+      providers: [{ provide: DataService, useValue: mockito.instance(dataServiceMock) }],
+      imports: [FormsModule]
     })
 
       // Compilation de l'HTML et du CSS
@@ -37,34 +40,74 @@ describe('ComposantNoteComponent', () => {
     // Creation du composant dans son environnement de test
     fixture = TestBed.createComponent(ComposantNoteComponent);
     comp = fixture.componentInstance;
-
-    // query for the title <h1> by CSS element selector
-    de = fixture.debugElement.query(By.css('span'));
-    el = de.nativeElement;
-
   });
 
-  it('sans note, le texte est vide', () => {
+  it('composant vide', () => {
+    // Arrange
 
     // Assert : validation
-    expect(el.textContent).toBe('');
+    de = fixture.debugElement;
+    el = de.nativeElement;
+    expect(el.textContent).toBe('\n\n');
   });
 
-  it('avec une note, le texte est ', () => {
-
-    // Arrange : modification de la note dans le composant
-    const valeur = '1';
-    comp.note = new model.Note();
-    comp.note.valeur = valeur;
+  it('lecture seule sans note', () => {
+    // Arrange
+    comp.lectureSeule = true;
 
     // Act : exécution de la détection de changement à la main
     // @see https://angular.io/guide/testing#automatic-change-detection
     fixture.detectChanges();
 
     // Assert : validation
-    expect(comp.libellesNote).not.toBeNull();
-    expect(el.className).toBe('note_' + valeur);
-    // assertion inactive car elle ne fonctionne pas alors que la classe est bonne
-    // expect(el.textContent).toBe('atteint partiellement');
+    de = fixture.debugElement;
+    el = de.nativeElement;
+    expect(el.textContent).toBe('\n\n');
+  });
+
+  it('lecture seule avec une note', () => {
+    // Arrange
+    comp.lectureSeule = true;
+    comp.note = new model.Note();
+    comp.note.valeur = 'a';
+
+    // Act : exécution de la détection de changement à la main
+    // @see https://angular.io/guide/testing#automatic-change-detection
+    fixture.detectChanges();
+
+    // Assert : validation
+    de = fixture.debugElement;
+    el = de.nativeElement;
+    expect(el.textContent).toBe('absent\n\n');
+  });
+
+  it('ecriture sans note', () => {
+    // Arrange
+    comp.lectureSeule = false;
+
+    // Act : exécution de la détection de changement à la main
+    // @see https://angular.io/guide/testing#automatic-change-detection
+    fixture.detectChanges();
+
+    // Assert : validation
+    de = fixture.debugElement;
+    el = de.nativeElement;
+    expect(el.textContent).toBe('\n\n');
+  });
+
+  it('ecriture avec une note', () => {
+    // Arrange
+    comp.lectureSeule = false;
+    comp.note = new model.Note();
+    comp.note.valeur = 'a';
+
+    // Act : exécution de la détection de changement à la main
+    // @see https://angular.io/guide/testing#automatic-change-detection
+    fixture.detectChanges();
+
+    // Assert : validation
+    de = fixture.debugElement.query(By.css('select'));
+    el = de.nativeElement;
+    expect(el.children.length).toBe(6);
   });
 });

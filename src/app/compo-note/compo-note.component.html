@@ -1,6 +1,6 @@
-<span *ngIf="!!lectureSeule" class="note_{{note.valeur}}">{{note.valeur | i18nSelect: libellesNote}}</span>
+<span *ngIf="!!lectureSeule && note" class="note_{{note.valeur}}">{{note.valeur | i18nSelect: libellesNote}}</span>
 
-<div *ngIf="!lectureSeule">
+<div *ngIf="!lectureSeule && note && libellesNote">
     <select required #inputStatut="ngModel" [(ngModel)]="note.valeur" name="valeurNote" *ngIf="!!libellesNote">
         <option *ngFor="let libelle of libellesNote | attributesToMap" [value]="libelle.key">{{libelle.val}}</option>
     </select>
