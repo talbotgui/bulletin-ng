@@ -4,5 +4,5 @@
 table.tableauDeBord th { font-size: 14px; background-color: lightblue; }
 table.tableauDeBord td { font-size: 12px; padding: 5px 0px; }
 table.tableauDeBord td.periodeEvaluee { background-color:#f2f599; }
-table.tableauDeBord td.domaine { background-color:#ffab00; }
+table.tableauDeBord td.domaine { background-color:#ffab00; cursor: pointer; }
 table.tableauDeBord td.periodePreparee { background-color:lightgreen; }

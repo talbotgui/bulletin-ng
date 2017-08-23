@@ -95,7 +95,7 @@ describe('DataService', () => {
 
     // Assert
     expect(resultat.length).toBe(9);
-    expect(resultat[0].nomDomaine).toBe('Comprendre et s\'exprimer à l\'oral');
+    expect(resultat[0].nomDomaine).toBe('Compétences associées > CYCLE 2 (CP-CE2) > Français > Comprendre et s\'exprimer à l\'oral');
     expect(resultat[0].sousLignes.length).toBe(1);
     expect(resultat[0].sousLignes[0].constatation).not.toBeNull();
   });
@@ -110,7 +110,7 @@ describe('DataService', () => {
 
     // Assert
     expect(resultat.length).toBe(1);
-    expect(resultat[0].nomDomaine).toBe('Imaginer, réaliser');
+    expect(resultat[0].nomDomaine).toBe('Compétences travaillées > CYCLE 2 > Questionner le monde > Imaginer, réaliser');
     expect(resultat[0].sousLignes.length).toBe(1);
     expect(resultat[0].sousLignes[0].aide).toBeNull();
     expect(resultat[0].sousLignes[0].constatation).not.toBeNull();

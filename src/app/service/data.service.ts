@@ -33,21 +33,27 @@ export class DataService {
     }
     return competence;
   }
-  getLibelleCompletCompetence(idCompetence: string): string {
-    let libelle = this.cacheMapLibelleCompletCompetence.get(idCompetence);
+  /**
+   * Calcul le libellé de la compétence à partir de son ID.
+   * Si idCompetenceRacine est précisé, le libellé commence à cette compétence
+   */
+  getLibelleCompletCompetence(idCompetence: string, idCompetenceRacine: string): string {
+    let libelle = this.cacheMapLibelleCompletCompetence.get(idCompetence + idCompetenceRacine);
     if (libelle) {
       return libelle;
     } else if (this.anneeChargee) {
       libelle = '';
       let idCompetenceEnfant = idCompetence;
-      for (let i = this.anneeChargee.competences.length - 1; i !== 0; i--) {
-        if (this.anneeChargee.competences[i].id === idCompetenceEnfant) {
+      for (let i = this.anneeChargee.competences.length - 1; i !== -1; i--) {
+        if (this.anneeChargee.competences[i].id === idCompetenceRacine) {
+          break;
+        } else if (this.anneeChargee.competences[i].id === idCompetenceEnfant) {
           libelle = this.anneeChargee.competences[i].text + ' > ' + libelle;
           idCompetenceEnfant = this.anneeChargee.competences[i].parent;
         }
       }
       libelle = libelle.substr(0, libelle.length - 3);
-      this.cacheMapLibelleCompletCompetence.set(idCompetence, libelle);
+      this.cacheMapLibelleCompletCompetence.set(idCompetence + idCompetenceRacine, libelle);
     } else {
       libelle = '';
     }
@@ -186,6 +192,29 @@ export class DataService {
     }
   }
 
+  ajouteNoteDepuisTdb(ligne: model.LigneTableauDeBord, ajoutSurPeriodeEvaluee: boolean): void {
+    if (this.anneeChargee) {
+      let indexPeriode = ligne.indexPeriodeEvaluee;
+      let constat = ligne.constat;
+      let aide = '';
+      if (!ajoutSurPeriodeEvaluee) {
+        constat = '';
+        aide = ligne.aide;
+        if (indexPeriode < this.anneeChargee.periodes.length) {
+          indexPeriode++;
+        }
+      }
+      const note = new model.Note(ligne.idEleve, ligne.idDomaine, '', this.anneeChargee.periodes[indexPeriode].debut, aide, constat, '');
+      this.anneeChargee.notes.push(note);
+      const competence = this.getCompetence(ligne.idDomaine);
+      if (ajoutSurPeriodeEvaluee) {
+        ligne.sousLignes.push(new model.SousLigneTableauDeBord(competence, note, null));
+      } else {
+        ligne.sousLignes.push(new model.SousLigneTableauDeBord(competence, null, note));
+      }
+    }
+  }
+
   /** Fournit les lignes de données pour un tableau de bord. */
   getListeLigneTableauDeBord(eleve: model.Eleve, periodeEvaluee: model.Periode): model.LigneTableauDeBord[] {
 
@@ -236,8 +265,8 @@ export class DataService {
     });
 
     mapNotesEleve.forEach((notes: { eval: model.Note[], prepa: model.Note[] }, idCompetenceNiveau3: string) => {
-      const nomDomaine = mapCompetences.get(idCompetenceNiveau3).text;
-      liste.push(new model.LigneTableauDeBord(nomDomaine, notes.eval, notes.prepa, mapCompetences));
+      const nomDomaine = this.getLibelleCompletCompetence(idCompetenceNiveau3, null);
+      liste.push(new model.LigneTableauDeBord(idCompetenceNiveau3, nomDomaine, notes.eval, notes.prepa, mapCompetences, eleve.id, indexPeriodeEvaluee));
     });
 
     return liste;

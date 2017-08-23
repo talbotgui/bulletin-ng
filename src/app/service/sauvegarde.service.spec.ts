@@ -91,7 +91,7 @@ describe('SauvegardeService', () => {
     };
 
     // Act : appel au service et récupération du résultat + réponse à la requete HTTP déclenchée dans le service
-    sauvegardeService.sauvegardeAnneeDansFichier();
+    sauvegardeService.sauvegardeAnneeSurServeur();
     http.expectOne(requestDefinition).flush('');
 
     // Assert : valeurs retournées et pas d'autre requete HTTP
@@ -108,11 +108,9 @@ describe('SauvegardeService', () => {
     mockito.when(dataServiceMock.transformeAnneeEnJson()).thenReturn(contenuDuFichier);
 
     // Act
-    const resultat = sauvegardeService.sauvegardeAnneeDansUnBlob();
+    const resultat = sauvegardeService.sauvegardeAnneeParTelechargement();
 
     // Assert
-    expect(resultat.nomFichier).toBe(nomFichier);
-    expect(resultat.blob.size).toBe(12);
     mockito.verify(dataServiceMock.prepareSauvegardeEtCalculNomFichier()).once();
     mockito.verify(dataServiceMock.transformeAnneeEnJson()).once();
   });

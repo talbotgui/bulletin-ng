@@ -20,4 +20,11 @@ export class DialogLigneTableauDeBordComponent implements OnInit {
     // Rien à faire pour le moment
   }
 
+  ajouterLigneProgrammeTravaille() {
+    this.dataService.ajouteNoteDepuisTdb(this.ligne, false);
+  }
+  ajouterLigneProgrammeEvalue() {
+    this.dataService.ajouteNoteDepuisTdb(this.ligne, true);
+  }
+
 }

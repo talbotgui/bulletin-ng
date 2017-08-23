@@ -9,6 +9,14 @@ import { SauvegardeService } from '../service/sauvegarde.service';
 @Component({ selector: 'div-sauvegarde', templateUrl: './div-sauvegarde.component.html' })
 export class DivSauvegardeComponent {
 
+  get messageSauvegarde() {
+    let mess = this.sauvegardeService.getDateDerniereSauvegardeDeLaSession();
+    if (!mess) {
+      mess = { message: '', date: null };
+    }
+    return mess;
+  }
+
   constructor(
     public dialog: MdDialog, private dataService: DataService,
     private sauvegardeService: SauvegardeService
@@ -21,7 +29,7 @@ export class DivSauvegardeComponent {
 
   // A la demande de sauvegarde
   ouvreDialogSauvegarde() {
-    this.dialog.open(DialogSauvegardeComponent, { height: '145px', width: '350px' });
+    this.dialog.open(DialogSauvegardeComponent, { height: '150px', width: '350px' });
   }
 
   // Condition d'affichage des boutons

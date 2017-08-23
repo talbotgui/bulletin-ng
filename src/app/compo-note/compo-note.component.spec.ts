@@ -68,8 +68,7 @@ describe('ComposantNoteComponent', () => {
   it('lecture seule avec une note', () => {
     // Arrange
     comp.lectureSeule = true;
-    comp.note = new model.Note();
-    comp.note.valeur = 'a';
+    comp.note = new model.Note(null, null, 'a', null, null, null, null);
 
     // Act : exécution de la détection de changement à la main
     // @see https://angular.io/guide/testing#automatic-change-detection
@@ -98,8 +97,7 @@ describe('ComposantNoteComponent', () => {
   it('ecriture avec une note', () => {
     // Arrange
     comp.lectureSeule = false;
-    comp.note = new model.Note();
-    comp.note.valeur = 'a';
+    comp.note = new model.Note(null, null, 'a', null, null, null, null);
 
     // Act : exécution de la détection de changement à la main
     // @see https://angular.io/guide/testing#automatic-change-detection

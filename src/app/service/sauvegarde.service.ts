@@ -5,18 +5,26 @@ import { Subscriber } from 'rxjs/Subscriber';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { MdSnackBar } from '@angular/material';
 
+import { saveAs } from 'file-saver';
+
 import * as model from '../model/model';
 import { DataService } from '../service/data.service';
 
 @Injectable()
 export class SauvegardeService {
 
+  private static dateDerniereSauvegardeDeLaSession: { message: string, date: Date };
   private static horsReseau: boolean = false;
 
-  private readonly serveurUrl = 'http://192.168.1.52/download/upload.php';
-  private readonly headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+  private readonly DELAI_SAUVEGARDE_AUTOMATIQUE = 2000;//300000;
+  private readonly URL_SERVEUR = 'http://192.168.1.52/download/upload.php';
+  private readonly HEADERS_APPEL_SERVEUR = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
   constructor(private http: HttpClient, private dataService: DataService, public snackBar: MdSnackBar) { }
+
+  getDateDerniereSauvegardeDeLaSession(): { message: string, date: Date } {
+    return SauvegardeService.dateDerniereSauvegardeDeLaSession;
+  }
 
   travailleHorsReseau() {
     SauvegardeService.horsReseau = true;
@@ -30,8 +38,8 @@ export class SauvegardeService {
       return new Observable<{ fichiers: string[] }>((subscriber: Subscriber<{ fichiers: string[] }>) => subscriber.next({ fichiers: [] }));
     }
     const corp = 'methode=liste';
-    const params = { headers: this.headers };
-    return this.http.post(this.serveurUrl, corp, params);
+    const params = { headers: this.HEADERS_APPEL_SERVEUR };
+    return this.http.post(this.URL_SERVEUR, corp, params);
   }
 
   /**
@@ -42,8 +50,8 @@ export class SauvegardeService {
       return;
     }
     const corp = 'methode=charge&nomFichier=' + fichier;
-    const params = { headers: this.headers };
-    this.http.post<model.Annee>(this.serveurUrl, corp, params).subscribe(
+    const params = { headers: this.HEADERS_APPEL_SERVEUR };
+    this.http.post<model.Annee>(this.URL_SERVEUR, corp, params).subscribe(
       (dataOk) => {
 
         // Sauvegarde de l'instance dans le service DataService
@@ -67,19 +75,46 @@ export class SauvegardeService {
     this.snackBar.open(message, null, { duration: 3000 });
   }
 
-  sauvegardeAnneeDansUnBlob(): { nomFichier: string, blob: Blob } {
-    const nomFichier = this.dataService.prepareSauvegardeEtCalculNomFichier();
-    const contenuFichier = this.dataService.transformeAnneeEnJson();
-    const blob = new Blob([contenuFichier], { type: "text/plain;charset=utf-8" });
-    return { nomFichier: nomFichier, blob: blob };
+  /**
+ * Execution de la sauvegarde par téléchargement et démarrage de cette même sauvegarde à un rythme régulier
+ */
+  sauvegardeAnneeParTelechargement(): void {
+    // Mise en place de la sauvegarde automatique
+    if (!this.getDateDerniereSauvegardeDeLaSession()) {
+      window.setInterval(() => {
+        this.sauvegardeAnneeParTelechargementExecution();
+      }, this.DELAI_SAUVEGARDE_AUTOMATIQUE);
+    }
+
+    // Execution de la sauvegarde
+    this.sauvegardeAnneeParTelechargementExecution();
   }
+
+  /**
+   * Execution de la sauvegarde sur le serveur et démarrage de cette même sauvegarde à un rythme régulier
+   */
+  sauvegardeAnneeSurServeur(): void {
+    // Mise en place de la sauvegarde automatique
+    if (!this.getDateDerniereSauvegardeDeLaSession()) {
+      window.setInterval(() => {
+        this.sauvegardeAnneeSurServeurExecution();
+      }, this.DELAI_SAUVEGARDE_AUTOMATIQUE);
+    }
+    // Execution de la sauvegarde
+    this.sauvegardeAnneeSurServeurExecution();
+  }
+
   /**
    * Sauvegarde sur le serveur distant le contenu de l'année en cours d'édition.
    */
-  sauvegardeAnneeDansFichier(): void {
+  private sauvegardeAnneeSurServeurExecution(): void {
+    // Pas de sauvegarde réseau si horsReseau
     if (SauvegardeService.horsReseau) {
       return null;
     }
+
+    // Stockage de la date de sauvegarde
+    SauvegardeService.dateDerniereSauvegardeDeLaSession = { message: 'Sauvegardé sur le serveur à ', date: new Date() };
 
     // Préparation des données
     const nomFichier = this.dataService.prepareSauvegardeEtCalculNomFichier();
@@ -95,7 +130,7 @@ export class SauvegardeService {
     const paramsSansBug = params.toString().replace(/\+/g, '%2B');
 
     // Post
-    this.http.post<model.Annee>(this.serveurUrl, paramsSansBug, { headers: this.headers }).subscribe(
+    this.http.post<model.Annee>(this.URL_SERVEUR, paramsSansBug, { headers: this.HEADERS_APPEL_SERVEUR }).subscribe(
       (dataOk) => {
         const message = 'Données sauvegardées sur le serveur dans le fichier \'' + nomFichier + '\'';
         this.snackBar.open(message, null, { duration: 3000 });
@@ -104,5 +139,26 @@ export class SauvegardeService {
         console.log('error=' + error);
       }
     );
+  }
+
+  /**
+   * Génération d'un objet contenant le nom du fichier et le blob à faire télécharger dans le navigateur
+   */
+  private sauvegardeAnneeParTelechargementExecution(): void {
+    // Stockage de la date de sauvegarde
+    SauvegardeService.dateDerniereSauvegardeDeLaSession = { message: 'Sauvegardé par téléchargement à ', date: new Date() };
+
+    // Préparation des données
+    const nomDuFichier = this.dataService.prepareSauvegardeEtCalculNomFichier();
+    const contenuFichier = this.dataService.transformeAnneeEnJson();
+    const leBlob = new Blob([contenuFichier], { type: 'text/plain;charset=utf-8' });
+    const resultat = { nomFichier: nomDuFichier, blob: leBlob };
+
+    // Appel à saveAs pour déclencher le téléchargement dans le navigateur
+    saveAs(resultat.blob, resultat.nomFichier);
+
+    // notification
+    const message = 'Données sauvegardées par téléchargement';
+    this.snackBar.open(message, null, { duration: 3000 });
   }
 }

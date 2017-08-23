@@ -12,10 +12,13 @@ export class ComposantCompetenceeComponent {
   // Note avec sa competence
   @Input() note: model.Note;
 
+  // Identifiant de la compétence racine de la sélection
+  @Input() idCompetenceRacine: string;
+
   // Libellé complet de la compétence sélectionnée
   get libelleCompletCompetenceSelectionnee(): string {
     if (this.note) {
-      return this.dataService.getLibelleCompletCompetence(this.note.idItem);
+      return this.dataService.getLibelleCompletCompetence(this.note.idItem, this.idCompetenceRacine);
     } else {
       return '';
     }
@@ -35,6 +38,8 @@ export class ComposantCompetenceeComponent {
 
   // Pour remonter d'un niveau
   selectionneParent() {
-    this.note.idItem = this.dataService.getCompetence(this.note.idItem).parent;
+    if (this.note.idItem !== this.idCompetenceRacine) {
+      this.note.idItem = this.dataService.getCompetence(this.note.idItem).parent;
+    }
   }
 }

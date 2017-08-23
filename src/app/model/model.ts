@@ -1,3 +1,10 @@
+export class ModelUtil {
+  static getUID() {
+    const n = 8;
+    return new Array(n + 1).join((Math.random().toString(36) + '00000000000000000').slice(2, 18)).slice(0, n);
+  }
+}
+
 export class Periode {
   id: number; nom: string; debut: Date; fin: Date;
 }
@@ -26,6 +33,16 @@ export class Competence {
 export class Note {
   id: string; idEleve: string; idItem: string; valeur: string; date: Date;
   string; modalitesAide: string; constat: string; commentaire: string;
+  constructor(idEleve: string, idItem: string, valeur: string, date: Date, modalitesAide: string, constat: string, commentaire: string) {
+    this.id = ModelUtil.getUID();
+    this.idEleve = idEleve;
+    this.idItem = idItem;
+    this.valeur = valeur;
+    this.date = date;
+    this.modalitesAide = modalitesAide;
+    this.constat = constat;
+    this.commentaire = commentaire;
+  }
 }
 
 export class Historique {
@@ -58,37 +75,53 @@ export class SousLigneTableauDeBord {
   }
 }
 export class LigneTableauDeBord {
+  idEleve: string;
+  indexPeriodeEvaluee: number;
+  idDomaine: string;
   nomDomaine: string;
   sousLignes: SousLigneTableauDeBord[];
 
   set constat(value: string) {
     for (const sousLigne of this.sousLignes) {
-      sousLigne.constatation.constat = value;
+      if (sousLigne.constatation) {
+        sousLigne.constatation.constat = value;
+      }
     }
   }
   get constat() {
-    if (this.sousLignes && this.sousLignes.length > 0 && this.sousLignes[0].constatation) {
-      return this.sousLignes[0].constatation.constat;
-    } else {
-      return '';
+    if (this.sousLignes) {
+      for (const sousLigne of this.sousLignes) {
+        if (sousLigne.constatation) {
+          return sousLigne.constatation.constat;
+        }
+      }
     }
+    return '';
   }
   set aide(value: string) {
     for (const sousLigne of this.sousLignes) {
-      sousLigne.aide.modalitesAide = value;
+      if (sousLigne.aide) {
+        sousLigne.aide.modalitesAide = value;
+      }
     }
   }
   get aide() {
-    if (this.sousLignes && this.sousLignes.length > 0 && this.sousLignes[0].aide) {
-      return this.sousLignes[0].aide.modalitesAide;
-    } else {
-      return '';
+    if (this.sousLignes) {
+      for (const sousLigne of this.sousLignes) {
+        if (sousLigne.aide) {
+          return sousLigne.aide.modalitesAide;
+        }
+      }
     }
+    return '';
   }
 
-  constructor(nomDomaine: string, constatations: Note[] = [], aides: Note[] = [], mapCompetences: Map<string, Competence>) {
+  constructor(idDomaine: string, nomDomaine: string, constatations: Note[] = [], aides: Note[] = [], mapCompetences: Map<string, Competence>, idEleve: string, indexPeriodeEvaluee: number) {
+    this.idDomaine = idDomaine;
     this.nomDomaine = nomDomaine;
     this.sousLignes = [];
+    this.idEleve = idEleve;
+    this.indexPeriodeEvaluee = indexPeriodeEvaluee;
 
     // Creation des sousLignes pour les constations
     for (const constatation of constatations) {
@@ -100,7 +133,7 @@ export class LigneTableauDeBord {
 
       // Recherche de la sousLigne par identifiant de competence
       const sousLigneTrouvee = this.sousLignes.find((l) => l.competence.id === aide.idItem);
-      if (sousLigneTrouvee) {
+      if (sousLigneTrouvee && !sousLigneTrouvee.aide) {
         sousLigneTrouvee.aide = aide;
       }
 
