@@ -7,18 +7,8 @@ import * as model from '../model/model';
 @Component({ selector: 'tab-cahierjournal', templateUrl: './tab-cahierjournal.component.html', styleUrls: ['./tab-cahierjournal.component.css'] })
 export class TabCahierJournalComponent implements OnInit {
 
-  datePickerConfig: IDayCalendarConfig = {
-    locale: 'fr',
-    dayBtnFormatter: (m) => {
-      if (this.dataService.isJournalExistantPourCetteDate(m.toDate())) {
-        return '#' + m.toDate().getDate();
-      } else {
-        return m.toDate().getDate();
-      }
-    }
-  } as IDayCalendarConfig;
-
   dateJournal: Date;
+  journal: model.Journal;
 
   // Un constructeur pour se faire injecter les dépendances
   constructor(private dataService: DataService) { }
@@ -29,6 +19,6 @@ export class TabCahierJournalComponent implements OnInit {
 
 
   onChangementDateJournal() {
-    console.info("coucou");
+    this.journal = this.dataService.getJournal(this.dateJournal);
   }
 }

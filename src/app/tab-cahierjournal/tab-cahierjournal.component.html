@@ -1,5 +1,16 @@
-<dp-date-picker [(ngModel)]="dateJournal" [config]="datePickerConfig" theme="dp-material"></dp-date-picker>
+<md-input-container>
+	<input mdInput #inputDateJournal="ngModel" [mdDatepicker]="dateJournalPicker" [(ngModel)]="dateJournal" name="dateJournal"
+	 placeholder="Date du journal" (ngModelChange)="onChangementDateJournal()">
+	<button class="button" mdSuffix [mdDatepickerToggle]="dateJournalPicker"></button>
+</md-input-container>
+<md-datepicker #dateJournalPicker></md-datepicker>
 
-<fieldset>
+
+<fieldset *ngIf="!!dateJournal">
 	<legend>Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}}</legend>
+
+	<div *ngIf="!journal">Aucun journal à cette date. Voulez-vous en créer un ? <button>OUI</button></div>
+	<div *ngIf="!!journal">
+		<textarea [(ngModel)]="journal.remarque" name="journalremarque" placeholder="remarque du jour"></textarea>
+	</div>
 </fieldset>

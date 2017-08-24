@@ -9,7 +9,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { TreeModule } from 'angular-tree-component';
 import { MapValuesPipe, AttributesToMapPipe } from './pipes.component';
-import { DpDatePickerModule } from 'ng2-date-picker';
 
 // Import de hammer (cf. documentation)
 import 'hammerjs';
@@ -64,7 +63,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule, FormsModule, HttpClientModule,
 
     // Le module des composants WEB riches
-    MaterialModule, BrowserAnimationsModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule, TreeModule, CdkTableModule, DpDatePickerModule,
+    MaterialModule, BrowserAnimationsModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule, TreeModule, CdkTableModule,
 
     // Déclaration des routes
     AppRoutingModule

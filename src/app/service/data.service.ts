@@ -9,10 +9,10 @@ export class DataService {
   private anneeChargee: model.Annee;
 
   /** Données de cache utilisées pour ne pas parcourir anneeChargee constamment */
-  private listeDateJournal: number[] = [];
-  private cacheMapCompetence: Map<string, model.Competence>;
-  private cacheMapLibelleCompletCompetence: Map<string, string>;
-  private cacheMapListeCompetencesEnfant: Map<string, model.Competence[]>;
+  private cacheMapDateJournal: Map<number, model.Journal> = new Map<number, model.Journal>();
+  private cacheMapCompetence: Map<string, model.Competence> = new Map<string, model.Competence>();
+  private cacheMapLibelleCompletCompetence: Map<string, string> = new Map<string, string>();
+  private cacheMapListeCompetencesEnfant: Map<string, model.Competence[]> = new Map<string, model.Competence[]>();
 
   /** Pour savoir si une année est chargée */
   isAnneeChargee(): boolean {
@@ -23,12 +23,17 @@ export class DataService {
   isJournalExistantPourCetteDate(date: Date): boolean {
     // Le cache et la comparaison se font sur le getTime pour éviter les PB de Timezone
     // le newDate(journal.date) est nécessaire car la méthode getTime() n'est pas disponible autrement
-    if (this.listeDateJournal.length === 0 && this.anneeChargee) {
+    if (this.cacheMapDateJournal.size === 0 && this.anneeChargee) {
       for (const journal of this.anneeChargee.journal) {
-        this.listeDateJournal.push(new Date(journal.date).getTime());
+        this.cacheMapDateJournal.set(new Date(journal.date).getTime(), journal);
       }
     }
-    return this.listeDateJournal.indexOf(date.getTime()) !== -1;
+    return this.cacheMapDateJournal.has(date.getTime());
+  }
+
+  /** Pour obtenir le journal d'un jour précis */
+  getJournal(date: Date): model.Journal {
+    return this.cacheMapDateJournal.get(date.getTime());
   }
 
   /**
@@ -153,9 +158,6 @@ export class DataService {
     }
 
     this.anneeChargee = annee;
-    this.cacheMapCompetence = new Map<string, model.Competence>();
-    this.cacheMapLibelleCompletCompetence = new Map<string, string>();
-    this.cacheMapListeCompetencesEnfant = new Map<string, model.Competence[]>();
   }
 
   /** Donne la liste complète des élèves */
