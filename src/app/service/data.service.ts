@@ -9,6 +9,7 @@ export class DataService {
   private anneeChargee: model.Annee;
 
   /** Données de cache utilisées pour ne pas parcourir anneeChargee constamment */
+  private listeDateJournal: number[] = [];
   private cacheMapCompetence: Map<string, model.Competence>;
   private cacheMapLibelleCompletCompetence: Map<string, string>;
   private cacheMapListeCompetencesEnfant: Map<string, model.Competence[]>;
@@ -18,6 +19,21 @@ export class DataService {
     return !!this.anneeChargee;
   }
 
+  /** Pour savoir si un journal existe à cette date */
+  isJournalExistantPourCetteDate(date: Date): boolean {
+    // Le cache et la comparaison se font sur le getTime pour éviter les PB de Timezone
+    // le newDate(journal.date) est nécessaire car la méthode getTime() n'est pas disponible autrement
+    if (this.listeDateJournal.length === 0 && this.anneeChargee) {
+      for (const journal of this.anneeChargee.journal) {
+        this.listeDateJournal.push(new Date(journal.date).getTime());
+      }
+    }
+    return this.listeDateJournal.indexOf(date.getTime()) !== -1;
+  }
+
+  /**
+   * Obtenir une compétence par sa date.
+   */
   getCompetence(idCompetence: string): model.Competence {
     let competence = this.cacheMapCompetence.get(idCompetence);
     if (competence) {
