@@ -7,8 +7,15 @@ import * as model from '../model/model';
 export class TabCahierJournalComponent implements OnInit {
 
   // La configuration de l'éditeur (@see https://docs.ckeditor.com/#!/api/CKEDITOR.config)
-  configCkEditor = { defaultLanguage: 'fr', toolbarGroups: [{ name: 'basicstyles', groups: ['basicstyles', 'cleanup'] }, { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align'] }] };
-  configCkEditorTemps = { height: '100px', defaultLanguage: 'fr', toolbarGroups: [{ name: 'basicstyles', groups: ['basicstyles', 'cleanup'] }, { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align'] }] };
+  configCkEditor = {
+    defaultLanguage: 'fr', height: '100px',
+    toolbarGroups: [{ name: 'basicstyles', groups: ['basicstyles', 'cleanup'] }, { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align'] }]
+  };
+  configCkEditorTemps = {
+    extraPlugins: 'divarea', height: '100px',
+    defaultLanguage: 'fr',
+    toolbarGroups: [{ name: 'basicstyles', groups: ['basicstyles', 'cleanup'] }, { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align'] }]
+  };
 
   // Liste des heures pour la sélection de l'heure de début et de fin des temps
   tempsDisponibles = [];
@@ -68,5 +75,11 @@ export class TabCahierJournalComponent implements OnInit {
   }
   retirerCompetence(temps: model.Temps, index: number) {
     temps.competences.splice(index, 1);
+  }
+  deplacerTemps(index: number, delta: number) {
+    const index2 = index + delta;
+    const temp = this.journal.temps[index2];
+    this.journal.temps[index2] = this.journal.temps[index];
+    this.journal.temps[index] = temp;
   }
 }

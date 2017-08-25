@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MaterialModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule } from '@angular/material';
+import { MaterialModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule, MD_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -53,6 +53,8 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [
     // Paramétrage global
     { provide: LOCALE_ID, useValue: 'fr-FR' },
+    { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'never' } },
+
     // Les composants injectables
     DataService, SauvegardeService
   ],

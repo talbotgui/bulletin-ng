@@ -1,10 +1,8 @@
 <div class="compoCompetence">
-    <span>
-        <button class="button" *ngIf="!lectureSeule" class="retour" (click)="selectionneParent()">&lt;=</button>
-        <span *ngIf="!lectureSeule">&nbsp;</span>{{libelleCompletCompetenceSelectionnee}}
-    </span>
+    {{libelleCompletCompetenceSelectionnee}}
 
-    <div *ngIf="!lectureSeule">
+    <div *ngIf="!lectureSeule" class="actions">
+        <i *ngIf="!lectureSeule" class="retour fa fa-fast-backward" (click)="selectionneParent()"></i>
         <div *ngIf="!!note">
             <select required #inputStatut="ngModel" [(ngModel)]="note.idItem" name="competence" *ngIf="!!listeCompetenceEnfant && listeCompetenceEnfant.length>0">
                 <option [value]="note.idItem"></option>        

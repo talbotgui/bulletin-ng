@@ -1,6 +1,8 @@
+span.clickable { cursor: pointer; }
+
 .petitChamp { width: 100px; }
 
-table.cahierJournal th { font-size: 14px; background-color: lightblue; }
-table.cahierJournal td { font-size: 12px; padding: 0px 10px }
+td:nth-child(3) { max-width: 300px; }
+td:nth-child(5) { text-align: center; line-height: 25px; }
 
-span.bouton_entete { margin-left: 25px; cursor: pointer; }
+.mat-chip:not(.mat-basic-chip) { padding: 4px 6px 4px 6px; text-align: center; }
