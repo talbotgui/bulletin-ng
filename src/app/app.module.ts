@@ -7,6 +7,7 @@ import { MaterialModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule 
 import { CdkTableModule } from '@angular/cdk';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { CKEditorModule } from 'ng2-ckeditor';
 import { TreeModule } from 'angular-tree-component';
 import { MapValuesPipe, AttributesToMapPipe } from './pipes.component';
 
@@ -63,7 +64,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule, FormsModule, HttpClientModule,
 
     // Le module des composants WEB riches
-    MaterialModule, BrowserAnimationsModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule, TreeModule, CdkTableModule,
+    MaterialModule, BrowserAnimationsModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule, TreeModule, CdkTableModule, CKEditorModule,
 
     // Déclaration des routes
     AppRoutingModule

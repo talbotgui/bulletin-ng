@@ -12,7 +12,7 @@
 	<div *ngIf="!journal">Aucun journal à cette date. Voulez-vous en créer un ? <button class="button" (click)="creerJournal()">OUI</button></div>
 
 	<div *ngIf="!!journal">
-		<textarea [(ngModel)]="journal.remarque" name="journalremarque" placeholder="remarque du jour" cols="180" rows="5"></textarea>
+		<ckeditor [(ngModel)]="journal.remarque" [config]="configCkEditor" debounce="200"></ckeditor>
 		<br/>
 		<br/>
 		<table class="cahierJournal">
@@ -55,7 +55,7 @@
 						</span>
 					</td>
 					<td>
-						<textarea [(ngModel)]="temp.commentaire" name="tempCommentaire" placeholder="Commentaire pour ce temps" cols="30" rows="10"></textarea>
+						<ckeditor [(ngModel)]="temp.commentaire" [config]="configCkEditorTemps" debounce="200"></ckeditor>
 					</td>
 				</tr>
 			</tbody>

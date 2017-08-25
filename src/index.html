@@ -1,16 +1,22 @@
 <!doctype html/>
 <html lang="fr">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<title>Ma classe</title>
-		<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<!-- balise nécessaire pour Angular -->
-		<base href="/">
-	</head>
-	<body>
-		<app-root></app-root>
-	</body>
+	<title>Ma classe</title>
+	<link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+	<!-- Car le package NPM de CkEditor n'embarque pas la librairie -->
+	<script src="https://cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
+
+	<!-- balise nécessaire pour Angular -->
+	<base href="/">
+</head>
+
+<body>
+	<app-root></app-root>
+</body>
+
 </html>

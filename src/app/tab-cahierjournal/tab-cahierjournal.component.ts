@@ -6,6 +6,10 @@ import * as model from '../model/model';
 @Component({ selector: 'tab-cahierjournal', templateUrl: './tab-cahierjournal.component.html', styleUrls: ['./tab-cahierjournal.component.css'] })
 export class TabCahierJournalComponent implements OnInit {
 
+  // La configuration de l'éditeur (@see https://docs.ckeditor.com/#!/api/CKEDITOR.config)
+  configCkEditor = { defaultLanguage: 'fr', toolbarGroups: [{ name: 'basicstyles', groups: ['basicstyles', 'cleanup'] }, { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align'] }] };
+  configCkEditorTemps = { height: '100px', defaultLanguage: 'fr', toolbarGroups: [{ name: 'basicstyles', groups: ['basicstyles', 'cleanup'] }, { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align'] }] };
+
   // Liste des heures pour la sélection de l'heure de début et de fin des temps
   tempsDisponibles = [];
 
