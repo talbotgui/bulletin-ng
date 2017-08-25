@@ -1,11 +1,21 @@
-<span>
-    <button class="button" *ngIf="!lectureSeule" class="retour" (click)="selectionneParent()">&lt;=</button>
-    <span *ngIf="!lectureSeule">&nbsp;</span>{{libelleCompletCompetenceSelectionnee}}
-</span>
+<div class="compoCompetence">
+    <span>
+        <button class="button" *ngIf="!lectureSeule" class="retour" (click)="selectionneParent()">&lt;=</button>
+        <span *ngIf="!lectureSeule">&nbsp;</span>{{libelleCompletCompetenceSelectionnee}}
+    </span>
 
-<div *ngIf="!lectureSeule">
-    <select required #inputStatut="ngModel" [(ngModel)]="note.idItem" name="competence" *ngIf="!!listeCompetenceEnfant && listeCompetenceEnfant.length>0">
-        <option [value]="note.idItem"></option>        
-        <option *ngFor="let competence of listeCompetenceEnfant" [value]="competence.id">{{competence.text}}</option>
-    </select>
+    <div *ngIf="!lectureSeule">
+        <div *ngIf="!!note">
+            <select required #inputStatut="ngModel" [(ngModel)]="note.idItem" name="competence" *ngIf="!!listeCompetenceEnfant && listeCompetenceEnfant.length>0">
+                <option [value]="note.idItem"></option>        
+                <option *ngFor="let competence of listeCompetenceEnfant" [value]="competence.id">{{competence.text}}</option>
+            </select>
+        </div>
+        <div *ngIf="!!temp">
+            <select required #inputStatut="ngModel" [(ngModel)]="temp.competences[tempIndexCompetence]" name="competence" *ngIf="!!listeCompetenceEnfant && listeCompetenceEnfant.length>0">
+                <option [value]="temp.competences[tempIndexCompetence]"></option>        
+                <option *ngFor="let competence of listeCompetenceEnfant" [value]="competence.id">{{competence.text}}</option>
+            </select>
+        </div>
+    </div>
 </div>
