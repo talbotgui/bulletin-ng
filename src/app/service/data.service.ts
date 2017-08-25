@@ -14,25 +14,50 @@ export class DataService {
   private cacheMapLibelleCompletCompetence: Map<string, string> = new Map<string, string>();
   private cacheMapListeCompetencesEnfant: Map<string, model.Competence[]> = new Map<string, model.Competence[]>();
 
+  /** Pour obtenir la liste des types de temps */
+  getlisteTypeDeTemps(): string[] {
+    if (!this.anneeChargee) {
+      return [];
+    } else {
+      return this.anneeChargee.libellesTypeTempsJournal;
+    }
+  }
+
   /** Pour savoir si une année est chargée */
   isAnneeChargee(): boolean {
     return !!this.anneeChargee;
   }
 
-  /** Pour savoir si un journal existe à cette date */
-  isJournalExistantPourCetteDate(date: Date): boolean {
-    // Le cache et la comparaison se font sur le getTime pour éviter les PB de Timezone
-    // le newDate(journal.date) est nécessaire car la méthode getTime() n'est pas disponible autrement
+  /** Pour ajouter un journal */
+  ajouterJournal(date: Date): model.Journal {
+    // Cas où aucune année n'est chargée
+    if (!this.anneeChargee) {
+      return null;
+    } else {
+
+      // Cas d'un journal déjà existant
+      let journal = this.getJournal(date);
+      if (journal) {
+        return journal;
+      }
+
+      // Création d'un journal
+      journal = new model.Journal();
+      journal.date = date;
+      journal.temps = [];
+      this.anneeChargee.journal.push(journal);
+      this.cacheMapDateJournal.set(new Date(date).getTime(), journal);
+      return journal;
+    }
+  }
+
+  /** Pour obtenir le journal d'un jour précis */
+  getJournal(date: Date): model.Journal {
     if (this.cacheMapDateJournal.size === 0 && this.anneeChargee) {
       for (const journal of this.anneeChargee.journal) {
         this.cacheMapDateJournal.set(new Date(journal.date).getTime(), journal);
       }
     }
-    return this.cacheMapDateJournal.has(date.getTime());
-  }
-
-  /** Pour obtenir le journal d'un jour précis */
-  getJournal(date: Date): model.Journal {
     return this.cacheMapDateJournal.get(date.getTime());
   }
 

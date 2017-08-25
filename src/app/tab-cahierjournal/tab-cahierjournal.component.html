@@ -9,8 +9,57 @@
 <fieldset *ngIf="!!dateJournal">
 	<legend>Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}}</legend>
 
-	<div *ngIf="!journal">Aucun journal à cette date. Voulez-vous en créer un ? <button>OUI</button></div>
+	<div *ngIf="!journal">Aucun journal à cette date. Voulez-vous en créer un ? <button class="button" (click)="creerJournal()">OUI</button></div>
+
 	<div *ngIf="!!journal">
-		<textarea [(ngModel)]="journal.remarque" name="journalremarque" placeholder="remarque du jour"></textarea>
+		<textarea [(ngModel)]="journal.remarque" name="journalremarque" placeholder="remarque du jour" cols="180" rows="5"></textarea>
+		<br/>
+		<br/>
+		<table class="cahierJournal">
+			<thead>
+				<tr>
+					<th>Temp</th>
+					<th>Elèves</th>
+					<th>Compétences</th>
+					<th>Commentaire<span class="bouton_entete" (click)="ajouterTemps()"><i class="fa fa-plus"></i></span></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let temp of journal.temps; let j = index">
+					<td>
+						<input [(ngModel)]="temp.nom" name="nomTemps" placeholder="Nom" class="petitChamp" />
+						<span class="bouton_entete" (click)="retirerTemp(j)"><i class="fa fa-minus"></i></span>
+						<br/><br/>
+						<md-select [(ngModel)]="temp.debut" name="debutTemps" placeholder="Début" class="petitChamp">
+							<md-option *ngFor="let t of tempsDisponibles" [value]="t">{{t}}</md-option>
+						</md-select>
+						<br/><br/>
+						<md-select [(ngModel)]="temp.fin" name="finTemps" placeholder="Fin" class="petitChamp">
+							<md-option *ngFor="let t of tempsDisponibles" [value]="t">{{t}}</md-option>
+						</md-select>
+						<br/><br/>
+						<md-select [(ngModel)]="temp.type" name="typeTemps" placeholder="Type" class="petitChamp">
+							<md-option *ngFor="let t of typesDeTemps" [value]="t">{{t}}</md-option>
+						</md-select>
+					</td>
+					<td>
+						<md-chip-list class="mat-chip-list-stacked">
+							<md-chip *ngFor="let ele of eleves" selected="true" color="{{(temp.eleves.indexOf(ele.id)!==-1)?'accent':''}}" (click)="ajouterOuSupprimerEleve(temp, ele.id)">{{ele.prenom}}</md-chip>
+						</md-chip-list>
+					</td>
+					<td>
+						<span class="bouton_entete" (click)="ajouterCompetence(temp)"><i class="fa fa-plus"></i></span>
+						<span *ngFor="let c of temp.competences; let i = index">{{temp.competences[index]}}
+							<compo-competence [temp]="temp" [tempIndexCompetence]="i"></compo-competence>
+							<span class="bouton_entete" (click)="retirerCompetence(temp, i)"><i class="fa fa-minus"></i></span>
+						</span>
+					</td>
+					<td>
+						<textarea [(ngModel)]="temp.commentaire" name="tempCommentaire" placeholder="Commentaire pour ce temps" cols="30" rows="10"></textarea>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
 	</div>
 </fieldset>

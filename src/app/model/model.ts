@@ -50,7 +50,7 @@ export class Historique {
 }
 
 export class Temps {
-  debut: string; fin: string; nom: string; type: string; commentaire: string; eleves: string[]; competences: string[];
+  debut: string; fin: string; nom: string; type: string; commentaire: string; eleves: string[] = []; competences: string[] = [];
 }
 
 export class Journal {

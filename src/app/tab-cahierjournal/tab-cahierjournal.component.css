@@ -1,0 +1,6 @@
+.petitChamp { width: 100px; }
+
+table.cahierJournal th { font-size: 14px; background-color: lightblue; }
+table.cahierJournal td { font-size: 12px; padding: 0px 10px }
+
+span.bouton_entete { margin-left: 25px; cursor: pointer; }
