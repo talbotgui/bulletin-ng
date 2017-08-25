@@ -10,7 +10,7 @@ export class Periode {
 }
 
 export class Cursus {
-  annee: string; niveau: string; etablissement: string; accompagnement: string;
+  annee: number; niveau: string; etablissement: string; accompagnement: string;
 }
 
 export class Eleve {
