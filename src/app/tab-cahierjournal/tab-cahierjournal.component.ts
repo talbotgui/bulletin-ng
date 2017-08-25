@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { IDayCalendarConfig } from 'ng2-date-picker';
 
 import { DataService } from '../service/data.service';
 import * as model from '../model/model';
