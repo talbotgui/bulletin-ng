@@ -14,6 +14,38 @@ export class DataService {
   private cacheMapLibelleCompletCompetence: Map<string, string> = new Map<string, string>();
   private cacheMapListeCompetencesEnfant: Map<string, model.Competence[]> = new Map<string, model.Competence[]>();
 
+  // Pour sauvegarder le theme
+  setThemeSelectionne(theme: string): void {
+    // Sauvegarde du theme dans les cookies
+    document.cookie = 'theme=' + theme;
+
+    // Sauvegarde du thème dans les données
+    if (this.anneeChargee) {
+      this.anneeChargee.themeSelectionne = theme;
+    }
+
+    // Application du thème
+    document.getElementsByTagName('body').item(0).className = theme;
+  }
+
+  /** Getter du thème sélectionné ou 'sobre' par défaut */
+  getThemeSelectionne(): string {
+
+    // Si le theme est dans les données
+    if (this.anneeChargee && this.anneeChargee.themeSelectionne) {
+      return this.anneeChargee.themeSelectionne;
+    }
+
+    // Sinon, calcul du theme par défaut
+    else {
+      let themeParDefaut = 'sobre';
+      if (document.cookie.indexOf('theme') === 0) {
+        themeParDefaut = document.cookie.split('=')[1];
+      }
+      return themeParDefaut;
+    }
+  }
+
   /** Pour obtenir la liste des types de temps */
   getlisteTypeDeTemps(): string[] {
     if (!this.anneeChargee) {
@@ -180,6 +212,11 @@ export class DataService {
         }
       }
       annee.mapLibelleNotesMap = mapLibelleNotesMap;
+    }
+
+    // Initialisation du thème si présent dans les données
+    if (annee.themeSelectionne) {
+      this.setThemeSelectionne(annee.themeSelectionne);
     }
 
     this.anneeChargee = annee;

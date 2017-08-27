@@ -16,6 +16,7 @@ import 'hammerjs';
 
 // Tous les composants applicatifs de l'application
 import { AppComponent } from './app.component';
+import { DivSelecteurStyleComponent } from './div-selecteurstyle/div-selecteurstyle.component';
 import { TabCahierJournalComponent } from './tab-cahierjournal/tab-cahierjournal.component';
 import { TabCompetenceComponent } from './tab-competence/tab-competence.component';
 import { TabEleveComponent } from './tab-eleve/tab-eleve.component';
@@ -44,7 +45,7 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [AppComponent, TabCompetenceComponent, TabEleveComponent, DivSauvegardeComponent,
     DialogChargementComponent, DialogSauvegardeComponent, TabTableauDeBordComponent, ComposantNoteComponent,
     MapValuesPipe, AttributesToMapPipe, DialogLigneTableauDeBordComponent, ComposantCompetenceeComponent,
-    TabCahierJournalComponent
+    TabCahierJournalComponent, DivSelecteurStyleComponent
   ],
 
   // Tous les composants à afficher dans un Dialog

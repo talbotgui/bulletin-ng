@@ -65,6 +65,7 @@ export class Annee {
   dateDerniereSauvegarde: Date; historique: Historique[]; erreursChargement: string[];
   mapLibelleStatutEleve: object; mapLibelleNotes: object;
   mapLibelleStatutEleveMap: Map<string, string>; mapLibelleNotesMap: Map<string, string>;
+  themeSelectionne: string;
 }
 export class SousLigneTableauDeBord {
   competence: Competence; aide: Note; constatation: Note;
