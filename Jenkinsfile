@@ -12,7 +12,7 @@ pipeline {
 		stage ('Checkout') {
 			agent any
 			steps {
-				git branch: env.BRANCH, url: 'https://github.com/talbotgui/bulletin-ng.git'
+				checkout scm
 				script {
 					stash name: 'sources', includes: '*'
 				}
