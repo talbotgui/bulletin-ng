@@ -47,6 +47,18 @@ pipeline {
 			}
 		}
 		
+		stage ('Quality') {
+			agent any
+			steps {
+				unstash 'sources'
+				withCredentials([string(credentialsId: 'sonarSecretKey', variable: 'SONAR_KEY')]) {
+					sh "sed -i 's/XXXXXXXXX/${SONAR_KEY}/' ./sonar-bulletinNG.properties"
+					sh "npm run quality"
+					sh "sed -i 's/${SONAR_KEY}/XXXXXXXXX/' ./sonar-bulletinNG.properties"
+				}
+			}
+		}
+		
 		stage ('Production') { 
 			agent none
 			// Pour sauter le stage 'production' si la branche n'est pas le master

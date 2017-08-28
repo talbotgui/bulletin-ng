@@ -35,7 +35,7 @@ import { SauvegardeService } from './service/sauvegarde.service';
 // Le composant contenant les routes
 import { AppRoutingModule } from './app-routing.module';
 
-// D�claration du module
+// Déclaration du module
 @NgModule({
 
   // Le composant principal
