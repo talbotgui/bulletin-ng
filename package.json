@@ -10,7 +10,7 @@
     "build-prod": "ng build --prod --aot  --progress=false --verbose=true",
     "test": "ng test",
     "test-ic": "ng test --config=karma-ic.conf.js --code-coverage --reporters=coverage-istanbul,junit",
-	"quality": "node node_modules/sonar-scanner/ -X -Dproject.settings=./sonar-bulletinNG.properties",
+    "quality": "node node_modules/sonar-scanner/ -Dproject.settings=./sonar-bulletinNG.properties",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "e2e-ic": "ng e2e --config=protractor-ic.conf.js"
