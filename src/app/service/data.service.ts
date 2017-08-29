@@ -9,15 +9,93 @@ export class DataService {
   private anneeChargee: model.Annee;
 
   /** Données de cache utilisées pour ne pas parcourir anneeChargee constamment */
-  private cacheMapCompetence: Map<string, model.Competence>;
-  private cacheMapLibelleCompletCompetence: Map<string, string>;
-  private cacheMapListeCompetencesEnfant: Map<string, model.Competence[]>;
+  private cacheMapDateJournal: Map<number, model.Journal> = new Map<number, model.Journal>();
+  private cacheMapCompetence: Map<string, model.Competence> = new Map<string, model.Competence>();
+  private cacheMapLibelleCompletCompetence: Map<string, string> = new Map<string, string>();
+  private cacheMapListeCompetencesEnfant: Map<string, model.Competence[]> = new Map<string, model.Competence[]>();
+
+  // Pour sauvegarder le theme
+  setThemeSelectionne(theme: string): void {
+    // Sauvegarde du theme dans les cookies
+    document.cookie = 'theme=' + theme;
+
+    // Sauvegarde du thème dans les données
+    if (this.anneeChargee) {
+      this.anneeChargee.themeSelectionne = theme;
+    }
+
+    // Application du thème
+    document.getElementsByTagName('body').item(0).className = theme;
+  }
+
+  /** Getter du thème sélectionné ou 'sobre' par défaut */
+  getThemeSelectionne(): string {
+
+    // Si le theme est dans les données
+    if (this.anneeChargee && this.anneeChargee.themeSelectionne) {
+      return this.anneeChargee.themeSelectionne;
+    }
+
+    // Sinon, calcul du theme par défaut
+    else {
+      let themeParDefaut = 'sobre';
+      if (document.cookie.indexOf('theme') === 0) {
+        themeParDefaut = document.cookie.split('=')[1];
+      }
+      return themeParDefaut;
+    }
+  }
+
+  /** Pour obtenir la liste des types de temps */
+  getlisteTypeDeTemps(): string[] {
+    if (!this.anneeChargee) {
+      return [];
+    } else {
+      return this.anneeChargee.libellesTypeTempsJournal;
+    }
+  }
 
   /** Pour savoir si une année est chargée */
   isAnneeChargee(): boolean {
     return !!this.anneeChargee;
   }
 
+  /** Pour ajouter un journal */
+  ajouterJournal(date: Date): model.Journal {
+    // Cas où aucune année n'est chargée
+    if (!this.anneeChargee) {
+      return null;
+    } else {
+
+      // Cas d'un journal déjà existant
+      let journal = this.getJournal(date);
+      if (journal) {
+        return journal;
+      }
+
+      // Création d'un journal
+      journal = new model.Journal();
+      journal.date = date;
+      journal.temps = [];
+      this.anneeChargee.journal.push(journal);
+      this.cacheMapDateJournal.set(new Date(date).getTime(), journal);
+      return journal;
+    }
+  }
+
+  /** Pour obtenir le journal d'un jour précis */
+  getJournal(date: Date): model.Journal {
+    if (this.cacheMapDateJournal.size === 0 && this.anneeChargee) {
+      for (const journal of this.anneeChargee.journal) {
+        this.cacheMapDateJournal.set(new Date(journal.date).getTime(), journal);
+      }
+    }
+    return this.cacheMapDateJournal.get(date.getTime());
+  }
+
+  /**
+   * Obtenir une compétence par sa date.
+   */
   getCompetence(idCompetence: string): model.Competence {
     let competence = this.cacheMapCompetence.get(idCompetence);
     if (competence) {
@@ -136,10 +214,12 @@ export class DataService {
       annee.mapLibelleNotesMap = mapLibelleNotesMap;
     }
 
+    // Initialisation du thème si présent dans les données
+    if (annee.themeSelectionne) {
+      this.setThemeSelectionne(annee.themeSelectionne);
+    }
+
     this.anneeChargee = annee;
-    this.cacheMapCompetence = new Map<string, model.Competence>();
-    this.cacheMapLibelleCompletCompetence = new Map<string, string>();
-    this.cacheMapListeCompetencesEnfant = new Map<string, model.Competence[]>();
   }
 
   /** Donne la liste complète des élèves */

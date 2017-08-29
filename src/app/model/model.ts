@@ -10,7 +10,7 @@ export class Periode {
 }
 
 export class Cursus {
-  annee: string; niveau: string; etablissement: string; accompagnement: string;
+  annee: number; niveau: string; etablissement: string; accompagnement: string;
 }
 
 export class Eleve {
@@ -50,7 +50,7 @@ export class Historique {
 }
 
 export class Temps {
-  debut: string; fin: string; nom: string; type: string; commentaire: string; eleves: string[]; competences: string[];
+  debut: string; fin: string; nom: string; type: string; commentaire: string; eleves: string[] = []; competences: string[] = [];
 }
 
 export class Journal {
@@ -65,6 +65,7 @@ export class Annee {
   dateDerniereSauvegarde: Date; historique: Historique[]; erreursChargement: string[];
   mapLibelleStatutEleve: object; mapLibelleNotes: object;
   mapLibelleStatutEleveMap: Map<string, string>; mapLibelleNotesMap: Map<string, string>;
+  themeSelectionne: string;
 }
 export class SousLigneTableauDeBord {
   competence: Competence; aide: Note; constatation: Note;

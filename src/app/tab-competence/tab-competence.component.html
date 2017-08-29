@@ -1,3 +1,13 @@
+<span>Filtre : </span>
+<input [(ngModel)]="filtre" (change)="recherche()" />
 
+<br/>
 
-<tree-root [nodes]="noeuds"></tree-root>
+<!-- https://github.com/500tech/angular-tree-component -->
+<tree-root [nodes]="noeuds">
+    <ng-template #treeNodeTemplate let-node let-index="index">
+        <span class="level{{node.level}}">{{node.level}}</span>&nbsp;
+        <span *ngIf="!filtre || node.data.name.indexOf(filtre) === -1">{{ node.data.name }}</span>
+        <span *ngIf="filtre && node.data.name.indexOf(filtre) !== -1"><strong>{{ node.data.name }}</strong></span>
+    </ng-template>
+</tree-root>

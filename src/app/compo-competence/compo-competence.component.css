@@ -1,1 +1,3 @@
-button.retour { padding: 0px; }
+.compoCompetence { font-size: 13px; }
+.retour { margin-right: 4px; }
+.actions { display: inline-flex; }

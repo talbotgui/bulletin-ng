@@ -1,19 +1,30 @@
 <div id="page">
-	<div id="entete">
-		<div id="entete-titre"><h1>Application de gestion de ma classe</h1></div>
-		<div id="entete-actions">
-			<div-sauvegarde></div-sauvegarde>
+
+	<md-sidenav-container>
+		<md-sidenav #sidenav class="example-sidenav">
+			<div-selecteurstyle></div-selecteurstyle>
+		</md-sidenav>
+		<div id="entete">
+			<div id="entete-titre">
+				<h1>Application de gestion de ma classe</h1>
+			</div>
+			<div id="entete-actions">
+				<em class="fa fa-cogs fa-2x" md-button (click)="sidenav.open()"></em>
+				<br/>
+				<div-sauvegarde></div-sauvegarde>
+			</div>
 		</div>
-	</div>
+	</md-sidenav-container>
 
 	<div id="menu" *ngIf="!!anneeChargee">
 		<nav md-tab-nav-bar>
 			<a md-tab-link routerLink="/tab-competence-route" routerLinkActive="active">Compétences</a>
 			<a md-tab-link routerLink="/tab-eleve-route" routerLinkActive="active">Elèves</a>
 			<a md-tab-link routerLink="/tab-tableaudebord-route" routerLinkActive="active">Tableau de bord</a>
+			<a md-tab-link routerLink="/tab-journal-route" routerLinkActive="active">Cahier journal</a>
 		</nav>
 	</div>
-	
+
 	<div id="contenu" *ngIf="!!anneeChargee">
 		<router-outlet></router-outlet>
 	</div>
