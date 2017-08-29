@@ -1,4 +1,3 @@
-
 <!-- Liste des élèves -->
 <md-chip-list class="listeEleves" [selectable]="true">
 	<md-chip *ngFor="let eleve of eleves" (click)="onSelectEleve(eleve); eleveForm.reset(eleve);" [class.eleveSelectionne]="eleve === eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</md-chip>
@@ -15,11 +14,12 @@
 			<div [hidden]="inputDateNaissance.valid || inputDateNaissance.pristine" class="alert-danger">La date de naissance est obligatoire</div>
 			<div [hidden]="inputStatut.valid || inputStatut.pristine" class="alert-danger">Le statut est obligatoire</div>
 
-			<input required minlength="3" #inputNom="ngModel" [(ngModel)]="eleveSelectionne.nom" name="nom" placeholder="Nom"/>
-			<input required #inputPrenom="ngModel" [(ngModel)]="eleveSelectionne.prenom" name="prenom" placeholder="Prénom"/>
+			<input required minlength="3" #inputNom="ngModel" [(ngModel)]="eleveSelectionne.nom" name="nom" placeholder="Nom" />
+			<input required #inputPrenom="ngModel" [(ngModel)]="eleveSelectionne.prenom" name="prenom" placeholder="Prénom" />
 			<md-input-container>
-				<input mdInput required #inputDateNaissance="ngModel" [mdDatepicker]="naissanceDatepicker" [(ngModel)]="eleveSelectionne.dateNaissance" name="dateNaissance" placeholder="Date de naissance">
-				<button mdSuffix [mdDatepickerToggle]="naissanceDatepicker"></button>
+				<input mdInput required #inputDateNaissance="ngModel" [mdDatepicker]="naissanceDatepicker" [(ngModel)]="eleveSelectionne.dateNaissance"
+				 name="dateNaissance" placeholder="Date de naissance">
+				<button class="button" mdSuffix [mdDatepickerToggle]="naissanceDatepicker"></button>
 			</md-input-container>
 			<md-datepicker #naissanceDatepicker></md-datepicker>
 			<md-select required #inputStatut="ngModel" [(ngModel)]="eleveSelectionne.statut" placeholder="Statut" name="statut">
@@ -38,11 +38,36 @@
 			<textarea [(ngModel)]="eleveSelectionne.adresses" name="adresses" placeholder="Adresses"></textarea>
 			<textarea [(ngModel)]="eleveSelectionne.telephones" name="telephones" placeholder="Téléphones"></textarea>
 		</fieldset>
-		<fieldset class="bilans">
+		<fieldset class="dateBilans">
 			<legend>Date de bilans (PPI, PAP et ESS)</legend>
-			<textarea [(ngModel)]="eleveSelectionne.datesPPA" name="datesPPA" placeholder="Dates PPA"></textarea>
-			<textarea [(ngModel)]="eleveSelectionne.datesPAP" name="datesPAP" placeholder="Dates PAP (PPS)"></textarea>
-			<textarea [(ngModel)]="eleveSelectionne.datesESS" name="datesESS" placeholder="Dates ESS"></textarea>
+			<textarea [(ngModel)]="eleveSelectionne.datesPPA" name="datesPPI" placeholder="datesPPI" rows="6"></textarea>
+			<textarea [(ngModel)]="eleveSelectionne.datesPAP" name="datesPAP" placeholder="datesPAP" rows="6"></textarea>
+			<textarea [(ngModel)]="eleveSelectionne.datesESS" name="datesESS" placeholder="datesESS" rows="6"></textarea>
+		</fieldset>
+		<fieldset class="cursus">
+			<legend>Cursus scolaire</legend>
+			<table>
+				<thead>
+					<tr>
+						<th>Année scolaire</th>
+						<th>Niveau</th>
+						<th>Etablissement</th>
+						<th>Accompagnement</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let cur of eleveSelectionne.cursus; let i = index">
+						<td>{{cur.annee}}</td>
+						<td><input [(ngModel)]="cur.niveau" name="Niveau{{i}}" /></td>
+						<td><input [(ngModel)]="cur.etablissement" name="Etablissement{{i}}" /></td>
+						<td><input [(ngModel)]="cur.accompagnement" name="Accompagnement{{i}}" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>
+		<fieldset class="bilans">
+			<legend>Bilans</legend>
+			<ckeditor [(ngModel)]="eleveSelectionne.bilans" name="bilans" [config]="configCkEditor" debounce="200"></ckeditor>
 		</fieldset>
 	</div>
 </form>

@@ -1,2 +1,2 @@
-<button *ngIf="!anneeChargee" (click)="ouvreDialogChargement()">Charger</button>
-<button *ngIf="!!anneeChargee" (click)="ouvreDialogSauvegarde()" mdTooltipPosition="below" mdTooltip="{{messageSauvegarde.message}}{{messageSauvegarde.date | date:'HH:mm:ss'}}">Sauvegarder</button>
+<button class="button" *ngIf="!anneeChargee" (click)="ouvreDialogChargement()">Charger</button>
+<button class="button" *ngIf="!!anneeChargee" (click)="ouvreDialogSauvegarde()" mdTooltipPosition="below" mdTooltip="{{messageSauvegarde.message}}{{messageSauvegarde.date | date:'HH:mm:ss'}}">Sauvegarder</button>

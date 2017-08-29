@@ -1,18 +1,27 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { TreeComponent } from 'angular-tree-component';
 
 import * as model from '../model/model';
-import {DataService} from '../service/data.service';
+import { DataService } from '../service/data.service';
 
-export class Noeud {constructor(public id: string, public idParent: string, public name: string, public children: Noeud[]) {} }
+export class Noeud { constructor(public id: string, public idParent: string, public name: string, public children: Noeud[]) { } }
 
-@Component({selector: 'tab-competence', templateUrl: './tab-competence.component.html', styleUrls: ['./tab-competence.component.css']})
+@Component({ selector: 'tab-competence', templateUrl: './tab-competence.component.html', styleUrls: ['./tab-competence.component.css'] })
 export class TabCompetenceComponent implements OnInit {
+
+  // Filtre de recherche dans l'arbre
+  filtre: string;
 
   // Noeuds à afficher
   noeuds = [];
 
+  // Instance de l'abre
+  @ViewChild(TreeComponent)
+  private tree: TreeComponent;
+
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
@@ -49,5 +58,9 @@ export class TabCompetenceComponent implements OnInit {
 
       }
     }
+  }
+
+  recherche() {
+    this.tree.treeModel.filterNodes(this.filtre, true);
   }
 }

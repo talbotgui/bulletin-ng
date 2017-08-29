@@ -1,6 +1,8 @@
 <div id="page">
 	<div id="entete">
-		<div id="entete-titre"><h1>Application de gestion de ma classe</h1></div>
+		<div id="entete-titre">
+			<h1>Application de gestion de ma classe</h1>
+		</div>
 		<div id="entete-actions">
 			<div-sauvegarde></div-sauvegarde>
 		</div>
@@ -11,9 +13,10 @@
 			<a md-tab-link routerLink="/tab-competence-route" routerLinkActive="active">Compétences</a>
 			<a md-tab-link routerLink="/tab-eleve-route" routerLinkActive="active">Elèves</a>
 			<a md-tab-link routerLink="/tab-tableaudebord-route" routerLinkActive="active">Tableau de bord</a>
+			<a md-tab-link routerLink="/tab-journal-route" routerLinkActive="active">Cahier journal</a>
 		</nav>
 	</div>
-	
+
 	<div id="contenu" *ngIf="!!anneeChargee">
 		<router-outlet></router-outlet>
 	</div>

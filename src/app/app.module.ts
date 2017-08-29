@@ -1,21 +1,22 @@
 // Les modules Angular importés
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MaterialModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule } from '@angular/material';
+import { MaterialModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule, MD_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { CKEditorModule } from 'ng2-ckeditor';
 import { TreeModule } from 'angular-tree-component';
-import { MapValuesPipe } from './pipes.component';
-import { AttributesToMapPipe } from './pipes.component';
+import { MapValuesPipe, AttributesToMapPipe } from './pipes.component';
 
 // Import de hammer (cf. documentation)
 import 'hammerjs';
 
 // Tous les composants applicatifs de l'application
 import { AppComponent } from './app.component';
+import { TabCahierJournalComponent } from './tab-cahierjournal/tab-cahierjournal.component';
 import { TabCompetenceComponent } from './tab-competence/tab-competence.component';
 import { TabEleveComponent } from './tab-eleve/tab-eleve.component';
 import { DivSauvegardeComponent } from './div-sauvegarde/div-sauvegarde.component';
@@ -42,14 +43,21 @@ import { AppRoutingModule } from './app-routing.module';
   // Tous les composants applicatifs de l'application
   declarations: [AppComponent, TabCompetenceComponent, TabEleveComponent, DivSauvegardeComponent,
     DialogChargementComponent, DialogSauvegardeComponent, TabTableauDeBordComponent, ComposantNoteComponent,
-    MapValuesPipe, AttributesToMapPipe, DialogLigneTableauDeBordComponent, ComposantCompetenceeComponent
+    MapValuesPipe, AttributesToMapPipe, DialogLigneTableauDeBordComponent, ComposantCompetenceeComponent,
+    TabCahierJournalComponent
   ],
 
   // Tous les composants à afficher dans un Dialog
   entryComponents: [DialogChargementComponent, DialogSauvegardeComponent, DialogLigneTableauDeBordComponent],
 
-  // Les composants injectables
-  providers: [DataService, SauvegardeService],
+  providers: [
+    // Paramétrage global
+    { provide: LOCALE_ID, useValue: 'fr-FR' },
+    { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'never' } },
+
+    // Les composants injectables
+    DataService, SauvegardeService
+  ],
 
   // Les modules import�s
   imports: [
@@ -58,7 +66,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule, FormsModule, HttpClientModule,
 
     // Le module des composants WEB riches
-    MaterialModule, BrowserAnimationsModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule, TreeModule, CdkTableModule,
+    MaterialModule, BrowserAnimationsModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule, TreeModule, CdkTableModule, CKEditorModule,
 
     // Déclaration des routes
     AppRoutingModule

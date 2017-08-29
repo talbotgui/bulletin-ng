@@ -12,6 +12,10 @@ export class ComposantCompetenceeComponent {
   // Note avec sa competence
   @Input() note: model.Note;
 
+  @Input() temp: model.Temps;
+
+  @Input() tempIndexCompetence: number;
+
   // Identifiant de la compétence racine de la sélection
   @Input() idCompetenceRacine: string;
 
@@ -19,6 +23,8 @@ export class ComposantCompetenceeComponent {
   get libelleCompletCompetenceSelectionnee(): string {
     if (this.note) {
       return this.dataService.getLibelleCompletCompetence(this.note.idItem, this.idCompetenceRacine);
+    } else if (this.temp) {
+      return this.dataService.getLibelleCompletCompetence(this.temp.competences[this.tempIndexCompetence], this.idCompetenceRacine);
     } else {
       return '';
     }
@@ -28,6 +34,8 @@ export class ComposantCompetenceeComponent {
   get listeCompetenceEnfant(): model.Competence[] {
     if (this.note) {
       return this.dataService.getListeCompetencesEnfant(this.note.idItem);
+    } else if (this.temp) {
+      return this.dataService.getListeCompetencesEnfant(this.temp.competences[this.tempIndexCompetence]);
     } else {
       return [];
     }
@@ -38,8 +46,16 @@ export class ComposantCompetenceeComponent {
 
   // Pour remonter d'un niveau
   selectionneParent() {
-    if (this.note.idItem !== this.idCompetenceRacine) {
-      this.note.idItem = this.dataService.getCompetence(this.note.idItem).parent;
+    if (this.note && this.note.idItem !== this.idCompetenceRacine) {
+      const competence = this.dataService.getCompetence(this.note.idItem);
+      if (competence && competence.parent) {
+        this.note.idItem = competence.parent;
+      }
+    } else if (this.temp && this.temp.competences[this.tempIndexCompetence] !== this.idCompetenceRacine) {
+      const competence = this.dataService.getCompetence(this.temp.competences[this.tempIndexCompetence]);
+      if (competence && competence.parent) {
+        this.temp.competences[this.tempIndexCompetence] = competence.parent;
+      }
     }
   }
 }

@@ -3,6 +3,6 @@
 
 .formulaireEleve .famille textarea { width: 24%; height: 100px; }
 .formulaireEleve .contacts textarea { width: 24%; height: 100px; }
-.formulaireEleve .bilans textarea { width: 32%; height: 200px; }
+.formulaireEleve .dateBilans textarea { width: 32%; height: 200px; }
 
-
+ckeditor { display: inline-flex; }
