@@ -8,23 +8,24 @@
 				<h1>Application de gestion de ma classe</h1>
 			</div>
 			<div id="entete-actions">
-				<em class="fa fa-cogs fa-2x" md-button (click)="sidenav.open()"></em>
+				<em class="fa fa-2x fa-cogs" md-button (click)="sidenav.open()"></em>
+				<em class="fa fa-2x fa-question-circle" md-button routerLink="/tab-aide-route"></em>
 				<br/>
 				<div-sauvegarde></div-sauvegarde>
 			</div>
 		</div>
 	</md-sidenav-container>
 
-	<div id="menu" *ngIf="!!anneeChargee">
+	<div id="menu">
 		<nav md-tab-nav-bar>
-			<a md-tab-link routerLink="/tab-competence-route" routerLinkActive="active">Compétences</a>
-			<a md-tab-link routerLink="/tab-eleve-route" routerLinkActive="active">Elèves</a>
-			<a md-tab-link routerLink="/tab-tableaudebord-route" routerLinkActive="active">Tableau de bord</a>
-			<a md-tab-link routerLink="/tab-journal-route" routerLinkActive="active">Cahier journal</a>
+			<a *ngIf="!!anneeChargee" md-tab-link routerLink="/tab-competence-route" routerLinkActive="active">Compétences</a>
+			<a *ngIf="!!anneeChargee" md-tab-link routerLink="/tab-eleve-route" routerLinkActive="active">Elèves</a>
+			<a *ngIf="!!anneeChargee" md-tab-link routerLink="/tab-tableaudebord-route" routerLinkActive="active">Tableau de bord</a>
+			<a *ngIf="!!anneeChargee" md-tab-link routerLink="/tab-journal-route" routerLinkActive="active">Cahier journal</a>
 		</nav>
 	</div>
 
-	<div id="contenu" *ngIf="!!anneeChargee">
+	<div id="contenu">
 		<router-outlet></router-outlet>
 	</div>
 </div>

@@ -1,0 +1,27 @@
+<h1>Aide</h1>
+
+Cette page d'aide est accessible depuis le bouton ? situé en haut à droite de la page.
+
+<h2>Liste des sujets traités :</h2>
+<ul>
+    <li><a href="javascript:document.getElementById('aide1').scrollIntoView()">Conservation du dernier fichier sauvegardé</a></li>
+</ul>
+
+<hr />
+<h2>Conservation du dernier fichier sauvegardé</h2>
+<a id="aide1" name="aide1"></a> L'application est en mesure de se souvenir du nom de votre dernière sauvegarde et de vous
+afficher un avertissment si vous charger un fichier qui n'est pas le dernier modifié.
+<br/>Mais pour cela, l'application doit être en mesure de stocker ce nom de fichier dans votre navigateur et ce dernier ne
+doit pas le détruire lors de sa fermeture.
+<br/><br/>Si cette fonctionnalité n'est pas opérante dans votre navigateur, suivez la procédure ci-dessous :
+<ul>
+    <li><strong>Chrome</strong> :
+        <ul>
+            <li>Saisir dans la barre d'adresse "chrome://settings/content/cookies"</li>
+            <li>En face de "autoriser", cliquer sur le bouton Ajouter et ajouter le site "https://me.guillaumetalbot.com/maclasse"</li>
+            <li>Pour les développeurs, ajouter aussi "http://localhost:4200"</li>
+        </ul>
+        <br/> Si vous utiliser une extension de Chrome supprimant les données à la fermeture du navigateur, pensez à ne pas
+        supprimer les "local storage data".
+    </li>
+</ul>
