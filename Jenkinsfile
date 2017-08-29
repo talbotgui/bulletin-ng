@@ -12,7 +12,7 @@ pipeline {
 		stage ('Checkout') {
 			agent any
 			steps {
-				git url: 'https://github.com/talbotgui/bulletin-ng.git'
+				checkout scm
 				script {
 					stash name: 'sources', includes: '*'
 				}
@@ -44,6 +44,18 @@ pipeline {
 				unstash 'sources'
 				unstash 'modules'
 				sh "npm run e2e-ic"
+			}
+		}
+		
+		stage ('Quality') {
+			agent any
+			steps {
+				unstash 'sources'
+				withCredentials([string(credentialsId: 'sonarSecretKey', variable: 'SONAR_KEY')]) {
+					sh "sed -i 's/XXXXXXXXX/${SONAR_KEY}/' ./sonar-bulletinNG.properties"
+					sh "npm run quality"
+					sh "sed -i 's/${SONAR_KEY}/XXXXXXXXX/' ./sonar-bulletinNG.properties"
+				}
 			}
 		}
 		

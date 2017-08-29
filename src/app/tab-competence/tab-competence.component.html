@@ -8,6 +8,6 @@
     <ng-template #treeNodeTemplate let-node let-index="index">
         <span class="level{{node.level}}">{{node.level}}</span>&nbsp;
         <span *ngIf="!filtre || node.data.name.indexOf(filtre) === -1">{{ node.data.name }}</span>
-        <span *ngIf="filtre && node.data.name.indexOf(filtre) !== -1"><b>{{ node.data.name }}</b></span>
+        <span *ngIf="filtre && node.data.name.indexOf(filtre) !== -1"><strong>{{ node.data.name }}</strong></span>
     </ng-template>
 </tree-root>

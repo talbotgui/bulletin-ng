@@ -35,3 +35,12 @@ textarea.ng-dirty { color: blue; }
 
 /* Petit boutons */
 .fa { cursor: pointer; }
+
+/** Multi style ! */
+body.sobre {background-image: none; }
+body.sobre #page { background-color:white; }
+body.sobre #entete { background-image:url('./assets/images/entete-fond.png'); }
+body.sobre #entete-titre { color: darkblue; }
+
+body.dynamique { background-image: url('./assets/images/fond.jpg'); }
+body.dynamique #contenu { opacity: 0.95; background-color: white; }

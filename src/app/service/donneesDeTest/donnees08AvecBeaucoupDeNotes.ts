@@ -1,4 +1,4 @@
-﻿export var donnees = {
+export var donnees = {
   "enteteEdition": "Académie XXXX<br/>Département XXXX<br/>Circonscription XXX<br/>École : xxxxx<br/>Adresse : xxxxxxxxxxxxxxxxxxx<br/>Téléphone : 000000000000<br/>Courriel : xxxx@xxxx.xx",
   "enseignant": "M. Toto",
   "cycleNiveau": "2 / CE1",

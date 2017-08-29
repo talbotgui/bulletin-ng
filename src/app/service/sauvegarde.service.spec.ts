@@ -108,7 +108,7 @@ describe('SauvegardeService', () => {
     mockito.when(dataServiceMock.transformeAnneeEnJson()).thenReturn(contenuDuFichier);
 
     // Act
-    const resultat = sauvegardeService.sauvegardeAnneeParTelechargement();
+    sauvegardeService.sauvegardeAnneeParTelechargement();
 
     // Assert
     mockito.verify(dataServiceMock.prepareSauvegardeEtCalculNomFichier()).once();
