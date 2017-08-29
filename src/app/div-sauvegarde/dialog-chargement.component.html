@@ -1,20 +1,24 @@
 <h2 md-dialog-title>Chargement d'une sauvegarde</h2>
 
 <md-dialog-content>
+	<div class="dernierFichierSauvegarde">
+		La dernière sauvegarde est : <br/><em>{{nomDernierFichierSauvegarde}}.</em>
+	</div>
+
 	<span>Sauvegarde locale</span>
-	<label [class]="jsonChargeDepuisFichierLocal ? 'inputFile inputFileDone' : 'inputFile'"> 
-		<input (change)="onSelectFichierLocal($event)" type="file"/>
+	<label [class]="jsonChargeDepuisFichierLocal ? 'inputFile inputFileDone' : 'inputFile' "> 
+		<input (change)="onSelectFichierLocal($event) " type="file "/>
 	</label>
 
 	<br/>
 
 	<span>Sauvegarde du serveur</span>
-	<md-select [(ngModel)]="fichierSelectionne">
-		<md-option *ngFor="let fichier of fichiers" [value]="fichier">{{fichier}}</md-option>
+	<md-select [(ngModel)]="fichierSelectionne ">
+		<md-option *ngFor="let fichier of fichiers " [value]="fichier ">{{fichier}}</md-option>
 	</md-select>
 </md-dialog-content>
 
 <md-dialog-actions>
-	<button class="button" md-dialog-close>Annuler</button>
-	<button class="button" md-dialog-close (click)="onDemandeChargement()">Charger</button>
+	<button class="button " md-dialog-close>Annuler</button>
+	<button class="button " md-dialog-close (click)="onDemandeChargement() ">Charger</button>
 </md-dialog-actions>

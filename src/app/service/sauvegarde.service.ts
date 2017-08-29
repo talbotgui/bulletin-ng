@@ -22,6 +22,23 @@ export class SauvegardeService {
 
   constructor(private http: HttpClient, private dataService: DataService, public snackBar: MdSnackBar) { }
 
+
+  getNomDernierFichierSauvegardeDansBrowser() {
+    if (typeof (Storage) !== 'undefined') {
+      return window.localStorage.getItem('nomDernierFichierModifié');
+    } else {
+      return null;
+    }
+  }
+
+  storeNomDernierFichierSauvegardeDansBrowser(value: string) {
+    if (typeof (Storage) !== 'undefined') {
+      return window.localStorage.setItem('nomDernierFichierModifié', value);
+    } else {
+      return null;
+    }
+  }
+
   getDateDerniereSauvegardeDeLaSession(): { message: string, date: Date } {
     return SauvegardeService.dateDerniereSauvegardeDeLaSession;
   }
@@ -134,6 +151,8 @@ export class SauvegardeService {
       (dataOk) => {
         const message = 'Données sauvegardées sur le serveur dans le fichier \'' + nomFichier + '\'';
         this.snackBar.open(message, null, { duration: 3000 });
+        // Sauvegarde du nom du fichier dans le browser
+        this.storeNomDernierFichierSauvegardeDansBrowser(nomFichier);
       },
       (error) => {
         console.log('error=' + error);
@@ -153,6 +172,9 @@ export class SauvegardeService {
     const contenuFichier = this.dataService.transformeAnneeEnJson();
     const leBlob = new Blob([contenuFichier], { type: 'text/plain;charset=utf-8' });
     const resultat = { nomFichier: nomDuFichier, blob: leBlob };
+
+    // Sauvegarde du nom du fichier dans le browser
+    this.storeNomDernierFichierSauvegardeDansBrowser(nomDuFichier);
 
     // Appel à saveAs pour déclencher le téléchargement dans le navigateur
     saveAs(resultat.blob, resultat.nomFichier);
