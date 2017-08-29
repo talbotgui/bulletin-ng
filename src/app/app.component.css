@@ -1,10 +1,13 @@
-#page { width:1400px; margin:auto; background-color:white; }
-#entete { height: 90px; margin: 0px 3px 0px 3px; background-image:url('../assets/images/entete-fond.png'); }
-#entete-titre { float: left; text-align: center; color: darkblue; height: 100%; font-size: 15px; line-height: 40px; width: 1250px; }
-#entete-actions { float: right; width: 125px; height: 100%; padding-top: 30px; }
+#page { width:1400px; margin:auto; }
+#entete { height: 90px; margin: 0px 3px 0px 3px; }
+#entete-titre { float: left; text-align: center; color: white; height: 100%; font-size: 15px; line-height: 40px; width: 1250px; }
+#entete-actions { float: right; width: 125px; height: 100%; padding-top: 30px; text-align: right; }
 #contenu { width:100%; margin-top:15px; }
+
 
 nav a { padding: 5px 10px; text-decoration: none; margin-right: 10px; margin-top: 10px; display: inline-block; background-color: #eee; border-radius: 4px; }
 nav a:visited, a:link { color: #607D8B; }
 nav a:hover { color: #039be5; background-color: #CFD8DC; }
 nav a.active { color: white; background-color: #6b6159; font-weight: bold; }
+
+.mat-sidenav-container { height: 120px; background: none; }

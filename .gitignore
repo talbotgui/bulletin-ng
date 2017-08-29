@@ -1,6 +1,7 @@
 # misc & compiled output
 /build/*
 /dist/*
+.scannerwork
 package-lock.json
 
 # dependencies

@@ -22,7 +22,7 @@
 					<th>Elèves</th>
 					<th>Compétences</th>
 					<th>Commentaire</th>
-					<th><i (click)="ajouterTemps()" mdTooltip="Ajouter un temps" class="fa fa-clock-o fa-lg"></i></th>
+					<th><em (click)="ajouterTemps()" mdTooltip="Ajouter un temps" class="fa fa-clock-o fa-lg"></em></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -49,7 +49,7 @@
 					</td>
 					<td>
 						<div *ngFor="let c of temp.competences; let i = index" style="display: inline-flex">
-							<i (click)="retirerCompetence(temp, i)" mdTooltip="Supprimer la compétence" class="fa fa-remove"></i>
+							<em (click)="retirerCompetence(temp, i)" mdTooltip="Supprimer la compétence" class="fa fa-remove"></em>
 							<compo-competence [temp]="temp" [tempIndexCompetence]="i"></compo-competence>
 							<br/>
 						</div>
@@ -58,13 +58,13 @@
 						<ckeditor [(ngModel)]="temp.commentaire" [config]="configCkEditorTemps" debounce="200"></ckeditor>
 					</td>
 					<td>
-						<i (click)="ajouterCompetence(temp)" mdTooltip="Ajouter une compétence" class="fa fa-cogs fa-lg"></i>
+						<em (click)="ajouterCompetence(temp)" mdTooltip="Ajouter une compétence" class="fa fa-cogs fa-lg"></em>
 						<br/>
-						<i (click)="retirerTemp(j)" mdTooltip="Supprimer le temps" class="fa fa-remove fa-lg"></i>
+						<em (click)="retirerTemp(j)" mdTooltip="Supprimer le temps" class="fa fa-remove fa-lg"></em>
 						<br/>
-						<i *ngIf="j !== 0" (click)="deplacerTemps(j, -1)" mdTooltip="Déplacer le temps vers le haut" class="fa fa-chevron-circle-up fa-lg"></i>
+						<em *ngIf="j !== 0" (click)="deplacerTemps(j, -1)" mdTooltip="Déplacer le temps vers le haut" class="fa fa-chevron-circle-up fa-lg"></em>
 						<br/>
-						<i *ngIf="j !== journal.temps.length-1" (click)="deplacerTemps(j, 1)" mdTooltip="Déplacer le temps vers le bas" class="fa fa-chevron-circle-down fa-lg"></i>
+						<em *ngIf="j !== journal.temps.length-1" (click)="deplacerTemps(j, 1)" mdTooltip="Déplacer le temps vers le bas" class="fa fa-chevron-circle-down fa-lg"></em>
 						<br/>
 					</td>
 				</tr>
