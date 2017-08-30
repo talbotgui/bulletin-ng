@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscriber } from 'rxjs/Subscriber';
-
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { MdSnackBar } from '@angular/material';
 
 import { saveAs } from 'file-saver';
@@ -21,7 +20,6 @@ export class SauvegardeService {
   private readonly HEADERS_APPEL_SERVEUR = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
   constructor(private http: HttpClient, private dataService: DataService, public snackBar: MdSnackBar) { }
-
 
   getNomDernierFichierSauvegardeDansBrowser() {
     if (typeof (Storage) !== 'undefined') {
@@ -56,7 +54,22 @@ export class SauvegardeService {
     }
     const corp = 'methode=liste';
     const params = { headers: this.HEADERS_APPEL_SERVEUR };
-    return this.http.post(this.URL_SERVEUR, corp, params);
+    return this.http.post<{ fichiers: string[] }>(this.URL_SERVEUR, corp, params);
+  }
+
+  // Si le browser contient le nom du dernier fichier sauvegardé et que le fichier sélectionné n'est pas le bon, demande de confirmation à l'utilisateur
+  validationEtConfirmationSiFichierNestPasLeDernierSauvegardeDansBrowser(nomFichier) {
+    const dernierNomFichier = this.getNomDernierFichierSauvegardeDansBrowser();
+
+    // Si le fichier chargé n'est pas le dernier sauvegardé, demande de confirmation
+    if (dernierNomFichier && dernierNomFichier !== nomFichier) {
+      return confirm('Le fichier que vous souhaitez chargé n\'est pas le dernier sauvegardé dans ce browser. Souhaitez tout de même le charger ?');
+    }
+
+    // Sinon, pas de soucis
+    else {
+      return true;
+    }
   }
 
   /**
@@ -64,6 +77,10 @@ export class SauvegardeService {
    */
   chargeAnneeDuFichier(fichier: string): void {
     if (SauvegardeService.horsReseau) {
+      return;
+    }
+    // Si le browser contient le nom du dernier fichier sauvegardé et que le fichier sélectionné n'est pas le bon, demande de confirmation à l'utilisateur
+    if (!this.validationEtConfirmationSiFichierNestPasLeDernierSauvegardeDansBrowser(fichier)) {
       return;
     }
     const corp = 'methode=charge&nomFichier=' + fichier;
@@ -84,17 +101,22 @@ export class SauvegardeService {
   /**
    * Parse le texte et l'envoie au service "dataService.setAnneeChargee"
    */
-  chargeAnneeDepuisText(contenu: string): void {
+  chargeAnneeDepuisText(nomFichier: string, contenu: string): void {
+    // Si le browser contient le nom du dernier fichier sauvegardé et que le fichier sélectionné n'est pas le bon, demande de confirmation à l'utilisateur
+    if (!this.validationEtConfirmationSiFichierNestPasLeDernierSauvegardeDansBrowser(nomFichier)) {
+      return;
+    }
     // Sauvegarde de l'instance dans le service DataService
     this.dataService.setAnneeChargee(JSON.parse(contenu));
+
     // notification
-    const message = 'Fichier chargé depuis un fichier local';
+    const message = 'Données chargées depuis le fichier local \'' + nomFichier + '\'';
     this.snackBar.open(message, null, { duration: 3000 });
   }
 
   /**
- * Execution de la sauvegarde par téléchargement et démarrage de cette même sauvegarde à un rythme régulier
- */
+   * Execution de la sauvegarde par téléchargement et démarrage de cette même sauvegarde à un rythme régulier
+   */
   sauvegardeAnneeParTelechargement(): void {
     // Mise en place de la sauvegarde automatique
     if (!this.getDateDerniereSauvegardeDeLaSession()) {
@@ -154,8 +176,9 @@ export class SauvegardeService {
         // Sauvegarde du nom du fichier dans le browser
         this.storeNomDernierFichierSauvegardeDansBrowser(nomFichier);
       },
-      (error) => {
-        console.log('error=' + error);
+      (error: HttpErrorResponse) => {
+        const message = 'Erreur durant la sauvegarde : {statut=' + error.status + ', message=' + error.message + '}';
+        this.snackBar.open(message, null, { duration: 3000 });
       }
     );
   }
