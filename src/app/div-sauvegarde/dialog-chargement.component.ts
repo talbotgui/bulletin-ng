@@ -8,6 +8,15 @@ import { DataService } from '../service/data.service';
 })
 export class DialogChargementComponent implements OnInit {
 
+  // Nom du dernier fichier sauvegardé sur ce browser
+  get nomDernierFichierSauvegarde(): string {
+    const nomDernierFichier = this.sauvegardeService.getNomDernierFichierSauvegardeDansBrowser();
+    if (nomDernierFichier) {
+      return nomDernierFichier;
+    } else {
+      return '';
+    }
+  }
   // Liste des fichier disponibles
   fichiers: string[];
 
@@ -16,6 +25,7 @@ export class DialogChargementComponent implements OnInit {
 
   // Données chargées depuis le chargement local
   jsonChargeDepuisFichierLocal = null;
+  nomFichierLocal: string;
 
   // Un constructeur pour se faire injecter les dépendances
   constructor(private sauvegardeService: SauvegardeService, private dataService: DataService) { }
@@ -40,13 +50,14 @@ export class DialogChargementComponent implements OnInit {
       this.jsonChargeDepuisFichierLocal = e.target['result'];
     };
     fr.readAsText(input.files[0]);
+    this.nomFichierLocal = event.srcElement.value.substring(event.srcElement.value.lastIndexOf('/') + event.srcElement.value.lastIndexOf('\\') + 2);
   }
 
   // A la validation du formulaire
   onDemandeChargement() {
     // Si c'est un chargement local
     if (this.jsonChargeDepuisFichierLocal) {
-      this.sauvegardeService.chargeAnneeDepuisText(this.jsonChargeDepuisFichierLocal);
+      this.sauvegardeService.chargeAnneeDepuisText(this.nomFichierLocal, this.jsonChargeDepuisFichierLocal);
     } else {
       this.sauvegardeService.chargeAnneeDuFichier(this.fichierSelectionne);
     }

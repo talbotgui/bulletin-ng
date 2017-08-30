@@ -23,6 +23,10 @@ describe('SauvegardeService', () => {
 
   // Pour réinitialiser le composant de test avant chaque test
   beforeEach(() => {
+
+    // Reset du localstorage
+    window.localStorage.clear();
+
     // Reset des mock
     mockito.reset(dataServiceMock);
 
@@ -117,10 +121,11 @@ describe('SauvegardeService', () => {
 
   it('chargeAnneeDepuisText - fichier minimaliste', () => {
     // Arrange
+    const nomDuFichier = 'fichier.json';
     const contenuDuFichier = '{}';
 
     // Act
-    sauvegardeService.chargeAnneeDepuisText(contenuDuFichier);
+    sauvegardeService.chargeAnneeDepuisText(nomDuFichier, contenuDuFichier);
 
     // Assert
     mockito.verify(dataServiceMock.setAnneeChargee(mockito.anything())).once();
@@ -128,10 +133,11 @@ describe('SauvegardeService', () => {
 
   it('chargeAnneeDepuisText - fichier minimal', () => {
     // Arrange
+    const nomDuFichier = 'fichier.json';
     const contenuDuFichier = JSON.stringify(donnees, null, 2);
 
     // Act
-    sauvegardeService.chargeAnneeDepuisText(contenuDuFichier);
+    sauvegardeService.chargeAnneeDepuisText(nomDuFichier, contenuDuFichier);
 
     // Assert
     mockito.verify(dataServiceMock.setAnneeChargee(mockito.anything())).once();

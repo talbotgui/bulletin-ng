@@ -6,6 +6,7 @@ import { TabCahierJournalComponent } from './tab-cahierjournal/tab-cahierjournal
 import { TabCompetenceComponent } from './tab-competence/tab-competence.component';
 import { TabEleveComponent } from './tab-eleve/tab-eleve.component';
 import { TabTableauDeBordComponent } from './tab-tableaudebord/tab-tableauDeBord.component';
+import { TabAideComponent } from './tab-aide/tab-aide.component';
 
 const routes: Routes = [
   // pour rediriger par défaut sur le dashboard
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'tab-competence-route', component: TabCompetenceComponent },
   { path: 'tab-eleve-route', component: TabEleveComponent },
   { path: 'tab-tableaudebord-route', component: TabTableauDeBordComponent },
-  { path: 'tab-journal-route', component: TabCahierJournalComponent }
+  { path: 'tab-journal-route', component: TabCahierJournalComponent },
+  { path: 'tab-aide-route', component: TabAideComponent }
 ];
 
 @NgModule({

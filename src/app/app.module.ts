@@ -24,6 +24,7 @@ import { DivSauvegardeComponent } from './div-sauvegarde/div-sauvegarde.componen
 import { DialogChargementComponent } from './div-sauvegarde/dialog-chargement.component';
 import { DialogSauvegardeComponent } from './div-sauvegarde/dialog-sauvegarde.component';
 import { TabTableauDeBordComponent } from './tab-tableaudebord/tab-tableauDeBord.component';
+import { TabAideComponent } from './tab-aide/tab-aide.component';
 import { ComposantNoteComponent } from './compo-note/compo-note.component';
 import { ComposantCompetenceeComponent } from './compo-competence/compo-competence.component';
 import { DialogLigneTableauDeBordComponent } from './tab-tableaudebord/dialog-ligneTableauDeBord.component';
@@ -45,7 +46,7 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [AppComponent, TabCompetenceComponent, TabEleveComponent, DivSauvegardeComponent,
     DialogChargementComponent, DialogSauvegardeComponent, TabTableauDeBordComponent, ComposantNoteComponent,
     MapValuesPipe, AttributesToMapPipe, DialogLigneTableauDeBordComponent, ComposantCompetenceeComponent,
-    TabCahierJournalComponent, DivSelecteurStyleComponent
+    TabCahierJournalComponent, DivSelecteurStyleComponent, TabAideComponent
   ],
 
   // Tous les composants à afficher dans un Dialog

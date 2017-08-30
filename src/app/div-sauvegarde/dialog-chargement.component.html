@@ -1,6 +1,11 @@
 <h2 md-dialog-title>Chargement d'une sauvegarde</h2>
 
 <md-dialog-content>
+	<div class="dernierFichierSauvegarde">
+		La dernière sauvegarde est : <br/><em>{{nomDernierFichierSauvegarde}}.</em>
+		<em class="fa fa-question-circle" mdTooltip="Si votre dernière sauvegarde n'apparait pas, consulter l'aide en cliquant sur le bouton en haut à droite de l'écran"></em>
+	</div>
+
 	<span>Sauvegarde locale</span>
 	<label [class]="jsonChargeDepuisFichierLocal ? 'inputFile inputFileDone' : 'inputFile'"> 
 		<input (change)="onSelectFichierLocal($event)" type="file"/>
