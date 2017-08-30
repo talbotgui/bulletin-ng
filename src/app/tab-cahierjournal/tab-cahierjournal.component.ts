@@ -18,19 +18,19 @@ export class TabCahierJournalComponent implements OnInit {
   };
 
   // Liste des heures pour la sélection de l'heure de début et de fin des temps
-  tempsDisponibles = [];
+  tempsDisponibles: string[] = [];
 
   // Liste des types de temps
-  typesDeTemps = [];
+  typesDeTemps: string[] = [];
 
   // Liste des élèves
-  eleves = [];
+  eleves: model.Eleve[] = [];
 
   // Filtre de date
   dateJournal: Date;
 
   // journal en cours d'édition
-  journal: model.Journal;
+  journal?: model.Journal;
 
   // Un constructeur pour se faire injecter les dépendances
   constructor(private dataService: DataService) { }
@@ -62,13 +62,17 @@ export class TabCahierJournalComponent implements OnInit {
     }
   }
   ajouterTemps() {
-    if (!this.journal.temps) {
-      this.journal.temps = [];
+    if (this.journal) {
+      if (!this.journal.temps) {
+        this.journal.temps = [];
+      }
+      this.journal.temps.push(new model.Temps());
     }
-    this.journal.temps.push(new model.Temps());
   }
   retirerTemp(index: number) {
-    this.journal.temps.splice(index, 1);
+    if (this.journal) {
+      this.journal.temps.splice(index, 1);
+    }
   }
   ajouterCompetence(temps: model.Temps) {
     temps.competences.push('#');
@@ -77,9 +81,11 @@ export class TabCahierJournalComponent implements OnInit {
     temps.competences.splice(index, 1);
   }
   deplacerTemps(index: number, delta: number) {
-    const index2 = index + delta;
-    const temp = this.journal.temps[index2];
-    this.journal.temps[index2] = this.journal.temps[index];
-    this.journal.temps[index] = temp;
+    if (this.journal) {
+      const index2 = index + delta;
+      const temp = this.journal.temps[index2];
+      this.journal.temps[index2] = this.journal.temps[index];
+      this.journal.temps[index] = temp;
+    }
   }
 }

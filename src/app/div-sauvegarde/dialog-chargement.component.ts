@@ -24,7 +24,7 @@ export class DialogChargementComponent implements OnInit {
   fichierSelectionne: string;
 
   // Données chargées depuis le chargement local
-  jsonChargeDepuisFichierLocal = null;
+  jsonChargeDepuisFichierLocal: string;
   nomFichierLocal: string;
 
   // Un constructeur pour se faire injecter les dépendances
@@ -46,7 +46,7 @@ export class DialogChargementComponent implements OnInit {
 
     // Lecture des données sur les navigateurs HTML5
     const fr = new FileReader();
-    fr.onloadend = (e) => {
+    fr.onloadend = (e: any) => {
       this.jsonChargeDepuisFichierLocal = e.target['result'];
     };
     fr.readAsText(input.files[0]);

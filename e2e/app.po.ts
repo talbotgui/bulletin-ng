@@ -1,5 +1,5 @@
 import { browser, by, element, WebElement } from 'protractor';
-import { FileDetector } from 'selenium-webdriver';
+import { By, FileDetector } from 'selenium-webdriver';
 import * as fs from 'fs';
 
 export class BulletinPage {
@@ -7,16 +7,16 @@ export class BulletinPage {
   navigateToRoot(): void {
     browser.get('/?offline');
   }
-  getText(selector) {
+  getText(selector: By) {
     return element(selector).getText();
   }
-  click(selector): void {
+  click(selector: By): void {
     element(selector).click();
   }
-  isVisible(selector) {
+  isVisible(selector: By) {
     return element(selector).isPresent();
   }
-  type(selector, text): void {
+  type(selector: By, text: string): void {
     element(selector).sendKeys(text);
   }
   patiente(temps: number) {

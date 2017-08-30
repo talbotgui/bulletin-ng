@@ -12,7 +12,7 @@ export class DivSauvegardeComponent {
   get messageSauvegarde() {
     let mess = this.sauvegardeService.getDateDerniereSauvegardeDeLaSession();
     if (!mess) {
-      mess = { message: '', date: null };
+      mess = { message: '', date: undefined };
     }
     return mess;
   }

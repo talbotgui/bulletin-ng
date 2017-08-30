@@ -2,7 +2,6 @@ import { BulletinPage } from './app.po';
 import * as selectors from './selectors';
 import * as path from 'path';
 
-
 /**
  * Pour que chaque test soit autonome, chaque test contient un scénario qui redémarre de l'ouverture de la page.
  * Les étapes de préparation du test sont dans la partie Arrange (de Arrange/Act/Assert) si et seulement si ces étapes ont été testées dans un autre test.

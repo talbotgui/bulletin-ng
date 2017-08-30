@@ -31,9 +31,9 @@ export class Competence {
 }
 
 export class Note {
-  id: string; idEleve: string; idItem: string; valeur: string; date: Date;
-  string; modalitesAide: string; constat: string; commentaire: string;
-  constructor(idEleve: string, idItem: string, valeur: string, date: Date, modalitesAide: string, constat: string, commentaire: string) {
+  id: string; idEleve?: string; idItem?: string; valeur: string; date?: Date;
+  modalitesAide?: string; constat?: string; commentaire?: string;
+  constructor(valeur: string, idEleve?: string, idItem?: string, date?: Date, modalitesAide?: string, constat?: string, commentaire?: string) {
     this.id = ModelUtil.getUID();
     this.idEleve = idEleve;
     this.idItem = idItem;
@@ -63,13 +63,13 @@ export class Annee {
   libellesTypeTempsJournal: string[];
   eleves: Eleve[]; competences: Competence[]; notes: Note[]; journal: Journal[];
   dateDerniereSauvegarde: Date; historique: Historique[]; erreursChargement: string[];
-  mapLibelleStatutEleve: object; mapLibelleNotes: object;
+  mapLibelleStatutEleve: any; mapLibelleNotes: any;
   mapLibelleStatutEleveMap: Map<string, string>; mapLibelleNotesMap: Map<string, string>;
   themeSelectionne: string;
 }
 export class SousLigneTableauDeBord {
-  competence: Competence; aide: Note; constatation: Note;
-  constructor(competence: Competence, constatation: Note, aide: Note) {
+  competence?: Competence; aide?: Note; constatation?: Note;
+  constructor(competence?: Competence, constatation?: Note, aide?: Note) {
     this.competence = competence;
     this.constatation = constatation;
     this.aide = aide;
@@ -92,7 +92,7 @@ export class LigneTableauDeBord {
   get constat() {
     if (this.sousLignes) {
       for (const sousLigne of this.sousLignes) {
-        if (sousLigne.constatation) {
+        if (sousLigne.constatation && sousLigne.constatation.constat) {
           return sousLigne.constatation.constat;
         }
       }
@@ -109,7 +109,7 @@ export class LigneTableauDeBord {
   get aide() {
     if (this.sousLignes) {
       for (const sousLigne of this.sousLignes) {
-        if (sousLigne.aide) {
+        if (sousLigne.aide && sousLigne.aide.modalitesAide) {
           return sousLigne.aide.modalitesAide;
         }
       }
@@ -126,21 +126,23 @@ export class LigneTableauDeBord {
 
     // Creation des sousLignes pour les constations
     for (const constatation of constatations) {
-      this.sousLignes.push(new SousLigneTableauDeBord(mapCompetences.get(constatation.idItem), constatation, null));
+      if (constatation.idItem) {
+        this.sousLignes.push(new SousLigneTableauDeBord(mapCompetences.get(constatation.idItem), constatation, undefined));
+      }
     }
 
     // Creation/complétion des sousLignes pour les constations
     for (const aide of aides) {
 
       // Recherche de la sousLigne par identifiant de competence
-      const sousLigneTrouvee = this.sousLignes.find((l) => l.competence.id === aide.idItem);
+      const sousLigneTrouvee = this.sousLignes.find((l) => l.competence !== undefined && l.competence.id === aide.idItem);
       if (sousLigneTrouvee && !sousLigneTrouvee.aide) {
         sousLigneTrouvee.aide = aide;
       }
 
       // Si pas trouvé, création d'une sousLigne
-      else {
-        this.sousLignes.push(new SousLigneTableauDeBord(mapCompetences.get(aide.idItem), null, aide));
+      else if (aide.idItem) {
+        this.sousLignes.push(new SousLigneTableauDeBord(mapCompetences.get(aide.idItem), undefined, aide));
       }
     }
   }

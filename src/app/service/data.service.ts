@@ -61,10 +61,10 @@ export class DataService {
   }
 
   /** Pour ajouter un journal */
-  ajouterJournal(date: Date): model.Journal {
+  ajouterJournal(date: Date): model.Journal | undefined {
     // Cas où aucune année n'est chargée
     if (!this.anneeChargee) {
-      return null;
+      return undefined;
     } else {
 
       // Cas d'un journal déjà existant
@@ -84,7 +84,7 @@ export class DataService {
   }
 
   /** Pour obtenir le journal d'un jour précis */
-  getJournal(date: Date): model.Journal {
+  getJournal(date: Date): model.Journal | undefined {
     if (this.cacheMapDateJournal.size === 0 && this.anneeChargee) {
       for (const journal of this.anneeChargee.journal) {
         this.cacheMapDateJournal.set(new Date(journal.date).getTime(), journal);
@@ -96,7 +96,7 @@ export class DataService {
   /**
    * Obtenir une compétence par sa date.
    */
-  getCompetence(idCompetence: string): model.Competence {
+  getCompetence(idCompetence: string): model.Competence | undefined {
     let competence = this.cacheMapCompetence.get(idCompetence);
     if (competence) {
       return competence;
@@ -107,7 +107,9 @@ export class DataService {
           break;
         }
       }
-      this.cacheMapCompetence.set(idCompetence, competence);
+      if (competence) {
+        this.cacheMapCompetence.set(idCompetence, competence);
+      }
     }
     return competence;
   }
@@ -115,7 +117,7 @@ export class DataService {
    * Calcul le libellé de la compétence à partir de son ID.
    * Si idCompetenceRacine est précisé, le libellé commence à cette compétence
    */
-  getLibelleCompletCompetence(idCompetence: string, idCompetenceRacine: string): string {
+  getLibelleCompletCompetence(idCompetence: string, idCompetenceRacine?: string): string {
     let libelle = this.cacheMapLibelleCompletCompetence.get(idCompetence + idCompetenceRacine);
     if (libelle) {
       return libelle;
@@ -284,19 +286,21 @@ export class DataService {
           indexPeriode++;
         }
       }
-      const note = new model.Note(ligne.idEleve, ligne.idDomaine, '', this.anneeChargee.periodes[indexPeriode].debut, aide, constat, '');
+      const note = new model.Note('', ligne.idEleve, ligne.idDomaine, this.anneeChargee.periodes[indexPeriode].debut, aide, constat, '');
       this.anneeChargee.notes.push(note);
       const competence = this.getCompetence(ligne.idDomaine);
-      if (ajoutSurPeriodeEvaluee) {
-        ligne.sousLignes.push(new model.SousLigneTableauDeBord(competence, note, null));
-      } else {
-        ligne.sousLignes.push(new model.SousLigneTableauDeBord(competence, null, note));
+      if (competence) {
+        if (ajoutSurPeriodeEvaluee) {
+          ligne.sousLignes.push(new model.SousLigneTableauDeBord(competence, note, undefined));
+        } else {
+          ligne.sousLignes.push(new model.SousLigneTableauDeBord(competence, undefined, note));
+        }
       }
     }
   }
 
   /** Fournit les lignes de données pour un tableau de bord. */
-  getListeLigneTableauDeBord(eleve: model.Eleve, periodeEvaluee: model.Periode): model.LigneTableauDeBord[] {
+  getListeLigneTableauDeBord(eleve?: model.Eleve, periodeEvaluee?: model.Periode): model.LigneTableauDeBord[] {
 
     // Si aucune année chargée, aucune données
     if (!this.anneeChargee || !eleve || !periodeEvaluee) {
@@ -305,9 +309,11 @@ export class DataService {
 
     const liste: model.LigneTableauDeBord[] = [];
     const indexPeriodeEvaluee = this.anneeChargee.periodes.findIndex((p) => p === periodeEvaluee);
-    let periodePreparee = null;
+    let periodePreparee: model.Periode | undefined;
     if (indexPeriodeEvaluee < this.anneeChargee.periodes.length - 1) {
       periodePreparee = this.anneeChargee.periodes[indexPeriodeEvaluee + 1];
+    } else {
+      periodePreparee = undefined;
     }
 
     // Création de la map des compétences
@@ -315,37 +321,43 @@ export class DataService {
 
     // Récupération des notes de l'élève sur la période évaluée triées par compétence
     const notesElevePeriodeEvaluee = this.anneeChargee.notes
-      .filter((note) => note.idEleve === eleve.id && periodeEvaluee.debut <= note.date && note.date <= periodeEvaluee.fin)
-      .sort((a, b) => a.idItem.localeCompare(b.idItem));
+      .filter((note) => note && note.date && note.idEleve === eleve.id && periodeEvaluee.debut <= note.date && note.date <= periodeEvaluee.fin)
+      .sort((a, b) => (a.idItem !== undefined && b.idItem !== undefined) ? a.idItem.localeCompare(b.idItem) : 0);
     // Récupération des notes de l'élève sur la période préparée triées par compétence
-    let notesElevePeriodePreparee = [];
+    let notesElevePeriodePreparee: model.Note[] = [];
     if (periodePreparee) {
       notesElevePeriodePreparee = this.anneeChargee.notes
-        .filter((note) => note.idEleve === eleve.id && periodePreparee.debut <= note.date && note.date <= periodePreparee.fin)
-        .sort((a, b) => a.idItem.localeCompare(b.idItem));
+        .filter((note) => note.date && note.idEleve === eleve.id && periodePreparee && periodePreparee.debut <= note.date && note.date <= periodePreparee.fin)
+        .sort((a, b) => (a.idItem !== undefined && b.idItem !== undefined) ? a.idItem.localeCompare(b.idItem) : 0);
     }
 
     // Création d'une map avec toutes les notes regroupées par idCompetenceNiveau3
     const mapNotesEleve: Map<string, { eval: model.Note[], prepa: model.Note[] }> = new Map();
     notesElevePeriodeEvaluee.forEach((note, i) => {
-      const idCompetenceNiveau3 = this.calculIdCompetenceNiveau3(note.idItem, mapCompetences);
-      if (!mapNotesEleve.get(idCompetenceNiveau3)) {
-        mapNotesEleve.set(idCompetenceNiveau3, { eval: [note], prepa: [] });
-      } else {
-        mapNotesEleve.get(idCompetenceNiveau3).eval.push(note);
+      if (note.idItem) {
+        const idCompetenceNiveau3 = this.calculIdCompetenceNiveau3(note.idItem, mapCompetences);
+        const element = mapNotesEleve.get(idCompetenceNiveau3);
+        if (!element) {
+          mapNotesEleve.set(idCompetenceNiveau3, { eval: [note], prepa: [] });
+        } else {
+          element.eval.push(note);
+        }
       }
     });
     notesElevePeriodePreparee.forEach((note, i) => {
-      const idCompetenceNiveau3 = this.calculIdCompetenceNiveau3(note.idItem, mapCompetences);
-      if (!mapNotesEleve.get(idCompetenceNiveau3)) {
-        mapNotesEleve.set(idCompetenceNiveau3, { eval: [], prepa: [note] });
-      } else {
-        mapNotesEleve.get(idCompetenceNiveau3).prepa.push(note);
+      if (note.idItem) {
+        const idCompetenceNiveau3 = this.calculIdCompetenceNiveau3(note.idItem, mapCompetences);
+        const element = mapNotesEleve.get(idCompetenceNiveau3);
+        if (!element) {
+          mapNotesEleve.set(idCompetenceNiveau3, { eval: [], prepa: [note] });
+        } else {
+          element.prepa.push(note);
+        }
       }
     });
 
     mapNotesEleve.forEach((notes: { eval: model.Note[], prepa: model.Note[] }, idCompetenceNiveau3: string) => {
-      const nomDomaine = this.getLibelleCompletCompetence(idCompetenceNiveau3, null);
+      const nomDomaine = this.getLibelleCompletCompetence(idCompetenceNiveau3);
       liste.push(new model.LigneTableauDeBord(idCompetenceNiveau3, nomDomaine, notes.eval, notes.prepa, mapCompetences, eleve.id, indexPeriodeEvaluee));
     });
 
@@ -363,7 +375,10 @@ export class DataService {
     let idParent = idCompetence;
     while (idParent !== '#') {
       ancetres.push(idParent);
-      idParent = mapCompetences.get(idParent).parent;
+      const parent = mapCompetences.get(idParent);
+      if (parent) {
+        idParent = parent.parent;
+      }
     }
     return ancetres;
   }

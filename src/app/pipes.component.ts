@@ -5,9 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class MapValuesPipe implements PipeTransform {
 
   transform(value: any, args?: any[]): Array<{ key: string, val: string }> {
-    const returnArray = [];
+    const returnArray: any[] = [];
 
-    value.forEach((entryVal, entryKey) => {
+    value.forEach((entryVal: any, entryKey: any) => {
       returnArray.push({
         key: entryKey,
         val: entryVal

@@ -73,7 +73,7 @@ describe('DataService', () => {
 
   it('getListeLigneTableauDeBord ne renvoie rien sans année', () => {
     // Assert
-    expect(dataServiceToTest.getListeLigneTableauDeBord(null, null).length).toBe(0);
+    expect(dataServiceToTest.getListeLigneTableauDeBord(undefined, undefined).length).toBe(0);
   });
 
   it('getListeLigneTableauDeBord ne renvoie rien avec une année et sans paramètres', () => {
@@ -82,7 +82,7 @@ describe('DataService', () => {
     dataServiceToTest.setAnneeChargee(annee);
 
     // Assert
-    expect(dataServiceToTest.getListeLigneTableauDeBord(null, null).length).toBe(0);
+    expect(dataServiceToTest.getListeLigneTableauDeBord(undefined, undefined).length).toBe(0);
   });
 
   it('getListeLigneTableauDeBord renvoie des lignes avec une année et des paramètres (1ère période)', () => {
@@ -112,8 +112,8 @@ describe('DataService', () => {
     expect(resultat.length).toBe(1);
     expect(resultat[0].nomDomaine).toBe('Compétences travaillées > CYCLE 2 > Questionner le monde > Imaginer, réaliser');
     expect(resultat[0].sousLignes.length).toBe(1);
-    expect(resultat[0].sousLignes[0].aide).toBeNull();
-    expect(resultat[0].sousLignes[0].constatation).not.toBeNull();
+    expect(resultat[0].sousLignes[0].aide).toBeUndefined();
+    expect(resultat[0].sousLignes[0].constatation).not.toBeUndefined();
   });
 
 });

@@ -37,7 +37,7 @@ export class SauvegardeService {
     }
   }
 
-  getDateDerniereSauvegardeDeLaSession(): { message: string, date: Date } {
+  getDateDerniereSauvegardeDeLaSession(): { message: string, date?: Date } {
     return SauvegardeService.dateDerniereSauvegardeDeLaSession;
   }
 
@@ -58,7 +58,7 @@ export class SauvegardeService {
   }
 
   // Si le browser contient le nom du dernier fichier sauvegardé et que le fichier sélectionné n'est pas le bon, demande de confirmation à l'utilisateur
-  validationEtConfirmationSiFichierNestPasLeDernierSauvegardeDansBrowser(nomFichier) {
+  validationEtConfirmationSiFichierNestPasLeDernierSauvegardeDansBrowser(nomFichier: string) {
     const dernierNomFichier = this.getNomDernierFichierSauvegardeDansBrowser();
 
     // Si le fichier chargé n'est pas le dernier sauvegardé, demande de confirmation
@@ -93,7 +93,7 @@ export class SauvegardeService {
 
         // notification
         const message = 'Fichier \'' + fichier + '\' chargé depuis le serveur';
-        this.snackBar.open(message, null, { duration: 3000 });
+        this.snackBar.open(message, undefined, { duration: 3000 });
       }
     );
   }
@@ -111,7 +111,7 @@ export class SauvegardeService {
 
     // notification
     const message = 'Données chargées depuis le fichier local \'' + nomFichier + '\'';
-    this.snackBar.open(message, null, { duration: 3000 });
+    this.snackBar.open(message, undefined, { duration: 3000 });
   }
 
   /**
@@ -149,7 +149,7 @@ export class SauvegardeService {
   private sauvegardeAnneeSurServeurExecution(): void {
     // Pas de sauvegarde réseau si horsReseau
     if (SauvegardeService.horsReseau) {
-      return null;
+      return;
     }
 
     // Stockage de la date de sauvegarde
@@ -172,13 +172,13 @@ export class SauvegardeService {
     this.http.post<model.Annee>(this.URL_SERVEUR, paramsSansBug, { headers: this.HEADERS_APPEL_SERVEUR }).subscribe(
       (dataOk) => {
         const message = 'Données sauvegardées sur le serveur dans le fichier \'' + nomFichier + '\'';
-        this.snackBar.open(message, null, { duration: 3000 });
+        this.snackBar.open(message, undefined, { duration: 3000 });
         // Sauvegarde du nom du fichier dans le browser
         this.storeNomDernierFichierSauvegardeDansBrowser(nomFichier);
       },
       (error: HttpErrorResponse) => {
         const message = 'Erreur durant la sauvegarde : {statut=' + error.status + ', message=' + error.message + '}';
-        this.snackBar.open(message, null, { duration: 3000 });
+        this.snackBar.open(message, undefined, { duration: 3000 });
       }
     );
   }
@@ -204,6 +204,6 @@ export class SauvegardeService {
 
     // notification
     const message = 'Données sauvegardées par téléchargement';
-    this.snackBar.open(message, null, { duration: 3000 });
+    this.snackBar.open(message, undefined, { duration: 3000 });
   }
 }

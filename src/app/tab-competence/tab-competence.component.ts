@@ -14,7 +14,7 @@ export class TabCompetenceComponent implements OnInit {
   filtre: string;
 
   // Noeuds à afficher
-  noeuds = [];
+  noeuds: Noeud[] = [];
 
   // Instance de l'abre
   @ViewChild(TreeComponent)
@@ -36,7 +36,7 @@ export class TabCompetenceComponent implements OnInit {
     for (const competence of competences) {
 
       // création du noeud et ajout dans la map
-      const noeud: Noeud = new Noeud(competence.id, competence.parent, competence.text, null);
+      const noeud: Noeud = new Noeud(competence.id, competence.parent, competence.text, []);
       mapNoeuds.set(competence.id, noeud);
 
       // Si c'est un noeud ROOT, on l'ajoute
@@ -46,7 +46,7 @@ export class TabCompetenceComponent implements OnInit {
 
       // Sinon on insert le noeud dans la liste des enfants de son parent
       else {
-        const parent: Noeud = mapNoeuds.get(competence.parent);
+        const parent: Noeud | undefined = mapNoeuds.get(competence.parent);
         if (parent) {
           if (!parent.children) {
             parent.children = [];

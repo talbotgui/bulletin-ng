@@ -21,7 +21,7 @@ export class ComposantCompetenceeComponent {
 
   // Libellé complet de la compétence sélectionnée
   get libelleCompletCompetenceSelectionnee(): string {
-    if (this.note) {
+    if (this.note && this.note.idItem) {
       return this.dataService.getLibelleCompletCompetence(this.note.idItem, this.idCompetenceRacine);
     } else if (this.temp) {
       return this.dataService.getLibelleCompletCompetence(this.temp.competences[this.tempIndexCompetence], this.idCompetenceRacine);
@@ -32,7 +32,7 @@ export class ComposantCompetenceeComponent {
 
   // Liste des enfants
   get listeCompetenceEnfant(): model.Competence[] {
-    if (this.note) {
+    if (this.note && this.note.idItem) {
       return this.dataService.getListeCompetencesEnfant(this.note.idItem);
     } else if (this.temp) {
       return this.dataService.getListeCompetencesEnfant(this.temp.competences[this.tempIndexCompetence]);
@@ -46,7 +46,7 @@ export class ComposantCompetenceeComponent {
 
   // Pour remonter d'un niveau
   selectionneParent() {
-    if (this.note && this.note.idItem !== this.idCompetenceRacine) {
+    if (this.note && this.note.idItem && this.note.idItem !== this.idCompetenceRacine) {
       const competence = this.dataService.getCompetence(this.note.idItem);
       if (competence && competence.parent) {
         this.note.idItem = competence.parent;
