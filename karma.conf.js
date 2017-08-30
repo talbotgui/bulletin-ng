@@ -12,17 +12,15 @@ module.exports = function (config) {
     // Liste des plugins à charger
     plugins: [
       require('karma-jasmine'),
-      require('karma-coverage'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
-      require('karma-junit-reporter'),
-      require('karma-coverage-istanbul-reporter'),
       require('@angular/cli/plugins/karma')
     ],
     // Nécessaire pour l'exécution des tests Jasmine
     client: { clearContext: false },
     // Liste des rapporteurs à déclencher
-    reporters: ['progress', 'kjhtml', 'junit'],
+    // kjhtml : pour avoir le résumé dans le navigateur
+    reporters: ['progress', 'kjhtml'],
     // Port utilisé par Karma
     port: 9876,
     // Couleurs dans les logs
@@ -39,19 +37,7 @@ module.exports = function (config) {
     customLaunchers: { ChromeDebugging: { base: 'Chrome', flags: ['--remote-debugging-port=9333'] } },
     // Le(s) browser(s) à utiliser pour les tests
     browsers: ['ChromeDebugging'],
-    // Configuration pour Istanbul
-    coverageIstanbulReporter: {
-      // Types des rapports
-      reports: ['html', 'lcovonly', 'text-summary', 'json'],
-      // Répertoire de sortie
-      dir: path.join(__dirname, 'build/%browser%/coverage/'),
-      // if using webpack and pre-loaders, work around webpack breaking the source path
-      //fixWebpackSourcePaths: true,
-      //skipFilesWithNoCoverage: false
-    },
     // Configuration pour Angular : mode dev
-    angularCli: { environment: 'dev' },
-    // Configuration pour le junit reporter
-    junitReporter: { outputDir: './build/', outputFile: 'test-results.xml' }
+    angularCli: { environment: 'dev' }
   });
 };

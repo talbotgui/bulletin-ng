@@ -26,7 +26,7 @@ module.exports = function (config) {
     // Port utilisé par Karma
     port: 9876,
     // Couleurs dans les logs
-    colors: true,
+    colors: false,
     // Niveau de log
     logLevel: config.LOG_INFO,
     // Active la surveillance des fichiers et la ré-exécution des tests en cas de modification
@@ -38,9 +38,9 @@ module.exports = function (config) {
     // Configuration pour Istanbul
     coverageIstanbulReporter: {
       // Types des rapports
-      reports: ['html', 'lcovonly', 'text-summary', 'json'],
+      reports: ['html', 'lcovonly'],
       // Répertoire de sortie
-      dir: path.join(__dirname, 'build/%browser%/coverage/'),
+      dir: path.join(__dirname, 'build/coverage/'),
       // if using webpack and pre-loaders, work around webpack breaking the source path
       //fixWebpackSourcePaths: true,
       //skipFilesWithNoCoverage: false
@@ -48,6 +48,6 @@ module.exports = function (config) {
     // Configuration pour Angular : mode dev
     angularCli: { environment: 'dev' },
     // Configuration pour le junit reporter
-    junitReporter: { outputDir: './build/', outputFile: 'test-results.xml' }
+    junitReporter: { outputDir: './build/', outputFile: 'test-results.xml', useBrowserName: false, xmlVersion: '1' }
   });
 };

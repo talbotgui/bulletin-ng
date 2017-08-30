@@ -61,7 +61,7 @@ import { AppRoutingModule } from './app-routing.module';
     DataService, SauvegardeService
   ],
 
-  // Les modules import�s
+  // Les modules importés
   imports: [
 
     // Des modules classiques
