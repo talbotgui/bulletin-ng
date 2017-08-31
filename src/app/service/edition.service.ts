@@ -186,7 +186,11 @@ export class EditionService {
         }
     }
     private nettoieString(chaine: string): string {
-        return chaine.replace(this.REGEX_CR, '<br/>');
+        if (chaine) {
+            return chaine.replace(this.REGEX_CR, '<br/>');
+        } else {
+            return '';
+        }
     }
     private ouvrePopup(contenu: string, titre: string): void {
 
