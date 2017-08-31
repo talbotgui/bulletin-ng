@@ -1,8 +1,8 @@
 <!-- Filtres -->
-<md-chip-list class="filtres" [selectable]="true">
+<md-chip-list class="filtres listeEleves" [selectable]="true">
 	<md-chip *ngFor="let eleve of eleves" (click)="onSelectEleve(eleve)" [class.filtreSelectionne]="eleve === eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</md-chip>
 </md-chip-list>
-<md-chip-list class="filtres" [selectable]="true">
+<md-chip-list class="filtres listePeriodes" [selectable]="true">
 	<md-chip *ngFor="let periode of periodes" (click)="onSelectPeriode(periode)" [class.filtreSelectionne]="periode === periodeSelectionnee">{{periode.nom}}</md-chip>
 </md-chip-list>
 

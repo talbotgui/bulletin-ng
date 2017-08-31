@@ -24,7 +24,7 @@ export class DivSauvegardeComponent {
 
   // A la demande de chargement d'un fichier
   ouvreDialogChargement() {
-    this.dialog.open(DialogChargementComponent, { height: '310px', width: '350px' });
+    this.dialog.open(DialogChargementComponent, { height: '350px', width: '400px' });
   }
 
   // A la demande de sauvegarde
