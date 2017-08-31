@@ -16,14 +16,13 @@ export class Cursus {
 export class Eleve {
   static readonly CODE_STATUT_DANS_LA_CLASSE = '2';
 
-  id: string; nom: string; prenom: string; dateNaissance: Date;
+  dateNaissance: Date;
   pere: string; mere: string; fratrie: string;
   adresses: string; telephones: string;
   statut: string; bilans: string; cursus: Cursus[];
-  dateAdmission: Date; accueil: Date; datesPPA: Date; datesPAP: Date; datesESS: Date;
-  constructor(id: string, nom: string, prenom: string) {
-    this.id = id; this.nom = nom; this.prenom = prenom;
-  }
+  dateAdmission: Date; accueil: string; datesPPA: string; datesPAP: string; datesESS: string;
+
+  constructor(public id: string, public nom: string, public prenom: string) { }
 }
 
 export class Competence {
@@ -31,17 +30,9 @@ export class Competence {
 }
 
 export class Note {
-  id: string; idEleve?: string; idItem?: string; valeur: string; date?: Date;
-  modalitesAide?: string; constat?: string; commentaire?: string;
-  constructor(valeur: string, idEleve?: string, idItem?: string, date?: Date, modalitesAide?: string, constat?: string, commentaire?: string) {
+  id: string;
+  constructor(public valeur: string, public idEleve?: string, public idItem?: string, public date?: Date, public modalitesAide?: string, public constat?: string, public commentaire?: string) {
     this.id = ModelUtil.getUID();
-    this.idEleve = idEleve;
-    this.idItem = idItem;
-    this.valeur = valeur;
-    this.date = date;
-    this.modalitesAide = modalitesAide;
-    this.constat = constat;
-    this.commentaire = commentaire;
   }
 }
 
@@ -68,18 +59,9 @@ export class Annee {
   themeSelectionne: string;
 }
 export class SousLigneTableauDeBord {
-  competence?: Competence; aide?: Note; constatation?: Note;
-  constructor(competence?: Competence, constatation?: Note, aide?: Note) {
-    this.competence = competence;
-    this.constatation = constatation;
-    this.aide = aide;
-  }
+  constructor(public competence?: Competence, public constatation?: Note, public aide?: Note) { }
 }
 export class LigneTableauDeBord {
-  idEleve: string;
-  indexPeriodeEvaluee: number;
-  idDomaine: string;
-  nomDomaine: string;
   sousLignes: SousLigneTableauDeBord[];
 
   set constat(value: string) {
@@ -117,12 +99,8 @@ export class LigneTableauDeBord {
     return '';
   }
 
-  constructor(idDomaine: string, nomDomaine: string, constatations: Note[] = [], aides: Note[] = [], mapCompetences: Map<string, Competence>, idEleve: string, indexPeriodeEvaluee: number) {
-    this.idDomaine = idDomaine;
-    this.nomDomaine = nomDomaine;
+  constructor(public idDomaine: string, public nomDomaine: string, constatations: Note[] = [], aides: Note[] = [], mapCompetences: Map<string, Competence>, public idEleve: string, public indexPeriodeEvaluee: number) {
     this.sousLignes = [];
-    this.idEleve = idEleve;
-    this.indexPeriodeEvaluee = indexPeriodeEvaluee;
 
     // Creation des sousLignes pour les constations
     for (const constatation of constatations) {

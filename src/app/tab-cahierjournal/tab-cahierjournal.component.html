@@ -5,9 +5,13 @@
 </md-input-container>
 <md-datepicker #dateJournalPicker></md-datepicker>
 
-
 <fieldset *ngIf="!!dateJournal">
-	<legend>Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}}</legend>
+	<legend>
+		Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}}
+		<div class="actions">
+			<em *ngIf="journal" class="fa fa-print fa-2x" (click)="impression()"></em>
+		</div>
+	</legend>
 
 	<div *ngIf="!journal">Aucun journal à cette date. Voulez-vous en créer un ? <span class="clickable" (click)="creerJournal()">OUI</span></div>
 

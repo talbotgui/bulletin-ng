@@ -224,6 +224,17 @@ export class DataService {
     this.anneeChargee = annee;
   }
 
+  getEleve(id: string): model.Eleve | undefined {
+    if (this.anneeChargee) {
+      for (const e of this.anneeChargee.eleves) {
+        if (e.id === id) {
+          return e;
+        }
+      }
+    }
+    return undefined;
+  }
+
   /** Donne la liste complète des élèves */
   getListeEleve(): model.Eleve[] {
     if (this.anneeChargee) {

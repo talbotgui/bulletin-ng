@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DataService } from '../service/data.service';
+import { EditionService } from '../service/edition.service';
 import * as model from '../model/model';
 
 @Component({ selector: 'tab-eleve', templateUrl: './tab-eleve.component.html', styleUrls: ['./tab-eleve.component.css'] })
@@ -23,7 +24,7 @@ export class TabEleveComponent implements OnInit {
   mapStatutEleve: Map<string, string>;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private editionService: EditionService) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
@@ -34,5 +35,9 @@ export class TabEleveComponent implements OnInit {
   // A la sélection d'un élève
   onSelectEleve(eleve: model.Eleve) {
     this.eleveSelectionne = eleve;
+  }
+
+  impression(): void {
+    this.editionService.editionEleve(this.eleveSelectionne);
   }
 }

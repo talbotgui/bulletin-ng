@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DataService } from '../service/data.service';
+import { EditionService } from '../service/edition.service';
 import * as model from '../model/model';
 
 @Component({ selector: 'tab-cahierjournal', templateUrl: './tab-cahierjournal.component.html', styleUrls: ['./tab-cahierjournal.component.css'] })
@@ -33,7 +34,7 @@ export class TabCahierJournalComponent implements OnInit {
   journal?: model.Journal;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private editionService: EditionService) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
@@ -86,6 +87,12 @@ export class TabCahierJournalComponent implements OnInit {
       const temp = this.journal.temps[index2];
       this.journal.temps[index2] = this.journal.temps[index];
       this.journal.temps[index] = temp;
+    }
+  }
+
+  impression(): void {
+    if (this.journal) {
+      this.editionService.editionJournal(this.journal);
     }
   }
 }

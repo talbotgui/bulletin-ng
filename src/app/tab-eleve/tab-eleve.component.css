@@ -6,3 +6,5 @@
 .formulaireEleve .dateBilans textarea { width: 32%; height: 200px; }
 
 ckeditor { display: inline-flex; }
+
+div.actions { float: right; }

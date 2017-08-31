@@ -16,21 +16,22 @@ import 'hammerjs';
 
 // Tous les composants applicatifs de l'application
 import { AppComponent } from './app.component';
+import { ComposantCompetenceeComponent } from './compo-competence/compo-competence.component';
+import { ComposantNoteComponent } from './compo-note/compo-note.component';
+import { DialogChargementComponent } from './div-sauvegarde/dialog-chargement.component';
+import { DialogLigneTableauDeBordComponent } from './tab-tableaudebord/dialog-ligneTableauDeBord.component';
+import { DialogSauvegardeComponent } from './div-sauvegarde/dialog-sauvegarde.component';
+import { DivSauvegardeComponent } from './div-sauvegarde/div-sauvegarde.component';
 import { DivSelecteurStyleComponent } from './div-selecteurstyle/div-selecteurstyle.component';
+import { TabAideComponent } from './tab-aide/tab-aide.component';
 import { TabCahierJournalComponent } from './tab-cahierjournal/tab-cahierjournal.component';
 import { TabCompetenceComponent } from './tab-competence/tab-competence.component';
 import { TabEleveComponent } from './tab-eleve/tab-eleve.component';
-import { DivSauvegardeComponent } from './div-sauvegarde/div-sauvegarde.component';
-import { DialogChargementComponent } from './div-sauvegarde/dialog-chargement.component';
-import { DialogSauvegardeComponent } from './div-sauvegarde/dialog-sauvegarde.component';
 import { TabTableauDeBordComponent } from './tab-tableaudebord/tab-tableauDeBord.component';
-import { TabAideComponent } from './tab-aide/tab-aide.component';
-import { ComposantNoteComponent } from './compo-note/compo-note.component';
-import { ComposantCompetenceeComponent } from './compo-competence/compo-competence.component';
-import { DialogLigneTableauDeBordComponent } from './tab-tableaudebord/dialog-ligneTableauDeBord.component';
 
 // Les composants injectables
 import { DataService } from './service/data.service';
+import { EditionService } from './service/edition.service';
 import { SauvegardeService } from './service/sauvegarde.service';
 
 // Le composant contenant les routes
@@ -58,7 +59,7 @@ import { AppRoutingModule } from './app-routing.module';
     { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'never' } },
 
     // Les composants injectables
-    DataService, SauvegardeService
+    DataService, SauvegardeService, EditionService
   ],
 
   // Les modules importés

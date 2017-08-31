@@ -1,3 +1,8 @@
+<!-- Actions -->
+<div class="actions">
+	<em *ngIf="eleveSelectionne" class="fa fa-print fa-2x" (click)="impression()"></em>
+</div>
+
 <!-- Liste des élèves -->
 <md-chip-list class="listeEleves" [selectable]="true">
 	<md-chip *ngFor="let eleve of eleves" (click)="onSelectEleve(eleve); eleveForm.reset(eleve);" [class.eleveSelectionne]="eleve === eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</md-chip>
