@@ -74,7 +74,7 @@ export class DataService {
     else {
       let themeParDefaut = 'sobre';
       if (document.cookie.indexOf('theme') === 0) {
-        themeParDefaut = document.cookie.split('=')[1];
+        themeParDefaut = document.cookie.split('=')[1].split(';')[0];
       }
       return themeParDefaut;
     }
