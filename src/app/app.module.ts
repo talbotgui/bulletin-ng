@@ -18,6 +18,7 @@ import { AppComponent } from './app.component';
 import { ComposantCompetenceeComponent } from './compo-competence/compo-competence.component';
 import { ComposantNoteComponent } from './compo-note/compo-note.component';
 import { DialogChargementComponent } from './div-sauvegarde/dialog-chargement.component';
+import { DialogDuplicationComponent } from './tab-cahierjournal/dialog-duplication.component';
 import { DialogLigneTableauDeBordComponent } from './tab-tableaudebord/dialog-ligneTableauDeBord.component';
 import { DialogSauvegardeComponent } from './div-sauvegarde/dialog-sauvegarde.component';
 import { DivSauvegardeComponent } from './div-sauvegarde/div-sauvegarde.component';
@@ -48,11 +49,11 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [AppComponent, TabCompetenceComponent, TabEleveComponent, DivSauvegardeComponent,
     DialogChargementComponent, DialogSauvegardeComponent, TabTableauDeBordComponent, ComposantNoteComponent,
     MapValuesPipe, AttributesToMapPipe, DialogLigneTableauDeBordComponent, ComposantCompetenceeComponent,
-    TabCahierJournalComponent, DivSelecteurStyleComponent, TabAideComponent, TabTachesComponent
+    TabCahierJournalComponent, DivSelecteurStyleComponent, TabAideComponent, TabTachesComponent, DialogDuplicationComponent
   ],
 
   // Tous les composants à afficher dans un Dialog
-  entryComponents: [DialogChargementComponent, DialogSauvegardeComponent, DialogLigneTableauDeBordComponent],
+  entryComponents: [DialogChargementComponent, DialogSauvegardeComponent, DialogLigneTableauDeBordComponent, DialogDuplicationComponent],
 
   providers: [
     // Paramétrage global

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MdDialog } from '@angular/material';
+
+import { DialogDuplicationComponent } from './dialog-duplication.component';
 
 import { DataService } from '../service/data.service';
 import { EditionService } from '../service/edition.service';
@@ -38,7 +41,7 @@ export class TabCahierJournalComponent implements OnInit {
   journal?: model.Journal;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private dataService: DataService, private editionService: EditionService) { }
+  constructor(private dataService: DataService, private editionService: EditionService, public dialog: MdDialog) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
@@ -97,6 +100,20 @@ export class TabCahierJournalComponent implements OnInit {
   impression(): void {
     if (this.journal) {
       this.editionService.editionJournal(this.journal);
+    }
+  }
+
+  demandeDuplicationJournal(): void {
+    if (this.journal) {
+      const dialog = this.dialog.open(DialogDuplicationComponent, { height: '350px', width: '400px' }).componentInstance;
+      dialog.journal = this.journal;
+    }
+  }
+  demandeDuplicationTemps(temps: model.Temps): void {
+    if (this.journal) {
+      const dialog = this.dialog.open(DialogDuplicationComponent, { height: '350px', width: '400px' }).componentInstance;
+      dialog.journal = this.journal;
+      dialog.temps = temps;
     }
   }
 }

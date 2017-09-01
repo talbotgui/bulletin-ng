@@ -1,0 +1,17 @@
+<h2 md-dialog-title>Duplication depuis le journal</h2>
+
+<md-dialog-content>
+    <div *ngIf="!!journal">
+        Duplication <span *ngIf="!!temps">du temps '{{temps.nom}}</span> du journal du {{journal.date | date:'EEEE dd/MM/yyyy'}}
+        <br/>
+        <span>vers le journal du :</span>
+        <input [mdDatepicker]="myDatepicker" [(ngModel)]="dateCible" name="dateCible">
+        <md-datepicker-toggle [for]="myDatepicker"></md-datepicker-toggle>
+        <md-datepicker #myDatepicker></md-datepicker>
+    </div>
+</md-dialog-content>
+
+<md-dialog-actions>
+    <button class="button" md-dialog-close>Annuler</button>
+    <button class="button" md-dialog-close (click)="dupliquer()">Dupliquer</button>
+</md-dialog-actions>

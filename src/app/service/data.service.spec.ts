@@ -1,3 +1,6 @@
+import * as mockito from 'ts-mockito';
+import { MdSnackBar } from '@angular/material';
+
 import * as model from '../model/model';
 import { Jdd } from '../model/model-jdd';
 import { DataService } from '../service/data.service';
@@ -5,10 +8,16 @@ import { DataService } from '../service/data.service';
 describe('DataService', () => {
 
   let dataServiceToTest: DataService;
+  let snackBarMock: MdSnackBar;
+
+  beforeAll(() => {
+    // Creation du mock de DataService
+    snackBarMock = mockito.mock(MdSnackBar);
+  });
 
   beforeEach(() => {
     // Creation du service
-    dataServiceToTest = new DataService();
+    dataServiceToTest = new DataService(this.snackBarMock);
   });
 
   it('les simples restitutions de données ne renvoient pas de données sans année', () => {

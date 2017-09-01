@@ -9,7 +9,8 @@
 		<legend>
 			Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}}
 			<div class="actions">
-				<em *ngIf="journal" class="fa fa-print fa-2x" (click)="impression()"></em>
+				<em *ngIf="journal" class="fa fa-print fa-2x" mdTooltip="Imprimer" (click)="impression()"></em>
+				<em *ngIf="journal" class="fa fa-copy fa-2x" mdTooltip="Dupliquer" (click)="demandeDuplicationJournal()"></em>
 			</div>
 		</legend>
 
@@ -62,6 +63,8 @@
 							<ckeditor [(ngModel)]="temp.commentaire" [config]="configCkEditorTemps" debounce="200"></ckeditor>
 						</td>
 						<td>
+							<em (click)="demandeDuplicationTemps(temp)" mdTooltip="Dupliquer ce temps" class="fa fa-copy"></em>
+							<br/>
 							<em (click)="ajouterCompetence(temp)" mdTooltip="Ajouter une compétence" class="fa fa-cogs fa-lg"></em>
 							<br/>
 							<em (click)="retirerTemp(j)" mdTooltip="Supprimer le temps" class="fa fa-remove fa-lg"></em>

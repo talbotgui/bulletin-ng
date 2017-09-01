@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { MdSnackBar } from '@angular/material';
+
 import * as model from '../model/model';
 
 @Injectable()
@@ -13,6 +15,47 @@ export class DataService {
   private cacheMapCompetence: Map<string, model.Competence> = new Map<string, model.Competence>();
   private cacheMapLibelleCompletCompetence: Map<string, string> = new Map<string, string>();
   private cacheMapListeCompetencesEnfant: Map<string, model.Competence[]> = new Map<string, model.Competence[]>();
+
+  constructor(private snackBar: MdSnackBar) { }
+
+  dupliquerJournal(journal: model.Journal, dateCible: Date): void {
+    // Recherche du journal
+    const journalCible = this.getJournal(dateCible);
+
+    // Si journal déjà existant à cette date, notification
+    if (journalCible) {
+      const message = 'Un journal existe déjà pour la date sélectionnée !';
+      this.snackBar.open(message, undefined, { duration: 5000 });
+      return;
+    }
+
+    // Duplication du journal
+    const nouveauJournal = this.ajouterJournal(dateCible);
+    if (nouveauJournal) {
+      nouveauJournal.date = dateCible;
+      nouveauJournal.remarque = 'Duplication du journal du ' + journal.date + '<br/>' + journal.remarque;
+      nouveauJournal.temps = [];
+      for (const t of journal.temps) {
+        nouveauJournal.temps.push(this.dupliqueTemps(t));
+      }
+    }
+  }
+
+  dupliquerTemps(temps: model.Temps, dateCible: Date): void {
+    // Recherche du journal
+    const journalCible = this.getJournal(dateCible);
+
+    // Si journal non existant à cette date, notification
+    if (!journalCible) {
+      const message = 'Aucun journal n\'existe pour la date sélectionnée';
+      this.snackBar.open(message, undefined, { duration: 5000 });
+      return;
+    }
+
+    // Ajout du temps dupliqué
+    journalCible.temps.push(this.dupliqueTemps(temps));
+  }
+
 
   /** Retourne la liste des tâches */
   getListeTaches(): model.Tache[] {
@@ -442,5 +485,17 @@ export class DataService {
     } else {
       return '' + n;
     }
+  }
+  /** Fonction de manipulation de données */
+  private dupliqueTemps(t: model.Temps): model.Temps {
+    const nouveauTemps = new model.Temps();
+    nouveauTemps.commentaire = t.commentaire;
+    nouveauTemps.competences = t.competences.splice(0, 0);
+    nouveauTemps.debut = t.debut;
+    nouveauTemps.fin = t.fin;
+    nouveauTemps.eleves = t.eleves.splice(0, 0);
+    nouveauTemps.nom = t.nom;
+    nouveauTemps.type = t.type;
+    return nouveauTemps;
   }
 }
