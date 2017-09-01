@@ -14,7 +14,41 @@ export class DataService {
   private cacheMapLibelleCompletCompetence: Map<string, string> = new Map<string, string>();
   private cacheMapListeCompetencesEnfant: Map<string, model.Competence[]> = new Map<string, model.Competence[]>();
 
-  // Pour sauvegarder le theme
+  /** Retourne la liste des tâches */
+  getListeTaches(): model.Tache[] {
+    if (this.anneeChargee) {
+      return this.anneeChargee.taches;
+    } else {
+      return [];
+    }
+  }
+
+  supprimerTache(tache: model.Tache): void {
+    if (this.anneeChargee) {
+      const i = this.anneeChargee.taches.indexOf(tache);
+      this.anneeChargee.taches.splice(i, 1);
+    }
+  }
+
+  ajouterTache(tache: model.Tache): void {
+    if (this.anneeChargee) {
+      if (!this.anneeChargee.taches) {
+        this.anneeChargee.taches = [];
+      }
+      this.anneeChargee.taches.push(tache);
+    }
+  }
+
+  /** Duplication d'une tâche */
+  dupliquerTache(tache: model.Tache): model.Tache {
+    const echeances: model.Echeance[] = [];
+    for (const eche of tache.echeances) {
+      echeances.push(new model.Echeance(eche.nom, eche.date));
+    }
+    return new model.Tache('Copie de ' + tache.titre, echeances);
+  }
+
+  /** Pour sauvegarder le theme */
   setThemeSelectionne(theme: string): void {
     // Sauvegarde du theme dans les cookies
     document.cookie = 'theme=' + theme;

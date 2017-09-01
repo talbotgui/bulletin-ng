@@ -28,6 +28,7 @@ import { TabCahierJournalComponent } from './tab-cahierjournal/tab-cahierjournal
 import { TabCompetenceComponent } from './tab-competence/tab-competence.component';
 import { TabEleveComponent } from './tab-eleve/tab-eleve.component';
 import { TabTableauDeBordComponent } from './tab-tableaudebord/tab-tableauDeBord.component';
+import { TabTachesComponent } from './tab-taches/tab-taches.component';
 
 // Les composants injectables
 import { DataService } from './service/data.service';
@@ -47,7 +48,7 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [AppComponent, TabCompetenceComponent, TabEleveComponent, DivSauvegardeComponent,
     DialogChargementComponent, DialogSauvegardeComponent, TabTableauDeBordComponent, ComposantNoteComponent,
     MapValuesPipe, AttributesToMapPipe, DialogLigneTableauDeBordComponent, ComposantCompetenceeComponent,
-    TabCahierJournalComponent, DivSelecteurStyleComponent, TabAideComponent
+    TabCahierJournalComponent, DivSelecteurStyleComponent, TabAideComponent, TabTachesComponent
   ],
 
   // Tous les composants à afficher dans un Dialog

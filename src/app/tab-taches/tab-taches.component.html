@@ -1,0 +1,65 @@
+<div *ngIf="anneeChargee">
+    <span class="fa-stack fa-lg" (click)="creerTache()">
+        <i class="fa fa-circle-o fa-stack-2x"></i>
+        <i class="fa fa-plus fa-stack-1x"></i>
+    </span>
+
+    <md-grid-list cols="4" rowHeight="4:3">
+
+        <md-grid-tile *ngIf="nouvelleTache">
+            <md-card>
+                <md-card-header>
+                    <md-card-title>
+                        <span class="fa-stack action" (click)="ajouterEcheance()">
+                            <i class="fa fa-circle-o fa-stack-2x"></i>
+                            <i class="fa fa-plus fa-stack-1x"></i>
+                        </span>
+                        <input [(ngModel)]="nouvelleTache.titre" name="titre" placeholder="Titre" />
+                    </md-card-title>
+                </md-card-header>
+                <md-card-content>
+                    <div *ngFor="let eche of nouvelleTache.echeances">
+                        <input [(ngModel)]="eche.nom" name="aFaire" />
+                        <md-input-container>
+                            <input mdInput #inputDate="ngModel" [mdDatepicker]="datePicker" [(ngModel)]="eche.date" name="date" placeholder="Date" />
+                            <span>{{eche.date | date:'EEE dd/MM'}}</span>
+                            <button class="button" mdSuffix [mdDatepickerToggle]="datePicker"></button>
+                        </md-input-container>
+                        <md-datepicker #datePicker></md-datepicker>
+                        <br/>
+                    </div>
+                </md-card-content>
+                <md-card-actions>
+                    <button md-button *ngIf="!taches || taches.indexOf(nouvelleTache)===-1" (click)="ajouterLaNouvelleTache()">Ajouter</button>
+                    <button md-button *ngIf="!taches || taches.indexOf(nouvelleTache)===-1" (click)="annulerCreerTache()">Annuler</button>
+                    <button md-button *ngIf="taches && taches.indexOf(nouvelleTache)!==-1" (click)="annulerCreerTache()">Fermer</button>
+                </md-card-actions>
+            </md-card>
+        </md-grid-tile>
+
+        <md-grid-tile *ngFor="let tache of taches">
+            <md-card>
+                <md-card-header>
+                    <md-card-title>
+                        {{tache.titre}}
+                        <em class="fa fa-edit" mdTooltip="Editer" (click)="editer(tache)"></em>
+                        <em class="fa fa-copy" mdTooltip="Dupliquer" (click)="dupliquer(tache)"></em>
+                        <em class="fa fa-remove" mdTooltip="Supprimer" (click)="supprimer(tache)"></em>
+                    </md-card-title>
+                    <md-card-subtitle>
+                        {{calculeAvancement(tache)}} |
+                        <em class="fa fa-clock-o"></em>{{calculeProchaineEcheance(tache) | date:'EEEE dd/MM'}}
+                    </md-card-subtitle>
+                </md-card-header>
+                <md-card-content>
+                    <div *ngFor="let eche of tache.echeances">
+                        <em class="fa fa-check-square-o" *ngIf="!!eche.termine" (click)="eche.termine=false"></em>
+                        <em class="fa fa-square-o" *ngIf="!eche.termine" (click)="eche.termine=true"></em>
+                        <span>{{eche.nom}} pour le {{eche.date | date:'EEEE dd/MM'}}</span>
+                        <br/>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </md-grid-tile>
+    </md-grid-list>
+</div>

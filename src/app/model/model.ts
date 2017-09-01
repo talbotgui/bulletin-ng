@@ -48,6 +48,15 @@ export class Journal {
   date: Date; remarque: string; temps: Temps[];
 }
 
+export class Echeance {
+  termine: boolean;
+  constructor(public nom: string, public date: Date) { }
+}
+
+export class Tache {
+  constructor(public titre: string, public echeances: Echeance[]) { }
+}
+
 export class Annee {
   anneeScolaire: string; periodes: Periode[];
   enteteEdition: string; enseignant: string; cycleNiveau: string;
@@ -56,7 +65,7 @@ export class Annee {
   dateDerniereSauvegarde: Date; historique: Historique[]; erreursChargement: string[];
   mapLibelleStatutEleve: any; mapLibelleNotes: any;
   mapLibelleStatutEleveMap: Map<string, string>; mapLibelleNotesMap: Map<string, string>;
-  themeSelectionne: string;
+  themeSelectionne: string; taches: Tache[];
 }
 export class SousLigneTableauDeBord {
   constructor(public competence?: Competence, public constatation?: Note, public aide?: Note) { }
