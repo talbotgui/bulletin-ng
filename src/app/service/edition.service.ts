@@ -98,7 +98,7 @@ export class EditionService {
 
     editionJournal(journal: model.Journal): void {
 
-        const titre: string = 'Cahier journal du ' + this.formatDate(journal.date);
+        const titre: string = 'Cahier journal du ' + this.formatDate(journal.date, true);
 
         let contenu = '<!DOCTYPE html>';
         // suppression des header/footer sur FF
@@ -113,14 +113,16 @@ export class EditionService {
         contenu += '   .edition td,.edition  th { border: solid 1px black!important; }';
         contenu += '   .editionJournal h1 { padding-top: 15px; }';
         contenu += '   .editionJournal tbody td:nth-child(4) { text-align: left; max-width: 50%; word-break: break-all; }';
-        contenu += '   .cahierJournalZoneEcriture { min-height: 250px; min-width: 400px; }';
+        contenu += '   div.remarques { border: solid 1px darkgrey; margin-bottom: 20px; }';
+        contenu += '   td.competences { font-size: 12px; max-width: 300px; }';
+        contenu += '   td.cahierJournalZoneEcriture { min-width: 300px; }';
         contenu += '   td span { margin: 0px 15px; }';
         contenu += '  </style>';
         contenu += ' </head>';
         contenu += ' <body>';
         contenu += '  <div id=\'all\' class=\'edition editionJournal\'>';
         contenu += '   <div><h1>' + titre + '</h1></div>';
-        contenu += '   <div>Remarques : ' + journal.remarque + '</div>';
+        contenu += '   <div class="remarques"><u>Remarques :</u> ' + journal.remarque + '</div>';
         contenu += '   <table class=\'tablesorter-blue\'>';
         contenu += '    <thead>';
         contenu += '    <tr><th>Cadre</th><th>Eleves</th><th>Compétences</th><th>Commentaire</th><th>Notes manuscrites</th></tr>';
@@ -137,7 +139,7 @@ export class EditionService {
                 }
             }
             contenu += '  </td>';
-            contenu += '  <td>';
+            contenu += '  <td class="competences">';
             let i = 0;
             for (const comp of temp.competences) {
                 if (i !== 0) {
@@ -147,7 +149,7 @@ export class EditionService {
                 i++;
             }
             contenu += '  </td>';
-            contenu += '  <td>' + temp.commentaire + '</td>';
+            contenu += '  <td>' + this.nettoieString(temp.commentaire) + '</td>';
             contenu += '  <td class=\'cahierJournalZoneEcriture\'></td>';
             contenu += ' </tr>';
         }
@@ -167,13 +169,19 @@ export class EditionService {
     private piedDePage(): string {
         return 'piedDePage';
     }
-    private formatDate(d?: Date): string {
+    private formatDate(d?: Date, formatLong: boolean = false): string {
         if (d) {
             const date = new Date(d);
+            const mapJours = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+            const jour = mapJours[date.getDay()];
             const j = this.formatNumber(date.getDate());
             const m = this.formatNumber(date.getMonth() + 1);
             const y = date.getFullYear();
-            return j + '/' + m + '/' + y;
+            if (formatLong) {
+                return jour + ' ' + j + '/' + m + '/' + y;
+            } else {
+                return j + '/' + m + '/' + y;
+            }
         } else {
             return '';
         }
