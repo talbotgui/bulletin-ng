@@ -21,12 +21,9 @@
 
 			<input required minlength="3" #inputNom="ngModel" [(ngModel)]="eleveSelectionne.nom" name="nom" placeholder="Nom" />
 			<input required #inputPrenom="ngModel" [(ngModel)]="eleveSelectionne.prenom" name="prenom" placeholder="Prénom" />
-			<md-input-container>
-				<input mdInput required #inputDateNaissance="ngModel" [mdDatepicker]="naissanceDatepicker" [(ngModel)]="eleveSelectionne.dateNaissance"
-				 name="dateNaissance" placeholder="Date de naissance">
-				<button class="button" mdSuffix [mdDatepickerToggle]="naissanceDatepicker"></button>
-			</md-input-container>
-			<md-datepicker #naissanceDatepicker></md-datepicker>
+			<input mdInput required #inputDateNaissance="ngModel" [(ngModel)]="dateNaissanceEleveSelectionne" name="dateNaissanceEleveSelectionne"
+			 placeholder="Date de naissance" />
+
 			<md-select required #inputStatut="ngModel" [(ngModel)]="eleveSelectionne.statut" placeholder="Statut" name="statut">
 				<md-option *ngFor="let entry of mapStatutEleve | mapValues" [value]="entry.key">{{entry.val}}</md-option>
 			</md-select>

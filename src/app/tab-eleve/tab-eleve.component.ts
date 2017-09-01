@@ -23,6 +23,23 @@ export class TabEleveComponent implements OnInit {
   Object = Object;
   mapStatutEleve: Map<string, string>;
 
+  /**Bidouille très moche pour remplacer le DatePicker de material qui ne fonctionne pas avec l'i18n et dans un form */
+  get dateNaissanceEleveSelectionne(): string | undefined {
+    if (this.eleveSelectionne && this.eleveSelectionne.dateNaissance) {
+      return this.formatDate(new Date(this.eleveSelectionne.dateNaissance));
+    } else {
+      return undefined;
+    }
+  }
+
+  /**Bidouille très moche pour remplacer le DatePicker de material qui ne fonctionne pas avec l'i18n et dans un form */
+  set dateNaissanceEleveSelectionne(value: string | undefined) {
+    if (this.eleveSelectionne && value && value.length === 10) {
+      const str = value.split('/');
+      this.eleveSelectionne.dateNaissance = new Date(Number(str[2]), Number(str[1]) - 1, Number(str[0]), 12);
+    }
+  }
+
   // Un constructeur pour se faire injecter les dépendances
   constructor(private dataService: DataService, private editionService: EditionService) { }
 
@@ -39,5 +56,24 @@ export class TabEleveComponent implements OnInit {
 
   impression(): void {
     this.editionService.editionEleve(this.eleveSelectionne);
+  }
+
+  private formatDate(d?: Date): string {
+    if (d) {
+      const date = new Date(d);
+      const j = this.formatNumber(date.getDate());
+      const m = this.formatNumber(date.getMonth() + 1);
+      const y = date.getFullYear();
+      return j + '/' + m + '/' + y;
+    } else {
+      return '';
+    }
+  }
+  private formatNumber(n: number): string {
+    if (n < 10) {
+      return '0' + n;
+    } else {
+      return '' + n;
+    }
   }
 }

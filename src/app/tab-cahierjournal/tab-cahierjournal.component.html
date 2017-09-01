@@ -1,79 +1,80 @@
-<md-input-container>
-	<input mdInput #inputDateJournal="ngModel" [mdDatepicker]="dateJournalPicker" [(ngModel)]="dateJournal" name="dateJournal"
-	 placeholder="Date du journal" (ngModelChange)="onChangementDateJournal()" class="filtre">
-	<button class="button" mdSuffix [mdDatepickerToggle]="dateJournalPicker"></button>
-</md-input-container>
-<md-datepicker #dateJournalPicker></md-datepicker>
+<div *ngIf="!!anneeChargee">
 
-<fieldset *ngIf="!!dateJournal">
-	<legend>
-		Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}}
-		<div class="actions">
-			<em *ngIf="journal" class="fa fa-print fa-2x" (click)="impression()"></em>
-		</div>
-	</legend>
+	<input [mdDatepicker]="myDatepicker" [(ngModel)]="dateJournal" name="dateJournal" placeholder="Date du journal" (ngModelChange)="onChangementDateJournal()"
+	 class="filtre">
+	<md-datepicker-toggle [for]="myDatepicker"></md-datepicker-toggle>
+	<md-datepicker #myDatepicker></md-datepicker>
 
-	<div *ngIf="!journal">Aucun journal à cette date. Voulez-vous en créer un ? <span class="clickable" (click)="creerJournal()">OUI</span></div>
+	<fieldset *ngIf="!!dateJournal">
+		<legend>
+			Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}}
+			<div class="actions">
+				<em *ngIf="journal" class="fa fa-print fa-2x" (click)="impression()"></em>
+			</div>
+		</legend>
 
-	<div *ngIf="!!journal">
-		<ckeditor [(ngModel)]="journal.remarque" [config]="configCkEditor" debounce="200"></ckeditor>
-		<br/>
-		<br/>
-		<table class="cahierJournal">
-			<thead>
-				<tr>
-					<th>Temp</th>
-					<th>Elèves</th>
-					<th>Compétences</th>
-					<th>Commentaire</th>
-					<th><em (click)="ajouterTemps()" mdTooltip="Ajouter un temps" class="fa fa-clock-o fa-lg"></em></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let temp of journal.temps; let j = index">
-					<td>
-						<input [(ngModel)]="temp.nom" name="nomTemps" placeholder="Nom" class="petitChamp" />
-						<br/><br/>
-						<md-select [(ngModel)]="temp.debut" name="debutTemps" placeholder="Début" class="petitChamp">
-							<md-option *ngFor="let t of tempsDisponibles" [value]="t">{{t}}</md-option>
-						</md-select>
-						<br/><br/>
-						<md-select [(ngModel)]="temp.fin" name="finTemps" placeholder="Fin" class="petitChamp">
-							<md-option *ngFor="let t of tempsDisponibles" [value]="t">{{t}}</md-option>
-						</md-select>
-						<br/><br/>
-						<md-select [(ngModel)]="temp.type" name="typeTemps" placeholder="Type" class="petitChamp">
-							<md-option *ngFor="let t of typesDeTemps" [value]="t">{{t}}</md-option>
-						</md-select>
-					</td>
-					<td>
-						<md-chip-list class="mat-chip-list-stacked">
-							<md-chip *ngFor="let ele of eleves" selected="true" color="{{(temp.eleves.indexOf(ele.id)!==-1)?'accent':''}}" (click)="ajouterOuSupprimerEleve(temp, ele.id)">{{ele.prenom}}</md-chip>
-						</md-chip-list>
-					</td>
-					<td>
-						<div *ngFor="let c of temp.competences; let i = index" style="display: inline-flex">
-							<em (click)="retirerCompetence(temp, i)" mdTooltip="Supprimer la compétence" class="fa fa-remove"></em>
-							<compo-competence [temp]="temp" [tempIndexCompetence]="i"></compo-competence>
+		<div *ngIf="!journal">Aucun journal à cette date. Voulez-vous en créer un ? <span class="clickable" (click)="creerJournal()">OUI</span></div>
+
+		<div *ngIf="!!journal">
+			<ckeditor [(ngModel)]="journal.remarque" [config]="configCkEditor" debounce="200"></ckeditor>
+			<br/>
+			<br/>
+			<table class="cahierJournal">
+				<thead>
+					<tr>
+						<th>Temps</th>
+						<th>Elèves</th>
+						<th>Compétences</th>
+						<th>Commentaire</th>
+						<th><em (click)="ajouterTemps()" mdTooltip="Ajouter un temps" class="fa fa-clock-o fa-lg"></em></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let temp of journal.temps; let j = index">
+						<td>
+							<input [(ngModel)]="temp.nom" name="nomTemps" placeholder="Nom" class="petitChamp" />
+							<br/><br/>
+							<md-select [(ngModel)]="temp.debut" name="debutTemps" placeholder="Début" class="petitChamp">
+								<md-option *ngFor="let t of tempsDisponibles" [value]="t">{{t}}</md-option>
+							</md-select>
+							<br/><br/>
+							<md-select [(ngModel)]="temp.fin" name="finTemps" placeholder="Fin" class="petitChamp">
+								<md-option *ngFor="let t of tempsDisponibles" [value]="t">{{t}}</md-option>
+							</md-select>
+							<br/><br/>
+							<md-select [(ngModel)]="temp.type" name="typeTemps" placeholder="Type" class="petitChamp">
+								<md-option *ngFor="let t of typesDeTemps" [value]="t">{{t}}</md-option>
+							</md-select>
+						</td>
+						<td>
+							<md-chip-list class="mat-chip-list-stacked">
+								<md-chip *ngFor="let ele of eleves" selected="true" color="{{(temp.eleves.indexOf(ele.id)!==-1)?'accent':''}}" (click)="ajouterOuSupprimerEleve(temp, ele.id)">{{ele.prenom}}</md-chip>
+							</md-chip-list>
+						</td>
+						<td>
+							<div *ngFor="let c of temp.competences; let i = index" style="display: inline-flex">
+								<em (click)="retirerCompetence(temp, i)" mdTooltip="Supprimer la compétence" class="fa fa-remove"></em>
+								<compo-competence [temp]="temp" [tempIndexCompetence]="i"></compo-competence>
+								<br/>
+							</div>
+						</td>
+						<td>
+							<ckeditor [(ngModel)]="temp.commentaire" [config]="configCkEditorTemps" debounce="200"></ckeditor>
+						</td>
+						<td>
+							<em (click)="ajouterCompetence(temp)" mdTooltip="Ajouter une compétence" class="fa fa-cogs fa-lg"></em>
 							<br/>
-						</div>
-					</td>
-					<td>
-						<ckeditor [(ngModel)]="temp.commentaire" [config]="configCkEditorTemps" debounce="200"></ckeditor>
-					</td>
-					<td>
-						<em (click)="ajouterCompetence(temp)" mdTooltip="Ajouter une compétence" class="fa fa-cogs fa-lg"></em>
-						<br/>
-						<em (click)="retirerTemp(j)" mdTooltip="Supprimer le temps" class="fa fa-remove fa-lg"></em>
-						<br/>
-						<em *ngIf="j !== 0" (click)="deplacerTemps(j, -1)" mdTooltip="Déplacer le temps vers le haut" class="fa fa-chevron-circle-up fa-lg"></em>
-						<br/>
-						<em *ngIf="j !== journal.temps.length-1" (click)="deplacerTemps(j, 1)" mdTooltip="Déplacer le temps vers le bas" class="fa fa-chevron-circle-down fa-lg"></em>
-						<br/>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-
-	</div>
-</fieldset>
+							<em (click)="retirerTemp(j)" mdTooltip="Supprimer le temps" class="fa fa-remove fa-lg"></em>
+							<br/>
+							<em *ngIf="j !== 0" (click)="deplacerTemps(j, -1)" mdTooltip="Déplacer le temps vers le haut" class="fa fa-chevron-circle-up fa-lg"></em>
+							<br/>
+							<em *ngIf="j !== journal.temps.length-1" (click)="deplacerTemps(j, 1)" mdTooltip="Déplacer le temps vers le bas" class="fa fa-chevron-circle-down fa-lg"></em>
+							<br/>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</fieldset>
+	<br/><br/><br/><br/><br/><br/>&nbsp;
+</div>

@@ -3,8 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MaterialModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule, MD_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
-import { CdkTableModule } from '@angular/cdk';
+import { MaterialModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule, MD_PLACEHOLDER_GLOBAL_OPTIONS, DateAdapter } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CKEditorModule } from 'ng2-ckeditor';
@@ -31,6 +30,7 @@ import { TabTableauDeBordComponent } from './tab-tableaudebord/tab-tableauDeBord
 import { TabTachesComponent } from './tab-taches/tab-taches.component';
 
 // Les composants injectables
+import { MyDateAdapter } from './dateformat.component';
 import { DataService } from './service/data.service';
 import { EditionService } from './service/edition.service';
 import { SauvegardeService } from './service/sauvegarde.service';
@@ -57,6 +57,7 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [
     // Paramétrage global
     { provide: LOCALE_ID, useValue: 'fr-FR' },
+    { provide: DateAdapter, useClass: MyDateAdapter },
     { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'never' } },
 
     // Les composants injectables
@@ -70,7 +71,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule, FormsModule, HttpClientModule,
 
     // Le module des composants WEB riches
-    MaterialModule, BrowserAnimationsModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule, TreeModule, CdkTableModule, CKEditorModule,
+    MaterialModule, BrowserAnimationsModule, MdSelectModule, MdDatepickerModule, MdNativeDateModule, TreeModule, CKEditorModule,
 
     // Déclaration des routes
     AppRoutingModule

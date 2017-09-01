@@ -7,6 +7,10 @@ import * as model from '../model/model';
 @Component({ selector: 'tab-cahierjournal', templateUrl: './tab-cahierjournal.component.html', styleUrls: ['./tab-cahierjournal.component.css'] })
 export class TabCahierJournalComponent implements OnInit {
 
+  get anneeChargee(): boolean {
+    return this.dataService.isAnneeChargee();
+  }
+
   // La configuration de l'éditeur (@see https://docs.ckeditor.com/#!/api/CKEDITOR.config)
   configCkEditor = {
     defaultLanguage: 'fr', height: '100px',

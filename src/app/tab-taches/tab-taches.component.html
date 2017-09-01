@@ -20,12 +20,10 @@
                 <md-card-content>
                     <div *ngFor="let eche of nouvelleTache.echeances">
                         <input [(ngModel)]="eche.nom" name="aFaire" />
-                        <md-input-container>
-                            <input mdInput #inputDate="ngModel" [mdDatepicker]="datePicker" [(ngModel)]="eche.date" name="date" placeholder="Date" />
-                            <span>{{eche.date | date:'EEE dd/MM'}}</span>
-                            <button class="button" mdSuffix [mdDatepickerToggle]="datePicker"></button>
-                        </md-input-container>
-                        <md-datepicker #datePicker></md-datepicker>
+
+                        <input class="inputDatePicker" [mdDatepicker]="myDatepicker" [(ngModel)]="eche.date" name="date" placeholder="Date">                        {{eche.date | date:'EEE dd/MM'}}
+                        <md-datepicker-toggle [for]="myDatepicker"></md-datepicker-toggle>
+                        <md-datepicker #myDatepicker></md-datepicker>
                         <br/>
                     </div>
                 </md-card-content>
