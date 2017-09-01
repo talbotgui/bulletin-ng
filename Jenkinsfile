@@ -82,6 +82,7 @@ pipeline {
 								node {
 									currentBuild.displayName = currentBuild.displayName + " - deployed to production"
 									unstash 'binaires'
+									sh "sed -i 's/\"\\/\"/\"\\/maclasse\\/\"/' ./dist/index.html"
 									sh "mv ./dist/index.html ./dist/indexArenommer.html"
 									sh 'echo "Déploiement de la nouvelle version en cours" > /var/www/html/maclasse/index.html'
 									sh "rm -rf /var/www/html/maclasse/*"
