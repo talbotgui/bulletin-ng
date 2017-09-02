@@ -490,10 +490,10 @@ export class DataService {
   private dupliqueTemps(t: model.Temps): model.Temps {
     const nouveauTemps = new model.Temps();
     nouveauTemps.commentaire = t.commentaire;
-    nouveauTemps.competences = t.competences.splice(0, 0);
+    nouveauTemps.competences = t.competences.slice();
     nouveauTemps.debut = t.debut;
     nouveauTemps.fin = t.fin;
-    nouveauTemps.eleves = t.eleves.splice(0, 0);
+    nouveauTemps.eleves = t.eleves.slice();
     nouveauTemps.nom = t.nom;
     nouveauTemps.type = t.type;
     return nouveauTemps;
