@@ -62,7 +62,7 @@ body.dynamique a.navEleve { background-color: yellow!important; }
 body.dynamique a.navEleve.active { color: black!important; }
 body.dynamique a.navTdb { background-color: orange!important; }
 body.dynamique a.navJournal { background-color: red!important; }
-body.dynamique a.navTaches { background-color: blue!important; }
+body.dynamique a.navTaches { background-color: #ba12a3!important; }
 body.dynamique a.active { opacity: 1!important; }
 
 body.dynamique .listeEleves md-chip.filtreSelectionne { border: solid 10px white!important; }
