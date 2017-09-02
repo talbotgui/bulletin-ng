@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MdDialog } from '@angular/material';
 
-import { DataService } from '../service/data.service';
+import { LectureService } from '../service/lecture.service';
+import { NoteService } from '../service/note.service';
 import * as model from '../model/model';
 
 import { DialogLigneTableauDeBordComponent } from './dialog-ligneTableauDeBord.component';
@@ -10,11 +11,15 @@ import { DialogLigneTableauDeBordComponent } from './dialog-ligneTableauDeBord.c
   selector: 'tab-tableauDeBord', templateUrl: './tab-tableauDeBord.component.html',
   styleUrls: ['./tab-tableauDeBord.component.css']
 })
-export class TabTableauDeBordComponent implements OnInit {
+export class TabTableauDeBordComponent {
 
   // Liste des filtres
-  eleves: model.Eleve[];
-  periodes: model.Periode[];
+  get eleves(): model.Eleve[] {
+    return this.lectureService.getListeEleveActif();
+  }
+  get periodes(): model.Periode[] {
+    return this.lectureService.getListePeriode();
+  }
 
   // Valeur des filtres
   eleveSelectionne: model.Eleve;
@@ -24,13 +29,7 @@ export class TabTableauDeBordComponent implements OnInit {
   lignes: model.LigneTableauDeBord[];
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private dataService: DataService, public dialog: MdDialog) { }
-
-  // Appel au service à l'initialisation du composant
-  ngOnInit(): void {
-    this.eleves = this.dataService.getListeEleveActif();
-    this.periodes = this.dataService.getListePeriode();
-  }
+  constructor(private lectureService: LectureService, private noteService: NoteService, public dialog: MdDialog) { }
 
   // A la sélection d'un filtre
   onSelectEleve(eleve: model.Eleve) {
@@ -43,7 +42,7 @@ export class TabTableauDeBordComponent implements OnInit {
   }
   rechargeLesLignes() {
     if (this.eleveSelectionne && this.periodeSelectionnee) {
-      this.lignes = this.dataService.getListeLigneTableauDeBord(this.eleveSelectionne, this.periodeSelectionnee);
+      this.lignes = this.noteService.calculerListeLigneTableauDeBord(this.eleveSelectionne, this.periodeSelectionnee);
 
     } else {
       this.lignes = [];

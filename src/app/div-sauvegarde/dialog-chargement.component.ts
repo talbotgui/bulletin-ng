@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SauvegardeService } from '../service/sauvegarde.service';
-import { DataService } from '../service/data.service';
 
-@Component({
-  selector: 'dialog-chargement', templateUrl: './dialog-chargement.component.html', styleUrls: ['./dialog-chargement.component.css']
-})
+@Component({ selector: 'dialog-chargement', templateUrl: './dialog-chargement.component.html', styleUrls: ['./dialog-chargement.component.css'] })
 export class DialogChargementComponent implements OnInit {
 
   // Nom du dernier fichier sauvegardé sur ce browser
@@ -17,6 +14,7 @@ export class DialogChargementComponent implements OnInit {
       return '';
     }
   }
+
   // Liste des fichier disponibles
   fichiers: string[];
 
@@ -28,7 +26,7 @@ export class DialogChargementComponent implements OnInit {
   nomFichierLocal: string;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private sauvegardeService: SauvegardeService, private dataService: DataService) { }
+  constructor(private sauvegardeService: SauvegardeService) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {

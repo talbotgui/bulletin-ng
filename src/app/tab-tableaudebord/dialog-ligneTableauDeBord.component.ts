@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { SauvegardeService } from '../service/sauvegarde.service';
-import { DataService } from '../service/data.service';
+import { NoteService } from '../service/note.service';
 import * as model from '../model/model';
 
 @Component({
@@ -13,7 +12,7 @@ export class DialogLigneTableauDeBordComponent implements OnInit {
   ligne: model.LigneTableauDeBord;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private sauvegardeService: SauvegardeService, private dataService: DataService) { }
+  constructor(private noteService: NoteService) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
@@ -21,10 +20,10 @@ export class DialogLigneTableauDeBordComponent implements OnInit {
   }
 
   ajouterLigneProgrammeTravaille() {
-    this.dataService.ajouteNoteDepuisTdb(this.ligne, false);
+    this.noteService.ajouteNoteDepuisTdb(this.ligne, false);
   }
   ajouterLigneProgrammeEvalue() {
-    this.dataService.ajouteNoteDepuisTdb(this.ligne, true);
+    this.noteService.ajouteNoteDepuisTdb(this.ligne, true);
   }
 
 }

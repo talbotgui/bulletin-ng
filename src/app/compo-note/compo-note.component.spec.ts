@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 
 import * as model from '../model/model';
 import { AttributesToMapPipe } from '../pipes.component';
-import { DataService } from '../service/data.service';
+import { LectureService } from '../service/lecture.service';
 import { ComposantNoteComponent } from './compo-note.component';
 
 describe('ComposantNoteComponent', () => {
@@ -15,20 +15,20 @@ describe('ComposantNoteComponent', () => {
   let fixture: ComponentFixture<ComposantNoteComponent>;
   let de: DebugElement;
   let el: HTMLElement;
-  let dataServiceMock: DataService;
+  let lectureServiceMock: LectureService;
 
   // Pour réinitialiser le composant de test avant chaque test
   beforeEach(async(() => {
 
     // Creation du mock de DataService
     const data = { 0: 'non atteint', 1: 'atteint partiellement', 2: 'atteint', 3: 'dépassé', n: 'non évalué', a: 'absent' };
-    dataServiceMock = mockito.mock(DataService);
-    mockito.when(dataServiceMock.getMapLibelleNote()).thenReturn(data);
+    lectureServiceMock = mockito.mock(LectureService);
+    mockito.when(lectureServiceMock.getMapLibelleNote()).thenReturn(data);
 
     // Creation de l'équivalent de app.module.ts pour le test
     TestBed.configureTestingModule({
       declarations: [ComposantNoteComponent, AttributesToMapPipe],
-      providers: [{ provide: DataService, useValue: mockito.instance(dataServiceMock) }],
+      providers: [{ provide: LectureService, useValue: mockito.instance(lectureServiceMock) }],
       imports: [FormsModule]
     })
 

@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { MdDialog } from '@angular/material';
 
-import { DataService } from '../service/data.service';
+import { DataRepository } from '../service/data.repository';
 
 @Component({ selector: 'div-selecteurstyle', templateUrl: './div-selecteurstyle.component.html' })
 export class DivSelecteurStyleComponent {
 
-  constructor(private dataService: DataService) {
+  constructor(private dataRepository: DataRepository) {
     // Pour initialiser le theme au démarrage de l'application
-    this.dataService.setThemeSelectionne(this.dataService.getThemeSelectionne());
+    this.dataRepository.setThemeSelectionne(this.dataRepository.getThemeSelectionne());
   }
 
   set themeSelectionne(value: string) {
-    this.dataService.setThemeSelectionne(value);
+    this.dataRepository.setThemeSelectionne(value);
   }
   get themeSelectionne() {
-    return this.dataService.getThemeSelectionne();
+    return this.dataRepository.getThemeSelectionne();
   }
 }

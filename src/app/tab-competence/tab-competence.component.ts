@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { TreeComponent } from 'angular-tree-component';
 
 import * as model from '../model/model';
-import { DataService } from '../service/data.service';
+import { LectureService } from '../service/lecture.service';
 
 export class Noeud { constructor(public id: string, public idParent: string, public name: string, public children: Noeud[]) { } }
 
@@ -21,13 +21,13 @@ export class TabCompetenceComponent implements OnInit {
   private tree: TreeComponent;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private dataService: DataService) { }
+  constructor(private lectureService: LectureService) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
 
     // Récupère la liste des compétences
-    const competences: model.Competence[] = this.dataService.getListeCompetence();
+    const competences: model.Competence[] = this.lectureService.getListeCompetence();
 
     // Initialise une Map des TreeData pour retrouver les parents et y insérer les enfants
     const mapNoeuds: Map<string, Noeud> = new Map<string, Noeud>();

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import * as model from '../model/model';
-import { DataService } from '../service/data.service';
+import { LectureService } from '../service/lecture.service';
 
 @Injectable()
 export class EditionService {
@@ -9,7 +9,7 @@ export class EditionService {
 
     private readonly REGEX_CR: RegExp = new RegExp('\\n', 'g');
 
-    constructor(private dataService: DataService) { }
+    constructor(private lectureService: LectureService) { }
 
     editionEleve(eleve: model.Eleve): void {
 
@@ -133,7 +133,7 @@ export class EditionService {
             contenu += '  <td>' + temp.nom + '<br/><i>' + temp.type + '</i><br/><br/>De ' + temp.debut + '<br/>A ' + temp.fin + '<br/></td>';
             contenu += '  <td>';
             for (const idEleve of temp.eleves) {
-                const eleve = this.dataService.getEleve(idEleve);
+                const eleve = this.lectureService.getEleve(idEleve);
                 if (eleve) {
                     contenu += '<span class=\'nowrap\'>' + eleve.prenom + '</span><br/>';
                 }
@@ -145,7 +145,7 @@ export class EditionService {
                 if (i !== 0) {
                     contenu += '<br/><br/>';
                 }
-                contenu += this.dataService.getLibelleCompletCompetence(comp);
+                contenu += this.lectureService.getLibelleCompletCompetence(comp);
                 i++;
             }
             contenu += '  </td>';

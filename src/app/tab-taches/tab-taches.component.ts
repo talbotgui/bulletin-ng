@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
-import { DataService } from '../service/data.service';
+import { LectureService } from '../service/lecture.service';
+import { TacheService } from '../service/tache.service';
 import * as model from '../model/model';
 
 @Component({ selector: 'tab-taches', templateUrl: './tab-taches.component.html', styleUrls: ['./tab-taches.component.css'] })
@@ -8,15 +9,11 @@ export class TabTachesComponent {
 
   nouvelleTache: model.Tache | undefined;
 
-  get anneeChargee(): boolean {
-    return this.dataService.isAnneeChargee();
-  }
-
   get taches(): model.Tache[] {
-    return this.dataService.getListeTaches();
+    return this.lectureService.getListeTaches();
   }
 
-  constructor(private dataService: DataService) { }
+  constructor(private lectureService: LectureService, private tacheService: TacheService) { }
 
   annulerCreerTache(): void {
     this.nouvelleTache = undefined;
@@ -27,16 +24,16 @@ export class TabTachesComponent {
   }
 
   dupliquer(tache: model.Tache): void {
-    this.nouvelleTache = this.dataService.dupliquerTache(tache);
+    this.nouvelleTache = this.tacheService.dupliquerTache(tache);
   }
 
   supprimer(tache: model.Tache): void {
-    this.dataService.supprimerTache(tache);
+    this.tacheService.supprimerTache(tache);
   }
 
   ajouterLaNouvelleTache(): void {
     if (this.nouvelleTache) {
-      this.dataService.ajouterTache(this.nouvelleTache);
+      this.tacheService.ajouterTache(this.nouvelleTache);
       this.annulerCreerTache();
     }
   }

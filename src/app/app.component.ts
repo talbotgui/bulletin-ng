@@ -1,24 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SauvegardeService } from './service/sauvegarde.service';
-import { DataService } from './service/data.service';
+import { DataRepository } from './service/data.repository';
 
 @Component({ selector: 'app-root', templateUrl: './app.component.html', styleUrls: ['./app.component.css'] })
 export class AppComponent implements OnInit {
 
-  constructor(private sauvegardeService: SauvegardeService, private dataService: DataService) { }
+  constructor(private sauvegardeService: SauvegardeService, private dataRepository: DataRepository) { }
 
-  // Appel au service à l'initialisation du composant
+  // Appel au Repository à l'initialisation du composant
   ngOnInit(): void {
-    // Si le parametre 'offline' est présent, informe le service de ne pas accéder au réseau
+    // Si le parametre 'offline' est présent, informe le Repository de ne pas accéder au réseau
     if (window.location.toString().indexOf('offline') > -1) {
       this.sauvegardeService.travailleHorsReseau();
     }
   }
 
-  // Condition d'affichage des onglets
   get anneeChargee() {
-    return this.dataService.isAnneeChargee();
+    return this.dataRepository.isAnneeChargee();
   }
-
+  get anneChargeeOuSansDonnees() {
+    return this.anneeChargee || window.location.href.indexOf('aide') !== -1 || window.location.href.indexOf('accueil') !== -1;
+  }
 }

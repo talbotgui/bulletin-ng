@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { DataService } from '../service/data.service';
+import { JournalService } from '../service/journal.service';
 import * as model from '../model/model';
 
 @Component({
@@ -17,19 +17,19 @@ export class DialogDuplicationComponent {
   dateCible: Date;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private dataService: DataService) { }
+  constructor(private journalService: JournalService) { }
 
   /** Duplication */
   dupliquer() {
 
-    // Si duplication de journal 
+    // Si duplication de journal
     if (!this.temps) {
-      this.dataService.dupliquerJournal(this.journal, this.dateCible);
+      this.journalService.dupliquerJournal(this.journal, this.dateCible);
     }
 
     // Si duplication du temps
     else {
-      this.dataService.dupliquerTemps(this.temps, this.dateCible);
+      this.journalService.dupliquerTemps(this.temps, this.dateCible);
 
     }
   }

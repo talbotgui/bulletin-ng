@@ -26,7 +26,7 @@
 		</nav>
 	</div>
 
-	<div id="contenu">
+	<div id="contenu" *ngIf="anneChargeeOuSansDonnees">
 		<router-outlet></router-outlet>
 	</div>
 </div>

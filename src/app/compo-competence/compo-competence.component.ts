@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { DataService } from '../service/data.service';
+import { LectureService } from '../service/lecture.service';
 import * as model from '../model/model';
 
 @Component({ selector: 'compo-competence', templateUrl: './compo-competence.component.html', styleUrls: ['./compo-competence.component.css'] })
@@ -22,9 +22,9 @@ export class ComposantCompetenceeComponent {
   // Libellé complet de la compétence sélectionnée
   get libelleCompletCompetenceSelectionnee(): string {
     if (this.note && this.note.idItem) {
-      return this.dataService.getLibelleCompletCompetence(this.note.idItem, this.idCompetenceRacine);
+      return this.lectureService.getLibelleCompletCompetence(this.note.idItem, this.idCompetenceRacine);
     } else if (this.temp) {
-      return this.dataService.getLibelleCompletCompetence(this.temp.competences[this.tempIndexCompetence], this.idCompetenceRacine);
+      return this.lectureService.getLibelleCompletCompetence(this.temp.competences[this.tempIndexCompetence], this.idCompetenceRacine);
     } else {
       return '';
     }
@@ -33,26 +33,26 @@ export class ComposantCompetenceeComponent {
   // Liste des enfants
   get listeCompetenceEnfant(): model.Competence[] {
     if (this.note && this.note.idItem) {
-      return this.dataService.getListeCompetencesEnfant(this.note.idItem);
+      return this.lectureService.getListeCompetencesEnfant(this.note.idItem);
     } else if (this.temp) {
-      return this.dataService.getListeCompetencesEnfant(this.temp.competences[this.tempIndexCompetence]);
+      return this.lectureService.getListeCompetencesEnfant(this.temp.competences[this.tempIndexCompetence]);
     } else {
       return [];
     }
   }
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private dataService: DataService) { }
+  constructor(private lectureService: LectureService) { }
 
   // Pour remonter d'un niveau
   selectionneParent() {
     if (this.note && this.note.idItem && this.note.idItem !== this.idCompetenceRacine) {
-      const competence = this.dataService.getCompetence(this.note.idItem);
+      const competence = this.lectureService.getCompetence(this.note.idItem);
       if (competence && competence.parent) {
         this.note.idItem = competence.parent;
       }
     } else if (this.temp && this.temp.competences[this.tempIndexCompetence] !== this.idCompetenceRacine) {
-      const competence = this.dataService.getCompetence(this.temp.competences[this.tempIndexCompetence]);
+      const competence = this.lectureService.getCompetence(this.temp.competences[this.tempIndexCompetence]);
       if (competence && competence.parent) {
         this.temp.competences[this.tempIndexCompetence] = competence.parent;
       }

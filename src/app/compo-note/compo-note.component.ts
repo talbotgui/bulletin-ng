@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { DataService } from '../service/data.service';
+import { LectureService } from '../service/lecture.service';
 import * as model from '../model/model';
 
 @Component({ selector: 'compo-note', templateUrl: './compo-note.component.html', styleUrls: ['./compo-note.component.css'] })
@@ -16,10 +16,10 @@ export class ComposantNoteComponent implements OnInit {
   libellesNote: any;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private dataService: DataService) { }
+  constructor(private lectureService: LectureService) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
-    this.libellesNote = this.dataService.getMapLibelleNote();
+    this.libellesNote = this.lectureService.getMapLibelleNote();
   }
 }

@@ -23,6 +23,7 @@ import { DialogLigneTableauDeBordComponent } from './tab-tableaudebord/dialog-li
 import { DialogSauvegardeComponent } from './div-sauvegarde/dialog-sauvegarde.component';
 import { DivSauvegardeComponent } from './div-sauvegarde/div-sauvegarde.component';
 import { DivSelecteurStyleComponent } from './div-selecteurstyle/div-selecteurstyle.component';
+import { TabAccueilComponent } from './tab-accueil/tab-accueil.component';
 import { TabAideComponent } from './tab-aide/tab-aide.component';
 import { TabCahierJournalComponent } from './tab-cahierjournal/tab-cahierjournal.component';
 import { TabCompetenceComponent } from './tab-competence/tab-competence.component';
@@ -31,10 +32,14 @@ import { TabTableauDeBordComponent } from './tab-tableaudebord/tab-tableauDeBord
 import { TabTachesComponent } from './tab-taches/tab-taches.component';
 
 // Les composants injectables
-import { MyDateAdapter } from './dateformat.component';
-import { DataService } from './service/data.service';
+import { DataRepository } from './service/data.repository';
 import { EditionService } from './service/edition.service';
+import { JournalService } from './service/journal.service';
+import { LectureService } from './service/lecture.service';
+import { NoteService } from './service/note.service';
 import { SauvegardeService } from './service/sauvegarde.service';
+import { TacheService } from './service/tache.service';
+import { MyDateAdapter } from './dateformat.component';
 
 // Le composant contenant les routes
 import { AppRoutingModule } from './app-routing.module';
@@ -49,7 +54,8 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [AppComponent, TabCompetenceComponent, TabEleveComponent, DivSauvegardeComponent,
     DialogChargementComponent, DialogSauvegardeComponent, TabTableauDeBordComponent, ComposantNoteComponent,
     MapValuesPipe, AttributesToMapPipe, DialogLigneTableauDeBordComponent, ComposantCompetenceeComponent,
-    TabCahierJournalComponent, DivSelecteurStyleComponent, TabAideComponent, TabTachesComponent, DialogDuplicationComponent
+    TabCahierJournalComponent, DivSelecteurStyleComponent, TabAideComponent, TabTachesComponent, DialogDuplicationComponent,
+    TabAccueilComponent
   ],
 
   // Tous les composants à afficher dans un Dialog
@@ -62,7 +68,8 @@ import { AppRoutingModule } from './app-routing.module';
     { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'never' } },
 
     // Les composants injectables
-    DataService, SauvegardeService, EditionService
+    DataRepository, EditionService, JournalService, LectureService, NoteService, SauvegardeService, TacheService
+
   ],
 
   // Les modules importés

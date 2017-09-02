@@ -3,7 +3,7 @@ import { MdDialog } from '@angular/material';
 
 import { DialogChargementComponent } from './dialog-chargement.component';
 import { DialogSauvegardeComponent } from './dialog-sauvegarde.component';
-import { DataService } from '../service/data.service';
+import { DataRepository } from '../service/data.repository';
 import { SauvegardeService } from '../service/sauvegarde.service';
 
 @Component({ selector: 'div-sauvegarde', templateUrl: './div-sauvegarde.component.html' })
@@ -17,10 +17,7 @@ export class DivSauvegardeComponent {
     return mess;
   }
 
-  constructor(
-    public dialog: MdDialog, private dataService: DataService,
-    private sauvegardeService: SauvegardeService
-  ) { }
+  constructor(public dialog: MdDialog, private dataRepository: DataRepository, private sauvegardeService: SauvegardeService) { }
 
   // A la demande de chargement d'un fichier
   ouvreDialogChargement() {
@@ -34,6 +31,6 @@ export class DivSauvegardeComponent {
 
   // Condition d'affichage des boutons
   get anneeChargee() {
-    return this.dataService.isAnneeChargee();
+    return this.dataRepository.isAnneeChargee();
   }
 }

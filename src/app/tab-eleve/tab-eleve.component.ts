@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DataService } from '../service/data.service';
+import { LectureService } from '../service/lecture.service';
 import { EditionService } from '../service/edition.service';
 import * as model from '../model/model';
 
@@ -14,7 +14,9 @@ export class TabEleveComponent implements OnInit {
   };
 
   // Liste des élèves à afficher
-  eleves: model.Eleve[];
+  get eleves(): model.Eleve[] {
+    return this.lectureService.getListeEleve();
+  }
 
   // Elève en cours d'édition
   eleveSelectionne: model.Eleve;
@@ -23,7 +25,7 @@ export class TabEleveComponent implements OnInit {
   Object = Object;
   mapStatutEleve: Map<string, string>;
 
-  /**Bidouille très moche pour remplacer le DatePicker de material qui ne fonctionne pas avec l'i18n et dans un form */
+  /** Bidouille très moche pour remplacer le DatePicker de material qui ne fonctionne pas avec l'i18n et dans un form */
   get dateNaissanceEleveSelectionne(): string | undefined {
     if (this.eleveSelectionne && this.eleveSelectionne.dateNaissance) {
       return this.formatDate(new Date(this.eleveSelectionne.dateNaissance));
@@ -32,7 +34,7 @@ export class TabEleveComponent implements OnInit {
     }
   }
 
-  /**Bidouille très moche pour remplacer le DatePicker de material qui ne fonctionne pas avec l'i18n et dans un form */
+  /** Bidouille très moche pour remplacer le DatePicker de material qui ne fonctionne pas avec l'i18n et dans un form */
   set dateNaissanceEleveSelectionne(value: string | undefined) {
     if (this.eleveSelectionne && value && value.length === 10) {
       const str = value.split('/');
@@ -41,12 +43,11 @@ export class TabEleveComponent implements OnInit {
   }
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private dataService: DataService, private editionService: EditionService) { }
+  constructor(private lectureService: LectureService, private editionService: EditionService) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
-    this.eleves = this.dataService.getListeEleve();
-    this.mapStatutEleve = this.dataService.getMapLibelleStatutEleveMap();
+    this.mapStatutEleve = this.lectureService.getMapLibelleStatutEleveMap();
   }
 
   // A la sélection d'un élève

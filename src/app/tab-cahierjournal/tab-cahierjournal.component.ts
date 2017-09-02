@@ -3,16 +3,13 @@ import { MdDialog } from '@angular/material';
 
 import { DialogDuplicationComponent } from './dialog-duplication.component';
 
-import { DataService } from '../service/data.service';
+import { LectureService } from '../service/lecture.service';
+import { JournalService } from '../service/journal.service';
 import { EditionService } from '../service/edition.service';
 import * as model from '../model/model';
 
 @Component({ selector: 'tab-cahierjournal', templateUrl: './tab-cahierjournal.component.html', styleUrls: ['./tab-cahierjournal.component.css'] })
 export class TabCahierJournalComponent implements OnInit {
-
-  get anneeChargee(): boolean {
-    return this.dataService.isAnneeChargee();
-  }
 
   // La configuration de l'éditeur (@see https://docs.ckeditor.com/#!/api/CKEDITOR.config)
   configCkEditor = {
@@ -32,7 +29,9 @@ export class TabCahierJournalComponent implements OnInit {
   typesDeTemps: string[] = [];
 
   // Liste des élèves
-  eleves: model.Eleve[] = [];
+  get eleves(): model.Eleve[] {
+    return this.lectureService.getListeEleveActif();
+  }
 
   // Filtre de date
   dateJournal: Date;
@@ -41,7 +40,7 @@ export class TabCahierJournalComponent implements OnInit {
   journal?: model.Journal;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private dataService: DataService, private editionService: EditionService, public dialog: MdDialog) { }
+  constructor(private lectureService: LectureService, private journalService: JournalService, private editionService: EditionService, public dialog: MdDialog) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
@@ -51,16 +50,17 @@ export class TabCahierJournalComponent implements OnInit {
       this.tempsDisponibles.push(i + 'h30');
       this.tempsDisponibles.push(i + 'h45');
     }
-    this.typesDeTemps = this.dataService.getlisteTypeDeTemps();
-    this.eleves = this.dataService.getListeEleveActif();
+    this.typesDeTemps = this.lectureService.getlisteTypeDeTemps();
   }
 
   onChangementDateJournal() {
-    this.journal = this.dataService.getJournal(this.dateJournal);
+    this.journal = this.lectureService.getJournal(this.dateJournal);
   }
+
   creerJournal() {
-    this.journal = this.dataService.ajouterJournal(this.dateJournal);
+    this.journal = this.journalService.ajouterJournal(this.dateJournal);
   }
+
   ajouterOuSupprimerEleve(temps: model.Temps, idEleve: string) {
     const index = temps.eleves.indexOf(idEleve);
     if (index !== -1) {
@@ -69,6 +69,7 @@ export class TabCahierJournalComponent implements OnInit {
       temps.eleves.push(idEleve);
     }
   }
+
   ajouterTemps() {
     if (this.journal) {
       if (!this.journal.temps) {
@@ -77,17 +78,21 @@ export class TabCahierJournalComponent implements OnInit {
       this.journal.temps.push(new model.Temps());
     }
   }
+
   retirerTemp(index: number) {
     if (this.journal) {
       this.journal.temps.splice(index, 1);
     }
   }
+
   ajouterCompetence(temps: model.Temps) {
     temps.competences.push('#');
   }
+
   retirerCompetence(temps: model.Temps, index: number) {
     temps.competences.splice(index, 1);
   }
+
   deplacerTemps(index: number, delta: number) {
     if (this.journal) {
       const index2 = index + delta;
@@ -109,6 +114,7 @@ export class TabCahierJournalComponent implements OnInit {
       dialog.journal = this.journal;
     }
   }
+
   demandeDuplicationTemps(temps: model.Temps): void {
     if (this.journal) {
       const dialog = this.dialog.open(DialogDuplicationComponent, { height: '350px', width: '400px' }).componentInstance;

@@ -7,7 +7,7 @@ import { MdSnackBar } from '@angular/material';
 import { saveAs } from 'file-saver';
 
 import * as model from '../model/model';
-import { DataService } from '../service/data.service';
+import { DataRepository } from '../service/data.repository';
 
 @Injectable()
 export class SauvegardeService {
@@ -19,19 +19,11 @@ export class SauvegardeService {
   private readonly URL_SERVEUR = 'http://192.168.1.52/download/upload.php';
   private readonly HEADERS_APPEL_SERVEUR = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
-  constructor(private http: HttpClient, private dataService: DataService, public snackBar: MdSnackBar) { }
+  constructor(private http: HttpClient, private dataRepository: DataRepository, public snackBar: MdSnackBar) { }
 
   getNomDernierFichierSauvegardeDansBrowser() {
     if (typeof (Storage) !== 'undefined') {
       return window.localStorage.getItem('nomDernierFichierModifié');
-    } else {
-      return null;
-    }
-  }
-
-  storeNomDernierFichierSauvegardeDansBrowser(value: string) {
-    if (typeof (Storage) !== 'undefined') {
-      return window.localStorage.setItem('nomDernierFichierModifié', value);
     } else {
       return null;
     }
@@ -45,9 +37,7 @@ export class SauvegardeService {
     SauvegardeService.horsReseau = true;
   }
 
-  /**
-   * Récupère la liste des fichiers de sauvegarde disponibles sur le serveur
-   */
+  /** Récupère la liste des fichiers de sauvegarde disponibles sur le serveur */
   getlisteSauvegardesDuServeur(): Observable<{ fichiers: string[] }> {
     if (SauvegardeService.horsReseau) {
       return new Observable<{ fichiers: string[] }>((subscriber: Subscriber<{ fichiers: string[] }>) => subscriber.next({ fichiers: [] }));
@@ -57,24 +47,7 @@ export class SauvegardeService {
     return this.http.post<{ fichiers: string[] }>(this.URL_SERVEUR, corp, params);
   }
 
-  // Si le browser contient le nom du dernier fichier sauvegardé et que le fichier sélectionné n'est pas le bon, demande de confirmation à l'utilisateur
-  validationEtConfirmationSiFichierNestPasLeDernierSauvegardeDansBrowser(nomFichier: string) {
-    const dernierNomFichier = this.getNomDernierFichierSauvegardeDansBrowser();
-
-    // Si le fichier chargé n'est pas le dernier sauvegardé, demande de confirmation
-    if (dernierNomFichier && dernierNomFichier !== nomFichier) {
-      return confirm('Le fichier que vous souhaitez chargé n\'est pas le dernier sauvegardé dans ce browser. Souhaitez tout de même le charger ?');
-    }
-
-    // Sinon, pas de soucis
-    else {
-      return true;
-    }
-  }
-
-  /**
-   * Charge le contenu d'un fichier et l'envoie au service "dataService.setAnneeChargee"
-   */
+  /** Charge le contenu d'un fichier et l'envoie au service "dataService.setAnneeChargee" */
   chargeAnneeDuFichier(fichier: string): void {
     if (SauvegardeService.horsReseau) {
       return;
@@ -89,7 +62,7 @@ export class SauvegardeService {
       (dataOk) => {
 
         // Sauvegarde de l'instance dans le service DataService
-        this.dataService.setAnneeChargee(dataOk);
+        this.dataRepository.setAnneeChargee(dataOk);
 
         // notification
         const message = 'Fichier \'' + fichier + '\' chargé depuis le serveur';
@@ -107,7 +80,7 @@ export class SauvegardeService {
       return;
     }
     // Sauvegarde de l'instance dans le service DataService
-    this.dataService.setAnneeChargee(JSON.parse(contenu));
+    this.dataRepository.setAnneeChargee(JSON.parse(contenu));
 
     // notification
     const message = 'Données chargées depuis le fichier local \'' + nomFichier + '\'';
@@ -143,6 +116,52 @@ export class SauvegardeService {
     this.sauvegardeAnneeSurServeurExecution();
   }
 
+  /** Si le browser contient le nom du dernier fichier sauvegardé et que le fichier sélectionné n'est pas le bon, demande de confirmation à l'utilisateur */
+  private validationEtConfirmationSiFichierNestPasLeDernierSauvegardeDansBrowser(nomFichier: string) {
+    const dernierNomFichier = this.getNomDernierFichierSauvegardeDansBrowser();
+
+    // Si le fichier chargé n'est pas le dernier sauvegardé, demande de confirmation
+    if (dernierNomFichier && dernierNomFichier !== nomFichier) {
+      return confirm('Le fichier que vous souhaitez chargé n\'est pas le dernier sauvegardé dans ce browser. Souhaitez tout de même le charger ?');
+    }
+
+    // Sinon, pas de soucis
+    else {
+      return true;
+    }
+  }
+
+  // Prépare la sauvegarde et calcul le nom du fichier de sauvegarde
+  private prepareSauvegardeEtCalculNomFichier(): string {
+
+    // Mise à jour de la date de dernière modification
+    const date = new Date();
+    this.dataRepository.getAnneeChargee().dateDerniereSauvegarde = date;
+
+    // Calcul du nom du fichier
+    const y = date.getFullYear();
+    const mo = (date.getMonth() + 1).toLocaleString('fr-FR', { minimumIntegerDigits: 2 });
+    const d = (date.getDate()).toLocaleString('fr-FR', { minimumIntegerDigits: 2 });
+    const h = (date.getHours()).toLocaleString('fr-FR', { minimumIntegerDigits: 2 });
+    const mi = (date.getMinutes()).toLocaleString('fr-FR', { minimumIntegerDigits: 2 });
+    const s = (date.getSeconds()).toLocaleString('fr-FR', { minimumIntegerDigits: 2 });
+
+    return y + '-' + mo + '-' + d + '-' + h + 'h' + mi + 'm' + s + 's.json';
+  }
+
+  // Transforme une copie des données en cours en JSON
+  private transformeAnneeEnJson(): string {
+
+    // Clone de la structure avant modification pour sauvegarde
+    const anneeAsauvegarder = Object.assign({}, this.dataRepository.getAnneeChargee());
+
+    // Suppression des Map recalculées
+    delete anneeAsauvegarder.mapLibelleNotesMap;
+    delete anneeAsauvegarder.mapLibelleStatutEleveMap;
+
+    return JSON.stringify(anneeAsauvegarder, null, 2);
+  }
+
   /**
    * Sauvegarde sur le serveur distant le contenu de l'année en cours d'édition.
    */
@@ -156,8 +175,8 @@ export class SauvegardeService {
     SauvegardeService.dateDerniereSauvegardeDeLaSession = { message: 'Sauvegardé sur le serveur à ', date: new Date() };
 
     // Préparation des données
-    const nomFichier = this.dataService.prepareSauvegardeEtCalculNomFichier();
-    const contenuFichier = this.dataService.transformeAnneeEnJson();
+    const nomFichier = this.prepareSauvegardeEtCalculNomFichier();
+    const contenuFichier = this.transformeAnneeEnJson();
 
     // Préparation des paramètres
     const params = new HttpParams()
@@ -191,8 +210,8 @@ export class SauvegardeService {
     SauvegardeService.dateDerniereSauvegardeDeLaSession = { message: 'Sauvegardé par téléchargement à ', date: new Date() };
 
     // Préparation des données
-    const nomDuFichier = this.dataService.prepareSauvegardeEtCalculNomFichier();
-    const contenuFichier = this.dataService.transformeAnneeEnJson();
+    const nomDuFichier = this.prepareSauvegardeEtCalculNomFichier();
+    const contenuFichier = this.transformeAnneeEnJson();
     const leBlob = new Blob([contenuFichier], { type: 'text/plain;charset=utf-8' });
     const resultat = { nomFichier: nomDuFichier, blob: leBlob };
 
@@ -205,5 +224,13 @@ export class SauvegardeService {
     // notification
     const message = 'Données sauvegardées par téléchargement';
     this.snackBar.open(message, undefined, { duration: 3000 });
+  }
+
+  private storeNomDernierFichierSauvegardeDansBrowser(value: string) {
+    if (typeof (Storage) !== 'undefined') {
+      return window.localStorage.setItem('nomDernierFichierModifié', value);
+    } else {
+      return null;
+    }
   }
 }

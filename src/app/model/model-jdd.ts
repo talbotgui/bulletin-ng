@@ -2,6 +2,11 @@ import { Annee } from './model';
 
 export class Jdd {
 
+  // Jeu de données simpliste
+  static JDD_SIMPLISTE = {
+    enseignant: 'M. Toto'
+  };
+
   // Jeu de données riche
   static JDD_RICHE = {
     enteteEdition: 'Académie X<br/>Département X<br/>Circonscription X<br/>École : X<br/>Adresse : X<br/>Téléphone : 0<br/>Courriel : x@x.x',
@@ -7370,5 +7375,8 @@ export class Jdd {
 
   static getAnnee(jdd: any): Annee {
     return Object.assign(new Annee(), jdd);
+  }
+  static getJson(jdd: any): string {
+    return JSON.stringify(jdd, null, 2);
   }
 }

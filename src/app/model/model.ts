@@ -108,7 +108,7 @@ export class LigneTableauDeBord {
     return '';
   }
 
-  constructor(public idDomaine: string, public nomDomaine: string, constatations: Note[] = [], aides: Note[] = [], mapCompetences: Map<string, Competence>, public idEleve: string, public indexPeriodeEvaluee: number) {
+  constructor(public idDomaine: string, public nomDomaine: string, constatations: Note[] = [], aides: Note[] = [], mapCompetences: Map<string, Competence>, public idEleve: string, public periodeEvaluee: Periode) {
     this.sousLignes = [];
 
     // Creation des sousLignes pour les constations
