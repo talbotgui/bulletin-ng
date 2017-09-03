@@ -2,6 +2,20 @@ import { Annee } from './model';
 
 export class Jdd {
 
+  static JDD_DEUX_COMPETENCES = {
+    competences: [
+      {
+        id: 'idCompetence1',
+        text: 'maCompetence1',
+        parent: '#'
+      }, {
+        id: 'idCompetence2',
+        text: 'maCompetence2',
+        parent: 'idCompetence1'
+      }
+    ]
+  };
+
   // Jeu de données simpliste
   static JDD_SIMPLISTE = {
     enseignant: 'M. Toto'

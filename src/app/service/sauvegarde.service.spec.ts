@@ -92,7 +92,18 @@ describe('SauvegardeService', () => {
     const requestDefinition = (req: HttpRequest<any>) => {
       return req.url === 'http://192.168.1.52/download/upload.php'
         && (req.body + '').indexOf('methode=sauvegarde&nomFichier=') !== -1
-        && (req.body + '').indexOf('.json&contenuFichier=%7B%0A%20%20%22enseignant%22:%20%22M.%20Toto%22,%0A%20%20%22dateDerniereSauvegarde%22:%20%22') !== -1
+        && (req.body + '').indexOf('.json&contenuFichier=') !== -1
+        && (req.body + '').indexOf('periodes') !== -1
+        && (req.body + '').indexOf('libellesTypeTempsJournal') !== -1
+        && (req.body + '').indexOf('historique') !== -1
+        && (req.body + '').indexOf('erreursChargement') !== -1
+        && (req.body + '').indexOf('taches') !== -1
+        && (req.body + '').indexOf('enseignant') !== -1
+        && (req.body + '').indexOf('Toto') !== -1
+        && (req.body + '').indexOf('dateDerniereSauvegarde') !== -1
+        && (req.body + '').indexOf('competences') !== -1
+        && (req.body + '').indexOf('notes') !== -1
+        && (req.body + '').indexOf('journal') !== -1
         && req.method === 'POST';
     };
 

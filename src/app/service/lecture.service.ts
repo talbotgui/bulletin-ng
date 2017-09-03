@@ -16,9 +16,6 @@ export class LectureService {
 
   /** Retourne la liste des tâches */
   getListeTaches(): model.Tache[] {
-    if (!this.dataRepository.getAnneeChargee().taches) {
-      this.dataRepository.getAnneeChargee().taches = [];
-    }
     return this.dataRepository.getAnneeChargee().taches;
   }
 

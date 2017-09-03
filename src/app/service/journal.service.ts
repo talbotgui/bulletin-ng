@@ -28,8 +28,10 @@ export class JournalService {
       nouveauJournal.date = dateCible;
       nouveauJournal.remarque = 'Duplication du journal du ' + journal.date + '<br/>' + journal.remarque;
       nouveauJournal.temps = [];
-      for (const t of journal.temps) {
-        nouveauJournal.temps.push(this.dupliqueTemps(t));
+      if (journal.temps) {
+        for (const t of journal.temps) {
+          nouveauJournal.temps.push(this.dupliqueTemps(t));
+        }
       }
     }
   }
@@ -47,11 +49,14 @@ export class JournalService {
     }
 
     // Ajout du temps dupliqué
+    if (!journalCible.temps) {
+      journalCible.temps = [];
+    }
     journalCible.temps.push(this.dupliqueTemps(temps));
   }
 
   /** Pour ajouter un journal */
-  ajouterJournal(date: Date): model.Journal | undefined {
+  ajouterJournal(date: Date): model.Journal {
 
     // Cas d'un journal déjà existant
     let journal = this.lectureService.getJournal(date);

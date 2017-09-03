@@ -19,7 +19,7 @@ export class Eleve {
   dateNaissance: Date;
   pere: string; mere: string; fratrie: string;
   adresses: string; telephones: string;
-  statut: string; bilans: string; cursus: Cursus[];
+  statut: string; bilans: string; cursus: Cursus[] = [];
   dateAdmission: Date; accueil: string; datesPPA: string; datesPAP: string; datesESS: string;
 
   constructor(public id: string, public nom: string, public prenom: string) { }
@@ -45,7 +45,7 @@ export class Temps {
 }
 
 export class Journal {
-  date: Date; remarque: string; temps: Temps[];
+  date: Date; remarque: string; temps: Temps[] = [];
 }
 
 export class Echeance {
@@ -54,24 +54,24 @@ export class Echeance {
 }
 
 export class Tache {
-  constructor(public titre: string, public echeances: Echeance[]) { }
+  constructor(public titre: string, public echeances: Echeance[] = []) { }
 }
 
 export class Annee {
-  anneeScolaire: string; periodes: Periode[];
+  anneeScolaire: string; periodes: Periode[] = [];
   enteteEdition: string; enseignant: string; cycleNiveau: string;
-  libellesTypeTempsJournal: string[];
-  eleves: Eleve[]; competences: Competence[]; notes: Note[]; journal: Journal[];
-  dateDerniereSauvegarde: Date; historique: Historique[]; erreursChargement: string[];
+  libellesTypeTempsJournal: string[] = [];
+  eleves: Eleve[] = []; competences: Competence[] = []; notes: Note[] = []; journal: Journal[] = [];
+  dateDerniereSauvegarde: Date; historique: Historique[] = []; erreursChargement: string[] = [];
   mapLibelleStatutEleve: any; mapLibelleNotes: any;
   mapLibelleStatutEleveMap: Map<string, string>; mapLibelleNotesMap: Map<string, string>;
-  themeSelectionne: string; taches: Tache[];
+  themeSelectionne: string; taches: Tache[] = [];
 }
 export class SousLigneTableauDeBord {
   constructor(public competence?: Competence, public constatation?: Note, public aide?: Note) { }
 }
 export class LigneTableauDeBord {
-  sousLignes: SousLigneTableauDeBord[];
+  sousLignes: SousLigneTableauDeBord[] = [];
 
   set constat(value: string) {
     for (const sousLigne of this.sousLignes) {
