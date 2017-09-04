@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MdSnackBar } from '@angular/material';
 
 import { SauvegardeService } from '../service/sauvegarde.service';
 
@@ -26,7 +27,7 @@ export class DialogChargementComponent implements OnInit {
   nomFichierLocal: string;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private sauvegardeService: SauvegardeService) { }
+  constructor(private sauvegardeService: SauvegardeService, private snackBar: MdSnackBar) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
@@ -51,12 +52,19 @@ export class DialogChargementComponent implements OnInit {
     this.nomFichierLocal = event.srcElement.value.substring(event.srcElement.value.lastIndexOf('/') + event.srcElement.value.lastIndexOf('\\') + 2);
   }
 
-  // A la validation du formulaire
+  // A la demande de chargement
   onDemandeChargement() {
+    // Si les deux ont été demandé
+    if (!!this.fichierSelectionne && !!this.jsonChargeDepuisFichierLocal) {
+      const message = 'Impossible de sélectionner les deux sources de données !!';
+      this.snackBar.open(message, undefined, { duration: 3000 });
+    }
     // Si c'est un chargement local
-    if (this.jsonChargeDepuisFichierLocal) {
+    else if (this.jsonChargeDepuisFichierLocal) {
       this.sauvegardeService.chargeAnneeDepuisText(this.nomFichierLocal, this.jsonChargeDepuisFichierLocal);
-    } else {
+    }
+    // Si c'est un chargement depuis le serveur
+    else {
       this.sauvegardeService.chargeAnneeDuFichier(this.fichierSelectionne);
     }
   }
