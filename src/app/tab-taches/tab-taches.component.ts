@@ -10,7 +10,7 @@ export class TabTachesComponent {
   nouvelleTache: model.Tache | undefined;
 
   get taches(): model.Tache[] {
-    return this.lectureService.getListeTaches();
+    return this.lectureService.getListeTaches().sort((a: model.Tache, b: model.Tache) => a.compareTo(b));
   }
 
   constructor(private lectureService: LectureService, private tacheService: TacheService) { }
@@ -47,27 +47,4 @@ export class TabTachesComponent {
       this.nouvelleTache.echeances.push(new model.Echeance('', new Date()));
     }
   }
-
-  calculeAvancement(tache: model.Tache): string {
-    if (tache.echeances) {
-      const nbEcheancesTerminees = tache.echeances.filter((el: model.Echeance) => el.termine).length;
-      return nbEcheancesTerminees + '/' + tache.echeances.length;
-    } else {
-      return '';
-    }
-  }
-  calculeProchaineEcheance(tache: model.Tache): Date | undefined {
-    if (tache.echeances) {
-      const listeTrieeFiltree = tache.echeances.filter((el: model.Echeance) => !el.termine)
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-      if (listeTrieeFiltree.length > 0) {
-        return listeTrieeFiltree[listeTrieeFiltree.length - 1].date;
-      } else {
-        return undefined;
-      }
-    } else {
-      return undefined;
-    }
-  }
-
 }

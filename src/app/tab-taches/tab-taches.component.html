@@ -35,7 +35,7 @@
     </md-grid-tile>
 
     <md-grid-tile *ngFor="let tache of taches">
-        <md-card>
+        <md-card class="{{tache.terminee?'terminee':'encours'}}">
             <md-card-header>
                 <md-card-title>
                     {{tache.titre}}
@@ -44,8 +44,9 @@
                     <em class="fa fa-remove" mdTooltip="Supprimer" (click)="supprimer(tache)"></em>
                 </md-card-title>
                 <md-card-subtitle>
-                    {{calculeAvancement(tache)}} |
-                    <em class="fa fa-clock-o"></em>{{calculeProchaineEcheance(tache) | date:'EEEE dd/MM'}}
+                    <span>{{tache.avancement}} |</span>
+                    <em class="fa fa-clock-o"></em>
+                    <span>{{tache.prochaineEcheance | date:'EEEE dd/MM'}}</span>
                 </md-card-subtitle>
             </md-card-header>
             <md-card-content>

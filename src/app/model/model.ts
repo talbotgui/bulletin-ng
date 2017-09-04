@@ -55,6 +55,48 @@ export class Echeance {
 
 export class Tache {
   constructor(public titre: string, public echeances: Echeance[] = []) { }
+
+  get avancement(): string {
+    if (this.echeances) {
+      const nbEcheancesTerminees = this.echeances.filter((el: Echeance) => el.termine).length;
+      return nbEcheancesTerminees + '/' + this.echeances.length;
+    } else {
+      return '';
+    }
+  }
+  get prochaineEcheance(): Date | undefined {
+    if (this.echeances) {
+      const listeTrieeFiltree = this.echeances.filter((el: Echeance) => !el.termine)
+        .sort((a, b) => b.date.getTime() - a.date.getTime());
+
+      if (listeTrieeFiltree.length > 0) {
+        return listeTrieeFiltree[listeTrieeFiltree.length - 1].date;
+      } else {
+        return undefined;
+      }
+    } else {
+      return undefined;
+    }
+  }
+
+  get terminee(): boolean {
+    if (this.echeances) {
+      const nbEcheancesTerminees = this.echeances.filter((el: Echeance) => el.termine).length;
+      return nbEcheancesTerminees === this.echeances.length;
+    } else {
+      return false;
+    }
+  }
+
+  compareTo(autre: Tache): number {
+    let resultat = -1;
+    if (!!this.terminee && !autre.terminee) {
+      resultat = 1;
+    } else if (!!this.prochaineEcheance && !!autre.prochaineEcheance) {
+      resultat = this.prochaineEcheance.getTime() - autre.prochaineEcheance.getTime();
+    }
+    return resultat;
+  }
 }
 
 export class Annee {
