@@ -112,9 +112,13 @@ export class EditionService {
         contenu += '   .edition table { width:100%; text-align: center; vertical-align: middle; border-collapse: collapse!important; }';
         contenu += '   .edition td,.edition  th { border: solid 1px black!important; }';
         contenu += '   .editionJournal h1 { padding-top: 15px; }';
-        contenu += '   .editionJournal tbody td:nth-child(4) { text-align: left; max-width: 50%; word-break: break-all; }';
+        contenu += '   td.commentaire ol { -webkit-margin-before: 0px!important; -webkit-margin-after: 0px!important; -webkit-padding-start: 20px!important }';
+        contenu += '   td.commentaire ul { -webkit-margin-before: 0px!important; -webkit-margin-after: 0px!important; -webkit-padding-start: 20px!important }';
+        contenu += '   td.commentaire { font-size: 14px; line-height: 14px; text-align: left; max-width: 50%; word-break: break-word; }';
+        contenu += '   td.eleves { font-size: 12px; line-height: 12px; }';
+        contenu += '   td.cadre { font-size: 12px; line-height: 12px; }';
         contenu += '   div.remarques { border: solid 1px darkgrey; margin-bottom: 20px; }';
-        contenu += '   td.competences { font-size: 12px; max-width: 300px; }';
+        contenu += '   td.competences { font-size: 12px; max-width: 500px; }';
         contenu += '   td.cahierJournalZoneEcriture { min-width: 300px; }';
         contenu += '   td span { margin: 0px 15px; }';
         contenu += '  </style>';
@@ -129,9 +133,12 @@ export class EditionService {
         contenu += '    </thead>';
         contenu += '    <tbody>';
         for (const temp of journal.temps) {
+            if (!temp.nom && !temp.debut && !temp.fin && !temp.type) {
+                continue;
+            }
             contenu += ' <tr>';
-            contenu += '  <td>' + temp.nom + '<br/><i>' + temp.type + '</i><br/><br/>De ' + temp.debut + '<br/>A ' + temp.fin + '<br/></td>';
-            contenu += '  <td>';
+            contenu += '  <td class="cadre">' + temp.nom + '<br/><br/><i>' + temp.type + '</i><br/><br/>De ' + temp.debut + '<br/>A ' + temp.fin + '<br/></td>';
+            contenu += '  <td class="eleves">';
             for (const idEleve of temp.eleves) {
                 const eleve = this.lectureService.getEleve(idEleve);
                 if (eleve) {
@@ -149,7 +156,7 @@ export class EditionService {
                 i++;
             }
             contenu += '  </td>';
-            contenu += '  <td>' + Utils.nettoieString(temp.commentaire) + '</td>';
+            contenu += '  <td class="commentaire">' + temp.commentaire + '</td>';
             contenu += '  <td class=\'cahierJournalZoneEcriture\'></td>';
             contenu += ' </tr>';
         }
