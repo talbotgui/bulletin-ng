@@ -26,7 +26,7 @@ export class LectureService {
 
   /** Pour obtenir le journal d'un jour précis */
   getJournal(date: Date): model.Journal | undefined {
-    const time = new Date(date).getTime();
+    const time = date.getTime();
 
     // Si présent dans le cache, on renvoie
     if (this.cacheMapDateJournal.has(time)) {
@@ -35,7 +35,7 @@ export class LectureService {
 
     // Sinon, recherche, mise en cache et renvoie
     for (const journal of this.dataRepository.getAnneeChargee().journal) {
-      if (new Date(journal.date).getTime() === time) {
+      if (journal.date.getTime() === time) {
         this.cacheMapDateJournal.set(time, journal);
         return journal;
       }

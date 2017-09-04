@@ -26,7 +26,10 @@ describe('DataRepository', () => {
 
     // Assert
     expect(dataRepositoryToTest.isAnneeChargee()).toBe(true);
-    expect(dataRepositoryToTest.getAnneeChargee()).toBe(annee);
+    expect(dataRepositoryToTest.getAnneeChargee().competences.length).toBe(annee.competences.length);
+    expect(dataRepositoryToTest.getAnneeChargee().eleves.length).toBe(annee.eleves.length);
+    expect(dataRepositoryToTest.getAnneeChargee().journal.length).toBe(annee.journal.length);
+    expect(dataRepositoryToTest.getAnneeChargee().taches.length).toBe(annee.taches.length);
   });
 
   it('setThemeSelectionne', () => {

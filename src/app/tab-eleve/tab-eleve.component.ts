@@ -28,7 +28,7 @@ export class TabEleveComponent implements OnInit {
   /** Bidouille très moche pour remplacer le DatePicker de material qui ne fonctionne pas avec l'i18n et dans un form */
   get dateNaissanceEleveSelectionne(): string | undefined {
     if (this.eleveSelectionne && this.eleveSelectionne.dateNaissance) {
-      return this.formatDate(new Date(this.eleveSelectionne.dateNaissance));
+      return this.formatDate(this.eleveSelectionne.dateNaissance);
     } else {
       return undefined;
     }
@@ -59,9 +59,8 @@ export class TabEleveComponent implements OnInit {
     this.editionService.editionEleve(this.eleveSelectionne);
   }
 
-  private formatDate(d?: Date): string {
-    if (d) {
-      const date = new Date(d);
+  private formatDate(date?: Date): string {
+    if (date) {
       const j = this.formatNumber(date.getDate());
       const m = this.formatNumber(date.getMonth() + 1);
       const y = date.getFullYear();
