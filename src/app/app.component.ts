@@ -14,6 +14,15 @@ export class AppComponent implements OnInit {
     if (window.location.toString().indexOf('offline') > -1) {
       this.sauvegardeService.travailleHorsReseau();
     }
+
+    // En cas de demande de raffraissement avec une année chargée
+    window.onbeforeunload = () => {
+      let resultat;
+      if (this.dataRepository.isAnneeChargee()) {
+        resultat = 'Etes-vous certains de vouloir quitter cette page ? Avez-vous bien sauvegarder votre travail ?';
+      }
+      return resultat;
+    };
   }
 
   get anneeChargee() {
