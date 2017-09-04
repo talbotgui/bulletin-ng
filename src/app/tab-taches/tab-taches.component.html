@@ -3,7 +3,7 @@
     <i class="fa fa-plus fa-stack-1x"></i>
 </span>
 
-<md-grid-list cols="4" rowHeight="4:3">
+<md-grid-list cols="4" rowHeight="4:4" gutterSize="20">
 
     <md-grid-tile *ngIf="nouvelleTache">
         <md-card>
@@ -18,7 +18,7 @@
             </md-card-header>
             <md-card-content>
                 <div *ngFor="let eche of nouvelleTache.echeances">
-                    <input [(ngModel)]="eche.nom" name="aFaire" />
+                    <input [(ngModel)]="eche.nom" name="aFaire" class="nomEcheance" />
 
                     <input class="inputDatePicker" [mdDatepicker]="myDatepicker" [(ngModel)]="eche.date" name="date" placeholder="Date">                    {{eche.date | date:'EEE dd/MM'}}
                     <md-datepicker-toggle [for]="myDatepicker"></md-datepicker-toggle>
