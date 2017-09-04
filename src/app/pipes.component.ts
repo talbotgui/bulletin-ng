@@ -7,12 +7,14 @@ export class MapValuesPipe implements PipeTransform {
   transform(value: any, args?: any[]): Array<{ key: string, val: string }> {
     const returnArray: any[] = [];
 
-    value.forEach((entryVal: any, entryKey: any) => {
-      returnArray.push({
-        key: entryKey,
-        val: entryVal
+    if (value) {
+      value.forEach((entryVal: any, entryKey: any) => {
+        returnArray.push({
+          key: entryKey,
+          val: entryVal
+        });
       });
-    });
+    }
 
     return returnArray;
   }
