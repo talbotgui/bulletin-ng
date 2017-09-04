@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 
+import { Utils } from './utils';
 import * as model from '../model/model';
 import { LectureService } from '../service/lecture.service';
 
 @Injectable()
 export class EditionService {
-    private static popupOuverte: Window;
 
-    private readonly REGEX_CR: RegExp = new RegExp('\\n', 'g');
+    private static popupOuverte: Window;
 
     constructor(private lectureService: LectureService) { }
 
@@ -41,32 +41,32 @@ export class EditionService {
         contenu += '    <tr>';
         contenu += '     <td rowspan=\'2\' class=\'editionEleve-identite\'>' + eleve.nom.toUpperCase() + ' ' + eleve.prenom + '</td>';
         contenu += '     <td class=\'editionEleve-dates\'>';
-        contenu += '      <span>Date de naissance : </span>' + this.formatDate(eleve.dateNaissance) + '<br/>';
-        contenu += '      <span>Date d\'admission : </span>' + this.formatDate(eleve.dateAdmission);
+        contenu += '      <span>Date de naissance : </span>' + Utils.formatDate(eleve.dateNaissance) + '<br/>';
+        contenu += '      <span>Date d\'admission : </span>' + Utils.formatDate(eleve.dateAdmission);
         contenu += '     </td>';
         contenu += '    </tr>';
         contenu += '    <tr>';
         contenu += '     <td class=\'editionEleve-contacts\'>';
-        contenu += '      <span>Adresses :</span><br/>' + this.nettoieString(eleve.adresses) + '<br/><br/>';
-        contenu += '      <span>Téléphones : </span><br/>' + this.nettoieString(eleve.telephones);
+        contenu += '      <span>Adresses :</span><br/>' + Utils.nettoieString(eleve.adresses) + '<br/><br/>';
+        contenu += '      <span>Téléphones : </span><br/>' + Utils.nettoieString(eleve.telephones);
         contenu += '     </td>';
         contenu += '    </tr>';
         contenu += '   </table>';
         contenu += '   <br/>';
         contenu += '   <table>';
         contenu += '    <tr>';
-        contenu += '     <td class=\'editionEleve-pere\'><span>Père :</span><br/>' + this.nettoieString(eleve.pere) + '</td>';
-        contenu += '     <td class=\'editionEleve-mere\'><span>Mère :</span><br/>' + this.nettoieString(eleve.mere) + '</td>';
-        contenu += '     <td class=\'editionEleve-fratrie\'><span>Fratrie :</span><br/>' + this.nettoieString(eleve.fratrie) + '</td>';
-        contenu += '     <td class=\'editionEleve-accueil\'><span>Informations complémentaires :</span><br/>' + this.nettoieString(eleve.accueil) + '</td>';
+        contenu += '     <td class=\'editionEleve-pere\'><span>Père :</span><br/>' + Utils.nettoieString(eleve.pere) + '</td>';
+        contenu += '     <td class=\'editionEleve-mere\'><span>Mère :</span><br/>' + Utils.nettoieString(eleve.mere) + '</td>';
+        contenu += '     <td class=\'editionEleve-fratrie\'><span>Fratrie :</span><br/>' + Utils.nettoieString(eleve.fratrie) + '</td>';
+        contenu += '     <td class=\'editionEleve-accueil\'><span>Informations complémentaires :</span><br/>' + Utils.nettoieString(eleve.accueil) + '</td>';
         contenu += '    </tr>';
         contenu += '   </table>';
         contenu += '   <br/>';
         contenu += '   <table>';
         contenu += '    <tr>';
-        contenu += '     <td class=\'editionEleve-datesPPA\'><span>Dates PPA :</span><br/>' + this.nettoieString(eleve.datesPPA) + '</td>';
-        contenu += '     <td class=\'editionEleve-datesPAP\'><span>Dates PAP(PPS) :</span><br/>' + this.nettoieString(eleve.datesPAP) + '</td>';
-        contenu += '     <td class=\'editionEleve-datesESS\'><span>Dates ESS :</span><br/>' + this.nettoieString(eleve.datesESS) + '</td>';
+        contenu += '     <td class=\'editionEleve-datesPPA\'><span>Dates PPA :</span><br/>' + Utils.nettoieString(eleve.datesPPA) + '</td>';
+        contenu += '     <td class=\'editionEleve-datesPAP\'><span>Dates PAP(PPS) :</span><br/>' + Utils.nettoieString(eleve.datesPAP) + '</td>';
+        contenu += '     <td class=\'editionEleve-datesESS\'><span>Dates ESS :</span><br/>' + Utils.nettoieString(eleve.datesESS) + '</td>';
         contenu += '    </tr>';
         contenu += '   </table>';
         contenu += '   <br/>';
@@ -98,7 +98,7 @@ export class EditionService {
 
     editionJournal(journal: model.Journal): void {
 
-        const titre: string = 'Cahier journal du ' + this.formatDate(journal.date, true);
+        const titre: string = 'Cahier journal du ' + Utils.formatDate(journal.date, true);
 
         let contenu = '<!DOCTYPE html>';
         // suppression des header/footer sur FF
@@ -149,7 +149,7 @@ export class EditionService {
                 i++;
             }
             contenu += '  </td>';
-            contenu += '  <td>' + this.nettoieString(temp.commentaire) + '</td>';
+            contenu += '  <td>' + Utils.nettoieString(temp.commentaire) + '</td>';
             contenu += '  <td class=\'cahierJournalZoneEcriture\'></td>';
             contenu += ' </tr>';
         }
@@ -168,37 +168,6 @@ export class EditionService {
     }
     private piedDePage(): string {
         return 'piedDePage';
-    }
-    private formatDate(d?: Date, formatLong: boolean = false): string {
-        if (d) {
-            const date = new Date(d);
-            const mapJours = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
-            const jour = mapJours[date.getDay()];
-            const j = this.formatNumber(date.getDate());
-            const m = this.formatNumber(date.getMonth() + 1);
-            const y = date.getFullYear();
-            if (formatLong) {
-                return jour + ' ' + j + '/' + m + '/' + y;
-            } else {
-                return j + '/' + m + '/' + y;
-            }
-        } else {
-            return '';
-        }
-    }
-    private formatNumber(n: number): string {
-        if (n < 10) {
-            return '0' + n;
-        } else {
-            return '' + n;
-        }
-    }
-    private nettoieString(chaine: string): string {
-        if (chaine) {
-            return chaine.replace(this.REGEX_CR, '<br/>');
-        } else {
-            return '';
-        }
     }
     private ouvrePopup(contenu: string, titre: string): void {
 

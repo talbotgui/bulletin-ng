@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
 
+import { Utils } from './utils';
 import { DataRepository } from './data.repository';
 import { LectureService } from './lecture.service';
 import * as model from '../model/model';
@@ -26,7 +27,7 @@ export class JournalService {
     const nouveauJournal = this.ajouterJournal(dateCible);
     if (nouveauJournal) {
       nouveauJournal.date = dateCible;
-      nouveauJournal.remarque = 'Duplication du journal du ' + journal.date + '<br/>' + journal.remarque;
+      nouveauJournal.remarque = 'Duplication du journal du ' + Utils.formatDate(journal.date, true) + '<br/>' + journal.remarque;
       nouveauJournal.temps = [];
       if (journal.temps) {
         for (const t of journal.temps) {
