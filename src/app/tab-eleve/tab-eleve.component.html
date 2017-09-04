@@ -46,30 +46,33 @@
 			<textarea [(ngModel)]="eleveSelectionne.datesPAP" name="datesPAP" placeholder="datesPAP" rows="6"></textarea>
 			<textarea [(ngModel)]="eleveSelectionne.datesESS" name="datesESS" placeholder="datesESS" rows="6"></textarea>
 		</fieldset>
-		<fieldset class="cursus">
-			<legend>Cursus scolaire</legend>
-			<table>
-				<thead>
-					<tr>
-						<th>Année scolaire</th>
-						<th>Niveau</th>
-						<th>Etablissement</th>
-						<th>Accompagnement</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr *ngFor="let cur of eleveSelectionne.cursus; let i = index">
-						<td>{{cur.annee}}</td>
-						<td><input [(ngModel)]="cur.niveau" name="Niveau{{i}}" /></td>
-						<td><input [(ngModel)]="cur.etablissement" name="Etablissement{{i}}" /></td>
-						<td><input [(ngModel)]="cur.accompagnement" name="Accompagnement{{i}}" /></td>
-					</tr>
-				</tbody>
-			</table>
-		</fieldset>
-		<fieldset class="bilans">
-			<legend>Bilans</legend>
-			<ckeditor [(ngModel)]="eleveSelectionne.bilans" name="bilans" [config]="configCkEditor" debounce="200"></ckeditor>
-		</fieldset>
 	</div>
 </form>
+<div *ngIf="eleveSelectionne" class="formulaireEleve">
+	<fieldset class="cursus">
+		<legend>Cursus scolaire</legend>
+		<table>
+			<thead>
+				<tr>
+					<th>Année scolaire</th>
+					<th>Niveau</th>
+					<th>Etablissement</th>
+					<th>Accompagnement</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let cur of eleveSelectionne.cursus; let i = index;">
+					<td>{{cur.annee}}</td>
+					<td><input mdInput [(ngModel)]="cur.niveau" name="niveau-{{i}}" /></td>
+					<td><input mdInput [(ngModel)]="cur.etablissement" name="etablissement-{{i}}" /></td>
+					<td><input mdInput [(ngModel)]="cur.accompagnement" name="accompagnement-{{i}}" /></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</fieldset>
+	<fieldset class="bilans">
+		<legend>Bilans</legend>
+		<ckeditor [(ngModel)]="eleveSelectionne.bilans" name="bilans" [config]="configCkEditor" debounce="200"></ckeditor>
+	</fieldset>
+</div>
