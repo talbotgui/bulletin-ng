@@ -59,6 +59,29 @@ export class TabEleveComponent implements OnInit {
     this.editionService.editionEleve(this.eleveSelectionne);
   }
 
+  creerEleve(): void {
+    this.lectureService.getListeEleve().push(new model.Eleve(model.ModelUtil.getUID(), 'Nouvel', 'Eleve'));
+  }
+
+  ajouterCursus(): void {
+    let anneeSuivante = this.eleveSelectionne.dateNaissance.getFullYear();
+    if (!this.eleveSelectionne.cursus) {
+      this.eleveSelectionne.cursus = [];
+    } else if (this.eleveSelectionne.cursus.length > 0) {
+      anneeSuivante = this.eleveSelectionne.cursus[this.eleveSelectionne.cursus.length - 1].annee + 1;
+    }
+    const nouveauCursus = new model.Cursus();
+    nouveauCursus.annee = anneeSuivante;
+    this.eleveSelectionne.cursus.push(nouveauCursus);
+  }
+
+  retirerCursus(cursus: model.Cursus): void {
+    const index = this.eleveSelectionne.cursus.indexOf(cursus);
+    if (0 <= index && index < this.eleveSelectionne.cursus.length) {
+      this.eleveSelectionne.cursus.splice(index, 1);
+    }
+  }
+
   private formatDate(date?: Date): string {
     if (date) {
       const j = this.formatNumber(date.getDate());

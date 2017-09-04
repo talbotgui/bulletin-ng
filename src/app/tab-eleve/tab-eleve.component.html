@@ -1,6 +1,7 @@
 <!-- Actions -->
 <div class="actions">
 	<em *ngIf="eleveSelectionne" class="fa fa-print fa-2x" (click)="impression()"></em>
+	<em class="fa fa-plus fa-2x" (click)="creerEleve()"></em>
 </div>
 
 <!-- Liste des élèves -->
@@ -58,6 +59,7 @@
 					<th>Niveau</th>
 					<th>Etablissement</th>
 					<th>Accompagnement</th>
+					<th><em class="fa fa-plus" (click)="ajouterCursus()"></em></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -66,6 +68,7 @@
 					<td><input mdInput [(ngModel)]="cur.niveau" name="niveau-{{i}}" /></td>
 					<td><input mdInput [(ngModel)]="cur.etablissement" name="etablissement-{{i}}" /></td>
 					<td><input mdInput [(ngModel)]="cur.accompagnement" name="accompagnement-{{i}}" /></td>
+					<td><em class="fa fa-remove" (click)="retirerCursus(cur)"></em></td>
 				</tr>
 			</tbody>
 		</table>

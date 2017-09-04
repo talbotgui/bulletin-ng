@@ -67,7 +67,7 @@ export class DataRepository {
         if (el.cursus) {
           el.cursus.forEach((c) => {
             const newC = new model.Cursus();
-            newC.annee = c.annee;
+            newC.annee = parseInt(c.annee + '', 10);
             newC.niveau = c.niveau;
             newC.etablissement = c.etablissement;
             newC.accompagnement = c.accompagnement;
@@ -128,7 +128,7 @@ export class DataRepository {
         const newP = new model.Periode();
         newP.debut = p.debut;
         newP.fin = p.fin;
-        newP.id = p.id;
+        newP.id = parseInt(p.id + '', 10);
         newP.nom = p.nom;
         nouvelleAnnee.periodes.push(newP);
       });
