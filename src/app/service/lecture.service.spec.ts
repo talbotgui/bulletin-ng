@@ -257,4 +257,115 @@ describe('LectureService', () => {
     mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
   });
 
+  it('getPeriode(0) sans périodes', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_SIMPLISTE);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getPeriode(0);
+    //
+    expect(resultat).toBe(undefined);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getPeriode(10) avec 5 périodes', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getPeriode(10);
+    //
+    expect(resultat).toBe(undefined);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getPeriode(1) avec 5 périodes', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getPeriode(1);
+    //
+    expect(resultat).toBe(annee.periodes[1]);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getPeriodeSuivante(0) sans périodes', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_SIMPLISTE);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getPeriode(0);
+    //
+    expect(resultat).toBe(undefined);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getPeriodeSuivante avec une période invalide', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getPeriodeSuivante(new model.Periode());
+    //
+    expect(resultat).toBe(undefined);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getPeriodeSuivante avec 5 périodes', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getPeriodeSuivante(annee.periodes[2]);
+    //
+    expect(resultat).toBe(annee.periodes[3]);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getListeEleveActif', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getListeEleveActif();
+    //
+    expect(resultat.length).toBe(3);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getEleve sans élèves', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_SIMPLISTE);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getEleve('idEleve');
+    //
+    expect(resultat).toBe(undefined);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getEleve sans le bon élève', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getEleve('idEleve');
+    //
+    expect(resultat).toBe(undefined);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getEleve avec le bon élève', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    const eleve = annee.eleves[2];
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getEleve(eleve.id);
+    //
+    expect(resultat).toBe(eleve);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
 });
