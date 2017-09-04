@@ -20,9 +20,11 @@
                 <div *ngFor="let eche of nouvelleTache.echeances">
                     <input [(ngModel)]="eche.nom" name="aFaire" class="nomEcheance" />
 
-                    <input class="inputDatePicker" [mdDatepicker]="myDatepicker" [(ngModel)]="eche.date" name="date" placeholder="Date">                    {{eche.date | date:'EEE dd/MM'}}
+                    <input class="inputDatePicker" [mdDatepicker]="myDatepicker" [(ngModel)]="eche.date" name="date" placeholder="Date" />
+                    <span>{{eche.date | date:'dd/MM'}}</span>
                     <md-datepicker-toggle [for]="myDatepicker"></md-datepicker-toggle>
                     <md-datepicker #myDatepicker></md-datepicker>
+                    <em class="fa fa-remove" mdTooltip="Supprimer" (click)="supprimerEcheance(nouvelleTache, eche)"></em>
                     <br/>
                 </div>
             </md-card-content>
@@ -41,7 +43,7 @@
                     {{tache.titre}}
                     <em class="fa fa-edit" mdTooltip="Editer" (click)="editer(tache)"></em>
                     <em class="fa fa-copy" mdTooltip="Dupliquer" (click)="dupliquer(tache)"></em>
-                    <em class="fa fa-remove" mdTooltip="Supprimer" (click)="supprimer(tache)"></em>
+                    <em class="fa fa-remove" mdTooltip="Supprimer" (click)="supprimerTache(tache)"></em>
                 </md-card-title>
                 <md-card-subtitle>
                     <span>{{tache.avancement}} |</span>
@@ -51,8 +53,8 @@
             </md-card-header>
             <md-card-content>
                 <div *ngFor="let eche of tache.echeances">
-                    <em class="fa fa-check-square-o" *ngIf="!!eche.termine" (click)="eche.termine=false"></em>
-                    <em class="fa fa-square-o" *ngIf="!eche.termine" (click)="eche.termine=true"></em>
+                    <em class="fa fa-check-square-o" *ngIf="!!eche.termine" (click)="changeEcheance(eche, false, $event)"></em>
+                    <em class="fa fa-square-o" *ngIf="!eche.termine" (click)="changeEcheance(eche, true, $event)"></em>
                     <span>{{eche.nom}} pour le {{eche.date | date:'EEEE dd/MM'}}</span>
                     <br/>
                 </div>

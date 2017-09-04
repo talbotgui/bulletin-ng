@@ -27,8 +27,25 @@ export class TabTachesComponent {
     this.nouvelleTache = this.tacheService.dupliquerTache(tache);
   }
 
-  supprimer(tache: model.Tache): void {
+  supprimerTache(tache: model.Tache): void {
     this.tacheService.supprimerTache(tache);
+  }
+
+  changeEcheance(echeance: model.Echeance, valeur: boolean, event: any): void {
+    echeance.termine = valeur;
+    const carte = event.target.parentNode.parentNode.parentNode;
+    const classeInitiale = carte.className;
+    carte.className = 'flash';
+    setTimeout(() => carte.className = classeInitiale, 500);
+  }
+
+  supprimerEcheance(tache: model.Tache, echeance: model.Echeance): void {
+    if (!!tache && !!echeance) {
+      const index = tache.echeances.indexOf(echeance);
+      if (0 <= index && index < tache.echeances.length) {
+        tache.echeances.splice(index, 1);
+      }
+    }
   }
 
   ajouterLaNouvelleTache(): void {
