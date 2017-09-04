@@ -77,9 +77,9 @@ export class EditionService {
         for (const c of eleve.cursus) {
             contenu += '<tr id=\'' + c.annee + '\'>';
             contenu += '<td>' + c.annee + '-' + (c.annee + 1) + '</td>';
-            contenu += '<td>' + c.niveau + '</td>';
-            contenu += '<td>' + c.etablissement + '</td>';
-            contenu += '<td>' + c.accompagnement + '</td>';
+            contenu += '<td>' + Utils.nettoieString(c.niveau) + '</td>';
+            contenu += '<td>' + Utils.nettoieString(c.etablissement) + '</td>';
+            contenu += '<td>' + Utils.nettoieString(c.accompagnement) + '</td>';
             contenu += '</tr>';
         }
         contenu += '     </tbody>';
