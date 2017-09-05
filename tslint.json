@@ -9,6 +9,7 @@
 		"one-line": [true,"check-catch","check-finally","check-open-brace","check-whitespace"],
 		"max-classes-per-file": [false],
 		"ordered-imports": [false],
-		"only-arrow-functions": [true,"allow-named-functions"]
+		"only-arrow-functions": [true,"allow-named-functions"],
+		"align": [true, "arguments", "statements", "elements", "members"]
 	}
 }
