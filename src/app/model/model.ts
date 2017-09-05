@@ -92,7 +92,7 @@ export class Tache {
     let resultat = -1;
     if (!!this.terminee && !autre.terminee) {
       resultat = 1;
-    } else if (!!this.prochaineEcheance && !!autre.prochaineEcheance) {
+    } else if (!!this.prochaineEcheance && !!autre.prochaineEcheance && !!this.prochaineEcheance.getTime && !!autre.prochaineEcheance.getTime) {
       resultat = this.prochaineEcheance.getTime() - autre.prochaineEcheance.getTime();
     }
     return resultat;

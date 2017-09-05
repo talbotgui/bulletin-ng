@@ -3,6 +3,10 @@ import { By, FileDetector, promise as wdpromise } from 'selenium-webdriver';
 import * as fs from 'fs';
 
 export class BulletinPage {
+  identifiant: string;
+  constructor() {
+    this.identifiant = '' + (new Date()).getTime();
+  }
 
   navigateToRoot(): void {
     browser.get('/?offline&?sansAlerte');
@@ -20,7 +24,9 @@ export class BulletinPage {
     return element(selector).isPresent();
   }
   type(selector: By, text: string): void {
-    element(selector).sendKeys(text);
+    const e = element(selector);
+    e.clear();
+    e.sendKeys(text);
   }
   patiente(temps: number) {
     browser.driver.sleep(temps);
@@ -30,5 +36,14 @@ export class BulletinPage {
   }
   executeScript(script: string): void {
     browser.executeScript(script);
+  }
+  imprimeEcran(nom: string): void {
+    browser.takeScreenshot().then((png) => {
+      const dirName = 'build/e2e-screenshot';
+      const fileName = dirName + '/' + this.identifiant + nom + '.png';
+      const stream = fs.createWriteStream(fileName);
+      stream.write(new Buffer(png, 'base64'));
+      stream.end();
+    });
   }
 }
