@@ -3,7 +3,7 @@ import { By, FileDetector, promise as wdpromise } from 'selenium-webdriver';
 import * as fs from 'fs';
 
 export class BulletinPage {
-  identifiant: string;
+  private identifiant: string;
   constructor() {
     this.identifiant = '' + (new Date()).getTime();
   }

@@ -43,14 +43,15 @@ export class TabTaches {
   static FORM_AJOUTER_BUTTON_AJOUTER = by.xpath('(//md-card-actions/button)[1]');
 
   static CARTES_ENCOURS = by.css('md-card.encours');
+  static CARTES_TERMINEES = by.css('md-card.terminee');
 
-  static CARTE1_TITRE = by.xpath('(//md-card[@class="encours"])[1]/md-card-header/div/md-card-title');
-  static CARTE1_SSTITRE_SPAN1 = by.xpath('((//md-card[@class="encours"])[1]/md-card-header/div/md-card-subtitle/span)[1]');
-  static CARTE1_SSTITRE_SPAN2 = by.xpath('((//md-card[@class="encours"])[1]/md-card-header/div/md-card-subtitle/span)[2]');
-  static CARTE1_ECHEANCE1 = by.xpath('((//md-card[@class="encours"])[1]/md-card-content/div)[1]/span');
-  static CARTE1_ECHEANCE1_CHECKBOXON = by.xpath('((//md-card[@class="encours"])[1]/md-card-content/div)[1]/em[@class="fa fa-check-square-o"]');
-  static CARTE1_ECHEANCE1_CHECKBOXOFF = by.xpath('((//md-card[@class="encours"])[1]/md-card-content/div)[1]/em[@class="fa fa-square-o"]');
-  static CARTE1_ECHEANCE2 = by.xpath('((//md-card[@class="encours"])[1]/md-card-content/div)[2]/span');
-  static CARTE1_ECHEANCE2_CHECKBOXON = by.xpath('((//md-card[@class="encours"])[1]/md-card-content/div)[2]/em[@class="fa fa-check-square-o"]');
-  static CARTE1_ECHEANCE2_CHECKBOXOFF = by.xpath('((//md-card[@class="encours"])[1]/md-card-content/div)[2]/em[@class="fa fa-square-o"]');
+  static CARTE1_TITRE = by.xpath('(//md-card)[1]/md-card-header/div/md-card-title');
+  static CARTE1_SSTITRE_SPAN1 = by.xpath('((//md-card)[1]/md-card-header/div/md-card-subtitle/span)[1]');
+  static CARTE1_SSTITRE_SPAN2 = by.xpath('((//md-card)[1]/md-card-header/div/md-card-subtitle/span)[2]');
+  static CARTE1_ECHEANCE1 = by.xpath('((//md-card)[1]/md-card-content/div)[1]/span');
+  static CARTE1_ECHEANCE1_CHECKBOXON = by.xpath('((//md-card)[1]/md-card-content/div)[1]/em[@class="fa fa-check-square-o"]');
+  static CARTE1_ECHEANCE1_CHECKBOXOFF = by.xpath('((//md-card)[1]/md-card-content/div)[1]/em[@class="fa fa-square-o"]');
+  static CARTE1_ECHEANCE2 = by.xpath('((//md-card)[1]/md-card-content/div)[2]/span');
+  static CARTE1_ECHEANCE2_CHECKBOXON = by.xpath('((//md-card)[1]/md-card-content/div)[2]/em[@class="fa fa-check-square-o"]');
+  static CARTE1_ECHEANCE2_CHECKBOXOFF = by.xpath('((//md-card)[1]/md-card-content/div)[2]/em[@class="fa fa-square-o"]');
 }

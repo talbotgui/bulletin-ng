@@ -6,6 +6,6 @@ span.action { float: right; }
 md-datepicker-toggle.mat-datepicker-toggle { margin: -10px!important; }
 
 md-card {background-color: lightgoldenrodyellow; }
-md-card.flash {background-color: yellow; }
+md-card.flash {background-color: yellow!important; }
 md-card.terminee { background: repeating-linear-gradient(45deg, transparent, transparent 10px, #fbf8f8 10px, #AAA 20px); }
 input.nomEcheance { width: 185px; }

@@ -34,9 +34,8 @@ export class TabTachesComponent {
   changeEcheance(echeance: model.Echeance, valeur: boolean, event: any): void {
     echeance.termine = valeur;
     const carte = event.target.parentNode.parentNode.parentNode;
-    const classeInitiale = carte.className;
-    carte.className = 'flash';
-    setTimeout(() => carte.className = classeInitiale, 500);
+    carte.className = carte.className + ' flash';
+    setTimeout(() => carte.className = carte.className.replace('flash', ''), 500);
   }
 
   supprimerEcheance(tache: model.Tache, echeance: model.Echeance): void {
