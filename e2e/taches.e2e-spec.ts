@@ -47,20 +47,14 @@ describe('Onglet des tâches', () => {
     page.click(selectors.APP.MENU_TACHES);
     const s = selectors.TabTaches;
     //
-    page.imprimeEcran('-1');
     page.click(s.BUTTON_AJOUTER);
     page.type(s.FORM_AJOUTER_TITRE, titre);
     page.click(s.FORM_AJOUTER_PLUS);
     page.type(s.FORM_AJOUTER_ECHEANCE1, echeance1);
-    page.imprimeEcran('-2');
     page.executeScript('document.getElementsByClassName("inputDatePicker")[0].style.display="block"');
-    page.imprimeEcran('-3');
     page.type(s.FORM_AJOUTER_ECHEANCE1_DATE, date1);
-    page.imprimeEcran('-4');
     page.executeScript('document.getElementsByClassName("inputDatePicker")[0].style.display=""');
-    page.imprimeEcran('-5');
     page.click(s.FORM_AJOUTER_PLUS);
-    page.imprimeEcran('-6');
     page.type(s.FORM_AJOUTER_ECHEANCE2, echeance2);
     page.executeScript('document.getElementsByClassName("inputDatePicker")[1].style.display="block"');
     page.type(s.FORM_AJOUTER_ECHEANCE2_DATE, date2);

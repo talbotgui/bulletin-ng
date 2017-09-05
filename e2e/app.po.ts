@@ -40,6 +40,10 @@ export class BulletinPage {
   imprimeEcran(nom: string): void {
     browser.takeScreenshot().then((png) => {
       const dirName = 'build/e2e-screenshot';
+      if (!fs.existsSync(dirName)) {
+        fs.mkdirSync(dirName);
+      }
+
       const fileName = dirName + '/' + this.identifiant + nom + '.png';
       const stream = fs.createWriteStream(fileName);
       stream.write(new Buffer(png, 'base64'));
