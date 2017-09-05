@@ -26,6 +26,10 @@ export class LectureService {
 
   /** Pour obtenir le journal d'un jour précis */
   getJournal(date: Date): model.Journal | undefined {
+    if (!date) {
+      return;
+    }
+
     const time = date.getTime();
 
     // Si présent dans le cache, on renvoie
