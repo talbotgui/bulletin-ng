@@ -1,7 +1,7 @@
 .mat-grid-tile { overflow: auto!important; }
 md-card-title em { float: right; }
 span.action { float: right; }
-.inputDatePicker { display: none!important; }
+.inputDatePicker { display: none; }
 
 md-datepicker-toggle.mat-datepicker-toggle { margin: -10px!important; }
 

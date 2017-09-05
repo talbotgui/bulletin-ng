@@ -8,7 +8,7 @@ import * as path from 'path';
  * 
  * Pour démarrer le test en DEBUG avec VSCode, il faut lancer "ng serve" depuis un terminal puis ouvrir le script xx.e2e-spec.ts et taper F5
  */
-describe('bulletin App', () => {
+describe('Accueil de l\'application', () => {
   let page: BulletinPage;
 
   beforeEach(() => {
