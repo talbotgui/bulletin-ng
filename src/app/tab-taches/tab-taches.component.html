@@ -17,14 +17,16 @@
                 </md-card-title>
             </md-card-header>
             <md-card-content>
-                <div *ngFor="let eche of nouvelleTache.echeances">
-                    <input [(ngModel)]="eche.nom" name="aFaire" class="nomEcheance" />
+                <div *ngFor="let eche of nouvelleTache.echeances; let i = index">
+                    <input [(ngModel)]="eche.nom" name="aFaire-{{i}}" class="nomEcheance" />
 
-                    <input class="inputDatePicker" [mdDatepicker]="myDatepicker" [(ngModel)]="eche.date" name="date" placeholder="Date" />
+                    <input class="inputDatePicker" [mdDatepicker]="myDatepicker" [(ngModel)]="eche.date" name="date-{{i}}" placeholder="Date"
+                    />
                     <span>{{eche.date | date:'dd/MM'}}</span>
                     <md-datepicker-toggle [for]="myDatepicker"></md-datepicker-toggle>
                     <md-datepicker #myDatepicker></md-datepicker>
                     <em class="fa fa-remove" mdTooltip="Supprimer" (click)="supprimerEcheance(nouvelleTache, eche)"></em>
+
                     <br/>
                 </div>
             </md-card-content>
