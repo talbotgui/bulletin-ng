@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     // En cas de demande de raffraissement avec une année chargée
     window.onbeforeunload = () => {
       let resultat;
-      if (this.dataRepository.isAnneeChargee()) {
+      if (this.dataRepository.isAnneeChargee() && window.location.toString().indexOf('sansAlerte') > -1) {
         resultat = 'Etes-vous certains de vouloir quitter cette page ? Avez-vous bien sauvegarder votre travail ?';
       }
       return resultat;
