@@ -44,6 +44,12 @@ export class TabCahierJournalComponent implements OnInit {
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
+    // Date par défaut : aujourd'hui
+    this.dateJournal = new Date();
+    this.dateJournal.setHours(0, 0, 0, 0);
+    this.onChangementDateJournal();
+
+    // Initialisation des DropDown
     for (let i = 9; i < 18; i++) {
       this.tempsDisponibles.push(i + 'h00');
       this.tempsDisponibles.push(i + 'h15');
@@ -121,5 +127,13 @@ export class TabCahierJournalComponent implements OnInit {
       dialog.journal = this.journal;
       dialog.temps = temps;
     }
+  }
+
+  changeDate(delta: number) {
+    const nouvelleDate = new Date();
+    nouvelleDate.setDate(this.dateJournal.getDate() + delta);
+    nouvelleDate.setHours(0, 0, 0, 0);
+    this.dateJournal = nouvelleDate;
+    this.onChangementDateJournal();
   }
 }

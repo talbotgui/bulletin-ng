@@ -1,11 +1,18 @@
+<em class="fa fa-fast-backward" (click)="changeDate(-7)"></em>
+<em class="fa fa-backward" (click)="changeDate(-1)"></em>
+
 <input [mdDatepicker]="myDatepicker" [(ngModel)]="dateJournal" name="dateJournal" placeholder="Date du journal" (ngModelChange)="onChangementDateJournal()"
  class="filtre">
 <md-datepicker-toggle [for]="myDatepicker"></md-datepicker-toggle>
 <md-datepicker #myDatepicker></md-datepicker>
 
+<em class="fa fa-forward" (click)="changeDate(1)"></em>
+<em class="fa fa-fast-forward" (click)="changeDate(7)"></em>
+
+
 <fieldset *ngIf="!!dateJournal">
 	<legend>
-		Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}}
+		{{aze}} Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}}
 		<div class="actions">
 			<em *ngIf="journal" class="fa fa-print fa-2x" mdTooltip="Imprimer" (click)="impression()"></em>
 			<em *ngIf="journal" class="fa fa-copy fa-2x" mdTooltip="Dupliquer" (click)="demandeDuplicationJournal()"></em>
