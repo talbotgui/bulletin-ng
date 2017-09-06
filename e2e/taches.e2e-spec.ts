@@ -58,8 +58,8 @@ describe('Onglet des tâches', () => {
     expect(page.getText(s.CARTE1_ECHEANCE2)).toBe(echeance2 + ' pour le ' + date2Longue);
     expect(page.isVisible(s.CARTE1_ECHEANCE2_CHECKBOXOFF)).toBeTruthy();
   });
-  // Pas plus à cause du timeout
-  it('Manipuation des échéances', () => {
+
+  it('Manipulation des échéances', () => {
     //
     const titre = 'Titre';
     const echeance1 = 'Echeance 1';
@@ -74,7 +74,6 @@ describe('Onglet des tâches', () => {
 
     // échance 1 terminée
     page.click(s.CARTE1_ECHEANCE1_CHECKBOXOFF);
-    page.imprimeEcran('A');
     expect(page.isVisible(s.CARTE1_ECHEANCE1_CHECKBOXON)).toBeTruthy();
     expect(page.compterElements(s.CARTES_ENCOURS)).toBe(1);
     expect(page.compterElements(s.CARTES_TERMINEES)).toBe(0);
@@ -83,7 +82,6 @@ describe('Onglet des tâches', () => {
 
     // échéance 2 terminée
     page.click(s.CARTE1_ECHEANCE2_CHECKBOXOFF);
-    page.imprimeEcran('B');
     expect(page.isVisible(s.CARTE1_ECHEANCE2_CHECKBOXON)).toBeTruthy();
     expect(page.compterElements(s.CARTES_ENCOURS)).toBe(0);
     expect(page.compterElements(s.CARTES_TERMINEES)).toBe(1);
@@ -105,6 +103,52 @@ describe('Onglet des tâches', () => {
     expect(page.isVisible(s.CARTE1_ECHEANCE2_CHECKBOXOFF)).toBeTruthy();
     expect(page.getText(s.CARTE1_SSTITRE_SPAN1)).toBe('0/2 |');
     expect(page.getText(s.CARTE1_SSTITRE_SPAN2)).toBe(date1Longue);
+  });
+
+  it('Tri des tâches', () => {
+    //
+    page.click(selectors.APP.MENU_TACHES);
+    const titreA = 'TitreA';
+    const titreB = 'TitreB';
+    const titreC = 'TitreC';
+    creerTache(page, titreA, 'Echeance A.1', '12/09/2017', 'mardi 12/09', 'Echeance A.2', '20/09/2017', 'mercredi 20/09');
+    creerTache(page, titreB, 'Echeance B.1', '13/09/2017', 'mercredi 13/09', 'Echeance B.2', '21/09/2017', 'jeudi 21/09');
+    creerTache(page, titreC, 'Echeance C.1', '14/09/2017', 'jeudi 14/09', 'Echeance C.2', '22/09/2017', 'vendredi 22/09');
+    const s = selectors.TabTaches;
+
+    // Ordre sans echeance terminée => A-B-C
+    expect(page.compterElements(s.CARTES_ENCOURS)).toBe(3);
+    expect(page.compterElements(s.CARTES_TERMINEES)).toBe(0);
+    expect(page.getText(s.CARTE1_TITRE)).toBe(titreA);
+    expect(page.getText(s.CARTE2_TITRE)).toBe(titreB);
+    expect(page.getText(s.CARTE3_TITRE)).toBe(titreC);
+
+    // La carte A (place 1) terminée va à la fin => B-C-A
+    page.click(s.CARTE1_ECHEANCE2_CHECKBOXOFF);
+    page.click(s.CARTE1_ECHEANCE1_CHECKBOXOFF);
+    page.imprimeEcran('C');
+    expect(page.compterElements(s.CARTES_ENCOURS)).toBe(2);
+    expect(page.compterElements(s.CARTES_TERMINEES)).toBe(1);
+    expect(page.getText(s.CARTE1_TITRE)).toBe(titreB);
+    expect(page.getText(s.CARTE2_TITRE)).toBe(titreC);
+    expect(page.getText(s.CARTE3_TITRE)).toBe(titreA);
+
+    // Echance 1 de la carte B (place 1) terminée => C-B-A
+    page.click(s.CARTE1_ECHEANCE1_CHECKBOXOFF);
+    page.imprimeEcran('D');
+    expect(page.compterElements(s.CARTES_ENCOURS)).toBe(2);
+    expect(page.compterElements(s.CARTES_TERMINEES)).toBe(1);
+    expect(page.getText(s.CARTE1_TITRE)).toBe(titreC);
+    expect(page.getText(s.CARTE2_TITRE)).toBe(titreB);
+    expect(page.getText(s.CARTE3_TITRE)).toBe(titreA);
+
+    // Suppression carte C => B-A
+    page.click(s.CARTE1_SUPPRIME);
+    page.imprimeEcran('E');
+    expect(page.compterElements(s.CARTES_ENCOURS)).toBe(1);
+    expect(page.compterElements(s.CARTES_TERMINEES)).toBe(1);
+    expect(page.getText(s.CARTE1_TITRE)).toBe(titreB);
+    expect(page.getText(s.CARTE2_TITRE)).toBe(titreA);
   });
 });
 
