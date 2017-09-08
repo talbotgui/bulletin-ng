@@ -55,12 +55,10 @@ describe('SauvegardeService', () => {
     };
 
     // Act : appel au service et récupération du résultat + réponse à la requete HTTP déclenchée dans le service
-    let resultats;
-    sauvegardeService.getlisteSauvegardesDuServeur().subscribe((val) => { resultats = val; });
+    sauvegardeService.getlisteSauvegardesDuServeur().subscribe((val) => { });
     http.expectOne(requestDefinition).flush(jdd);
 
     // Assert : valeurs retournées et pas d'autre requete HTTP
-    expect(resultats).toEqual(jdd);
     http.verify();
   });
 

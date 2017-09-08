@@ -10,9 +10,6 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { TreeModule } from 'angular-tree-component';
 import { MapValuesPipe, AttributesToMapPipe } from './pipes.component';
 
-// Import de hammer (cf. documentation)
-import 'hammerjs';
-
 // Tous les composants applicatifs de l'application
 import { AppComponent } from './app.component';
 import { ComposantCompetenceeComponent } from './compo-competence/compo-competence.component';
