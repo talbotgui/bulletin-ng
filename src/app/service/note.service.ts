@@ -29,14 +29,15 @@ export class NoteService {
     this.dataRepository.getAnneeChargee().notes.push(note);
 
     // Mise à jour de la ligne avec une nouvelle sous ligne
-    const competence = this.lectureService.getCompetence(ligne.idDomaine);
-    if (competence) {
-      if (ajoutSurPeriodeEvaluee) {
-        ligne.sousLignes.push(new model.SousLigneTableauDeBord(competence, note, undefined));
-      } else {
-        ligne.sousLignes.push(new model.SousLigneTableauDeBord(competence, undefined, note));
+    if (ligne.idDomaine) {
+      const competence = this.lectureService.getCompetence(ligne.idDomaine);
+      if (competence) {
+        if (ajoutSurPeriodeEvaluee) {
+          ligne.sousLignes.push(new model.SousLigneTableauDeBord(competence, note, undefined));
+        } else {
+          ligne.sousLignes.push(new model.SousLigneTableauDeBord(competence, undefined, note));
+        }
       }
-
     }
   }
 
@@ -61,7 +62,7 @@ export class NoteService {
     }
 
     // Création d'une map avec toutes les notes regroupées par idCompetenceNiveau3
-    const mapCompetences: Map<string, model.Competence> = this.calculMapCompetences();
+    const mapCompetences: Map<string, model.Competence> = this.lectureService.getMapCompetences();
     const mapNotesEleve: Map<string, { eval: model.Note[], prepa: model.Note[] }> = new Map();
     notesElevePeriodeEvaluee.forEach((note, i) => {
       if (note.idItem) {
@@ -113,14 +114,5 @@ export class NoteService {
       }
     }
     return ancetres;
-  }
-
-  /** Retourne une Map <idCompetence Competence> de toutes les compétences existantes */
-  private calculMapCompetences(): Map<string, model.Competence> {
-    const laMap: Map<string, model.Competence> = new Map<string, model.Competence>();
-    for (const competence of this.dataRepository.getAnneeChargee().competences) {
-      laMap.set(competence.id, competence);
-    }
-    return laMap;
   }
 }

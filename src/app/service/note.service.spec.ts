@@ -39,7 +39,12 @@ describe('NoteService', () => {
     // Arrange
     const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
     const libelleComplet = 'Compétences associées > CYCLE 2 (CP-CE2) > Français > Comprendre et s\'exprimer à l\'oral';
+    const mapCompetence = new Map<string, model.Competence>();
+    for (const competence of annee.competences) {
+      mapCompetence.set(competence.id, competence);
+    }
     mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    mockito.when(lectureServiceMock.getMapCompetences()).thenReturn(mapCompetence);
     mockito.when(lectureServiceMock.getPeriodeSuivante(mockito.anything())).thenReturn(annee.periodes[1]);
     mockito.when(lectureServiceMock.getListeNote()).thenReturn(annee.notes);
     mockito.when(lectureServiceMock.getLibelleCompletCompetence('j1_2')).thenReturn(libelleComplet);
@@ -58,7 +63,12 @@ describe('NoteService', () => {
     // Arrange
     const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
     const libelleComplet = 'Compétences travaillées > CYCLE 2 > Questionner le monde > Imaginer, réaliser';
+    const mapCompetence = new Map<string, model.Competence>();
+    for (const competence of annee.competences) {
+      mapCompetence.set(competence.id, competence);
+    }
     mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    mockito.when(lectureServiceMock.getMapCompetences()).thenReturn(mapCompetence);
     mockito.when(lectureServiceMock.getPeriodeSuivante(mockito.anything())).thenReturn(undefined);
     mockito.when(lectureServiceMock.getListeNote()).thenReturn(annee.notes);
     mockito.when(lectureServiceMock.getLibelleCompletCompetence('W52')).thenReturn(libelleComplet);

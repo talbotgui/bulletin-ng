@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { NoteService } from '../service/note.service';
+import { LectureService } from '../service/lecture.service';
 import * as model from '../model/model';
 
 @Component({
@@ -11,12 +12,15 @@ export class DialogLigneTableauDeBordComponent implements OnInit {
   @Input()
   ligne: model.LigneTableauDeBord;
 
+  // Note utilisée pour sélectionner le domaine
+  premiereNote: model.Note | undefined;
+
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private noteService: NoteService) { }
+  constructor(private noteService: NoteService, private lectureService: LectureService) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
-    // Rien à faire pour le moment
+    // Rien à faire
   }
 
   ajouterLigneProgrammeTravaille() {
@@ -26,4 +30,20 @@ export class DialogLigneTableauDeBordComponent implements OnInit {
     this.noteService.ajouteNoteDepuisTdb(this.ligne, true);
   }
 
+  // méthode à appeler quand la popupup doit s'initialiser sur une ligne vide de note
+  initialisePourUneSelectionDeDomaine(mapCompetences: Map<string, model.Competence>, idEleve: string, periodeEvaluee: model.Periode) {
+    this.ligne = new model.LigneTableauDeBord(undefined, undefined, [], [], mapCompetences, idEleve, periodeEvaluee);
+    this.premiereNote = new model.Note('', this.ligne.idEleve, '#');
+  }
+  // Validation du domaine sélectionner
+  validerDomaine() {
+    if (this.premiereNote && this.premiereNote.idItem) {
+      const competenceSelectionnee = this.lectureService.getCompetence(this.premiereNote.idItem);
+      if (competenceSelectionnee) {
+        this.ligne.idDomaine = this.premiereNote.idItem;
+        this.ligne.nomDomaine = competenceSelectionnee.text;
+        this.premiereNote = undefined;
+      }
+    }
+  }
 }

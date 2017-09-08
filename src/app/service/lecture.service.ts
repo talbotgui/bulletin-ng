@@ -106,6 +106,19 @@ export class LectureService {
     return libelle;
   }
 
+  getAncetresCompetence(idCompetence: string): model.Competence[] {
+    const resultat: model.Competence[] = [];
+    const competences = this.dataRepository.getAnneeChargee().competences;
+    let idCompetenceEnfant = idCompetence;
+    for (let i = competences.length - 1; i !== -1; i--) {
+      if (competences[i].id === idCompetenceEnfant) {
+        resultat.push(competences[i]);
+        idCompetenceEnfant = competences[i].parent;
+      }
+    }
+    return resultat;
+  }
+
   /** Recherche des compétences "enfants" d'une compétence */
   getListeCompetencesEnfant(idCompetence: string): model.Competence[] {
 
@@ -188,4 +201,18 @@ export class LectureService {
   getMapLibelleStatutEleveMap(): Map<string, string> {
     return this.dataRepository.getAnneeChargee().mapLibelleStatutEleveMap;
   }
+
+  /** Retourne une Map <idCompetence Competence> de toutes les compétences existantes */
+  getMapCompetences(): Map<string, model.Competence> {
+    if (this.cacheMapCompetence.size === this.dataRepository.getAnneeChargee().competences.length) {
+      return this.cacheMapCompetence;
+    }
+
+    const laMap: Map<string, model.Competence> = new Map<string, model.Competence>();
+    for (const competence of this.dataRepository.getAnneeChargee().competences) {
+      laMap.set(competence.id, competence);
+    }
+    return laMap;
+  }
+
 }

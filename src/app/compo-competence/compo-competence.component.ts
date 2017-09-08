@@ -14,10 +14,14 @@ export class ComposantCompetenceeComponent {
 
   @Input() temp: model.Temps;
 
+  // Index de la compétence dans le temps (un model.Temps référence plusieurs compétences)
   @Input() tempIndexCompetence: number;
 
   // Identifiant de la compétence racine de la sélection
   @Input() idCompetenceRacine: string;
+
+  // Profondeur maximale de la compétence sélectionnable (3 pour un domaine)
+  @Input() profondeurMaximaleAutorisee: number = 99;
 
   // Libellé complet de la compétence sélectionnée
   get libelleCompletCompetenceSelectionnee(): string {
@@ -32,13 +36,26 @@ export class ComposantCompetenceeComponent {
 
   // Liste des enfants
   get listeCompetenceEnfant(): model.Competence[] {
+    // Extraction de l'id de la compétence en fonction de l'usage du composant
+    let idCompetence;
     if (this.note && this.note.idItem) {
-      return this.lectureService.getListeCompetencesEnfant(this.note.idItem);
+      idCompetence = this.note.idItem;
     } else if (this.temp) {
-      return this.lectureService.getListeCompetencesEnfant(this.temp.competences[this.tempIndexCompetence]);
+      idCompetence = this.temp.competences[this.tempIndexCompetence];
     } else {
       return [];
     }
+
+    // Vérification de la profondeur maximale
+    if (this.profondeurMaximaleAutorisee !== 99) {
+      const profondeurActuelle = this.lectureService.getAncetresCompetence(idCompetence).length;
+      if (profondeurActuelle === this.profondeurMaximaleAutorisee) {
+        return [];
+      }
+    }
+
+    // Renvoi de la liste des enfants
+    return this.lectureService.getListeCompetencesEnfant(idCompetence);
   }
 
   // Un constructeur pour se faire injecter les dépendances

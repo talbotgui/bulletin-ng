@@ -115,7 +115,14 @@ export class SousLigneTableauDeBord {
 export class LigneTableauDeBord {
   sousLignes: SousLigneTableauDeBord[] = [];
 
+  // Membre privé pour conserver une valeur saisie quand aucune note n'existe
+  private tempConstat: string = '';
+
+  // Membre privé pour conserver une valeur saisie quand aucune note n'existe
+  private tempAide: string = '';
+
   set constat(value: string) {
+    this.tempConstat = value;
     for (const sousLigne of this.sousLignes) {
       if (sousLigne.constatation) {
         sousLigne.constatation.constat = value;
@@ -130,9 +137,10 @@ export class LigneTableauDeBord {
         }
       }
     }
-    return '';
+    return this.tempConstat;
   }
   set aide(value: string) {
+    this.tempAide = value;
     for (const sousLigne of this.sousLignes) {
       if (sousLigne.aide) {
         sousLigne.aide.modalitesAide = value;
@@ -147,10 +155,10 @@ export class LigneTableauDeBord {
         }
       }
     }
-    return '';
+    return this.tempAide;
   }
 
-  constructor(public idDomaine: string, public nomDomaine: string, constatations: Note[] = [], aides: Note[] = [], mapCompetences: Map<string, Competence>, public idEleve: string, public periodeEvaluee: Periode) {
+  constructor(public idDomaine: string | undefined, public nomDomaine: string | undefined, constatations: Note[] = [], aides: Note[] = [], mapCompetences: Map<string, Competence>, public idEleve: string, public periodeEvaluee: Periode) {
     this.sousLignes = [];
 
     // Creation des sousLignes pour les constations

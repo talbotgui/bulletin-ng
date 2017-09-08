@@ -1,12 +1,17 @@
 <h2 md-dialog-title>Evaluation et préparation d'un domaine</h2>
 
 <md-dialog-content>
-	<fieldset>
+	<fieldset *ngIf="!ligne.idDomaine">
+		<legend>Sélection du domaine :</legend>
+		<compo-competence [note]="premiereNote" [lectureSeule]="false" [profondeurMaximaleAutorisee]=4></compo-competence>
+		<br/><em class="fa fa-check fa-2x" (click)="validerDomaine()"></em>
+	</fieldset>
+	<fieldset *ngIf="!!ligne.idDomaine">
 		<legend>Domaine :</legend>
 		{{ligne.nomDomaine}}
 	</fieldset>
 	<br/>
-	<fieldset>
+	<fieldset *ngIf="!!ligne.idDomaine">
 		<legend>Evaluations sur la période évaluées :</legend>
 		<textarea [(ngModel)]="ligne.constat" name="constat" placeholder="Constat sur la période évaluée" rows="8" cols="80"></textarea>
 		<br/>
@@ -28,7 +33,7 @@
 		</table>
 	</fieldset>
 	<br/>
-	<fieldset>
+	<fieldset *ngIf="!!ligne.idDomaine">
 		<legend>Préparation pour la période préparée :</legend>
 		<textarea [(ngModel)]="ligne.aide" name="aide" placeholder="Aide pour la période préparée" rows="8" cols="80"></textarea>
 		<br/>

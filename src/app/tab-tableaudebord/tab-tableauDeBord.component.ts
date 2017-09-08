@@ -40,6 +40,8 @@ export class TabTableauDeBordComponent {
     this.periodeSelectionnee = periode;
     this.rechargeLesLignes();
   }
+
+  // Pour recharger les lignes
   rechargeLesLignes() {
     if (this.eleveSelectionne && this.periodeSelectionnee) {
       this.lignes = this.noteService.calculerListeLigneTableauDeBord(this.eleveSelectionne, this.periodeSelectionnee);
@@ -48,8 +50,17 @@ export class TabTableauDeBordComponent {
       this.lignes = [];
     }
   }
+
+  // Ouverture de la popup d'édition à la sélection d'une ligne
   onSelectLigne(laLigne: model.LigneTableauDeBord) {
     const dialog = this.dialog.open(DialogLigneTableauDeBordComponent).componentInstance;
     dialog.ligne = laLigne;
+  }
+
+  // Pour créer une ligne
+  creeNouvelleLigne() {
+    const mapCompetences = this.lectureService.getMapCompetences();
+    const dialog = this.dialog.open(DialogLigneTableauDeBordComponent).componentInstance;
+    dialog.initialisePourUneSelectionDeDomaine(mapCompetences, this.eleveSelectionne.id, this.periodeSelectionnee);
   }
 }
