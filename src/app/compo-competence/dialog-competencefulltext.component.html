@@ -1,0 +1,23 @@
+<h2 md-dialog-title>Recherche de compétence par texte</h2>
+
+<md-dialog-content>
+	<span>Filtre : </span>
+	<input [(ngModel)]="filtreLibelleCompetence" name="filtreLibelleCompetence" />
+	<fieldset>
+		<legend>Compétences correspondantes :</legend>
+		<div>
+			<md-radio-group [(ngModel)]="idCompetenceSelectionnee">
+				<ul>
+					<li *ngFor="let c of competencesTrouvees">
+						<md-radio-button value="{{c.id}}"></md-radio-button>
+						<span>{{c.text}}</span>
+					</li>
+				</ul>
+			</md-radio-group>
+		</div>
+	</fieldset>
+</md-dialog-content>
+
+<md-dialog-actions>
+	<button class="button" md-dialog-close (click)=selectionner()>Fermer</button>
+</md-dialog-actions>

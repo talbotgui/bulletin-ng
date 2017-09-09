@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
+import { MdDialog } from '@angular/material';
 
 import { LectureService } from '../service/lecture.service';
+import { DialogCompetenceFullTextComponent } from './dialog-competencefulltext.component';
 import * as model from '../model/model';
 
 @Component({ selector: 'compo-competence', templateUrl: './compo-competence.component.html', styleUrls: ['./compo-competence.component.css'] })
@@ -59,10 +61,10 @@ export class ComposantCompetenceeComponent {
   }
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private lectureService: LectureService) { }
+  constructor(public dialog: MdDialog, private lectureService: LectureService) { }
 
   // Pour remonter d'un niveau
-  selectionneParent() {
+  selectionnerParent() {
     if (this.note && this.note.idItem && this.note.idItem !== this.idCompetenceRacine) {
       const competence = this.lectureService.getCompetence(this.note.idItem);
       if (competence && competence.parent) {
@@ -74,5 +76,18 @@ export class ComposantCompetenceeComponent {
         this.temp.competences[this.tempIndexCompetence] = competence.parent;
       }
     }
+  }
+
+  // Pour afficher la popup de sélection/recherche fullText
+  afficherPopupFiltre() {
+    const popup = this.dialog.open(DialogCompetenceFullTextComponent, { height: '550px', width: '800px' });
+    popup.componentInstance.idCompetenceRacine = this.idCompetenceRacine;
+    popup.componentInstance.onSelectionRealisee.subscribe((idCompetence: string) => {
+      if (this.note) {
+        this.note.idItem = idCompetence;
+      } else if (this.temp) {
+        this.temp.competences[this.tempIndexCompetence] = idCompetence;
+      }
+    });
   }
 }

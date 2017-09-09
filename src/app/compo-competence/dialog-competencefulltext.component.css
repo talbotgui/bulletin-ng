@@ -1,0 +1,4 @@
+fieldset { height: 360px; }
+fieldset div { height: 350px; overflow: auto; }
+.mat-dialog-content { overflow: hidden; }
+ul { -webkit-padding-start: 0px; }

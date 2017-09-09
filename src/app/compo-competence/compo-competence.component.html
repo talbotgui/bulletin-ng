@@ -2,7 +2,8 @@
     {{libelleCompletCompetenceSelectionnee}}
 
     <div *ngIf="!lectureSeule" class="actions">
-        <em *ngIf="!lectureSeule" class="retour fa fa-fast-backward" (click)="selectionneParent()"></em>
+        <em *ngIf="!lectureSeule" class="retour fa fa-fast-backward" (click)="selectionnerParent()"></em>
+        <em *ngIf="!lectureSeule" class="retour fa fa-dot-circle-o" (click)="afficherPopupFiltre()"></em>
         <div *ngIf="!!note">
             <select required #inputStatut="ngModel" [(ngModel)]="note.idItem" name="competence" *ngIf="!!listeCompetenceEnfant && listeCompetenceEnfant.length>0">
                 <option [value]="note.idItem"></option>        
