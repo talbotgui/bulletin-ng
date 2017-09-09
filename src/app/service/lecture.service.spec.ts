@@ -520,4 +520,17 @@ describe('LectureService', () => {
     mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
   });
 
+  it('getCompetenceParTexte avec compétence racine', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getCompetenceParTexte('addition', 'j1_233');
+    //
+    expect(resultat.length).toBe(2);
+    expect(resultat[0].id).toBe('j1_492');
+    expect(resultat[1].id).toBe('j1_499');
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
 });

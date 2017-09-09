@@ -215,11 +215,22 @@ export class LectureService {
     return laMap;
   }
 
-  getCompetenceParTexte(recherche: string | undefined): model.Competence[] {
+  getCompetenceParTexte(recherche: string | undefined, idCompetenceRacine?: string): model.Competence[] {
     const resultats: model.Competence[] = [];
     if (recherche) {
       const mots = recherche.toUpperCase().split(' ');
+      const listeDesParents: string[] = [];
+      if (idCompetenceRacine) {
+        listeDesParents.push(idCompetenceRacine);
+      }
       for (const c of this.getListeCompetence()) {
+        if (idCompetenceRacine) {
+          if (listeDesParents.indexOf(c.parent) === -1) {
+            continue;
+          } else {
+            listeDesParents.push(c.id);
+          }
+        }
         if (this.compareLibelleCompetencePourRecherche(c.text.toLocaleUpperCase(), mots)) {
           resultats.push(c);
         }
