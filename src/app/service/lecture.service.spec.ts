@@ -368,4 +368,156 @@ describe('LectureService', () => {
     mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
   });
 
+  it('getCompetenceParTexte texte undefined', () => {
+    //
+    //
+    const resultat = lectureService.getCompetenceParTexte(undefined);
+    //
+    expect(resultat.length).toBe(0);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).never();
+  });
+
+  it('getCompetenceParTexte texte vide', () => {
+    //
+    //
+    const resultat = lectureService.getCompetenceParTexte('');
+    //
+    expect(resultat.length).toBe(0);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).never();
+  });
+
+  it('getCompetenceParTexte retourneTout', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_SIMPLISTE);
+    annee.competences = [];
+    for (let i = 0; i < 10; i++) {
+      const c = new model.Competence();
+      c.id = '' + i;
+      c.text = 'C' + i;
+      annee.competences.push(c);
+    }
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getCompetenceParTexte('C');
+    //
+    expect(resultat.length).toBe(annee.competences.length);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getCompetenceParTexte retourne 1', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_SIMPLISTE);
+    annee.competences = [];
+    for (let i = 0; i < 10; i++) {
+      const c = new model.Competence();
+      c.id = '' + i;
+      c.text = 'C' + i;
+      annee.competences.push(c);
+    }
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getCompetenceParTexte('1');
+    //
+    expect(resultat.length).toBe(1);
+    expect(resultat[0].text).toBe('C1');
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getCompetenceParTexte retourne C1', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_SIMPLISTE);
+    annee.competences = [];
+    for (let i = 0; i < 10; i++) {
+      const c = new model.Competence();
+      c.id = '' + i;
+      c.text = 'C' + i;
+      annee.competences.push(c);
+    }
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getCompetenceParTexte('C1');
+    //
+    expect(resultat.length).toBe(1);
+    expect(resultat[0].text).toBe('C1');
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getCompetenceParTexte case insensitive', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_SIMPLISTE);
+    annee.competences = [];
+    for (let i = 0; i < 10; i++) {
+      const c = new model.Competence();
+      c.id = '' + i;
+      c.text = 'C' + i;
+      annee.competences.push(c);
+    }
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getCompetenceParTexte('c1');
+    //
+    expect(resultat.length).toBe(1);
+    expect(resultat[0].text).toBe('C1');
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+
+  it('getCompetenceParTexte case insensitive', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_SIMPLISTE);
+    annee.competences = [];
+    for (let i = 0; i < 10; i++) {
+      const c = new model.Competence();
+      c.id = '' + i;
+      c.text = 'C' + i;
+      annee.competences.push(c);
+    }
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getCompetenceParTexte('c 1');
+    //
+    expect(resultat.length).toBe(1);
+    expect(resultat[0].text).toBe('C1');
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getCompetenceParTexte case insensitive', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_SIMPLISTE);
+    annee.competences = [];
+    for (let i = 0; i < 10; i++) {
+      const c = new model.Competence();
+      c.id = '' + i;
+      c.text = 'C' + i;
+      annee.competences.push(c);
+    }
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getCompetenceParTexte('c 1 2');
+    //
+    expect(resultat.length).toBe(0);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getCompetenceParTexte avec mot absent', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_SIMPLISTE);
+    annee.competences = [];
+    for (let i = 0; i < 10; i++) {
+      const c = new model.Competence();
+      c.id = '' + i;
+      c.text = 'C' + i;
+      annee.competences.push(c);
+    }
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getCompetenceParTexte('c -2');
+    //
+    expect(resultat.length).toBe(annee.competences.length - 1);
+    expect(resultat[0].text).toBe('C0');
+    expect(resultat[1].text).toBe('C1');
+    expect(resultat[2].text).toBe('C3');
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
 });

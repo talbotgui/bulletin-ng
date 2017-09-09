@@ -215,4 +215,35 @@ export class LectureService {
     return laMap;
   }
 
+  getCompetenceParTexte(recherche: string | undefined): model.Competence[] {
+    const resultats: model.Competence[] = [];
+    if (recherche) {
+      const mots = recherche.toUpperCase().split(' ');
+      for (const c of this.getListeCompetence()) {
+        if (this.compareLibelleCompetencePourRecherche(c.text.toLocaleUpperCase(), mots)) {
+          resultats.push(c);
+        }
+      }
+    }
+    return resultats;
+  }
+
+  /**
+   * Compare une expression recherchée avec un libellé de compétence.
+   * @param libelle Le libellé de la compétence (en majuscule)
+   * @param mots Les mots de l'expression recherchée (en majuscule)
+   */
+  compareLibelleCompetencePourRecherche(libelle: string, mots: string[]): boolean {
+    let valide = true;
+    if (libelle) {
+      for (const mot of mots) {
+        if (mot.startsWith('-')) {
+          valide = valide && libelle.indexOf(mot.substr(1, mot.length - 1)) === -1;
+        } else {
+          valide = valide && libelle.indexOf(mot) !== -1;
+        }
+      }
+    }
+    return valide;
+  }
 }
