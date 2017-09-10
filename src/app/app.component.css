@@ -1,5 +1,6 @@
 #page { width:1400px; margin:auto; }
 #entete { height: 90px; margin: 0px 3px 0px 3px; }
+#entete-logo { float: left; height: 0px; }
 #entete-titre { float: left; text-align: center; color: white; height: 100%; font-size: 15px; line-height: 40px; width: 1250px; }
 #entete-actions { float: right; width: 125px; height: 100%; padding-top: 10px; text-align: right; }
 #contenu { width:100%; margin-top:15px; }
