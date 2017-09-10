@@ -32,14 +32,12 @@ describe('Accueil de l\'application', () => {
     page.navigateToRoot();
     //
     page.click(DIV.BUTTON_CHARGER);
-    page.click(DIALOG.SELECT);
     //
     expect(page.isVisible(DIALOG.TITRE)).toBeTruthy('Le titre est là');
     expect(page.getText(DIALOG.TITRE)).toEqual('Chargement d\'une sauvegarde');
     expect(page.isVisible(DIALOG.INPUTFILE_LOCAL)).toBeTruthy('l\'input est là');
     expect(page.isVisible(DIALOG.INPUTFILE_LOCAL_LABEL_NOT_DONE)).toBeTruthy('l\'input a la bonne classe');
     expect(page.isVisible(DIALOG.INPUTFILE_LOCAL_LABEL_DONE)).toBeFalsy('l\'input a la bonne classe2');
-    expect(page.isVisible(DIALOG.SELECT)).toBeTruthy('le select est là');
     expect(page.getText(DIALOG.BUTTON_ANNULER)).toEqual('Annuler');
     expect(page.getText(DIALOG.BUTTON_CHARGER)).toEqual('Charger');
 
