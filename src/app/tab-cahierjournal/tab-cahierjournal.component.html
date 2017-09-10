@@ -36,7 +36,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr *ngFor="let temp of journal.temps; let j = index">
+				<tr *ngFor="let temp of journal.temps; let j = index" [class]="j%2==0 ? 'even' : 'odd'">
 					<td>
 						<input [(ngModel)]="temp.nom" name="nomTemps" placeholder="Nom" class="petitChamp" />
 						<br/><br/>

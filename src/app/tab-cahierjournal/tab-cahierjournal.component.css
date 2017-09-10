@@ -1,7 +1,12 @@
 span.clickable { cursor: pointer; }
 .petitChamp { width: 100px; }
+
+tr.even { background-color: aliceblue; }
+tr.odd { background-color: beige; }
 td:nth-child(3) { max-width: 300px; }
 td:nth-child(5) { text-align: center; line-height: 25px; }
+
 .mat-chip:not(.mat-basic-chip) { padding: 4px 6px 4px 6px; text-align: center; }
+
 div.actions { float: right; margin: 0px 0px 0px 30px }
 fieldset { padding-top: 30px; }
