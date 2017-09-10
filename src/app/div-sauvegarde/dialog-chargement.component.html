@@ -1,22 +1,32 @@
 <h2 md-dialog-title>Chargement d'une sauvegarde</h2>
 
 <md-dialog-content>
-	<div class="dernierFichierSauvegarde">
-		La dernière sauvegarde est : <br/><em>{{nomDernierFichierSauvegarde}}.</em>
+	<div class="dernierFichierSauvegarde" *ngIf="nomDernierFichierSauvegarde">
+		La dernière sauvegarde est : <em>{{nomDernierFichierSauvegarde}}.</em>
 		<em class="fa fa-question-circle" mdTooltip="Si votre dernière sauvegarde n'apparait pas, consulter l'aide en cliquant sur le bouton en haut à droite de l'écran"></em>
 	</div>
 
-	<span>Sauvegarde locale</span>
-	<label [class]="jsonChargeDepuisFichierLocal ? 'inputFile inputFileDone' : 'inputFile'"> 
+	<fieldset>
+		<legend>Chargement d'un fichier local</legend>
+		<label [class]="jsonChargeDepuisFichierLocal ? 'inputFile inputFileDone' : 'inputFile'"> 
 		<input (change)="onSelectFichierLocal($event)" type="file"/>
 	</label>
+	</fieldset>
 
 	<br/>
 
-	<span>Sauvegarde du serveur</span>
-	<md-select [(ngModel)]="fichierSelectionne">
-		<md-option *ngFor="let fichier of fichiers" [value]="fichier">{{fichier}}</md-option>
-	</md-select>
+	<fieldset>
+		<legend>Chargement d'un fichier du serveur</legend>
+		<div *ngIf="fichiers && fichiers.length>0">
+			<md-select [(ngModel)]="fichierSelectionne">
+				<md-option *ngFor="let fichier of fichiers" [value]="fichier">{{fichier}}</md-option>
+			</md-select>
+		</div>
+		<div *ngIf="!fichiers || fichiers.length===0">
+			<span>Aucun serveur de données détecté</span>
+			<em class="fa fa-question-circle" mdTooltip="Le serveur est attendu à l'adresse http://192.168.1.52/upload.php"></em>
+		</div>
+	</fieldset>
 </md-dialog-content>
 
 <md-dialog-actions>
