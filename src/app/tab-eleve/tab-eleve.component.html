@@ -24,6 +24,8 @@
 			<input required #inputPrenom="ngModel" [(ngModel)]="eleveSelectionne.prenom" name="prenom" placeholder="Prénom" />
 			<input mdInput required #inputDateNaissance="ngModel" [(ngModel)]="dateNaissanceEleveSelectionne" name="dateNaissanceEleveSelectionne"
 			 placeholder="Date de naissance" />
+			<input mdInput [(ngModel)]="dateAdmissionEleveSelectionne" name="dateAdmissionEleveSelectionne" placeholder="Date d'admission"
+			/>
 
 			<md-select required #inputStatut="ngModel" [(ngModel)]="eleveSelectionne.statut" placeholder="Statut" name="statut">
 				<md-option *ngFor="let entry of mapStatutEleve | mapValues" [value]="entry.key">{{entry.val}}</md-option>

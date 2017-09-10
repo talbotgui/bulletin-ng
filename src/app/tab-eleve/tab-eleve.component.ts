@@ -42,6 +42,23 @@ export class TabEleveComponent implements OnInit {
     }
   }
 
+  /** Bidouille très moche pour remplacer le DatePicker de material qui ne fonctionne pas avec l'i18n et dans un form */
+  get dateAdmissionEleveSelectionne(): string | undefined {
+    if (this.eleveSelectionne && this.eleveSelectionne.dateAdmission) {
+      return this.formatDate(this.eleveSelectionne.dateAdmission);
+    } else {
+      return undefined;
+    }
+  }
+
+  /** Bidouille très moche pour remplacer le DatePicker de material qui ne fonctionne pas avec l'i18n et dans un form */
+  set dateAdmissionEleveSelectionne(value: string | undefined) {
+    if (this.eleveSelectionne && value && value.length === 10) {
+      const str = value.split('/');
+      this.eleveSelectionne.dateAdmission = new Date(Number(str[2]), Number(str[1]) - 1, Number(str[0]), 12);
+    }
+  }
+
   // Un constructeur pour se faire injecter les dépendances
   constructor(private lectureService: LectureService, private editionService: EditionService) { }
 
