@@ -16,7 +16,8 @@ export class SauvegardeService {
   private static horsReseau: boolean = false;
 
   private readonly DELAI_SAUVEGARDE_AUTOMATIQUE = 300000;
-  private readonly URL_SERVEUR = 'http://192.168.1.52/download/upload.php';
+  private readonly URL_SERVEUR_HTTPS = 'https://192.168.1.52/download/upload.php';
+  private readonly URL_SERVEUR_HTTP = 'http://192.168.1.52/download/upload.php';
   private readonly HEADERS_APPEL_SERVEUR = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
   constructor(private http: HttpClient, private dataRepository: DataRepository, public snackBar: MdSnackBar) { }
@@ -47,7 +48,7 @@ export class SauvegardeService {
     }
     const corp = 'methode=liste';
     const params = { headers: this.HEADERS_APPEL_SERVEUR };
-    return this.http.post<{ fichiers: string[] }>(this.URL_SERVEUR, corp, params);
+    return this.http.post<{ fichiers: string[] }>(this.getUrlServeurDeDonnees(), corp, params);
   }
 
   /** Charge le contenu d'un fichier et l'envoie au service "dataService.setAnneeChargee" */
@@ -61,7 +62,7 @@ export class SauvegardeService {
     }
     const corp = 'methode=charge&nomFichier=' + fichier;
     const params = { headers: this.HEADERS_APPEL_SERVEUR };
-    this.http.post<model.Annee>(this.URL_SERVEUR, corp, params).subscribe(
+    this.http.post<model.Annee>(this.getUrlServeurDeDonnees(), corp, params).subscribe(
       (dataOk) => {
 
         // Sauvegarde de l'instance dans le service DataService
@@ -205,7 +206,7 @@ export class SauvegardeService {
     const paramsSansBug = params.toString().replace(/\+/g, '%2B');
 
     // Post
-    this.http.post<model.Annee>(this.URL_SERVEUR, paramsSansBug, { headers: this.HEADERS_APPEL_SERVEUR }).subscribe(
+    this.http.post<model.Annee>(this.getUrlServeurDeDonnees(), paramsSansBug, { headers: this.HEADERS_APPEL_SERVEUR }).subscribe(
       (dataOk) => {
         const message = 'Données sauvegardées sur le serveur dans le fichier \'' + nomFichier + '\'';
         this.snackBar.open(message, undefined, { duration: 3000 });
@@ -252,6 +253,15 @@ export class SauvegardeService {
       }
     } else {
       return null;
+    }
+  }
+
+  private getUrlServeurDeDonnees(): string {
+    // Sous Chrome, il est préférable d'utiliser l'adresse HTTP pour faire s'afficher le warning du contenu mixte et l'autoriser
+    if (!!(window as any).chrome) {
+      return this.URL_SERVEUR_HTTP;
+    } else {
+      return this.URL_SERVEUR_HTTPS;
     }
   }
 }

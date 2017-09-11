@@ -49,7 +49,7 @@ describe('SauvegardeService', () => {
     // Arrange
     const jdd = ['a', 'b', 'c', 'd'];
     const requestDefinition = (req: HttpRequest<any>) => {
-      return req.url === 'http://192.168.1.52/download/upload.php'
+      return req.url.endsWith('//192.168.1.52/download/upload.php')
         && req.body === 'methode=liste'
         && req.method === 'POST';
     };
@@ -67,7 +67,7 @@ describe('SauvegardeService', () => {
     const anneeRetournee = new model.Annee();
     const nomFichier = 'nomDeMonFichier';
     const requestDefinition = (req: HttpRequest<any>) => {
-      return req.url === 'http://192.168.1.52/download/upload.php'
+      return req.url.endsWith('//192.168.1.52/download/upload.php')
         && req.body === 'methode=charge&nomFichier=' + nomFichier
         && req.method === 'POST';
     };
@@ -88,7 +88,7 @@ describe('SauvegardeService', () => {
     const nomFichier = 'nomDeMonFichier';
     mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
     const requestDefinition = (req: HttpRequest<any>) => {
-      return req.url === 'http://192.168.1.52/download/upload.php'
+      return req.url.endsWith('//192.168.1.52/download/upload.php')
         && (req.body + '').indexOf('methode=sauvegarde&nomFichier=') !== -1
         && (req.body + '').indexOf('.json&contenuFichier=') !== -1
         && (req.body + '').indexOf('periodes') !== -1
