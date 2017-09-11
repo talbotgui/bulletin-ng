@@ -21,11 +21,14 @@ export class SauvegardeService {
 
   constructor(private http: HttpClient, private dataRepository: DataRepository, public snackBar: MdSnackBar) { }
 
-  getNomDernierFichierSauvegardeDansBrowser() {
+  getNomsDerniersFichiersSauvegardesDansBrowser(): { nomFichierEnLocal: string | null, nomFichierSurServeur: string | null } {
     if (typeof (Storage) !== 'undefined') {
-      return window.localStorage.getItem('nomDernierFichierModifié');
+      return {
+        nomFichierEnLocal: window.localStorage.getItem('nomDernierFichierModifiéEnLocal'),
+        nomFichierSurServeur: window.localStorage.getItem('nomDernierFichierModifiéSurServeur')
+      };
     } else {
-      return null;
+      return { nomFichierEnLocal: null, nomFichierSurServeur: null };
     }
   }
 
@@ -130,10 +133,10 @@ export class SauvegardeService {
 
   /** Si le browser contient le nom du dernier fichier sauvegardé et que le fichier sélectionné n'est pas le bon, demande de confirmation à l'utilisateur */
   private validationEtConfirmationSiFichierNestPasLeDernierSauvegardeDansBrowser(nomFichier: string) {
-    const dernierNomFichier = this.getNomDernierFichierSauvegardeDansBrowser();
+    const dernierNomFichier = this.getNomsDerniersFichiersSauvegardesDansBrowser();
 
     // Si le fichier chargé n'est pas le dernier sauvegardé, demande de confirmation
-    if (dernierNomFichier && dernierNomFichier !== nomFichier) {
+    if (dernierNomFichier && dernierNomFichier.nomFichierEnLocal !== nomFichier && dernierNomFichier.nomFichierSurServeur !== nomFichier) {
       return confirm('Le fichier que vous souhaitez chargé n\'est pas le dernier sauvegardé dans ce browser. Souhaitez tout de même le charger ?');
     }
 
@@ -205,7 +208,7 @@ export class SauvegardeService {
         const message = 'Données sauvegardées sur le serveur dans le fichier \'' + nomFichier + '\'';
         this.snackBar.open(message, undefined, { duration: 3000 });
         // Sauvegarde du nom du fichier dans le browser
-        this.storeNomDernierFichierSauvegardeDansBrowser(nomFichier);
+        this.storeNomDernierFichierSauvegardeDansBrowser(nomFichier, true);
       },
       (error: HttpErrorResponse) => {
         const message = 'Erreur durant la sauvegarde : {statut=' + error.status + ', message=' + error.message + '}';
@@ -228,7 +231,7 @@ export class SauvegardeService {
     const resultat = { nomFichier: nomDuFichier, blob: leBlob };
 
     // Sauvegarde du nom du fichier dans le browser
-    this.storeNomDernierFichierSauvegardeDansBrowser(nomDuFichier);
+    this.storeNomDernierFichierSauvegardeDansBrowser(nomDuFichier, false);
 
     // Appel à saveAs pour déclencher le téléchargement dans le navigateur
     saveAs(resultat.blob, resultat.nomFichier);
@@ -238,9 +241,13 @@ export class SauvegardeService {
     this.snackBar.open(message, undefined, { duration: 3000 });
   }
 
-  private storeNomDernierFichierSauvegardeDansBrowser(value: string) {
+  private storeNomDernierFichierSauvegardeDansBrowser(value: string, surServeur: boolean) {
     if (typeof (Storage) !== 'undefined') {
-      return window.localStorage.setItem('nomDernierFichierModifié', value);
+      if (surServeur) {
+        return window.localStorage.setItem('nomDernierFichierModifiéSurServeur', value);
+      } else {
+        return window.localStorage.setItem('nomDernierFichierModifiéEnLocal', value);
+      }
     } else {
       return null;
     }

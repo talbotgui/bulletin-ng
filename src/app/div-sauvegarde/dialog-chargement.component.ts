@@ -6,16 +6,6 @@ import { SauvegardeService } from '../service/sauvegarde.service';
 @Component({ selector: 'dialog-chargement', templateUrl: './dialog-chargement.component.html', styleUrls: ['./dialog-chargement.component.css'] })
 export class DialogChargementComponent implements OnInit {
 
-  // Nom du dernier fichier sauvegardé sur ce browser
-  get nomDernierFichierSauvegarde(): string {
-    const nomDernierFichier = this.sauvegardeService.getNomDernierFichierSauvegardeDansBrowser();
-    if (nomDernierFichier) {
-      return nomDernierFichier;
-    } else {
-      return '';
-    }
-  }
-
   // Liste des fichier disponibles
   fichiers: string[];
 

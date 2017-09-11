@@ -14,6 +14,7 @@ import { MapValuesPipe, AttributesToMapPipe } from './pipes.component';
 import { AppComponent } from './app.component';
 import { ComposantCompetenceeComponent } from './compo-competence/compo-competence.component';
 import { ComposantNoteComponent } from './compo-note/compo-note.component';
+import { ComposantMessageSauvegardeComponent } from './div-sauvegarde/compo-messagesauvegarde.component';
 import { DialogChargementComponent } from './div-sauvegarde/dialog-chargement.component';
 import { DialogCompetenceFullTextComponent } from './compo-competence/dialog-competencefulltext.component';
 import { DialogDuplicationComponent } from './tab-cahierjournal/dialog-duplication.component';
@@ -53,7 +54,7 @@ import { AppRoutingModule } from './app-routing.module';
     DialogChargementComponent, DialogSauvegardeComponent, TabTableauDeBordComponent, ComposantNoteComponent,
     MapValuesPipe, AttributesToMapPipe, DialogLigneTableauDeBordComponent, ComposantCompetenceeComponent,
     TabCahierJournalComponent, DivSelecteurStyleComponent, TabAideComponent, TabTachesComponent, DialogDuplicationComponent,
-    TabAccueilComponent, DialogCompetenceFullTextComponent
+    TabAccueilComponent, DialogCompetenceFullTextComponent, ComposantMessageSauvegardeComponent
   ],
 
   // Tous les composants à afficher dans un Dialog

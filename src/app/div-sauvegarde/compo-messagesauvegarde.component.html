@@ -1,0 +1,8 @@
+<div class="dernierFichierSauvegarde" *ngIf="nomsDerniersFichiersSauvegardes.nomFichierEnLocal || nomsDerniersFichiersSauvegardes.nomFichierSurServeur">
+	<span>La(es) dernière(s) sauvegarde(s) :</span>
+	<em class="fa fa-question-circle" mdTooltip="Si votre dernière sauvegarde n'apparait pas, consulter l'aide en cliquant sur le bouton en haut à droite de l'écran"></em>
+	<ul>
+		<li><em *ngIf='nomsDerniersFichiersSauvegardes.nomFichierEnLocal'>locale : {{nomsDerniersFichiersSauvegardes.nomFichierEnLocal}}.</em></li>
+		<li><em *ngIf='nomsDerniersFichiersSauvegardes.nomFichierSurServeur'>serveur : {{nomsDerniersFichiersSauvegardes.nomFichierSurServeur}}.</em></li>
+	</ul>
+</div>
