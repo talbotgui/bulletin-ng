@@ -57,7 +57,7 @@ export class DialogChargementComponent implements OnInit {
     // Si les deux ont été demandé
     if (!!this.fichierSelectionne && !!this.jsonChargeDepuisFichierLocal) {
       const message = 'Impossible de sélectionner les deux sources de données !!';
-      this.snackBar.open(message, undefined, { duration: 3000 });
+      this.snackBar.open(message, undefined, { duration: 3000, extraClasses: ['avertissement'] });
     }
     // Si c'est un chargement local
     else if (this.jsonChargeDepuisFichierLocal) {

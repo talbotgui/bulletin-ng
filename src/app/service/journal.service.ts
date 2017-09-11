@@ -19,7 +19,7 @@ export class JournalService {
     // Si journal déjà existant à cette date, notification
     if (journalCible) {
       const message = 'Un journal existe déjà pour la date sélectionnée !';
-      this.snackBar.open(message, undefined, { duration: 5000 });
+      this.snackBar.open(message, undefined, { duration: 5000, extraClasses: ['avertissement'] });
       return;
     }
 
@@ -45,7 +45,7 @@ export class JournalService {
     // Si journal non existant à cette date, notification
     if (!journalCible) {
       const message = 'Aucun journal n\'existe pour la date sélectionnée';
-      this.snackBar.open(message, undefined, { duration: 5000 });
+      this.snackBar.open(message, undefined, { duration: 5000, extraClasses: ['avertissement'] });
       return;
     }
 

@@ -86,7 +86,8 @@ export class SauvegardeService {
       objet = JSON.parse(contenu);
     } catch (error) {
       console.error(error);
-      this.snackBar.open('ERREUR dans les données du fichier\'' + nomFichier + '\' (taper F12 pour en savoir plus)', undefined, { duration: 30000 });
+      const messageErreur = 'ERREUR dans les données du fichier\'' + nomFichier + '\' (taper F12 pour en savoir plus)';
+      this.snackBar.open(messageErreur, undefined, { duration: 30000, extraClasses: ['erreur'] });
       return;
     }
 
@@ -208,7 +209,7 @@ export class SauvegardeService {
       },
       (error: HttpErrorResponse) => {
         const message = 'Erreur durant la sauvegarde : {statut=' + error.status + ', message=' + error.message + '}';
-        this.snackBar.open(message, undefined, { duration: 3000 });
+        this.snackBar.open(message, undefined, { duration: 3000, extraClasses: ['erreur'] });
       }
     );
   }

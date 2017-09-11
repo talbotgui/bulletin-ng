@@ -80,7 +80,7 @@ export class TabCompetenceComponent implements OnInit {
 
     // Si des erreurs de données sont présentes, affichage du snackBar
     if (presenceErreur) {
-      this.snackBar.open('ERREUR dans les données. Taper F12 pour plus de détais', undefined, { duration: 30000 });
+      this.snackBar.open('ERREUR dans les données. Taper F12 pour plus de détais', undefined, { duration: 30000, extraClasses: ['erreur'] });
     }
   }
 
