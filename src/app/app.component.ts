@@ -17,11 +17,13 @@ export class AppComponent implements OnInit {
 
     // En cas de demande de raffraissement avec une année chargée
     window.onbeforeunload = () => {
-      let resultat;
-      if (this.dataRepository.isAnneeChargee() && window.location.toString().indexOf('sansAlerte') > -1) {
-        resultat = 'Etes-vous certains de vouloir quitter cette page ? Avez-vous bien sauvegarder votre travail ?';
+      // Plus de message personnalisé possible
+      // @See https://www.chromestatus.com/feature/5349061406228480
+      if (this.dataRepository.isAnneeChargee() && window.location.toString().indexOf('sansAlerte') === -1) {
+        return true;
+      } else {
+        return;
       }
-      return resultat;
     };
   }
 
@@ -30,5 +32,8 @@ export class AppComponent implements OnInit {
   }
   get anneChargeeOuSansDonnees() {
     return this.anneeChargee || window.location.href.indexOf('aide') !== -1 || window.location.href.indexOf('accueil') !== -1;
+  }
+  rechargerPage() {
+    window.location.reload();
   }
 }
