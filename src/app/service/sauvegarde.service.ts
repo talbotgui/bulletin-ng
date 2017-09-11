@@ -136,7 +136,9 @@ export class SauvegardeService {
     const dernierNomFichier = this.getNomsDerniersFichiersSauvegardesDansBrowser();
 
     // Si le fichier chargé n'est pas le dernier sauvegardé, demande de confirmation
-    if (dernierNomFichier && dernierNomFichier.nomFichierEnLocal !== nomFichier && dernierNomFichier.nomFichierSurServeur !== nomFichier) {
+    const demandeConfirmationPourLocal = !!dernierNomFichier.nomFichierEnLocal && dernierNomFichier.nomFichierEnLocal !== nomFichier;
+    const demandeConfirmationPourServeur = !!dernierNomFichier.nomFichierSurServeur && dernierNomFichier.nomFichierSurServeur !== nomFichier;
+    if (demandeConfirmationPourLocal || demandeConfirmationPourServeur) {
       return confirm('Le fichier que vous souhaitez chargé n\'est pas le dernier sauvegardé dans ce browser. Souhaitez tout de même le charger ?');
     }
 
