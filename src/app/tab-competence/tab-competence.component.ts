@@ -50,6 +50,7 @@ export class TabCompetenceComponent implements OnInit {
     const mapNoeuds: Map<string, Noeud> = new Map<string, Noeud>();
 
     // Pour chaque compétence,
+    let presenceErreur: boolean = false;
     for (const competence of competences) {
 
       // création du noeud et ajout dans la map
@@ -70,9 +71,16 @@ export class TabCompetenceComponent implements OnInit {
           }
           parent.children.push(noeud);
         } else {
-          console.error('Le parent n\'est pas déclaré avant l\'enfant dans le fichier de données');
+          const message = 'ERREUR : la compétence \'' + competence.parent + '\' n\'est pas déclaré son enfant \'' + competence.id + '\'';
+          console.error(message);
+          presenceErreur = true;
         }
       }
+    }
+
+    // Si des erreurs de données sont présentes, affichage du snackBar
+    if (presenceErreur) {
+      this.snackBar.open('ERREUR dans les données. Taper F12 pour plus de détais', undefined, { duration: 30000 });
     }
   }
 

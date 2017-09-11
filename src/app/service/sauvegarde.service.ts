@@ -79,8 +79,19 @@ export class SauvegardeService {
     if (!this.validationEtConfirmationSiFichierNestPasLeDernierSauvegardeDansBrowser(nomFichier)) {
       return;
     }
+
+    // Parse du JSON
+    let objet: any;
+    try {
+      objet = JSON.parse(contenu);
+    } catch (error) {
+      console.error(error);
+      this.snackBar.open('ERREUR dans les données du fichier\'' + nomFichier + '\' (taper F12 pour en savoir plus)', undefined, { duration: 30000 });
+      return;
+    }
+
     // Sauvegarde de l'instance dans le service DataService
-    this.dataRepository.setAnneeChargee(JSON.parse(contenu));
+    this.dataRepository.setAnneeChargee(objet);
 
     // notification
     const message = 'Données chargées depuis le fichier local \'' + nomFichier + '\'';
