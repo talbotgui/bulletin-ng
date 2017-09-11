@@ -44,9 +44,9 @@ describe('Onglet des compétences', () => {
     page.clickAll(selectors.TabCompetences.TREE_NODE_COLLAPSED);
     page.clickAll(selectors.TabCompetences.TREE_NODE_COLLAPSED);
     //
-    expect(page.compterElements(selectors.TabCompetences.TREE_NODES)).toBe(173);
-    expect(page.compterElements(selectors.TabCompetences.TREE_NODE_EXPANDED)).toBe(38);
-    expect(page.compterElements(selectors.TabCompetences.TREE_NODE_COLLAPSED)).toBe(135);
+    expect(page.compterElements(selectors.TabCompetences.TREE_NODES)).toBe(307);
+    expect(page.compterElements(selectors.TabCompetences.TREE_NODE_EXPANDED)).toBe(64);
+    expect(page.compterElements(selectors.TabCompetences.TREE_NODE_COLLAPSED)).toBe(243);
   });
 
   it('Test du filtre', () => {
@@ -56,7 +56,7 @@ describe('Onglet des compétences', () => {
     page.type(selectors.TabCompetences.INPUT_FILTRE, 'Français');
     page.click(selectors.APP.MENU_COMPETENCES);
     //
-    expect(page.compterElements(selectors.TabCompetences.TREE_NODE_COLLAPSED)).toBe(5);
-    expect(page.compterElements(selectors.TabCompetences.TREE_NODE_EXPANDED)).toBe(18);
+    expect(page.compterElements(selectors.TabCompetences.TREE_NODE_COLLAPSED)).toBe(9);
+    expect(page.compterElements(selectors.TabCompetences.TREE_NODE_EXPANDED)).toBe(37);
   });
 });
