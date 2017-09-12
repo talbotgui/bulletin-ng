@@ -168,7 +168,7 @@ export class LigneTableauDeBord {
       }
     }
 
-    // Creation/complétion des sousLignes pour les constations
+    // Creation/complétion des sousLignes pour les aides
     for (const aide of aides) {
 
       // Recherche de la sousLigne par identifiant de competence
