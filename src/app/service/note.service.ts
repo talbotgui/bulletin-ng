@@ -13,10 +13,10 @@ export class NoteService {
 
     // Lecture des données avec la sélection periodeEvaluee/periodePreparee
     let debutPeriode = ligne.periodeEvaluee.debut;
-    let constat = ligne.constat;
-    let aide = '';
+    let constat: string | undefined = ligne.constat;
+    let aide: string | undefined;
     if (!ajoutSurPeriodeEvaluee) {
-      constat = '';
+      constat = undefined;
       aide = ligne.aide;
       const periodeSuivante = this.lectureService.getPeriodeSuivante(ligne.periodeEvaluee);
       if (periodeSuivante) {
