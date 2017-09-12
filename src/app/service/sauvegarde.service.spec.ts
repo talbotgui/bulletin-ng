@@ -84,8 +84,6 @@ describe('SauvegardeService', () => {
   it('sauvegardeAnneeDansFichier', () => {
     // Arrange
     const annee = Jdd.getAnnee(Jdd.JDD_SIMPLISTE);
-    const jsonAnnee = Jdd.getJson(Jdd.JDD_SIMPLISTE);
-    const nomFichier = 'nomDeMonFichier';
     mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
     const requestDefinition = (req: HttpRequest<any>) => {
       return req.url.endsWith('//192.168.1.52/download/upload.php')

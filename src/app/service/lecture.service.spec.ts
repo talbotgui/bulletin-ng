@@ -179,7 +179,6 @@ describe('LectureService', () => {
   it('getLibelleCompletCompetence id trouvé avec enfant', () => {
     //
     const annee = Jdd.getAnnee(Jdd.JDD_DEUX_COMPETENCES);
-    const idCompetence1 = annee.competences[0].id;
     const idCompetence2 = annee.competences[1].id;
     mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
     //
@@ -205,7 +204,6 @@ describe('LectureService', () => {
   it('getLibelleCompletCompetence id trouvé avec enfant Et cache', () => {
     //
     const annee = Jdd.getAnnee(Jdd.JDD_DEUX_COMPETENCES);
-    const idCompetence1 = annee.competences[0].id;
     const idCompetence2 = annee.competences[1].id;
     mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
     lectureService.getLibelleCompletCompetence(idCompetence2);
@@ -232,7 +230,6 @@ describe('LectureService', () => {
     //
     const annee = Jdd.getAnnee(Jdd.JDD_DEUX_COMPETENCES);
     const idCompetence1 = annee.competences[0].id;
-    const idCompetence2 = annee.competences[1].id;
     mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
     //
     const resultat = lectureService.getListeCompetencesEnfant(idCompetence1);
@@ -246,7 +243,6 @@ describe('LectureService', () => {
     //
     const annee = Jdd.getAnnee(Jdd.JDD_DEUX_COMPETENCES);
     const idCompetence1 = annee.competences[0].id;
-    const idCompetence2 = annee.competences[1].id;
     mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
     lectureService.getListeCompetencesEnfant(idCompetence1);
     //
