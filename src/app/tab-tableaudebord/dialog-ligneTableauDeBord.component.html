@@ -20,14 +20,23 @@
 				<tr>
 					<th>Elément du programme évalué</th>
 					<th>Positionnement et objectif d'apprentissage</th>
-					<th>Acquisition, progrès et difficultés<span class="bouton_entete" (click)="ajouterLigneProgrammeEvalue()"><em class="fa fa-plus-circle"></em></span></th>
+					<th>
+						<span>Acquisition, progrès et difficultés</span>
+						<span class="bouton_entete" (click)="ajouterLigneProgrammeEvalue()"><em class="fa fa-plus-circle"></em></span>
+					</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr *ngFor="let sousLigne of ligne.sousLignes; let i = index">
-					<td><span *ngIf="sousLigne.constatation"><compo-competence [idCompetenceRacine]="ligne.idDomaine" [note]="sousLigne.constatation" [lectureSeule]="false" ></compo-competence></span></td>
-					<td><span *ngIf="sousLigne.constatation"><compo-note [note]="sousLigne.constatation" [lectureSeule]="false"></compo-note></span></td>
-					<td><span *ngIf="sousLigne.constatation"><textarea [(ngModel)]="sousLigne.constatation.commentaire" name="commentaire" rows="2" cols="20"></textarea></span></td>
+			<tbody *ngFor="let sousLigne of ligne.sousLignes; let i = index">
+				<tr *ngIf="sousLigne.constatation">
+					<td>
+						<compo-competence [idCompetenceRacine]="ligne.idDomaine" [note]="sousLigne.constatation" [lectureSeule]="false"></compo-competence>
+					</td>
+					<td>
+						<compo-note [note]="sousLigne.constatation" [lectureSeule]="false"></compo-note>
+					</td>
+					<td>
+						<textarea [(ngModel)]="sousLigne.constatation.commentaire" name="commentaire" rows="2" cols="20"></textarea>
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -43,9 +52,11 @@
 					<th>Elément du programme à travailler<span class="bouton_entete" (click)="ajouterLigneProgrammeTravaille()"><em class="fa fa-plus-circle"></em></span></th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr *ngFor="let sousLigne of ligne.sousLignes; let i = index">
-					<td><span *ngIf="sousLigne.aide"><compo-competence [idCompetenceRacine]="ligne.idDomaine" [note]="sousLigne.aide" [lectureSeule]="false"></compo-competence></span></td>
+			<tbody *ngFor="let sousLigne of ligne.sousLignes; let i = index">
+				<tr *ngIf="sousLigne.aide">
+					<td>
+						<compo-competence [idCompetenceRacine]="ligne.idDomaine" [note]="sousLigne.aide" [lectureSeule]="false"></compo-competence>
+					</td>
 				</tr>
 			</tbody>
 		</table>
