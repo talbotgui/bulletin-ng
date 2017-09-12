@@ -175,7 +175,7 @@ export class LectureService {
   getPeriodeSuivante(periode: model.Periode): model.Periode | undefined {
     const periodes = this.getListePeriode();
     const indexPeriode = periodes.findIndex((p) => p === periode);
-    if (0 < indexPeriode && indexPeriode < periodes.length - 1) {
+    if (0 <= indexPeriode && indexPeriode < periodes.length - 1) {
       return periodes[indexPeriode + 1];
     } else {
       return undefined;
