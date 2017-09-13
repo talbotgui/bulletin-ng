@@ -11,6 +11,7 @@ import { donnees } from './donneesDeTest/donnees08AvecBeaucoupDeNotes';
 import { DataRepository } from '../service/data.repository';
 import { LectureService } from '../service/lecture.service';
 import { NoteService } from '../service/note.service';
+import { Utils } from './utils';
 
 describe('NoteService', () => {
 
@@ -83,4 +84,61 @@ describe('NoteService', () => {
     expect(resultat[0].sousLignes[0].aide).toBeUndefined();
     expect(resultat[0].sousLignes[0].constatation).not.toBeUndefined();
   });
+
+  it('supprimeNoteDepuisTdb sans lignes', () => {
+    // Arrange
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    annee.notes = [];
+    const idDomaine: string = annee.competences[3].id;
+    const nomDomaine: string = annee.competences[3].text;
+    const constatations: model.Note[] = [];
+    const aides: model.Note[] = [];
+    const mapCompetences = new Map<string, model.Competence>();
+    for (const competence of annee.competences) {
+      mapCompetences.set(competence.id, competence);
+    }
+    const idEleve: string = annee.eleves[1].id;
+    const periodeEvaluee: model.Periode = annee.periodes[0];
+    const ligne = new model.LigneTableauDeBord(idDomaine, nomDomaine, constatations, aides, mapCompetences, idEleve, periodeEvaluee);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+
+    // Act
+    noteService.supprimeNoteDepuisTdb(ligne, ligne.sousLignes[0], false);
+
+    // Assert
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).never();
+  });
+
+  it('supprimeNoteDepuisTdb avec une ligne contenant aide et constat', () => {
+    // Arrange
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    annee.notes = [];
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    const ligne = Utils.prepareLigne(annee);
+
+    // Act
+    noteService.supprimeNoteDepuisTdb(ligne, ligne.sousLignes[0], false);
+
+    // Assert
+    expect(annee.notes.length).toBe(1);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+  it('supprimeNoteDepuisTdb avec une ligne contenant aide et constat', () => {
+    // Arrange
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    annee.notes = [];
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    const ligne = Utils.prepareLigne(annee);
+
+    // Act
+    noteService.supprimeNoteDepuisTdb(ligne, ligne.sousLignes[0], false);
+    noteService.supprimeNoteDepuisTdb(ligne, ligne.sousLignes[0], true);
+
+    // Assert
+    expect(annee.notes.length).toBe(0);
+    expect(ligne.sousLignes.length).toBe(0);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).twice();
+  });
+
 });
+

@@ -20,10 +20,8 @@
 				<tr>
 					<th>Elément du programme évalué</th>
 					<th>Positionnement et objectif d'apprentissage</th>
-					<th>
-						<span>Acquisition, progrès et difficultés</span>
-						<span class="bouton_entete" (click)="ajouterLigneProgrammeEvalue()"><em class="fa fa-plus-circle"></em></span>
-					</th>
+					<th><span>Acquisition, progrès et difficultés</span></th>
+					<th><em class="fa fa-plus-circle" (click)="ajouterLigneProgrammeEvalue()"></em></th>
 				</tr>
 			</thead>
 			<tbody *ngFor="let sousLigne of ligne.sousLignes; let i = index">
@@ -37,6 +35,9 @@
 					<td>
 						<textarea [(ngModel)]="sousLigne.constatation.commentaire" name="commentaire" rows="2" cols="20"></textarea>
 					</td>
+					<td>
+						<em class="fa fa-remove" (click)="supprimerSousLigneProgrammeEvalue(sousLigne)"></em>
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -49,13 +50,17 @@
 		<table class="ligneTableauDeBord">
 			<thead>
 				<tr>
-					<th>Elément du programme à travailler<span class="bouton_entete" (click)="ajouterLigneProgrammeTravaille()"><em class="fa fa-plus-circle"></em></span></th>
+					<th>Elément du programme à travailler</th>
+					<th><em class="fa fa-plus-circle" (click)="ajouterLigneProgrammeTravaille()"></em></th>
 				</tr>
 			</thead>
 			<tbody *ngFor="let sousLigne of ligne.sousLignes; let i = index">
 				<tr *ngIf="sousLigne.aide">
 					<td>
 						<compo-competence [idCompetenceRacine]="ligne.idDomaine" [note]="sousLigne.aide" [lectureSeule]="false"></compo-competence>
+					</td>
+					<td>
+						<em class="fa fa-remove" (click)="supprimerSousLigneProgrammeTravaille(sousLigne)"></em>
 					</td>
 				</tr>
 			</tbody>

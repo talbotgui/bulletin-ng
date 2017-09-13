@@ -23,11 +23,17 @@ export class DialogLigneTableauDeBordComponent implements OnInit {
     // Rien à faire
   }
 
-  ajouterLigneProgrammeTravaille() {
+  ajouterLigneProgrammeTravaille(): void {
     this.noteService.ajouteNoteDepuisTdb(this.ligne, false);
   }
-  ajouterLigneProgrammeEvalue() {
+  ajouterLigneProgrammeEvalue(): void {
     this.noteService.ajouteNoteDepuisTdb(this.ligne, true);
+  }
+  supprimerSousLigneProgrammeTravaille(sousLigne: model.SousLigneTableauDeBord): void {
+    this.noteService.supprimeNoteDepuisTdb(this.ligne, sousLigne, false);
+  }
+  supprimerSousLigneProgrammeEvalue(sousLigne: model.SousLigneTableauDeBord): void {
+    this.noteService.supprimeNoteDepuisTdb(this.ligne, sousLigne, true);
   }
 
   // méthode à appeler quand la popupup doit s'initialiser sur une ligne vide de note

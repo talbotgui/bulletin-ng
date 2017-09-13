@@ -96,6 +96,32 @@ export class NoteService {
     return liste;
   }
 
+  supprimeNoteDepuisTdb(ligne: model.LigneTableauDeBord, sousLigne: model.SousLigneTableauDeBord, supprimeSurPeriodeEvaluee: boolean): void {
+
+    // Note à supprimer
+    let note: model.Note;
+    if (supprimeSurPeriodeEvaluee && sousLigne && sousLigne.constatation) {
+      note = sousLigne.constatation;
+    } else if (!supprimeSurPeriodeEvaluee && sousLigne && sousLigne.aide) {
+      note = sousLigne.aide;
+    } else {
+      return;
+    }
+
+    // Suppression de la note dans l'année
+    const notes = this.dataRepository.getAnneeChargee().notes;
+    notes.splice(notes.indexOf(note), 1);
+
+    // MaJ du DTO
+    if (supprimeSurPeriodeEvaluee && sousLigne.aide) {
+      sousLigne.constatation = undefined;
+    } else if (!supprimeSurPeriodeEvaluee && sousLigne.constatation) {
+      sousLigne.aide = undefined;
+    } else {
+      ligne.sousLignes.splice(ligne.sousLignes.indexOf(sousLigne), 1);
+    }
+  }
+
   /** Retourne le domaine lié à la compétence idCompetence */
   private calculIdCompetenceNiveau3(idCompetence: string, mapCompetences: Map<string, model.Competence>): string {
     const ancetres: string[] = this.calculListeAncetres(idCompetence, mapCompetences);
