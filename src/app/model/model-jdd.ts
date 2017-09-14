@@ -7383,6 +7383,21 @@ export class Jdd {
         ]
       }
     ],
+    taches: [
+      {
+        titre: 'Nouvelle Tache',
+        echeances: [
+          {
+            nom: 'Echéance 1',
+            date: '2017-09-14T22:00:00.000Z'
+          },
+          {
+            nom: 'Echéance 2',
+            date: '2017-09-21T22:00:00.000Z'
+          }
+        ]
+      }
+    ],
     erreursChargement: [],
     logs: []
   };
