@@ -27,7 +27,7 @@ export class LectureService {
   /** Pour obtenir le journal d'un jour précis */
   getJournal(date: Date): model.Journal | undefined {
     if (!date) {
-      return;
+      return undefined;
     }
 
     const time = date.getTime();
@@ -204,12 +204,13 @@ export class LectureService {
 
   /** Retourne une Map <idCompetence Competence> de toutes les compétences existantes */
   getMapCompetences(): Map<string, model.Competence> {
-    if (this.cacheMapCompetence.size === this.dataRepository.getAnneeChargee().competences.length) {
+    const annee = this.dataRepository.getAnneeChargee();
+    if (this.cacheMapCompetence.size === annee.competences.length) {
       return this.cacheMapCompetence;
     }
 
     const laMap: Map<string, model.Competence> = new Map<string, model.Competence>();
-    for (const competence of this.dataRepository.getAnneeChargee().competences) {
+    for (const competence of annee.competences) {
       laMap.set(competence.id, competence);
     }
     return laMap;

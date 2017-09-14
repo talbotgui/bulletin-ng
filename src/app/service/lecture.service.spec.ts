@@ -68,6 +68,16 @@ describe('LectureService', () => {
     expect(lectureService.getMapLibelleStatutEleveMap()).toBe(annee.mapLibelleStatutEleveMap);
   });
 
+  it('getJournal sans date', () => {
+    //
+    const date = undefined;
+    // le 'as any' permet de tester l'appel avec une valeur undefined alors qu'undefined n'est pas accepté par le compilateur
+    const resultat = lectureService.getJournal(date as any);
+    //
+    expect(resultat).toBe(undefined);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).never();
+  });
+
   it('getJournal inexistant', () => {
     //
     const date = new Date();
@@ -529,4 +539,89 @@ describe('LectureService', () => {
     mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
   });
 
+  it('getAncetresCompetence sans compétence', () => {
+    //
+    const annee = new model.Annee();
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getAncetresCompetence(undefined as any);
+    //
+    expect(resultat.length).toBe(0);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getAncetresCompetence sans compétence en paramètre', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getAncetresCompetence(undefined as any);
+    //
+    expect(resultat.length).toBe(0);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+
+  it('getAncetresCompetence avec la compétence racine', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getAncetresCompetence('#');
+    //
+    expect(resultat.length).toBe(0);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getAncetresCompetence avec une compétence de niveau 1', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getAncetresCompetence('compTrav');
+    //
+    expect(resultat.length).toBe(1);
+    expect(resultat[0].id).toBe('compTrav');
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getAncetresCompetence avec une compétence', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getAncetresCompetence('X972');
+    //
+    expect(resultat.length).toBe(5);
+    expect(resultat[0].id).toBe('X972');
+    expect(resultat[1].id).toBe('X97');
+    expect(resultat[2].id).toBe('X9');
+    expect(resultat[3].id).toBe('X');
+    expect(resultat[4].id).toBe('compTrav');
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getMapCompetences avec cache vide', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getMapCompetences();
+    //
+    expect(resultat.size).toBe(1366);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getMapCompetences avec du cache', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    lectureService.getCompetence('#');
+    lectureService.getCompetence('compTrav');
+    //
+    const resultat = lectureService.getMapCompetences();
+    //
+    expect(resultat.size).toBe(1366);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).times(3);
+  });
 });
