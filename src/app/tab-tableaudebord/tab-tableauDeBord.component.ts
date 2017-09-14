@@ -29,7 +29,7 @@ export class TabTableauDeBordComponent {
   lignes: model.LigneTableauDeBord[];
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private lectureService: LectureService, private noteService: NoteService, public dialog: MdDialog) { }
+  constructor(private lectureService: LectureService, private noteService: NoteService, private dialog: MdDialog) { }
 
   // A la sélection d'un filtre
   onSelectEleve(eleve: model.Eleve) {

@@ -61,7 +61,7 @@ export class ComposantCompetenceeComponent {
   }
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(public dialog: MdDialog, private lectureService: LectureService) { }
+  constructor(private dialog: MdDialog, private lectureService: LectureService) { }
 
   // Pour remonter d'un niveau
   selectionnerParent() {

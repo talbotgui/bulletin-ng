@@ -20,7 +20,7 @@ export class SauvegardeService {
   private readonly URL_SERVEUR_HTTP = 'http://192.168.1.52/download/upload.php';
   private readonly HEADERS_APPEL_SERVEUR = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
-  constructor(private http: HttpClient, private dataRepository: DataRepository, public snackBar: MdSnackBar) { }
+  constructor(private http: HttpClient, private dataRepository: DataRepository, private snackBar: MdSnackBar) { }
 
   getNomsDerniersFichiersSauvegardesDansBrowser(): { nomFichierEnLocal: string | null, nomFichierSurServeur: string | null } {
     if (typeof (Storage) !== 'undefined') {

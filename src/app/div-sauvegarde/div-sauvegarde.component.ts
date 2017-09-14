@@ -17,7 +17,7 @@ export class DivSauvegardeComponent {
     return mess;
   }
 
-  constructor(public dialog: MdDialog, private dataRepository: DataRepository, private sauvegardeService: SauvegardeService) { }
+  constructor(private dialog: MdDialog, private dataRepository: DataRepository, private sauvegardeService: SauvegardeService) { }
 
   // A la demande de chargement d'un fichier
   ouvreDialogChargement() {
