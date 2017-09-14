@@ -147,4 +147,44 @@ describe('SauvegardeService', () => {
     // Assert
     mockito.verify(dataRepositoryMock.setAnneeChargee(mockito.anything())).once();
   });
+
+  it('getlisteSauvegardesDuServeur hors réseau', () => {
+    // Arrange
+    const requestDefinition = (req: HttpRequest<any>) => {
+      return req.url.endsWith('//192.168.1.52/download/upload.php');
+    };
+    sauvegardeService.travailleHorsReseau();
+    // Act : aucun appel au HTTP normalement
+    sauvegardeService.getlisteSauvegardesDuServeur().subscribe((val) => { });
+    // Assert : valeurs retournées et pas d'autre requete HTTP
+    http.expectNone(requestDefinition);
+    http.verify();
+  });
+
+  it('getlisteSauvegardesDuServeur hors réseau', () => {
+    // Arrange
+    const requestDefinition = (req: HttpRequest<any>) => {
+      return req.url.endsWith('//192.168.1.52/download/upload.php');
+    };
+    sauvegardeService.travailleHorsReseau();
+    // Act : aucun appel au HTTP normalement
+    const resultat = sauvegardeService.chargeAnneeDuFichier('fichier');
+    // Assert : valeurs retournées et pas d'autre requete HTTP
+    expect(resultat).toBe(undefined);
+    http.expectNone(requestDefinition);
+    http.verify();
+  });
+
+  it('sauvegardeAnneeSurServeur hors réseau', () => {
+    // Arrange
+    const requestDefinition = (req: HttpRequest<any>) => {
+      return req.url.endsWith('//192.168.1.52/download/upload.php');
+    };
+    sauvegardeService.travailleHorsReseau();
+    // Act : aucun appel au HTTP normalement
+    sauvegardeService.sauvegardeAnneeSurServeur();
+    // Assert : valeurs retournées et pas d'autre requete HTTP
+    http.expectNone(requestDefinition);
+    http.verify();
+  });
 });
