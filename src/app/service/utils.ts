@@ -54,4 +54,6 @@ export class Utils {
         const periodeEvaluee: model.Periode = annee.periodes[0];
         return new model.LigneTableauDeBord(idDomaine, nomDomaine, constatations, aides, mapCompetences, idEleve, periodeEvaluee);
     }
+
+    private constructor() { }
 }
