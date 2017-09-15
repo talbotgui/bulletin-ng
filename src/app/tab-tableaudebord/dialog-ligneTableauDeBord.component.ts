@@ -35,6 +35,9 @@ export class DialogLigneTableauDeBordComponent implements OnInit {
   supprimerSousLigneProgrammeEvalue(sousLigne: model.SousLigneTableauDeBord): void {
     this.noteService.supprimeNoteDepuisTdb(this.ligne, sousLigne, true);
   }
+  reporteSousLigneDansPeriodePreparee(sousLigne: model.SousLigneTableauDeBord): void {
+    this.noteService.creerNotePourPeriodeSuivanteApartirDunNoteDePeriodePrecedente(this.ligne, sousLigne);
+  }
 
   // méthode à appeler quand la popupup doit s'initialiser sur une ligne vide de note
   initialisePourUneSelectionDeDomaine(mapCompetences: Map<string, model.Competence>, idEleve: string, periodeEvaluee: model.Periode) {

@@ -114,7 +114,7 @@ describe('NoteService', () => {
     const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
     annee.notes = [];
     mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
-    const ligne = Utils.prepareLigne(annee);
+    const ligne = Utils.prepareLignePourTest(annee);
 
     // Act
     noteService.supprimeNoteDepuisTdb(ligne, ligne.sousLignes[0], false);
@@ -123,12 +123,13 @@ describe('NoteService', () => {
     expect(annee.notes.length).toBe(1);
     mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
   });
+
   it('supprimeNoteDepuisTdb avec une ligne contenant aide et constat', () => {
     // Arrange
     const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
     annee.notes = [];
     mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
-    const ligne = Utils.prepareLigne(annee);
+    const ligne = Utils.prepareLignePourTest(annee);
 
     // Act
     noteService.supprimeNoteDepuisTdb(ligne, ligne.sousLignes[0], false);
@@ -140,5 +141,205 @@ describe('NoteService', () => {
     mockito.verify(dataRepositoryMock.getAnneeChargee()).twice();
   });
 
-});
+  it('ajouteNoteDepuisTdb sur periode Evaluée n°1', () => {
+    // Arrange
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    annee.notes = [];
+    const idEleve = 'idEleve';
+    const competence = annee.competences[3];
+    const periodeEvaluee = annee.periodes[0];
+    const ligne = new model.LigneTableauDeBord(competence.id, '', [], [], new Map<string, model.Competence>(), idEleve, periodeEvaluee);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    mockito.when(lectureServiceMock.getCompetence(competence.id)).thenReturn(competence);
 
+    // Act
+    noteService.ajouteNoteDepuisTdb(ligne, true);
+
+    // Assert
+    expect(annee.notes.length).toBe(1);
+    expect(ligne.sousLignes.length).toBe(1);
+    expect(ligne.sousLignes[0].constatation).toBeTruthy();
+    const nouvelleNote: model.Note = ligne.sousLignes[0].constatation as model.Note;
+    expect(nouvelleNote.idItem).toBe(competence.id);
+    expect(nouvelleNote.idEleve).toBe(idEleve);
+    expect(nouvelleNote.date).toBe(periodeEvaluee.debut);
+    mockito.verify(lectureServiceMock.getPeriodeSuivante(mockito.anything())).never();
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+    mockito.verify(lectureServiceMock.getCompetence(competence.id)).once();
+  });
+
+  it('ajouteNoteDepuisTdb sur periode Evaluée n°5', () => {
+    // Arrange
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    annee.notes = [];
+    const idEleve = 'idEleve';
+    const competence = annee.competences[3];
+    const periodeEvaluee = annee.periodes[4];
+    const ligne = new model.LigneTableauDeBord(competence.id, '', [], [], new Map<string, model.Competence>(), idEleve, periodeEvaluee);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    mockito.when(lectureServiceMock.getCompetence(competence.id)).thenReturn(competence);
+
+    // Act
+    noteService.ajouteNoteDepuisTdb(ligne, true);
+
+    // Assert
+    expect(annee.notes.length).toBe(1);
+    expect(ligne.sousLignes.length).toBe(1);
+    const nouvelleNote: model.Note = ligne.sousLignes[0].constatation as model.Note;
+    expect(nouvelleNote.idItem).toBe(competence.id);
+    expect(nouvelleNote.idEleve).toBe(idEleve);
+    expect(nouvelleNote.date).toBe(periodeEvaluee.debut);
+    mockito.verify(lectureServiceMock.getPeriodeSuivante(mockito.anything())).never();
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+    mockito.verify(lectureServiceMock.getCompetence(competence.id)).once();
+  });
+
+  it('ajouteNoteDepuisTdb sur periode préparée quand la période évaluée est la n°1', () => {
+    // Arrange
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    annee.notes = [];
+    const idEleve = 'idEleve';
+    const competence = annee.competences[3];
+    const periodeEvaluee = annee.periodes[0];
+    const ligne = new model.LigneTableauDeBord(competence.id, '', [], [], new Map<string, model.Competence>(), idEleve, periodeEvaluee);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    mockito.when(lectureServiceMock.getCompetence(competence.id)).thenReturn(competence);
+    mockito.when(lectureServiceMock.getPeriodeSuivante(periodeEvaluee)).thenReturn(annee.periodes[1]);
+
+    // Act
+    noteService.ajouteNoteDepuisTdb(ligne, false);
+
+    // Assert
+    expect(annee.notes.length).toBe(1);
+    expect(ligne.sousLignes.length).toBe(1);
+    const nouvelleNote: model.Note = ligne.sousLignes[0].aide as model.Note;
+    expect(nouvelleNote.idItem).toBe(competence.id);
+    expect(nouvelleNote.idEleve).toBe(idEleve);
+    expect(nouvelleNote.date).toBe(annee.periodes[1].debut);
+    mockito.verify(lectureServiceMock.getPeriodeSuivante(periodeEvaluee)).once();
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+    mockito.verify(lectureServiceMock.getCompetence(competence.id)).once();
+  });
+
+  it('ajouteNoteDepuisTdb sur periode préparée quand la période évaluée est la n°5', () => {
+    // Arrange
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    annee.notes = [];
+    const idEleve = 'idEleve';
+    const competence = annee.competences[3];
+    const periodeEvaluee = annee.periodes[4];
+    const ligne = new model.LigneTableauDeBord(competence.id, '', [], [], new Map<string, model.Competence>(), idEleve, periodeEvaluee);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    mockito.when(lectureServiceMock.getCompetence(competence.id)).thenReturn(competence);
+    mockito.when(lectureServiceMock.getPeriodeSuivante(periodeEvaluee)).thenReturn(undefined);
+
+    // Act
+    noteService.ajouteNoteDepuisTdb(ligne, false);
+
+    // Assert
+    expect(annee.notes.length).toBe(0);
+    expect(ligne.sousLignes.length).toBe(0);
+    mockito.verify(lectureServiceMock.getPeriodeSuivante(periodeEvaluee)).once();
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).never();
+    mockito.verify(lectureServiceMock.getCompetence(competence.id)).never();
+  });
+
+  it('creerNotePourPeriodeSuivanteApartirDunNoteDePeriodePrecedente sur la période 5', () => {
+    // Arrange
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    annee.notes = [];
+    const periodeEvaluee = annee.periodes[4];
+    const ligne = new model.LigneTableauDeBord('', '', [], [], new Map<string, model.Competence>(), '', periodeEvaluee);
+    const sousLigne = new model.SousLigneTableauDeBord();
+    ligne.sousLignes.push(sousLigne);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    mockito.when(lectureServiceMock.getPeriodeSuivante(periodeEvaluee)).thenReturn(undefined);
+
+    // Act
+    noteService.creerNotePourPeriodeSuivanteApartirDunNoteDePeriodePrecedente(ligne, sousLigne);
+
+    // Assert
+    expect(annee.notes.length).toBe(0);
+    expect(ligne.sousLignes.length).toBe(1);
+    expect(ligne.sousLignes[0].aide).toBeFalsy();
+    mockito.verify(lectureServiceMock.getPeriodeSuivante(periodeEvaluee)).once();
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).never();
+  });
+
+  it('creerNotePourPeriodeSuivanteApartirDunNoteDePeriodePrecedente OK sur la période 1', () => {
+    // Arrange
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    annee.notes = [];
+    const periodeEvaluee = annee.periodes[1];
+    const periodePreparee = annee.periodes[2];
+    const competence = annee.competences[30];
+    const idEleve = 'idEleve';
+    const ligne = new model.LigneTableauDeBord('', '', [], [], new Map<string, model.Competence>(), idEleve, periodeEvaluee);
+    const sousLigne = new model.SousLigneTableauDeBord(competence, new model.Note('', idEleve, competence.id));
+    ligne.sousLignes.push(sousLigne);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    mockito.when(lectureServiceMock.getPeriodeSuivante(periodeEvaluee)).thenReturn(periodePreparee);
+
+    // Act
+    noteService.creerNotePourPeriodeSuivanteApartirDunNoteDePeriodePrecedente(ligne, sousLigne);
+
+    // Assert
+    expect(annee.notes.length).toBe(1);
+    expect(ligne.sousLignes.length).toBe(1);
+    expect(ligne.sousLignes[0].aide).toBeTruthy();
+    const nouvelleNote = ligne.sousLignes[0].aide as model.Note;
+    expect(nouvelleNote.idItem).toBe(competence.id);
+    expect(nouvelleNote.date).toBe(periodePreparee.debut);
+    expect(nouvelleNote.idEleve).toBe(idEleve);
+    mockito.verify(lectureServiceMock.getPeriodeSuivante(periodeEvaluee)).once();
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('creerNotePourPeriodeSuivanteApartirDunNoteDePeriodePrecedente KO déjà une note dans la sous-ligne', () => {
+    // Arrange
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    annee.notes = [];
+    const periodeEvaluee = annee.periodes[1];
+    const periodePreparee = annee.periodes[2];
+    const competence = annee.competences[30];
+    const idEleve = 'idEleve';
+    const ligne = new model.LigneTableauDeBord('', '', [], [], new Map<string, model.Competence>(), idEleve, periodeEvaluee);
+    const sousLigne = new model.SousLigneTableauDeBord(competence, new model.Note('', idEleve, competence.id), new model.Note('', idEleve, competence.id));
+    ligne.sousLignes.push(sousLigne);
+    mockito.when(lectureServiceMock.getPeriodeSuivante(periodeEvaluee)).thenReturn(periodePreparee);
+
+    // Act
+    noteService.creerNotePourPeriodeSuivanteApartirDunNoteDePeriodePrecedente(ligne, sousLigne);
+
+    // Assert
+    expect(annee.notes.length).toBe(0);
+    expect(ligne.sousLignes.length).toBe(1);
+    mockito.verify(lectureServiceMock.getPeriodeSuivante(periodeEvaluee)).once();
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).never();
+  });
+
+  it('creerNotePourPeriodeSuivanteApartirDunNoteDePeriodePrecedente KO déjà une note dans une autre sous-ligne', () => {
+    // Arrange
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    annee.notes = [];
+    const periodeEvaluee = annee.periodes[1];
+    const periodePreparee = annee.periodes[2];
+    const competence = annee.competences[30];
+    const idEleve = 'idEleve';
+    const ligne = new model.LigneTableauDeBord('', '', [], [], new Map<string, model.Competence>(), idEleve, periodeEvaluee);
+    const sousLigne = new model.SousLigneTableauDeBord(competence, new model.Note('', idEleve, competence.id));
+    ligne.sousLignes.push(sousLigne);
+    ligne.sousLignes.push(new model.SousLigneTableauDeBord(competence, undefined, new model.Note('', idEleve, competence.id)));
+    mockito.when(lectureServiceMock.getPeriodeSuivante(periodeEvaluee)).thenReturn(periodePreparee);
+
+    // Act
+    noteService.creerNotePourPeriodeSuivanteApartirDunNoteDePeriodePrecedente(ligne, sousLigne);
+
+    // Assert
+    expect(annee.notes.length).toBe(0);
+    expect(ligne.sousLignes.length).toBe(2);
+    expect(ligne.sousLignes[0].aide).toBeFalsy();
+    mockito.verify(lectureServiceMock.getPeriodeSuivante(periodeEvaluee)).once();
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).never();
+  });
+});

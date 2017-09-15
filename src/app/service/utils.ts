@@ -30,14 +30,10 @@ export class Utils {
     }
 
     public static nettoieString(chaine: string): string {
-        if (chaine) {
-            return chaine.replace(Utils.REGEX_CR, '<br/>');
-        } else {
-            return '';
-        }
+        return chaine.replace(Utils.REGEX_CR, '<br/>');
     }
 
-    public static prepareLigne(annee: model.Annee): model.LigneTableauDeBord {
+    public static prepareLignePourTest(annee: model.Annee): model.LigneTableauDeBord {
         const idDomaine: string = annee.competences[3].id;
         const nomDomaine: string = annee.competences[3].text;
         const constatations: model.Note[] = [];

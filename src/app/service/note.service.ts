@@ -9,6 +9,39 @@ export class NoteService {
 
   constructor(private dataRepository: DataRepository, private lectureService: LectureService) { }
 
+  creerNotePourPeriodeSuivanteApartirDunNoteDePeriodePrecedente(ligne: model.LigneTableauDeBord, sousLigne: model.SousLigneTableauDeBord): void {
+
+    // Recherche de la période suivante
+    const periodeSuivante = this.lectureService.getPeriodeSuivante(ligne.periodeEvaluee);
+
+    // cas de la dernière periode de l'année
+    if (!periodeSuivante) {
+      return;
+    }
+
+    // Si la sous-ligne ne contient pas de note à reporter sur la période suivante
+    if (!sousLigne.constatation) {
+      return;
+    }
+
+    // Si la sous-ligne contient déjà une note avec cette compétence pour l'année prochaine
+    if (sousLigne.aide) {
+      return;
+    }
+
+    // S'il existe une sous-ligne avec cette compétence
+    if (ligne.sousLignes.filter((ssl) => ssl.aide && sousLigne.constatation && ssl.aide.idItem === sousLigne.constatation.idItem).length !== 0) {
+      return;
+    }
+
+    // Ajout de la note dans l'année
+    const note = new model.Note('', ligne.idEleve, sousLigne.constatation.idItem, periodeSuivante.debut, ligne.aide, undefined, '');
+    this.dataRepository.getAnneeChargee().notes.push(note);
+
+    // Mise à jour de la ligne avec une nouvelle sous ligne
+    sousLigne.aide = note;
+  }
+
   ajouteNoteDepuisTdb(ligne: model.LigneTableauDeBord, ajoutSurPeriodeEvaluee: boolean): void {
 
     // Lecture des données avec la sélection periodeEvaluee/periodePreparee
@@ -21,6 +54,9 @@ export class NoteService {
       const periodeSuivante = this.lectureService.getPeriodeSuivante(ligne.periodeEvaluee);
       if (periodeSuivante) {
         debutPeriode = periodeSuivante.debut;
+      } else {
+        console.error('Erreur lors de la recherche de la période suivante pour insérer une note');
+        return;
       }
     }
 
