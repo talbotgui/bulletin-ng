@@ -18,7 +18,7 @@
 				<th>Constat sur la période</th>
 				<th>Modalité d'aide pour la période suivante</th>
 				<th>Elément du programme à travailler</th>
-				<th><em class="fa fa-calendar-plus-o" (click)="creeNouvelleLigne()"></em></th>
+				<th><em class="fa fa-calendar-plus-o" mdTooltip="Ajouter une ligne" (click)="creeNouvelleLigne()"></em></th>
 			</tr>
 		</thead>
 		<tbody *ngFor="let ligne of lignes">
@@ -30,7 +30,7 @@
 				<td class="periodeEvaluee" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.constat}} </td>
 				<td class="periodePreparee" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.aide}} </td>
 				<td class="periodePreparee"><span *ngIf="sousLigne.aide"><compo-competence [idCompetenceRacine]="ligne.idDomaine" [note]="sousLigne.aide" [lectureSeule]="true" ></compo-competence></span></td>
-				<td *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length"><em class="fa fa-edit" (click)="onSelectLigne(ligne)"></em></td>
+				<td *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length"><em class="fa fa-edit" mdTooltip="Modifier cette ligne" (click)="onSelectLigne(ligne)"></em></td>
 			</tr>
 		</tbody>
 	</table>

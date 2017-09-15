@@ -1,13 +1,13 @@
-<em class="fa fa-fast-backward" (click)="changeDate(-7)"></em>
-<em class="fa fa-backward" (click)="changeDate(-1)"></em>
+<em class="fa fa-fast-backward" mdTooltip="Reculer d'une semaine" (click)="changeDate(-7)"></em>
+<em class="fa fa-backward" mdTooltip="Reculer d'une journée" (click)="changeDate(-1)"></em>
 
 <input [mdDatepicker]="myDatepicker" [(ngModel)]="dateJournal" name="dateJournal" placeholder="Date du journal" (ngModelChange)="onChangementDateJournal()"
  class="filtre">
 <md-datepicker-toggle [for]="myDatepicker"></md-datepicker-toggle>
 <md-datepicker #myDatepicker></md-datepicker>
 
-<em class="fa fa-forward" (click)="changeDate(1)"></em>
-<em class="fa fa-fast-forward" (click)="changeDate(7)"></em>
+<em class="fa fa-forward" mdTooltip="Avancer d'une journée" (click)="changeDate(1)"></em>
+<em class="fa fa-fast-forward" mdTooltip="Avancer d'une semaine" (click)="changeDate(7)"></em>
 
 
 <fieldset *ngIf="!!dateJournal">

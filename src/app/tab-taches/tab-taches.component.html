@@ -1,4 +1,4 @@
-<span class="fa-stack fa-lg" (click)="creerTache()">
+<span class="fa-stack fa-lg" mdTooltip="Ajouter une nouvelle tâche" (click)="creerTache()">
     <em class="fa fa-circle-o fa-stack-2x"></em>
     <em class="fa fa-plus fa-stack-1x"></em>
 </span>
@@ -9,7 +9,7 @@
         <md-card>
             <md-card-header>
                 <md-card-title>
-                    <span class="fa-stack action" (click)="ajouterEcheance()">
+                    <span class="fa-stack action" mdTooltip="Ajouter une échéance" (click)="ajouterEcheance()">
                         <em class="fa fa-circle-o fa-stack-2x"></em>
                         <em class="fa fa-plus fa-stack-1x"></em>
                     </span>
@@ -25,7 +25,7 @@
                     <span>{{eche.date | date:'dd/MM'}}</span>
                     <md-datepicker-toggle [for]="myDatepicker"></md-datepicker-toggle>
                     <md-datepicker #myDatepicker></md-datepicker>
-                    <em class="fa fa-remove" mdTooltip="Supprimer" (click)="supprimerEcheance(nouvelleTache, eche)"></em>
+                    <em class="fa fa-remove" mdTooltip="Supprimer cette échéance" (click)="supprimerEcheance(nouvelleTache, eche)"></em>
 
                     <br/>
                 </div>
@@ -43,7 +43,7 @@
             <md-card-header>
                 <md-card-title>
                     {{tache.titre}}
-                    <em class="fa fa-edit" mdTooltip="Editer" (click)="editer(tache)"></em>
+                    <em class="fa fa-edit" mdTooltip="Modifier" (click)="editer(tache)"></em>
                     <em class="fa fa-copy" mdTooltip="Dupliquer" (click)="dupliquer(tache)"></em>
                     <em class="fa fa-remove" mdTooltip="Supprimer" (click)="supprimerTache(tache)"></em>
                 </md-card-title>

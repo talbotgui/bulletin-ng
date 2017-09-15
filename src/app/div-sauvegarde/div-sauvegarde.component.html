@@ -1,2 +1,2 @@
-<em class="fa fa-folder-open fa-2x" *ngIf="!anneeChargee" (click)="ouvreDialogChargement()"></em>
+<em class="fa fa-folder-open fa-2x" mdTooltip="Charger des données" *ngIf="!anneeChargee" (click)="ouvreDialogChargement()"></em>
 <em class="fa fa-save fa-2x" *ngIf="!!anneeChargee" (click)="ouvreDialogSauvegarde()" mdTooltipPosition="below" mdTooltip="{{messageSauvegarde.message}}{{messageSauvegarde.date | date:'HH:mm:ss'}}"></em>

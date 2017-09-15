@@ -4,7 +4,7 @@
 	<fieldset *ngIf="!ligne.idDomaine">
 		<legend>Sélection du domaine :</legend>
 		<compo-competence [note]="premiereNote" [lectureSeule]="false" [profondeurMaximaleAutorisee]=4></compo-competence>
-		<br/><em class="fa fa-check fa-2x" (click)="validerDomaine()"></em>
+		<br/><em class="fa fa-check fa-2x" mdTooltip="Sélectionner ce domaine" (click)="validerDomaine()"></em>
 	</fieldset>
 	<fieldset *ngIf="!!ligne.idDomaine">
 		<legend>Domaine :</legend>
@@ -21,7 +21,7 @@
 					<th>Elément du programme évalué</th>
 					<th>Positionnement et objectif d'apprentissage</th>
 					<th><span>Acquisition, progrès et difficultés</span></th>
-					<th><em class="fa fa-plus-circle" (click)="ajouterLigneProgrammeEvalue()"></em></th>
+					<th><em class="fa fa-plus-circle" mdTooltip="Ajouter une note dans la période évaluée" (click)="ajouterLigneProgrammeEvalue()"></em></th>
 				</tr>
 			</thead>
 			<tbody *ngFor="let sousLigne of ligne.sousLignes; let i = index">
@@ -36,7 +36,7 @@
 						<textarea [(ngModel)]="sousLigne.constatation.commentaire" name="commentaire" rows="2" cols="20"></textarea>
 					</td>
 					<td>
-						<em class="fa fa-remove" mdTooltip="Reporter cette note" (click)="supprimerSousLigneProgrammeEvalue(sousLigne)"></em>
+						<em class="fa fa-remove" mdTooltip="Supprimer cette note" (click)="supprimerSousLigneProgrammeEvalue(sousLigne)"></em>
 						<em class="fa fa-magic" mdTooltip="Reporter la compétence dans les compétences à travailler à la prochaine période" (click)="reporteSousLigneDansPeriodePreparee(sousLigne)"></em>
 					</td>
 				</tr>
@@ -52,7 +52,7 @@
 			<thead>
 				<tr>
 					<th>Elément du programme à travailler</th>
-					<th><em class="fa fa-plus-circle" (click)="ajouterLigneProgrammeTravaille()"></em></th>
+					<th><em class="fa fa-plus-circle" mdTooltip="Ajouter une note pour la période préparée" (click)="ajouterLigneProgrammeTravaille()"></em></th>
 				</tr>
 			</thead>
 			<tbody *ngFor="let sousLigne of ligne.sousLignes; let i = index">
@@ -61,7 +61,7 @@
 						<compo-competence [idCompetenceRacine]="ligne.idDomaine" [note]="sousLigne.aide" [lectureSeule]="false"></compo-competence>
 					</td>
 					<td>
-						<em class="fa fa-remove" (click)="supprimerSousLigneProgrammeTravaille(sousLigne)"></em>
+						<em class="fa fa-remove" mdTooltip="Supprimer cette note" (click)="supprimerSousLigneProgrammeTravaille(sousLigne)"></em>
 					</td>
 				</tr>
 			</tbody>
