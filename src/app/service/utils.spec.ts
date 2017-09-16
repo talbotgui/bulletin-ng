@@ -14,7 +14,7 @@ describe('Utils', () => {
 
   it('formatDate au format court', () => {
     // Dimanche 10 septembre 2017 à 01h33m20s
-    const date = new Date('2017-09-10T12:00:00+0100');
+    const date = new Date('2017-09-10');
     //
     const resultat = Utils.formatDate(date, false);
     //
@@ -23,7 +23,7 @@ describe('Utils', () => {
 
   it('formatDate au format long', () => {
     // Dimanche 10 septembre 2017 à 01h33m20s
-    const date = new Date('2017-09-10T12:00:00+0100');
+    const date = new Date('2017-09-10');
     //
     const resultat = Utils.formatDate(date, true);
     //
