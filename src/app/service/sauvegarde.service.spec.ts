@@ -168,9 +168,8 @@ describe('SauvegardeService', () => {
     };
     sauvegardeService.travailleHorsReseau();
     // Act : aucun appel au HTTP normalement
-    const resultat = sauvegardeService.chargeAnneeDuFichier('fichier');
+    sauvegardeService.chargeAnneeDuFichier('fichier');
     // Assert : valeurs retournées et pas d'autre requete HTTP
-    expect(resultat).toBe(undefined);
     http.expectNone(requestDefinition);
     http.verify();
   });
