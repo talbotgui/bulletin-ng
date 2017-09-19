@@ -4,3 +4,5 @@
 td.periodeEvaluee { background-color:#f2f599; }
 td.domaine { background-color:#ffab00; cursor: pointer; }
 td.periodePreparee { background-color:lightgreen; }
+
+div.actions { float: right; }

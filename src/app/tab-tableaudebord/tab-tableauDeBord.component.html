@@ -1,3 +1,8 @@
+<!-- Boutons d'action -->
+<div class="actions" *ngIf="eleveSelectionne && periodeSelectionnee">
+	<em class="fa fa-4x fa-print" mdTooltip="Afficher les données dans l'onglet d'édition" (click)="imprimerPpi()"></em>
+</div>
+
 <!-- Filtres -->
 <md-chip-list class="filtres listeEleves" [selectable]="true">
 	<md-chip *ngFor="let eleve of eleves" (click)="onSelectEleve(eleve)" [class.filtreSelectionne]="eleve === eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</md-chip>

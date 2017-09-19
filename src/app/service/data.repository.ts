@@ -80,7 +80,7 @@ export class DataRepository {
     nouvelleAnnee.notes = [];
     if (annee.notes) {
       annee.notes.forEach((n) => {
-        const newN = new model.Note(n.valeur, n.idEleve, n.idItem, n.date, n.modalitesAide, n.constat, n.commentaire);
+        const newN = new model.Note(n.valeur, n.idEleve, n.idItem, this.newDate(n.date), n.modalitesAide, n.constat, n.commentaire);
         newN.id = n.id;
         nouvelleAnnee.notes.push(newN);
       });
@@ -126,8 +126,8 @@ export class DataRepository {
     if (annee.periodes) {
       annee.periodes.forEach((p) => {
         const newP = new model.Periode();
-        newP.debut = p.debut;
-        newP.fin = p.fin;
+        newP.debut = new Date(p.debut);
+        newP.fin = new Date(p.fin);
         newP.id = parseInt(p.id + '', 10);
         newP.nom = p.nom;
         nouvelleAnnee.periodes.push(newP);
@@ -187,5 +187,13 @@ export class DataRepository {
 
     // Application du thème
     document.getElementsByTagName('body').item(0).className = theme;
+  }
+
+  private newDate(date: Date | undefined): Date | undefined {
+    if (!!date) {
+      return new Date(date);
+    } else {
+      return date;
+    }
   }
 }
