@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { LectureService } from '../service/lecture.service';
-import { EditionService } from '../service/edition.service';
 import * as model from '../model/model';
 
 @Component({ selector: 'tab-eleve', templateUrl: './tab-eleve.component.html', styleUrls: ['./tab-eleve.component.css'] })
@@ -60,7 +59,7 @@ export class TabEleveComponent implements OnInit {
   }
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private lectureService: LectureService, private editionService: EditionService) { }
+  constructor(private lectureService: LectureService) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
@@ -70,10 +69,6 @@ export class TabEleveComponent implements OnInit {
   // A la sélection d'un élève
   onSelectEleve(eleve: model.Eleve) {
     this.eleveSelectionne = eleve;
-  }
-
-  impression(): void {
-    this.editionService.editionEleve(this.eleveSelectionne);
   }
 
   creerEleve(): void {

@@ -1,6 +1,6 @@
 <!-- Actions -->
 <div class="actions">
-	<em *ngIf="eleveSelectionne" mdTooltip="Imprimer la fiche de l'élève" class="fa fa-print fa-2x" (click)="impression()"></em>
+	<em *ngIf="eleveSelectionne" mdTooltip="Imprimer la fiche de l'élève" class="fa fa-print fa-2x" md-button [routerLink]="['/tab-editioneleve-route', eleveSelectionne.id]"></em>
 	<em class="fa fa-plus fa-2x" mdTooltip="Ajouter un nouvel élève" (click)="creerEleve()"></em>
 </div>
 

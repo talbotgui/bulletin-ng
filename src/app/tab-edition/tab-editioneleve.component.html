@@ -1,0 +1,74 @@
+<!-- Boutons d'action -->
+<div class="actions">
+    <em class="fa fa-2x fa-print" mdTooltip="Imprimer les données" (click)="imprimerLaPage()"></em>
+</div>
+
+<!-- Page à imprimer -->
+<div class="edition">
+    <div class="barre">
+        <div class="entete" [innerHTML]="entete"></div>
+        <div class="titre">
+            <h1>{{titre}}</h1>
+        </div>
+        <div class="annee">
+            <div>{{anneeScolaire}}<br/>{{nomPeriode}}</div>
+        </div>
+    </div>
+
+    <table>
+        <tr>
+            <td rowspan="2" class="editionEleve-identite">{{eleve.nom.toUpperCase()}} {{eleve.prenom}}</td>
+            <td class="editionEleve-dates">
+                <span>Date de naissance : </span>{{formatDate(eleve.dateNaissance)}}<br/>
+                <span>Date d"admission : </span>{{formatDate(eleve.dateAdmission);
+            </td>
+        </tr>
+        <tr>
+            <td class="editionEleve-contacts">
+                <span>Adresses :</span><br/>{{nettoieString(eleve.adresses)}}<br/><br/>
+                <span>Téléphones : </span><br/>{{nettoieString(eleve.telephones);
+            </td>
+        </tr>
+    </table>
+    <br/>
+    <table>
+        <tr>
+            <td class="editionEleve-pere"><span>Père :</span><br/>{{nettoieString(eleve.pere)}}</td>
+            <td class="editionEleve-mere"><span>Mère :</span><br/>{{nettoieString(eleve.mere)}}</td>
+            <td class="editionEleve-fratrie"><span>Fratrie :</span><br/>{{nettoieString(eleve.fratrie)}}</td>
+            <td class="editionEleve-accueil"><span>Informations complémentaires :</span><br/>{{nettoieString(eleve.accueil)}}</td>
+        </tr>
+    </table>
+    <br/>
+    <table>
+        <tr>
+            <td class="editionEleve-datesPPA"><span>Dates PPA :</span><br/>{{nettoieString(eleve.datesPPA)}}</td>
+            <td class="editionEleve-datesPAP"><span>Dates PAP(PPS) :</span><br/>{{nettoieString(eleve.datesPAP)}}</td>
+            <td class="editionEleve-datesESS"><span>Dates ESS :</span><br/>{{nettoieString(eleve.datesESS)}}</td>
+        </tr>
+    </table>
+    <br/>
+    <div class="editionEleve-cursus">
+        <table class="tablesorter-blue">
+            <thead>
+                <tr>
+                    <th>Année scolaire</th>
+                    <th>Niveau</th>
+                    <th>Etablissement</th>
+                    <th>Accompagnement</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let c of eleve.cursus">
+                <tr id="{{c.annee}}">
+                    <td>{{c.annee}}-{{(c.annee + 1)}}</td>
+                    <td>{{nettoieString(c.niveau)}}</td>
+                    <td>{{nettoieString(c.etablissement)}}</td>
+                    <td>{{nettoieString(c.accompagnement)}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br/>
+    <div class="breakafter"></div>
+    <div class="editionEleve-bilan" [innerHtml]="eleve.bilans"></div>
+</div>

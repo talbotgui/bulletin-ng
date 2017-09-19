@@ -1,6 +1,7 @@
 div.actions { float: right; }
 
 /* à dupliquer dans le TS pour l'avoir dans la popup imprimable */
+.edition { font-size: 12px; }
 div.barre  { height:180px; }
 div.entete  { float:left; width:300px; }
 div.titre  { float:left; width:900px; text-align: center; }
