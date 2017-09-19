@@ -52,12 +52,6 @@ export class TabTableauDeBordComponent {
     }
   }
 
-  imprimerPpi(): void {
-    if (!!this.eleveSelectionne && !!this.periodeSelectionnee && !!this.lignes) {
-      this.editionService.imprimerPpi(this.eleveSelectionne, this.periodeSelectionnee, this.lignes);
-    }
-  }
-
   // Ouverture de la popup d'édition à la sélection d'une ligne
   onSelectLigne(laLigne: model.LigneTableauDeBord) {
     const dialog = this.dialog.open(DialogLigneTableauDeBordComponent).componentInstance;

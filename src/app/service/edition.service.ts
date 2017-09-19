@@ -12,76 +12,6 @@ export class EditionService {
 
     constructor(private dataRepository: DataRepository, private lectureService: LectureService) { }
 
-    imprimerPpi(eleve: model.Eleve, periode: model.Periode, lignes: model.LigneTableauDeBord[]): void {
-        const titreCourt: string = 'PPI de ' + eleve.nom.toUpperCase() + ' ' + eleve.prenom;
-        const titre = titreCourt + ' pour la période ' + Utils.formatDate(periode.debut) + '-' + Utils.formatDate(periode.fin);
-        const annee = this.dataRepository.getAnneeChargee().anneeScolaire + '<br/>' + periode.nom;
-
-        let contenu = '<!DOCTYPE html>';
-        // suppression des header/footer sur FF
-        contenu += '<html moznomarginboxes mozdisallowselectionprint>';
-        contenu += ' <head>';
-        contenu += '  <meta charset=\'UTF-8\' />';
-        contenu += '  <title>' + titre + '</title>';
-        // suppression des header/footer sur Chrome
-        contenu += '  <style type=\'text/css\' media=\'print\'> @page { margin-top: 0px; margin-bottom: 0px; } </style>';
-        contenu += '  <style type=\'text/css\'>';
-        contenu += '   .edition table { width:100%; text-align: center; vertical-align: middle; border-collapse: collapse!important; }';
-        contenu += '   .edition td,.edition th { border: solid 1px black!important; }';
-        contenu += '   div.barre  { height:180px; }';
-        contenu += '   div.entete  { float:left; width:300px; }';
-        contenu += '   div.titre  { float:left; width:900px; text-align: center; }';
-        contenu += '   div.annee  { float:right; width:200px; text-align: right; padding-top:30px; }';
-        contenu += '   </style>';
-        contenu += ' </head>';
-        contenu += ' <body>';
-        contenu += '  <div id=\'all\' class=\'edition\'>';
-        contenu += '   <div class=\'barre\'>';
-        contenu += '    <div class=\'entete\'>' + this.entete() + '</div>';
-        contenu += '    <div class=\'titre\'><h1>' + titreCourt + '</h1></div>';
-        contenu += '    <div class=\'annee\'><div>' + annee + '</div></div>';
-        contenu += '   </div>';
-        contenu += '   <table>';
-        contenu += '    <thead>';
-        contenu += '     <tr><th>Domaine</th><th>Compétence</th><th>Constat sur la période précédente</th><th>Modalité d\'aide pour la période</th></tr>';
-        contenu += '    </thead>';
-        contenu += '    <tbody>';
-        // pour chaque ligne de domaine,
-        for (const ligne of lignes) {
-            // Une ligne principale avec la première colonne et un rowspan
-            contenu += '    <tr>';
-            contenu += '     <td class=\'\' rowspan=' + ligne.sousLignes.length + '>' + ligne.nomDomaine + '</td>';
-            if (ligne.sousLignes && ligne.sousLignes.length > 0) {
-                const ssLigne = ligne.sousLignes[0];
-                if (ssLigne && ssLigne.competence) {
-                    contenu += '     <td class=\'\'>' + ssLigne.competence.text + '</td>';
-                }
-            }
-            contenu += '     <td class=\'\' rowspan=' + ligne.sousLignes.length + '>' + ligne.aide + '</td>';
-            contenu += '     <td class=\'\' rowspan=' + ligne.sousLignes.length + '>' + ligne.constat + '</td>';
-            contenu += '    </tr>';
-            let i = 0;
-            // pour chaque sous ligne,
-            for (const ssligne of ligne.sousLignes) {
-                if (i > 0 && !!ssligne.competence) {
-                    // une ligne secondaire avec la seconde colonne
-                    contenu += '    <tr>';
-                    contenu += '     <td class=\'\'>' + ssligne.competence.text + '</td>';
-                    contenu += '    </tr>';
-                }
-                i++;
-            }
-        }
-        contenu += '    </tbody>';
-        contenu += '   </table>';
-        contenu += '  </div>';
-        contenu += ' </body>';
-        contenu += '</html>';
-
-        // Ouverture
-        this.ouvrePopup(contenu, titre);
-    }
-
     editionEleve(eleve: model.Eleve): void {
 
         const titre: string = 'FicheEleve de ' + eleve.nom.toUpperCase() + ' ' + eleve.prenom;
@@ -241,12 +171,13 @@ export class EditionService {
         this.ouvrePopup(contenu, titre);
     }
 
-    private entete(): string {
-        return this.dataRepository.getAnneeChargee().enteteEdition;
+    creePageEtOuvrePopup(contenu: string, styleCss: string, titre: string): void {
+        let page = '<!DOCTYPE html><html moznomarginboxes mozdisallowselectionprint><head><meta charset=\'UTF-8\' /><title>' + titre + '</title>';
+        page = page + '<style type=\'text/css\' media=\'print\'> @page { margin-top: 0px; margin-bottom: 0px; } </style><style>' + styleCss + '</style></head>';
+        page = page + '<body>' + contenu + '</body></html>';
+        this.ouvrePopup(page, titre);
     }
-    private piedDePage(): string {
-        return 'piedDePage';
-    }
+
     private ouvrePopup(contenu: string, titre: string): void {
 
         // Si la popup est déjà ouverte, on la ferme

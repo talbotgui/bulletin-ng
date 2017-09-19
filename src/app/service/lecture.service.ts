@@ -172,6 +172,16 @@ export class LectureService {
     }
   }
 
+  getPeriodeById(id: number): model.Periode | undefined {
+    const periodes = this.dataRepository.getAnneeChargee().periodes;
+    for (const p of periodes) {
+      if (p.id === id) {
+        return p;
+      }
+    }
+    return undefined;
+  }
+
   getPeriodeSuivante(periode: model.Periode): model.Periode | undefined {
     const periodes = this.getListePeriode();
     const indexPeriode = periodes.findIndex((p) => p === periode);

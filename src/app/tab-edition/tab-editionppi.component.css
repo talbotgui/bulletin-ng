@@ -1,0 +1,9 @@
+div.actions { float: right; }
+
+/* à dupliquer dans le TS pour l'avoir dans la popup imprimable */
+div.barre  { height:180px; }
+div.entete  { float:left; width:300px; }
+div.titre  { float:left; width:900px; text-align: center; }
+div.annee  { float:right; width:200px; text-align: right; padding-top:30px; }
+.edition table { width:100%; text-align: center; vertical-align: middle; border-collapse: collapse!important; }
+.edition td,.edition th { border: solid 1px black!important; }

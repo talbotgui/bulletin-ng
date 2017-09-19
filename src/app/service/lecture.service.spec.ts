@@ -44,6 +44,7 @@ describe('LectureService', () => {
     expect(() => { lectureService.getListePeriode(); }).toThrow(erreur);
     expect(() => { lectureService.getListeNote(); }).toThrow(erreur);
     expect(() => { lectureService.getPeriode(0); }).toThrow(erreur);
+    expect(() => { lectureService.getPeriodeById(1); }).toThrow(erreur);
     expect(() => { lectureService.getPeriodeSuivante(new model.Periode()); }).toThrow(erreur);
     expect(() => { lectureService.getListeEleveActif(); }).toThrow(erreur);
     expect(() => { lectureService.getListeCompetence(); }).toThrow(erreur);
@@ -293,6 +294,20 @@ describe('LectureService', () => {
     const resultat = lectureService.getPeriode(1);
     //
     expect(resultat).toBe(annee.periodes[1]);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
+  });
+
+  it('getPeriodeById(1) avec 5 périodes', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getPeriodeById(1);
+    //
+    expect(resultat).not.toBe(undefined);
+    if (resultat) {
+      expect(resultat.id).toBe(1);
+    }
     mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
   });
 

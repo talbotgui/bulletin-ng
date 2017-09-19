@@ -1,6 +1,6 @@
 <!-- Boutons d'action -->
 <div class="actions" *ngIf="eleveSelectionne && periodeSelectionnee">
-	<em class="fa fa-4x fa-print" mdTooltip="Afficher les données dans l'onglet d'édition" (click)="imprimerPpi()"></em>
+	<em class="fa fa-4x fa-print" mdTooltip="Afficher les données dans l'onglet d'édition" md-button [routerLink]="['/tab-editionppi-route', eleveSelectionne.id, periodeSelectionnee.id]"></em>
 </div>
 
 <!-- Filtres -->
