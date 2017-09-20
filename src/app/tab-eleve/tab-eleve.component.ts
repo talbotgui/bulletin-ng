@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DataRepository } from '../service/data.repository';
 import { LectureService } from '../service/lecture.service';
 import * as model from '../model/model';
 
@@ -59,7 +60,7 @@ export class TabEleveComponent implements OnInit {
   }
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private lectureService: LectureService) { }
+  constructor(private lectureService: LectureService, private dataRepository: DataRepository) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
@@ -72,7 +73,7 @@ export class TabEleveComponent implements OnInit {
   }
 
   creerEleve(): void {
-    this.lectureService.getListeEleve().push(new model.Eleve(model.ModelUtil.getUID(), 'Nouvel', 'Eleve'));
+    this.dataRepository.getAnneeChargee().eleves.push(new model.Eleve(model.ModelUtil.getUID(), 'Nouvel', 'Eleve'));
   }
 
   ajouterCursus(): void {

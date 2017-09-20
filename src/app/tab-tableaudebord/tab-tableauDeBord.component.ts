@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MdDialog } from '@angular/material';
 
-import { EditionService } from '../service/edition.service';
 import { LectureService } from '../service/lecture.service';
 import { NoteService } from '../service/note.service';
 import * as model from '../model/model';
@@ -30,7 +29,7 @@ export class TabTableauDeBordComponent {
   lignes: model.LigneTableauDeBord[];
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private lectureService: LectureService, private noteService: NoteService, private editionService: EditionService, private dialog: MdDialog) { }
+  constructor(private lectureService: LectureService, private noteService: NoteService, private dialog: MdDialog) { }
 
   // A la sélection d'un filtre
   onSelectEleve(eleve: model.Eleve) {

@@ -43,7 +43,7 @@ export class TabCahierJournalComponent implements OnInit {
   journal?: model.Journal;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private lectureService: LectureService, private journalService: JournalService, private editionService: EditionService, private dialog: MdDialog) { }
+  constructor(private lectureService: LectureService, private journalService: JournalService, private dialog: MdDialog) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
