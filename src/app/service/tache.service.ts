@@ -18,7 +18,7 @@ export class TacheService {
   }
 
   ajouterTache(tache: model.Tache): void {
-    this.lectureService.getListeTaches().push(tache);
+    this.dataRepository.getAnneeChargee().taches.push(tache);
   }
 
   /** Duplication d'une tâche sans l'ajouter !! */
