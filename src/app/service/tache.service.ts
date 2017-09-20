@@ -10,7 +10,7 @@ export class TacheService {
   constructor(private dataRepository: DataRepository, private lectureService: LectureService) { }
 
   supprimerTache(tache: model.Tache): void {
-    const taches = this.lectureService.getListeTaches();
+    const taches = this.dataRepository.getAnneeChargee().taches;
     const i = taches.indexOf(tache);
     if (i !== -1) {
       taches.splice(i, 1);

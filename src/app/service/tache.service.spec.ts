@@ -34,14 +34,16 @@ describe('TacheService', () => {
 
     // Arrange
     const liste: model.Tache[] = [];
-    mockito.when(lectureServiceMock.getListeTaches()).thenReturn(liste);
+    const annee = new model.Annee();
+    annee.taches = liste;
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
 
     // Act
     tacheService.ajouterTache(new model.Tache('titre', []));
 
     // Assert
     expect(liste.length).toBe(1);
-    mockito.verify(lectureServiceMock.getListeTaches()).once();
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
   });
 
   it('Supprimer une tache', () => {
@@ -50,7 +52,9 @@ describe('TacheService', () => {
     const liste: model.Tache[] = [];
     liste.push(new model.Tache('titre1', []));
     liste.push(new model.Tache('titre2', []));
-    mockito.when(lectureServiceMock.getListeTaches()).thenReturn(liste);
+    const annee = new model.Annee();
+    annee.taches = liste;
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
 
     // Act
     tacheService.supprimerTache(liste[0]);
@@ -58,7 +62,7 @@ describe('TacheService', () => {
     // Assert
     expect(liste.length).toBe(1);
     expect(liste[0].titre).toBe('titre2');
-    mockito.verify(lectureServiceMock.getListeTaches()).once();
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
   });
 
   it('Supprimer toutes les taches', () => {
@@ -67,7 +71,9 @@ describe('TacheService', () => {
     const liste: model.Tache[] = [];
     liste.push(new model.Tache('titre1', []));
     liste.push(new model.Tache('titre2', []));
-    mockito.when(lectureServiceMock.getListeTaches()).thenReturn(liste);
+    const annee = new model.Annee();
+    annee.taches = liste;
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
 
     // Act
     tacheService.supprimerTache(liste[0]);
@@ -75,7 +81,7 @@ describe('TacheService', () => {
 
     // Assert
     expect(liste.length).toBe(0);
-    mockito.verify(lectureServiceMock.getListeTaches()).twice();
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).twice();
   });
 
   it('Dupliquer une tache', () => {
