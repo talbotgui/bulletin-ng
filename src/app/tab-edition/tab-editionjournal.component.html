@@ -1,0 +1,47 @@
+<!-- Boutons d'action -->
+<div class="actions">
+    <em class="fa fa-2x fa-print" mdTooltip="Imprimer les données" (click)="imprimerLaPage()"></em>
+</div>
+
+<!-- Page à imprimer -->
+<div class="edition">
+    <div class="barre">
+        <div class="entete" [innerHTML]="entete"></div>
+        <div class="titre">
+            <h1>{{titre}}</h1>
+        </div>
+        <div class="annee">
+            <div>{{anneeScolaire}}<br/>{{nomPeriode}}</div>
+        </div>
+    </div>
+    <div class="remarques" *ngIf="journal">
+        <u>Remarques : </u>{{journal.remarque}}</div>
+    <table class="tablesorter-blue">
+        <thead>
+            <tr>
+                <th>Cadre</th>
+                <th>Eleves</th>
+                <th>Compétences</th>
+                <th>Commentaire</th>
+                <th>Notes manuscrites</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="journal">
+            <tr *ngFor="let temp of journal.temps">
+                <td class="cadre">{{temp.nom}}<br/><br/><i>{{temp.type}}</i><br/><br/>De {{temp.debut}}<br/>A {{temp.fin}}<br/></td>
+                <td class="eleves">
+                    <span class="nowrap" *ngFor="let idEleve of temp.eleves">{{getPrenomEleve(idEleve)}}</span><br/>
+                </td>
+                <td class="competences">
+                    <span *ngFor="let comp of temp.competences">
+                        {{getLibelleCompetence(comp)}}
+                        <br/><br/>
+                    </span>
+                </td>
+                <td class="commentaire">{{temp.commentaire}}</td>
+                <td class="cahierJournalZoneEcriture"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

@@ -35,6 +35,9 @@ export class TabCahierJournalComponent implements OnInit {
 
   // Filtre de date
   dateJournal: Date;
+  get timeJournal() {
+    return this.dateJournal.getTime();
+  }
 
   // journal en cours d'édition
   journal?: model.Journal;
@@ -105,12 +108,6 @@ export class TabCahierJournalComponent implements OnInit {
       const temp = this.journal.temps[index2];
       this.journal.temps[index2] = this.journal.temps[index];
       this.journal.temps[index] = temp;
-    }
-  }
-
-  impression(): void {
-    if (this.journal) {
-      this.editionService.editionJournal(this.journal);
     }
   }
 

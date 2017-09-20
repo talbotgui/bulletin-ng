@@ -14,7 +14,7 @@
 	<legend>
 		{{aze}} Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}}
 		<div class="actions">
-			<em *ngIf="journal" class="fa fa-print fa-2x" mdTooltip="Imprimer" (click)="impression()"></em>
+			<em *ngIf="journal" class="fa fa-print fa-2x" mdTooltip="Afficher les données à imprimer" md-button [routerLink]="['/tab-editionjournal-route', timeJournal]"></em>
 			<em *ngIf="journal" class="fa fa-copy fa-2x" mdTooltip="Dupliquer" (click)="demandeDuplicationJournal()"></em>
 		</div>
 	</legend>
