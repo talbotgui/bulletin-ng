@@ -30,7 +30,11 @@ export class Utils {
     }
 
     public static nettoieString(chaine: string): string {
-        return chaine.replace(Utils.REGEX_CR, '<br/>');
+        if (chaine) {
+            return chaine.replace(Utils.REGEX_CR, '<br/>');
+        } else {
+            return chaine;
+        }
     }
 
     public static prepareLignePourTest(annee: model.Annee): model.LigneTableauDeBord {
