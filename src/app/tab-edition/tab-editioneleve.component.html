@@ -19,32 +19,35 @@
         <tr>
             <td rowspan="2" class="editionEleve-identite">{{eleve.nom.toUpperCase()}} {{eleve.prenom}}</td>
             <td class="editionEleve-dates">
-                <span>Date de naissance : </span>{{formatDate(eleve.dateNaissance)}}<br/>
-                <span>Date d"admission : </span>{{formatDate(eleve.dateAdmission);
+                <span class="libelle">Date de naissance : </span><span [innerHTML]="formatDate(eleve.dateNaissance)"></span><br/>
+                <span class="libelle">Date d'admission : </span><span [innerHTML]="formatDate(eleve.dateAdmission)"></span>;
             </td>
         </tr>
         <tr>
             <td class="editionEleve-contacts">
-                <span>Adresses :</span><br/>{{nettoieString(eleve.adresses)}}<br/><br/>
-                <span>Téléphones : </span><br/>{{nettoieString(eleve.telephones);
+                <span class="libelle">Adresses :</span><br/>
+                <span [innerHTML]="nettoieString(eleve.adresses)"></span>
+                <br/><br/>
+                <span class="libelle">Téléphones : </span><br/>
+                <span [innerHTML]="nettoieString(eleve.telephones)"></span>
             </td>
         </tr>
     </table>
     <br/>
     <table>
         <tr>
-            <td class="editionEleve-pere"><span>Père :</span><br/>{{nettoieString(eleve.pere)}}</td>
-            <td class="editionEleve-mere"><span>Mère :</span><br/>{{nettoieString(eleve.mere)}}</td>
-            <td class="editionEleve-fratrie"><span>Fratrie :</span><br/>{{nettoieString(eleve.fratrie)}}</td>
-            <td class="editionEleve-accueil"><span>Informations complémentaires :</span><br/>{{nettoieString(eleve.accueil)}}</td>
+            <td class="editionEleve-pere"><span class="libelle">Père :</span><br/><span [innerHTML]="nettoieString(eleve.pere)"></span></td>
+            <td class="editionEleve-mere"><span class="libelle">Mère :</span><br/><span [innerHTML]="nettoieString(eleve.mere)"></span></td>
+            <td class="editionEleve-fratrie"><span class="libelle">Fratrie :</span><br/><span [innerHTML]="nettoieString(eleve.fratrie)"></span></td>
+            <td class="editionEleve-accueil"><span class="libelle">Informations complémentaires :</span><br/><span [innerHTML]="nettoieString(eleve.accueil)"></span></td>
         </tr>
     </table>
     <br/>
     <table>
         <tr>
-            <td class="editionEleve-datesPPA"><span>Dates PPA :</span><br/>{{nettoieString(eleve.datesPPA)}}</td>
-            <td class="editionEleve-datesPAP"><span>Dates PAP(PPS) :</span><br/>{{nettoieString(eleve.datesPAP)}}</td>
-            <td class="editionEleve-datesESS"><span>Dates ESS :</span><br/>{{nettoieString(eleve.datesESS)}}</td>
+            <td class="editionEleve-datesPPA"><span class="libelle">Dates PPA :</span><br/><span [innerHTML]="nettoieString(eleve.datesPPA)"></span></td>
+            <td class="editionEleve-datesPAP"><span class="libelle">Dates PAP(PPS) :</span><br/><span [innerHTML]="nettoieString(eleve.datesPAP)"></span></td>
+            <td class="editionEleve-datesESS"><span class="libelle">Dates ESS :</span><br/><span [innerHTML]="nettoieString(eleve.datesESS)"></span></td>
         </tr>
     </table>
     <br/>
@@ -61,9 +64,9 @@
             <tbody *ngFor="let c of eleve.cursus">
                 <tr id="{{c.annee}}">
                     <td>{{c.annee}}-{{(c.annee + 1)}}</td>
-                    <td>{{nettoieString(c.niveau)}}</td>
-                    <td>{{nettoieString(c.etablissement)}}</td>
-                    <td>{{nettoieString(c.accompagnement)}}</td>
+                    <td><span [innerHTML]="nettoieString(c.niveau)"></span></td>
+                    <td><span [innerHTML]="nettoieString(c.etablissement)"></span></td>
+                    <td><span [innerHTML]="nettoieString(c.accompagnement)"></span></td>
                 </tr>
             </tbody>
         </table>
