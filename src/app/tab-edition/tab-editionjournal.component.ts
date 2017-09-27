@@ -28,10 +28,8 @@ export class TabEditionJournalComponent extends TabAbstractEditionComponent {
   // CSS à utiliser à l'impression (entete à 200px et titre à 600px pour impression en paysage dans chrome)
   getCssImpression() {
     return `.edition { font-size: 12px; }
-    div.barre  { height:180px; }
-    div.entete  { float:left; width:200px; }
-    div.titre  { float:left; width:600px; text-align: center; }
-    div.annee  { float:right; width:200px; text-align: right; padding-top:30px; }
+    div.barre  { height:60px; }
+    div.titre  { width:100%; text-align: center; }
     .edition table { width:100%; text-align: center; vertical-align: middle; border-collapse: collapse!important; }
     .edition td,.edition  th { border: solid 1px black!important; }
     td.commentaire ol { -webkit-margin-before: 0px!important; -webkit-margin-after: 0px!important; -webkit-padding-start: 20px!important }
