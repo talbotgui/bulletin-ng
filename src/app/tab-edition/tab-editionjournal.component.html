@@ -15,7 +15,9 @@
         </div>
     </div>
     <div class="remarques" *ngIf="journal">
-        <u>Remarques : </u>{{journal.remarque}}</div>
+        <u>Remarques : </u>
+        <span [innerHTML]="journal.remarque"></span>
+    </div>
     <table class="tablesorter-blue">
         <thead>
             <tr>
@@ -30,7 +32,7 @@
             <tr *ngFor="let temp of journal.temps">
                 <td class="cadre">{{temp.nom}}<br/><br/><i>{{temp.type}}</i><br/><br/>De {{temp.debut}}<br/>A {{temp.fin}}<br/></td>
                 <td class="eleves">
-                    <span class="nowrap" *ngFor="let idEleve of temp.eleves">{{getPrenomEleve(idEleve)}}</span><br/>
+                    <span class="nowrap" *ngFor="let idEleve of temp.eleves">{{getPrenomEleve(idEleve)}}<br/></span>
                 </td>
                 <td class="competences">
                     <span *ngFor="let comp of temp.competences">
@@ -38,7 +40,7 @@
                         <br/><br/>
                     </span>
                 </td>
-                <td class="commentaire">{{temp.commentaire}}</td>
+                <td class="commentaire" [innerHTML]="temp.commentaire"></td>
                 <td class="cahierJournalZoneEcriture"></td>
             </tr>
         </tbody>
