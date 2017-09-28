@@ -15,3 +15,4 @@ div.barre  { height:180px; }
 div.entete  { float:left; width:300px; }
 div.titre  { float:left; width:900px; text-align: center; }
 div.annee  { float:right; width:200px; text-align: right; padding-top:30px; }
+div.breakafter { page-break-after: always; }
