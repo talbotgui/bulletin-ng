@@ -128,7 +128,7 @@ export class TabCahierJournalComponent implements OnInit {
 
   changeDate(delta: number) {
     const nouvelleDate = new Date();
-    nouvelleDate.setDate(this.dateJournal.getDate() + delta);
+    nouvelleDate.setTime(this.dateJournal.getTime() + (delta * 1000 * 3600 * 24));
     nouvelleDate.setHours(0, 0, 0, 0);
     this.dateJournal = nouvelleDate;
     this.onChangementDateJournal();
