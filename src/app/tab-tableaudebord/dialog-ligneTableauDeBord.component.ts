@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MdDialogRef } from '@angular/material';
 
 import { NoteService } from '../service/note.service';
 import { LectureService } from '../service/lecture.service';
@@ -16,7 +17,7 @@ export class DialogLigneTableauDeBordComponent implements OnInit {
   premiereNote: model.Note | undefined;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private noteService: NoteService, private lectureService: LectureService) { }
+  constructor(private noteService: NoteService, private lectureService: LectureService, private dialogRef: MdDialogRef<DialogLigneTableauDeBordComponent>) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
@@ -54,5 +55,9 @@ export class DialogLigneTableauDeBordComponent implements OnInit {
         this.premiereNote = undefined;
       }
     }
+  }
+
+  fermer() {
+    this.dialogRef.close();
   }
 }

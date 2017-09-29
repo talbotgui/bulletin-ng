@@ -1,4 +1,5 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
+import { MdDialogRef } from '@angular/material';
 
 import { LectureService } from '../service/lecture.service';
 import * as model from '../model/model';
@@ -28,12 +29,13 @@ export class DialogCompetenceFullTextComponent {
   }
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private lectureService: LectureService) { }
+  constructor(private lectureService: LectureService, private dialogRef: MdDialogRef<DialogCompetenceFullTextComponent>) { }
 
   selectionner() {
     if (this.idCompetenceSelectionnee) {
       this.onSelectionRealisee.emit(this.idCompetenceSelectionnee);
     }
+    this.dialogRef.close();
   }
 
 }

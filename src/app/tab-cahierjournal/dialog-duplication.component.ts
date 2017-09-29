@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { MdDialogRef } from '@angular/material';
 
 import { JournalService } from '../service/journal.service';
 import * as model from '../model/model';
@@ -17,7 +18,11 @@ export class DialogDuplicationComponent {
   dateCible: Date;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private journalService: JournalService) { }
+  constructor(private journalService: JournalService, private dialogRef: MdDialogRef<DialogDuplicationComponent>) { }
+
+  annuler() {
+    this.dialogRef.close();
+  }
 
   /** Duplication */
   dupliquer() {
@@ -30,7 +35,8 @@ export class DialogDuplicationComponent {
     // Si duplication du temps
     else {
       this.journalService.dupliquerTemps(this.temps, this.dateCible);
-
     }
+
+    this.dialogRef.close();
   }
 }

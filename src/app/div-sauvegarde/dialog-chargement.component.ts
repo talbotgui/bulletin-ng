@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdSnackBar } from '@angular/material';
+import { MdSnackBar, MdDialogRef } from '@angular/material';
 
 import { SauvegardeService } from '../service/sauvegarde.service';
 
@@ -17,7 +17,7 @@ export class DialogChargementComponent implements OnInit {
   nomFichierLocal: string;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private sauvegardeService: SauvegardeService, private snackBar: MdSnackBar) { }
+  constructor(private sauvegardeService: SauvegardeService, private snackBar: MdSnackBar, private dialogRef: MdDialogRef<DialogChargementComponent>) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
@@ -42,6 +42,11 @@ export class DialogChargementComponent implements OnInit {
     this.nomFichierLocal = event.srcElement.value.substring(event.srcElement.value.lastIndexOf('/') + event.srcElement.value.lastIndexOf('\\') + 2);
   }
 
+  // A la demande d'annulation
+  onDemandeAnnulation() {
+    this.dialogRef.close();
+  }
+
   // A la demande de chargement
   onDemandeChargement() {
     // Si les deux ont été demandé
@@ -52,10 +57,12 @@ export class DialogChargementComponent implements OnInit {
     // Si c'est un chargement local
     else if (this.jsonChargeDepuisFichierLocal) {
       this.sauvegardeService.chargeAnneeDepuisText(this.nomFichierLocal, this.jsonChargeDepuisFichierLocal);
+      this.dialogRef.close();
     }
     // Si c'est un chargement depuis le serveur
     else {
       this.sauvegardeService.chargeAnneeDuFichier(this.fichierSelectionne);
+      this.dialogRef.close();
     }
   }
 }
