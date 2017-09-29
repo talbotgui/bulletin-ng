@@ -45,7 +45,7 @@ snack-bar-container.avertissement { background-color: orange; }
 /* Chips */
 .mat-chip.mat-accent { font-size: 14px!important; font-weight: bolder; background-color: red; }
 .mat-chip-list-stacked .mat-chip-list-wrapper .mat-chip:not(.mat-basic-chip) { font-size: 10px; }
-.mat-chip.mat-primary { background-color: #7c8096; }
+.mat-chip.mat-primary { background-color: #E2DBD5; }
 
 /* Petit boutons */
 .fa { cursor: pointer; margin: 0px 5px 5px 0px; }
