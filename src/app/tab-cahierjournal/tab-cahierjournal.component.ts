@@ -113,14 +113,14 @@ export class TabCahierJournalComponent implements OnInit {
 
   demandeDuplicationJournal(): void {
     if (this.journal) {
-      const dialog = this.dialog.open(DialogDuplicationComponent, { height: '350px', width: '400px' }).componentInstance;
+      const dialog = this.dialog.open(DialogDuplicationComponent, { height: '200px', width: '400px' }).componentInstance;
       dialog.journal = this.journal;
     }
   }
 
   demandeDuplicationTemps(temps: model.Temps): void {
     if (this.journal) {
-      const dialog = this.dialog.open(DialogDuplicationComponent, { height: '350px', width: '400px' }).componentInstance;
+      const dialog = this.dialog.open(DialogDuplicationComponent, { height: '200px', width: '400px' }).componentInstance;
       dialog.journal = this.journal;
       dialog.temps = temps;
     }
