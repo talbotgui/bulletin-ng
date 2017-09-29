@@ -3,7 +3,7 @@ import { by } from 'protractor';
 export class APP {
   static TITLE = by.css('app-root h1');
   static MENU_COMPETENCES = by.css('a.navCompetence');
-  static MENU_ELEVES = by.css('a.navEeve');
+  static MENU_ELEVES = by.css('a.navEleve');
   static MENU_TDB = by.css('a.navTdb');
   static MENU_JOURNAL = by.css('a.navJournal');
   static MENU_TACHES = by.css('a.navTaches');
@@ -29,6 +29,15 @@ export class TabCompetences {
   static TREE_NODES = by.css('span.toggle-children');
   static TREE_NODE_COLLAPSED = by.css('span.toggle-children-wrapper-collapsed');
   static TREE_NODE_EXPANDED = by.css('span.toggle-children-wrapper-expanded');
+}
+
+export class TabEleves {
+  static BUTTON_AJOUT_ELEVE = by.css('tab-eleve .fa-plus');
+  static CHIP_ELEVES = [
+    by.xpath('(//tab-eleve/md-chip-list/div/md-chip)[1]'), by.xpath('(//tab-eleve/md-chip-list/div/md-chip)[2]'),
+    by.xpath('(//tab-eleve/md-chip-list/div/md-chip)[3]'), by.xpath('(//tab-eleve/md-chip-list/div/md-chip)[4]'),
+    by.xpath('(//tab-eleve/md-chip-list/div/md-chip)[5]')
+  ];
 }
 
 export class TabTaches {
