@@ -26,7 +26,6 @@ export class DialogDuplicationComponent {
 
   /** Duplication */
   dupliquer() {
-
     // Si duplication de journal
     if (!this.temps) {
       this.journalService.dupliquerJournal(this.journal, this.dateCible);
@@ -38,5 +37,11 @@ export class DialogDuplicationComponent {
     }
 
     this.dialogRef.close();
+  }
+
+  paliatifBugDatepickerDansDialog() {
+    console.error("coucou");
+    const element = document.getElementsByClassName('cdk-overlay-pane')[1];
+    (element as HTMLElement).style.bottom = '0px';
   }
 }

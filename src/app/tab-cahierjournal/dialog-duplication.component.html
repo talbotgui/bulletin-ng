@@ -7,7 +7,7 @@
         <span>vers le journal du :</span>
         <input [mdDatepicker]="myDatepicker" [(ngModel)]="dateCible" name="dateCible">
         <md-datepicker-toggle [for]="myDatepicker"></md-datepicker-toggle>
-        <md-datepicker #myDatepicker></md-datepicker>
+        <md-datepicker #myDatepicker (click)="paliatifBugDatepickerDansDialog()"></md-datepicker>
     </div>
 </md-dialog-content>
 
