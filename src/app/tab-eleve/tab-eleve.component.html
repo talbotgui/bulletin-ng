@@ -44,10 +44,16 @@
 			<textarea [(ngModel)]="eleveSelectionne.telephones" name="telephones" placeholder="Téléphones"></textarea>
 		</fieldset>
 		<fieldset class="dateBilans">
-			<legend>Date de bilans (PPI, PAP et ESS)</legend>
+			<legend>Date de bilans (PPI, dates rencontres parents et ESS)</legend>
 			<textarea [(ngModel)]="eleveSelectionne.datesPPA" name="datesPPA" placeholder="datesPPA" rows="6"></textarea>
-			<textarea [(ngModel)]="eleveSelectionne.datesPAP" name="datesPAP" placeholder="datesPAP" rows="6"></textarea>
+			<textarea [(ngModel)]="eleveSelectionne.datesPAP" name="datesPAP" placeholder="datesRencontresParents" rows="6"></textarea>
 			<textarea [(ngModel)]="eleveSelectionne.datesESS" name="datesESS" placeholder="datesESS" rows="6"></textarea>
+		</fieldset>
+		<fieldset class="droitsEtAutorisations">
+			<legend>Droit à l'image et autorisation de baignade</legend>
+			<textarea [(ngModel)]="eleveSelectionne.droitImage" name="droitImage" placeholder="droit à l'image envoyé/reçu/validé" rows="2"></textarea>
+			<textarea [(ngModel)]="eleveSelectionne.autorisationBaignade" name="autorisationBaignade" placeholder="autorisation de baignade envoyée/reçue/validée"
+			 rows="2"></textarea>
 		</fieldset>
 	</div>
 </form>

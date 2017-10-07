@@ -4,6 +4,7 @@
 .formulaireEleve .famille textarea { width: 24%; height: 100px; }
 .formulaireEleve .contacts textarea { width: 24%; height: 100px; }
 .formulaireEleve .dateBilans textarea { width: 32%; height: 200px; }
+.formulaireEleve .droitsEtAutorisations textarea { width: 45%; height: 100px; }
 
 ckeditor { display: inline-flex; }
 

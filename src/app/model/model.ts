@@ -21,6 +21,7 @@ export class Eleve {
   adresses: string; telephones: string;
   statut: string; bilans: string; cursus: Cursus[] = [];
   dateAdmission: Date; accueil: string; datesPPA: string; datesPAP: string; datesESS: string;
+  droitImage: string; autorisationBaignade: string;
 
   constructor(public id: string, public nom: string, public prenom: string) { }
 }
