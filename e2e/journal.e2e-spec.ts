@@ -25,7 +25,7 @@ describe('Onglet des journal', () => {
     expect(page.isVisible(selectors.DivSauvegarderDialogChargement.BUTTON_CHARGER)).toBeFalsy();
   });
 
-  it('Accès à l\'onglet des élèves', () => {
+  it('Accès à l\'onglet du cahier journal', () => {
     //
     //
     page.click(selectors.APP.MENU_JOURNAL);
