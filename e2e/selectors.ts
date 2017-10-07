@@ -40,6 +40,11 @@ export class TabEleves {
   ];
 }
 
+export class TabJournal {
+  static INPUT_DATE_JOURNAL = by.xpath('//input[@name="dateJournal"]');
+  static BUTTON_CREER_JOURNAL = by.css('span.clickable');
+}
+
 export class TabTaches {
   static BUTTON_AJOUTER = by.css('span.fa-stack');
 
