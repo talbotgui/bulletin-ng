@@ -38,5 +38,13 @@ exports.config = {
 				}
 			}
 		});
+	},
+	suites: {
+		accueil: 'e2e/accueil.e2e-spec.ts',
+		competences: 'e2e/competences.e2e-spec.ts',
+		eleve: 'e2e/eleve.e2e-spec.ts',
+		journal: 'e2e/journal.e2e-spec.ts',
+		taches: 'e2e/taches.e2e-spec.ts',
+		all: 'e2e/*.js'
 	}
 };

@@ -17,12 +17,52 @@
       "webRoot": "${workspaceRoot}"
     },
     {
-      "name": "Launch ng e2e",
+      "name": "e2e all",
       "type": "node",
       "request": "launch",
       "program": "${workspaceRoot}/node_modules/protractor/bin/protractor",
       "protocol": "inspector",
       "args": ["${workspaceRoot}/protractor.conf.js"]
-    }      
+    },
+    {
+      "name": "e2e accueil",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/node_modules/protractor/bin/protractor",
+      "protocol": "inspector",
+      "args": ["${workspaceRoot}/protractor.conf.js", "--suite", "accueil"]
+    },
+    {
+      "name": "e2e competences",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/node_modules/protractor/bin/protractor",
+      "protocol": "inspector",
+      "args": ["${workspaceRoot}/protractor.conf.js", "--suite", "competences"]
+    },
+    {
+      "name": "e2e eleve",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/node_modules/protractor/bin/protractor",
+      "protocol": "inspector",
+      "args": ["${workspaceRoot}/protractor.conf.js", "--suite", "eleve"]
+    },
+    {
+      "name": "e2e journal",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/node_modules/protractor/bin/protractor",
+      "protocol": "inspector",
+      "args": ["${workspaceRoot}/protractor.conf.js", "--suite", "journal"]
+    },
+    {
+      "name": "e2e taches",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/node_modules/protractor/bin/protractor",
+      "protocol": "inspector",
+      "args": ["${workspaceRoot}/protractor.conf.js", "--suite", "taches"]
+    }
   ]
 }
