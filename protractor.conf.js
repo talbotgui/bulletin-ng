@@ -22,7 +22,8 @@ exports.config = {
 				if (result.failedExpectations.length > 0) {
 					browser.takeScreenshot().then((png) => {
 						const dirName = 'build/e2e-screenshot';
-						const fileName = dirName + '/' + result.fullName + '.png';
+						const testName = ('' + result.fullName).replace(/\//g, '-').replace(/\\/g, '-')
+						const fileName = dirName + '/' + testName + '.png';
 
 						if (!fs.existsSync(dirName)) {
 							fs.mkdirSync(dirName);
