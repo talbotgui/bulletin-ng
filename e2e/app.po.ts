@@ -10,6 +10,7 @@ export class BulletinPage {
 
   navigateToRoot(): void {
     browser.get('/?offline&?sansAlerte');
+    browser.driver.manage().window().maximize();
   }
   getText(selector: By) {
     return element(selector).getText();
