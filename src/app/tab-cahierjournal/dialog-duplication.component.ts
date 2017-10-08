@@ -40,8 +40,8 @@ export class DialogDuplicationComponent {
   }
 
   paliatifBugDatepickerDansDialog() {
-    console.error("coucou");
-    const element = document.getElementsByClassName('cdk-overlay-pane')[1];
+    const elements = document.getElementsByClassName('cdk-overlay-pane');
+    const element = elements[elements.length - 1];
     (element as HTMLElement).style.bottom = '0px';
   }
 }
