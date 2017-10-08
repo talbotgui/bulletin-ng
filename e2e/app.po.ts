@@ -15,6 +15,9 @@ export class BulletinPage {
   getText(selector: By) {
     return element(selector).getText();
   }
+  getValue(selector: By) {
+    return element(selector).getAttribute('value');
+  }
   click(selector: By): void {
     element(selector).click();
   }
@@ -50,5 +53,17 @@ export class BulletinPage {
       stream.write(new Buffer(png, 'base64'));
       stream.end();
     });
+  }
+  /**
+   * Sélectionne une option d'un selectBox
+   * @param selectorDuSelect Selecteur du select
+   * @param optionValues Liste d'options (ré-évaluation du select entre chaque option)
+   */
+  select(selectorDuSelect: By, ...optionValues: string[]): void {
+    for (const optionValue of optionValues) {
+      element(selectorDuSelect).click();
+      browser.waitForAngular();
+      element(By.xpath('//option[@value="' + optionValue + '"]')).click();
+    }
   }
 }

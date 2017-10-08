@@ -12,7 +12,7 @@
 
 <fieldset *ngIf="!!dateJournal">
 	<legend>
-		{{aze}} Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}}
+		<span class="dateDuJournal">{{aze}} Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}}</span>
 		<div class="actions">
 			<em *ngIf="journal" class="fa fa-print fa-2x" mdTooltip="Afficher les données à imprimer" md-button [routerLink]="['/tab-editionjournal-route', timeJournal]"></em>
 			<em *ngIf="journal" class="fa fa-copy fa-2x" mdTooltip="Dupliquer" (click)="demandeDuplicationJournal()"></em>
@@ -53,7 +53,7 @@
 						</md-select>
 					</td>
 					<td>
-						<md-chip-list class="mat-chip-list-stacked">
+						<md-chip-list class="mat-chip-list-stacked selectionEleve">
 							<md-chip *ngFor="let ele of eleves" selected="true" color="{{(temp.eleves.indexOf(ele.id)!==-1)?'accent':''}}" (click)="ajouterOuSupprimerEleve(temp, ele.id)">{{ele.prenom}}</md-chip>
 						</md-chip-list>
 					</td>

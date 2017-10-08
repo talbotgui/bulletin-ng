@@ -42,7 +42,64 @@ export class TabEleves {
 
 export class TabJournal {
   static INPUT_DATE_JOURNAL = by.xpath('//input[@name="dateJournal"]');
+  static LIBELLE_DATE_JOURNAL = by.css('span.dateDuJournal');
   static BUTTON_CREER_JOURNAL = by.css('span.clickable');
+  static BUTTON_AJOUT_TEMPS = by.css('em.fa-clock-o');
+
+  static TEMPS_LIBELLE = [by.xpath('(//input[@name="nomTemps"])[1]'), by.xpath('(//input[@name="nomTemps"])[2]'), by.xpath('(//input[@name="nomTemps"])[3]')];
+  static TEMPS_DEBUT = [
+    by.xpath('(//md-select[@name="debutTemps"])[1]'),
+    by.xpath('(//md-select[@name="debutTemps"])[2]'),
+    by.xpath('(//md-select[@name="debutTemps"])[3]')
+  ];
+  static TEMPS_FIN = [
+    by.xpath('(//md-select[@name="finTemps"])[1]'),
+    by.xpath('(//md-select[@name="finTemps"])[2]'),
+    by.xpath('(//md-select[@name="finTemps"])[3]')
+  ];
+  static TEMPS_AJOUTER_COMPETENCE = [
+    by.xpath('(//em[@class="fa fa-cogs fa-lg"])[1]'),
+    by.xpath('(//em[@class="fa fa-cogs fa-lg"])[2]'),
+    by.xpath('(//em[@class="fa fa-cogs fa-lg"])[3]')
+  ];
+  static TEMPS_MONTER = [
+    by.xpath('(//em[@class="fa fa-chevron-circle-up fa-lg"])[1]'),
+    by.xpath('(//em[@class="fa fa-chevron-circle-up fa-lg"])[2]'),
+    by.xpath('(//em[@class="fa fa-chevron-circle-up fa-lg"])[3]')
+  ];
+  static TEMPS_DESCENDRE = [
+    by.xpath('(//em[@class="fa fa-chevron-circle-down fa-lg"])[1]'),
+    by.xpath('(//em[@class="fa fa-chevron-circle-down fa-lg"])[2]'),
+    by.xpath('(//em[@class="fa fa-chevron-circle-down fa-lg"])[3]')
+  ];
+  static TEMPS_SUPPRIMER = [
+    by.xpath('(//em[@class="fa fa-remove fa-lg"])[1]'),
+    by.xpath('(//em[@class="fa fa-remove fa-lg"])[2]'),
+    by.xpath('(//em[@class="fa fa-remove fa-lg"])[3]')
+  ];
+  static TEMPS_DUPLIQUER = [
+    by.xpath('(//em[@class="fa fa-copy"])[1]'),
+    by.xpath('(//em[@class="fa fa-copy"])[2]'),
+    by.xpath('(//em[@class="fa fa-copy"])[3]')
+  ];
+  static TEMPS_ELEVES = [
+    [
+      by.xpath('((//md-chip-list)[1]/div/md-chip)[1]'),
+      by.xpath('((//md-chip-list)[1]/div/md-chip)[2]'),
+      by.xpath('((//md-chip-list)[1]/div/md-chip)[3]')
+    ],
+    [
+      by.xpath('((//md-chip-list)[2]/div/md-chip)[1]'),
+      by.xpath('((//md-chip-list)[2]/div/md-chip)[2]'),
+      by.xpath('((//md-chip-list)[2]/div/md-chip)[3]')
+    ]
+  ];
+  static TEMPS_COMPETENCE_PREMIER_SELECT_VISIBLE = by.xpath('//compo-competence/div/div/div/select');
+  static TEMPS_COMPETENCE_LIBELLE_AFFICHE = [
+    by.xpath('(//div[@class="compoCompetence"])[1]'),
+    by.xpath('(//div[@class="compoCompetence"])[2]')
+  ];
+  static ELEVES_SELECTIONNES = by.css('md-chip.mat-accent');
 }
 
 export class TabTaches {
