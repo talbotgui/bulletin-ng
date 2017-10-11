@@ -3,6 +3,7 @@
 /dist/*
 .scannerwork
 package-lock.json
+debug.log
 
 # dependencies
 /node_modules
