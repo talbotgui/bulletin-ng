@@ -32,8 +32,12 @@ export class BulletinPage {
     e.clear();
     e.sendKeys(text);
   }
-  patiente(temps: number) {
-    browser.driver.sleep(temps);
+  patiente(temps?: number) {
+    if (temps) {
+      browser.driver.sleep(temps);
+    } else {
+      browser.waitForAngular();
+    }
   }
   compterElements(selector: By): wdpromise.Promise<number> {
     return element.all(selector).count();

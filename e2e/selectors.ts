@@ -45,6 +45,11 @@ export class TabJournal {
   static LIBELLE_DATE_JOURNAL = by.css('span.dateDuJournal');
   static BUTTON_CREER_JOURNAL = by.css('span.clickable');
   static BUTTON_AJOUT_TEMPS = by.css('em.fa-clock-o');
+  static BUTTON_PASSER_JOUR_PLUS_UN = by.css('em.fa.fa-forward');
+
+  static BUTTON_DUPLIQUER_JOURNAL = by.css('em.fa.fa-copy.fa-2x');
+  static INPUT_DIALOGDUPLICATION_DATECIBLE = by.xpath('//input[@name="dateCible"]');
+  static BUTTON_DIALOGDUPLICATION_VALIDER = by.buttonText('Dupliquer');
 
   static TEMPS_LIBELLE = [by.xpath('(//input[@name="nomTemps"])[1]'), by.xpath('(//input[@name="nomTemps"])[2]'), by.xpath('(//input[@name="nomTemps"])[3]')];
   static TEMPS_DEBUT = [

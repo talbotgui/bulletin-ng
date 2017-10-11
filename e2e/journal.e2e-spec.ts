@@ -113,4 +113,41 @@ describe('Onglet des journaux', () => {
     expect(page.getText(selectors.TabJournal.TEMPS_COMPETENCE_LIBELLE_AFFICHE[1]))
       .toBe('Compétences travaillées > CYCLE 2 > Français > Lire > Pratiquer différentes formes de lecture.');
   });
+
+  // it('Créer un journal pour le 05/01/2017 avec 2 temps et des compétences puis le dupliquer au 06/01/2017', () => {
+  //   //
+  //   page.click(selectors.APP.MENU_JOURNAL);
+  //   page.type(selectors.TabJournal.INPUT_DATE_JOURNAL, '05/01/2017');
+  //   page.click(selectors.TabJournal.BUTTON_CREER_JOURNAL);
+  //   expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du jeudi 05/01/2017');
+  //   page.click(selectors.TabJournal.BUTTON_AJOUT_TEMPS);
+  //   page.type(selectors.TabJournal.TEMPS_LIBELLE[0], 'TEMPS A');
+  //   page.click(selectors.TabJournal.BUTTON_AJOUT_TEMPS);
+  //   page.type(selectors.TabJournal.TEMPS_LIBELLE[1], 'TEMPS B');
+  //   page.click(selectors.TabJournal.TEMPS_ELEVES[0][0]);
+  //   page.click(selectors.TabJournal.TEMPS_ELEVES[1][1]);
+  //   page.click(selectors.TabJournal.TEMPS_AJOUTER_COMPETENCE[0]);
+  //   page.select(selectors.TabJournal.TEMPS_COMPETENCE_PREMIER_SELECT_VISIBLE, 'compTrav', 'W', 'W1', 'W12', 'W122');
+  //   page.click(selectors.TabJournal.TEMPS_AJOUTER_COMPETENCE[0]);
+  //   page.select(selectors.TabJournal.TEMPS_COMPETENCE_PREMIER_SELECT_VISIBLE, 'compTrav', 'W', 'W1', 'W12', 'W123');
+  //   //
+  //   page.click(selectors.TabJournal.BUTTON_DUPLIQUER_JOURNAL);
+  //   page.type(selectors.TabJournal.INPUT_DIALOGDUPLICATION_DATECIBLE, '06/01/2017');
+  //   page.click(selectors.TabJournal.BUTTON_DIALOGDUPLICATION_VALIDER);
+  //   page.click(selectors.TabJournal.BUTTON_PASSER_JOUR_PLUS_UN);
+  //   //
+  //   expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du vendredi 06/01/2017');
+  //   expect(page.isVisible(selectors.TabJournal.BUTTON_CREER_JOURNAL)).toBeFalsy();
+  //   expect(page.isVisible(selectors.TabJournal.TEMPS_DESCENDRE[0])).toBeTruthy();
+  //   expect(page.isVisible(selectors.TabJournal.TEMPS_MONTER[0])).toBeTruthy();
+  //   expect(page.isVisible(selectors.TabJournal.TEMPS_DESCENDRE[1])).toBeFalsy();
+  //   expect(page.isVisible(selectors.TabJournal.TEMPS_MONTER[1])).toBeFalsy();
+  //   expect(page.compterElements(selectors.TabJournal.ELEVES_SELECTIONNES)).toBe(2);
+  //   expect(page.getText(selectors.TabJournal.TEMPS_COMPETENCE_LIBELLE_AFFICHE[0]))
+  //     .toBe('Compétences travaillées > CYCLE 2 > Français > Lire > Comprendre un texte.');
+  //   expect(page.getText(selectors.TabJournal.TEMPS_COMPETENCE_LIBELLE_AFFICHE[1]))
+  //     .toBe('Compétences travaillées > CYCLE 2 > Français > Lire > Pratiquer différentes formes de lecture.');
+  //   expect(page.getValue(selectors.TabJournal.TEMPS_LIBELLE[0])).toBe('TEMPS A');
+  //   expect(page.getValue(selectors.TabJournal.TEMPS_LIBELLE[1])).toBe('TEMPS B');
+  // });
 });
