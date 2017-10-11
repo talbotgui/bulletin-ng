@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
+import { MdDialogRef, MdSnackBar } from '@angular/material';
 
 import { JournalService } from '../service/journal.service';
 import * as model from '../model/model';
@@ -18,7 +18,7 @@ export class DialogDuplicationComponent {
   dateCible: Date;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private journalService: JournalService, private dialogRef: MdDialogRef<DialogDuplicationComponent>) { }
+  constructor(private journalService: JournalService, private dialogRef: MdDialogRef<DialogDuplicationComponent>, private snackBar: MdSnackBar) { }
 
   annuler() {
     this.dialogRef.close();
@@ -26,6 +26,14 @@ export class DialogDuplicationComponent {
 
   /** Duplication */
   dupliquer() {
+
+    // Validation du formulaire
+    if (!this.dateCible) {
+      const message = 'Aucune date cible sélectionnée !';
+      this.snackBar.open(message, undefined, { duration: 5000, extraClasses: ['avertissement'] });
+      return;
+    }
+
     // Si duplication de journal
     if (!this.temps) {
       this.journalService.dupliquerJournal(this.journal, this.dateCible);
