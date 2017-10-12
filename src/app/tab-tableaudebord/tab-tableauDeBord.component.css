@@ -1,5 +1,5 @@
-.filtres md-chip { margin-bottom: 5px; }
-.filtres md-chip.filtreSelectionne { color: white; background-color: #6b6159; font-weight: bold; }
+.filtres mat-chip { margin-bottom: 5px; }
+.filtres mat-chip.filtreSelectionne { color: white; background-color: #6b6159; font-weight: bold; }
 
 td.periodeEvaluee { background-color:#f2f599; }
 td.domaine { background-color:#ffab00; cursor: pointer; }

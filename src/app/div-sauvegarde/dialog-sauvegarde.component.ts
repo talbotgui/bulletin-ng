@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 import { SauvegardeService } from '../service/sauvegarde.service';
 
 @Component({ selector: 'dialog-sauvegarde', templateUrl: './dialog-sauvegarde.component.html' })
 export class DialogSauvegardeComponent {
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private sauvegardeService: SauvegardeService, private dialogRef: MdDialogRef<DialogSauvegardeComponent>) { }
+  constructor(private sauvegardeService: SauvegardeService, private dialogRef: MatDialogRef<DialogSauvegardeComponent>) { }
 
   // A la demande de sauvegarde sur le serveur
   onSauvegardeServeur() {

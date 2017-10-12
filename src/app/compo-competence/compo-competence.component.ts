@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 
 import { LectureService } from '../service/lecture.service';
 import { DialogCompetenceFullTextComponent } from './dialog-competencefulltext.component';
@@ -61,7 +61,7 @@ export class ComposantCompetenceeComponent {
   }
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private dialog: MdDialog, private lectureService: LectureService) { }
+  constructor(private dialog: MatDialog, private lectureService: LectureService) { }
 
   // Pour remonter d'un niveau
   selectionnerParent() {

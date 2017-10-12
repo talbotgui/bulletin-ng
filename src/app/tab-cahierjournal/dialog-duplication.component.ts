@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MdDialogRef, MdSnackBar } from '@angular/material';
+import { MatDialogRef, MatSnackBar } from '@angular/material';
 
 import { JournalService } from '../service/journal.service';
 import * as model from '../model/model';
@@ -18,7 +18,7 @@ export class DialogDuplicationComponent {
   dateCible: Date;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private journalService: JournalService, private dialogRef: MdDialogRef<DialogDuplicationComponent>, private snackBar: MdSnackBar) { }
+  constructor(private journalService: JournalService, private dialogRef: MatDialogRef<DialogDuplicationComponent>, private snackBar: MatSnackBar) { }
 
   annuler() {
     this.dialogRef.close();

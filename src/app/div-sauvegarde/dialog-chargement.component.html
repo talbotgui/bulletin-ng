@@ -1,6 +1,6 @@
-<h2 md-dialog-title>Chargement d'une sauvegarde</h2>
+<h2 mat-dialog-title>Chargement d'une sauvegarde</h2>
 
-<md-dialog-content>
+<mat-dialog-content>
 	<compo-messagesauvegarde></compo-messagesauvegarde>
 
 	<fieldset>
@@ -15,18 +15,18 @@
 	<fieldset>
 		<legend>Chargement d'un fichier du serveur</legend>
 		<div *ngIf="fichiers && fichiers.length>0">
-			<md-select [(ngModel)]="fichierSelectionne">
-				<md-option *ngFor="let fichier of fichiers" [value]="fichier">{{fichier}}</md-option>
-			</md-select>
+			<mat-select [(ngModel)]="fichierSelectionne">
+				<mat-option *ngFor="let fichier of fichiers" [value]="fichier">{{fichier}}</mat-option>
+			</mat-select>
 		</div>
 		<div *ngIf="!fichiers || fichiers.length===0">
 			<span>Aucun serveur de données détecté</span>
-			<em class="fa fa-question-circle" mdTooltip="Le serveur est attendu à l'adresse http://192.168.1.52/upload.php"></em>
+			<em class="fa fa-question-circle" matTooltip="Le serveur est attendu à l'adresse http://192.168.1.52/upload.php"></em>
 		</div>
 	</fieldset>
-</md-dialog-content>
+</mat-dialog-content>
 
-<md-dialog-actions>
+<mat-dialog-actions>
 	<button class="button" (click)="onDemandeAnnulation()">Annuler</button>
 	<button class="button" (click)="onDemandeChargement()">Charger</button>
-</md-dialog-actions>
+</mat-dialog-actions>

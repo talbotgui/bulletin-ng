@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { TreeComponent } from 'angular-tree-component';
 
 import * as model from '../model/model';
@@ -38,7 +38,7 @@ export class TabCompetenceComponent implements OnInit {
   private tree: TreeComponent;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private lectureService: LectureService, private snackBar: MdSnackBar) { }
+  constructor(private lectureService: LectureService, private snackBar: MatSnackBar) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {

@@ -3,9 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MdButtonModule, MdCardModule, MdChipsModule, MdDatepickerModule, MdGridListModule } from '@angular/material';
-import { MdRadioModule, MdSelectModule, MdSidenavModule, MdSnackBarModule, MdTooltipModule } from '@angular/material';
-import { MdNativeDateModule, MD_PLACEHOLDER_GLOBAL_OPTIONS, DateAdapter } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatChipsModule, MatDatepickerModule, MatGridListModule } from '@angular/material';
+import { MatSnackBarModule, MatTooltipModule } from '@angular/material';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatNativeDateModule, MAT_PLACEHOLDER_GLOBAL_OPTIONS, DateAdapter } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CKEditorModule } from 'ng2-ckeditor';
@@ -71,7 +74,7 @@ import { AppRoutingModule } from './app-routing.module';
     // Paramétrage global
     { provide: LOCALE_ID, useValue: 'fr-FR' },
     { provide: DateAdapter, useClass: MyDateAdapter },
-    { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'never' } },
+    { provide: MAT_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'never' } },
 
     // Les composants injectables
     DataRepository, EditionService, JournalService, LectureService, NoteService, SauvegardeService, TacheService
@@ -85,8 +88,8 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule, FormsModule, HttpClientModule,
 
     // Les modules Material
-    BrowserAnimationsModule, MdButtonModule, MdCardModule, MdChipsModule, MdDatepickerModule, MdGridListModule,
-    MdNativeDateModule, MdRadioModule, MdSelectModule, MdSidenavModule, MdSnackBarModule, MdTooltipModule,
+    BrowserAnimationsModule, MatButtonModule, MatCardModule, MatChipsModule, MatDatepickerModule, MatGridListModule,
+    MatNativeDateModule, MatRadioModule, MatSelectModule, MatSidenavModule, MatSnackBarModule, MatTooltipModule,
 
     // les composants WEB riches externes
     CKEditorModule, TreeModule,

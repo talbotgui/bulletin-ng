@@ -1,4 +1,4 @@
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import * as mockito from 'ts-mockito';
 
 import * as model from '../model/model';

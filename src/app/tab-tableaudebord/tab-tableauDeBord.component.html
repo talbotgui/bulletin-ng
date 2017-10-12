@@ -1,15 +1,15 @@
 <!-- Boutons d'action -->
 <div class="actions" *ngIf="eleveSelectionne && periodeSelectionnee">
-	<em class="fa fa-2x fa-print" mdTooltip="Afficher les données dans l'onglet d'édition" md-button [routerLink]="['/tab-editionppi-route', eleveSelectionne.id, periodeSelectionnee.id]"></em>
+	<em class="fa fa-2x fa-print" matTooltip="Afficher les données dans l'onglet d'édition" mat-button [routerLink]="['/tab-editionppi-route', eleveSelectionne.id, periodeSelectionnee.id]"></em>
 </div>
 
 <!-- Filtres -->
-<md-chip-list class="filtres listeEleves" [selectable]="true">
-	<md-chip *ngFor="let eleve of eleves" (click)="onSelectEleve(eleve)" [class.filtreSelectionne]="eleve === eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</md-chip>
-</md-chip-list>
-<md-chip-list class="filtres listePeriodes" [selectable]="true">
-	<md-chip *ngFor="let periode of periodes" (click)="onSelectPeriode(periode)" [class.filtreSelectionne]="periode === periodeSelectionnee">{{periode.nom}}</md-chip>
-</md-chip-list>
+<mat-chip-list class="filtres listeEleves" [selectable]="true">
+	<mat-chip *ngFor="let eleve of eleves" (click)="onSelectEleve(eleve)" [class.filtreSelectionne]="eleve === eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</mat-chip>
+</mat-chip-list>
+<mat-chip-list class="filtres listePeriodes" [selectable]="true">
+	<mat-chip *ngFor="let periode of periodes" (click)="onSelectPeriode(periode)" [class.filtreSelectionne]="periode === periodeSelectionnee">{{periode.nom}}</mat-chip>
+</mat-chip-list>
 
 <!-- Formulaire de modification -->
 <div *ngIf="eleveSelectionne && periodeSelectionnee" class="">
@@ -23,7 +23,7 @@
 				<th>Constat sur la période</th>
 				<th>Modalité d'aide pour la période suivante</th>
 				<th>Elément du programme à travailler</th>
-				<th><em class="fa fa-calendar-plus-o" mdTooltip="Ajouter une ligne" (click)="creeNouvelleLigne()"></em></th>
+				<th><em class="fa fa-calendar-plus-o" matTooltip="Ajouter une ligne" (click)="creeNouvelleLigne()"></em></th>
 			</tr>
 		</thead>
 		<tbody *ngFor="let ligne of lignes">
@@ -35,7 +35,7 @@
 				<td class="periodeEvaluee" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.constat}} </td>
 				<td class="periodePreparee" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.aide}} </td>
 				<td class="periodePreparee"><span *ngIf="sousLigne.aide"><compo-competence [idCompetenceRacine]="ligne.idDomaine" [note]="sousLigne.aide" [lectureSeule]="true" ></compo-competence></span></td>
-				<td *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length"><em class="fa fa-edit" mdTooltip="Modifier cette ligne" (click)="onSelectLigne(ligne)"></em></td>
+				<td *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length"><em class="fa fa-edit" matTooltip="Modifier cette ligne" (click)="onSelectLigne(ligne)"></em></td>
 			</tr>
 		</tbody>
 	</table>

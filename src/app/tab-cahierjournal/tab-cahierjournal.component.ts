@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 
 import { DialogDuplicationComponent } from './dialog-duplication.component';
 
@@ -43,7 +43,7 @@ export class TabCahierJournalComponent implements OnInit {
   journal?: model.Journal;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private lectureService: LectureService, private journalService: JournalService, private dialog: MdDialog) { }
+  constructor(private lectureService: LectureService, private journalService: JournalService, private dialog: MatDialog) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import * as mockito from 'ts-mockito';
 
 import * as model from '../model/model';
@@ -482,7 +482,6 @@ describe('LectureService', () => {
     mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
   });
 
-
   it('getCompetenceParTexte case insensitive', () => {
     //
     const annee = Jdd.getAnnee(Jdd.JDD_SIMPLISTE);
@@ -575,7 +574,6 @@ describe('LectureService', () => {
     expect(resultat.length).toBe(0);
     mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
   });
-
 
   it('getAncetresCompetence avec la compétence racine', () => {
     //

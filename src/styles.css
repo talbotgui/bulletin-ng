@@ -69,20 +69,20 @@ body.dynamique a.navJournal { background-color: red!important; }
 body.dynamique a.navTaches { background-color: #ba12a3!important; }
 body.dynamique a.active { opacity: 1!important; }
 
-body.dynamique .listeEleves md-chip.filtreSelectionne { border: solid 10px white!important; }
-body.dynamique .listeEleves md-chip:nth-child(1) { background-color: green!important; }
-body.dynamique .listeEleves md-chip:nth-child(2) { background-color: #F0B750!important; }
-body.dynamique .listeEleves md-chip:nth-child(3) { background-color: #ED840A!important; }
-body.dynamique .listeEleves md-chip:nth-child(4) { background-color: red!important; }
-body.dynamique .listeEleves md-chip:nth-child(5) { background-color: #DB6479!important; }
-body.dynamique .listeEleves md-chip:nth-child(6) { background-color: #C6217C!important; }
-body.dynamique .listeEleves md-chip:nth-child(7) { background-color: #A220C6!important; }
-body.dynamique .listeEleves md-chip:nth-child(8) { background-color: #7220C6!important; }
-body.dynamique .listeEleves md-chip:nth-child(9) { background-color: #3D16D1!important; }
+body.dynamique .listeEleves mat-chip.filtreSelectionne { border: solid 10px white!important; }
+body.dynamique .listeEleves mat-chip:nth-child(1) { background-color: green!important; }
+body.dynamique .listeEleves mat-chip:nth-child(2) { background-color: #F0B750!important; }
+body.dynamique .listeEleves mat-chip:nth-child(3) { background-color: #ED840A!important; }
+body.dynamique .listeEleves mat-chip:nth-child(4) { background-color: red!important; }
+body.dynamique .listeEleves mat-chip:nth-child(5) { background-color: #DB6479!important; }
+body.dynamique .listeEleves mat-chip:nth-child(6) { background-color: #C6217C!important; }
+body.dynamique .listeEleves mat-chip:nth-child(7) { background-color: #A220C6!important; }
+body.dynamique .listeEleves mat-chip:nth-child(8) { background-color: #7220C6!important; }
+body.dynamique .listeEleves mat-chip:nth-child(9) { background-color: #3D16D1!important; }
 
-body.dynamique .listePeriodes md-chip.filtreSelectionne { border: solid 10px white!important; }
-body.dynamique .listePeriodes md-chip:nth-child(1) { background-color: #88E80F!important; }
-body.dynamique .listePeriodes md-chip:nth-child(2) { background-color: #FFA400!important; }
-body.dynamique .listePeriodes md-chip:nth-child(3) { background-color: #F85F05!important; }
-body.dynamique .listePeriodes md-chip:nth-child(4) { background-color: #FF0000!important; }
-body.dynamique .listePeriodes md-chip:nth-child(5) { background-color: #DF0F82!important; }
+body.dynamique .listePeriodes mat-chip.filtreSelectionne { border: solid 10px white!important; }
+body.dynamique .listePeriodes mat-chip:nth-child(1) { background-color: #88E80F!important; }
+body.dynamique .listePeriodes mat-chip:nth-child(2) { background-color: #FFA400!important; }
+body.dynamique .listePeriodes mat-chip:nth-child(3) { background-color: #F85F05!important; }
+body.dynamique .listePeriodes mat-chip:nth-child(4) { background-color: #FF0000!important; }
+body.dynamique .listePeriodes mat-chip:nth-child(5) { background-color: #DF0F82!important; }

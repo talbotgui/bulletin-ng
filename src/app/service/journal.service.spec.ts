@@ -1,4 +1,4 @@
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import * as mockito from 'ts-mockito';
 
 import * as model from '../model/model';
@@ -11,14 +11,14 @@ describe('JournalService', () => {
 
   let dataRepositoryMock: DataRepository;
   let lectureServiceMock: LectureService;
-  let snackBarMock: MdSnackBar;
+  let snackBarMock: MatSnackBar;
   let journalService: JournalService;
 
   beforeAll(() => {
     // Creation du mock de DataService
     dataRepositoryMock = mockito.mock(DataRepository);
     lectureServiceMock = mockito.mock(LectureService);
-    snackBarMock = mockito.mock(MdSnackBar);
+    snackBarMock = mockito.mock(MatSnackBar);
   });
 
   // Pour réinitialiser le composant de test avant chaque test

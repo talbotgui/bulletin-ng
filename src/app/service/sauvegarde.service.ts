@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscriber } from 'rxjs/Subscriber';
 import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
 import { saveAs } from 'file-saver';
 
@@ -20,7 +20,7 @@ export class SauvegardeService {
   private readonly URL_SERVEUR_HTTP = 'http://192.168.1.52/download/upload.php';
   private readonly HEADERS_APPEL_SERVEUR = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
-  constructor(private http: HttpClient, private dataRepository: DataRepository, private snackBar: MdSnackBar) { }
+  constructor(private http: HttpClient, private dataRepository: DataRepository, private snackBar: MatSnackBar) { }
 
   getNomsDerniersFichiersSauvegardesDansBrowser(): { nomFichierEnLocal: string | null, nomFichierSurServeur: string | null } {
     if (typeof (Storage) !== 'undefined') {

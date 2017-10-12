@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdSnackBar, MdDialogRef } from '@angular/material';
+import { MatSnackBar, MatDialogRef } from '@angular/material';
 
 import { SauvegardeService } from '../service/sauvegarde.service';
 
@@ -17,7 +17,7 @@ export class DialogChargementComponent implements OnInit {
   nomFichierLocal: string;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private sauvegardeService: SauvegardeService, private snackBar: MdSnackBar, private dialogRef: MdDialogRef<DialogChargementComponent>) { }
+  constructor(private sauvegardeService: SauvegardeService, private snackBar: MatSnackBar, private dialogRef: MatDialogRef<DialogChargementComponent>) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {

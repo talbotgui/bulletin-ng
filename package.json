@@ -5,6 +5,7 @@
   "scripts": {
     "preinstall": "node package.preinstall.js",
     "ng": "ng",
+    "startSurReseau": "ng serve --port=80 --host 0.0.0.0",
     "start": "ng serve",
     "build": "ng build",
     "build-prod": "ng build --prod --aot --progress=false --verbose=true --build-optimizer",
@@ -19,13 +20,13 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "4.4.4",
-    "@angular/cdk": "2.0.0-beta.11",
+    "@angular/cdk": "2.0.0-beta.12",
     "@angular/common": "4.4.4",
     "@angular/compiler": "4.4.4",
     "@angular/core": "4.4.4",
     "@angular/forms": "4.4.4",
     "@angular/http": "4.4.4",
-    "@angular/material": "2.0.0-beta.11",
+    "@angular/material": "2.0.0-beta.12",
     "@angular/platform-browser": "4.4.4",
     "@angular/platform-browser-dynamic": "4.4.4",
     "@angular/router": "4.4.4",

@@ -1,13 +1,13 @@
 <!-- Actions -->
 <div class="actions">
-	<em *ngIf="eleveSelectionne" mdTooltip="Imprimer la fiche de l'élève" class="fa fa-print fa-2x" md-button [routerLink]="['/tab-editioneleve-route', eleveSelectionne.id]"></em>
-	<em class="fa fa-plus fa-2x" mdTooltip="Ajouter un nouvel élève" (click)="creerEleve()"></em>
+	<em *ngIf="eleveSelectionne" matTooltip="Imprimer la fiche de l'élève" class="fa fa-print fa-2x" mat-button [routerLink]="['/tab-editioneleve-route', eleveSelectionne.id]"></em>
+	<em class="fa fa-plus fa-2x" matTooltip="Ajouter un nouvel élève" (click)="creerEleve()"></em>
 </div>
 
 <!-- Liste des élèves -->
-<md-chip-list class="listeEleves" [selectable]="true">
-	<md-chip *ngFor="let eleve of eleves" (click)="onSelectEleve(eleve); eleveForm.reset(eleve);" [class.eleveSelectionne]="eleve === eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</md-chip>
-</md-chip-list>
+<mat-chip-list class="listeEleves" [selectable]="true">
+	<mat-chip *ngFor="let eleve of eleves" (click)="onSelectEleve(eleve); eleveForm.reset(eleve);" [class.eleveSelectionne]="eleve === eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</mat-chip>
+</mat-chip-list>
 
 <!-- Formulaire de modification -->
 <form novalidate #eleveForm="ngForm">
@@ -22,14 +22,14 @@
 
 			<input required minlength="3" #inputNom="ngModel" [(ngModel)]="eleveSelectionne.nom" name="nom" placeholder="Nom" />
 			<input required #inputPrenom="ngModel" [(ngModel)]="eleveSelectionne.prenom" name="prenom" placeholder="Prénom" />
-			<input mdInput required #inputDateNaissance="ngModel" [(ngModel)]="dateNaissanceEleveSelectionne" name="dateNaissanceEleveSelectionne"
+			<input matInput required #inputDateNaissance="ngModel" [(ngModel)]="dateNaissanceEleveSelectionne" name="dateNaissanceEleveSelectionne"
 			 placeholder="Date de naissance" />
-			<input mdInput [(ngModel)]="dateAdmissionEleveSelectionne" name="dateAdmissionEleveSelectionne" placeholder="Date d'admission"
+			<input matInput [(ngModel)]="dateAdmissionEleveSelectionne" name="dateAdmissionEleveSelectionne" placeholder="Date d'admission"
 			/>
 
-			<md-select required #inputStatut="ngModel" [(ngModel)]="eleveSelectionne.statut" placeholder="Statut" name="statut">
-				<md-option *ngFor="let entry of mapStatutEleve | mapValues" [value]="entry.key">{{entry.val}}</md-option>
-			</md-select>
+			<mat-select required #inputStatut="ngModel" [(ngModel)]="eleveSelectionne.statut" placeholder="Statut" name="statut">
+				<mat-option *ngFor="let entry of mapStatutEleve | mapValues" [value]="entry.key">{{entry.val}}</mat-option>
+			</mat-select>
 		</fieldset>
 		<fieldset class="famille">
 			<legend>Famille</legend>
@@ -67,16 +67,16 @@
 					<th>Niveau</th>
 					<th>Etablissement</th>
 					<th>Accompagnement</th>
-					<th><em class="fa fa-plus" mdTooltip="Ajouter une ligne dans le cursus" (click)="ajouterCursus()"></em></th>
+					<th><em class="fa fa-plus" matTooltip="Ajouter une ligne dans le cursus" (click)="ajouterCursus()"></em></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr *ngFor="let cur of eleveSelectionne.cursus; let i = index;">
 					<td>{{cur.annee}}</td>
-					<td><input mdInput [(ngModel)]="cur.niveau" name="niveau-{{i}}" /></td>
-					<td><input mdInput [(ngModel)]="cur.etablissement" name="etablissement-{{i}}" /></td>
-					<td><input mdInput [(ngModel)]="cur.accompagnement" name="accompagnement-{{i}}" /></td>
-					<td><em class="fa fa-remove" mdTooltip="Supprimer cette ligne du cursus" (click)="retirerCursus(cur)"></em></td>
+					<td><input matInput [(ngModel)]="cur.niveau" name="niveau-{{i}}" /></td>
+					<td><input matInput [(ngModel)]="cur.etablissement" name="etablissement-{{i}}" /></td>
+					<td><input matInput [(ngModel)]="cur.accompagnement" name="accompagnement-{{i}}" /></td>
+					<td><em class="fa fa-remove" matTooltip="Supprimer cette ligne du cursus" (click)="retirerCursus(cur)"></em></td>
 				</tr>
 			</tbody>
 		</table>

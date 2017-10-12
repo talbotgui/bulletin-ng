@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 
 import { DialogChargementComponent } from './dialog-chargement.component';
 import { DialogSauvegardeComponent } from './dialog-sauvegarde.component';
@@ -17,7 +17,7 @@ export class DivSauvegardeComponent {
     return mess;
   }
 
-  constructor(private dialog: MdDialog, private dataRepository: DataRepository, private sauvegardeService: SauvegardeService) { }
+  constructor(private dialog: MatDialog, private dataRepository: DataRepository, private sauvegardeService: SauvegardeService) { }
 
   // A la demande de chargement d'un fichier
   ouvreDialogChargement() {

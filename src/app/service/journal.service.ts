@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
 import { Utils } from './utils';
 import { DataRepository } from './data.repository';
@@ -9,7 +9,7 @@ import * as model from '../model/model';
 @Injectable()
 export class JournalService {
 
-  constructor(private dataRepository: DataRepository, private lectureService: LectureService, private snackBar: MdSnackBar) { }
+  constructor(private dataRepository: DataRepository, private lectureService: LectureService, private snackBar: MatSnackBar) { }
 
   /** Duplication du journal pour l'ajouter avec la date cible. */
   dupliquerJournal(journal: model.Journal, dateCible: Date): void {

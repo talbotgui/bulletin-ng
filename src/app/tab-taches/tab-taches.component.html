@@ -1,66 +1,68 @@
-<span class="fa-stack fa-lg" mdTooltip="Ajouter une nouvelle tâche" (click)="creerTache()">
+<span class="fa-stack fa-lg" matTooltip="Ajouter une nouvelle tâche" (click)="creerTache()">
     <em class="fa fa-circle-o fa-stack-2x"></em>
     <em class="fa fa-plus fa-stack-1x"></em>
 </span>
 
-<md-grid-list cols="4" rowHeight="4:4" gutterSize="20">
+<mat-grid-list cols="4" rowHeight="4:4" gutterSize="20">
 
-    <md-grid-tile *ngIf="nouvelleTache">
-        <md-card>
-            <md-card-header>
-                <md-card-title>
-                    <span class="fa-stack action" mdTooltip="Ajouter une échéance" (click)="ajouterEcheance()">
+    <mat-grid-tile *ngIf="nouvelleTache">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    <span class="fa-stack action" matTooltip="Ajouter une échéance" (click)="ajouterEcheance()">
                         <em class="fa fa-circle-o fa-stack-2x"></em>
                         <em class="fa fa-plus fa-stack-1x"></em>
                     </span>
                     <input [(ngModel)]="nouvelleTache.titre" name="titre" placeholder="Titre" />
-                </md-card-title>
-            </md-card-header>
-            <md-card-content>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
                 <div *ngFor="let eche of nouvelleTache.echeances; let i = index">
                     <input [(ngModel)]="eche.nom" name="aFaire-{{i}}" class="nomEcheance" />
 
-                    <input class="inputDatePicker" [mdDatepicker]="myDatepicker" [(ngModel)]="eche.date" name="date-{{i}}" placeholder="Date"
+                    <input class="inputDatePicker" [matDatepicker]="myDatepicker" [(ngModel)]="eche.date" name="date-{{i}}" placeholder="Date"
                     />
                     <span>{{eche.date | date:'dd/MM'}}</span>
-                    <md-datepicker-toggle [for]="myDatepicker"></md-datepicker-toggle>
-                    <md-datepicker #myDatepicker></md-datepicker>
-                    <em class="fa fa-remove" mdTooltip="Supprimer cette échéance" (click)="supprimerEcheance(nouvelleTache, eche)"></em>
+                    <mat-datepicker-toggle [for]="myDatepicker">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #myDatepicker>
+                    </mat-datepicker>
+                    <em class="fa fa-remove" matTooltip="Supprimer cette échéance" (click)="supprimerEcheance(nouvelleTache, eche)"></em>
 
                     <br/>
                 </div>
-            </md-card-content>
-            <md-card-actions>
-                <button md-button *ngIf="!taches || taches.indexOf(nouvelleTache)===-1" (click)="ajouterLaNouvelleTache()">Ajouter</button>
-                <button md-button *ngIf="!taches || taches.indexOf(nouvelleTache)===-1" (click)="annulerCreerTache()">Annuler</button>
-                <button md-button *ngIf="taches && taches.indexOf(nouvelleTache)!==-1" (click)="annulerCreerTache()">Fermer</button>
-            </md-card-actions>
-        </md-card>
-    </md-grid-tile>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button *ngIf="!taches || taches.indexOf(nouvelleTache)===-1" (click)="ajouterLaNouvelleTache()">Ajouter</button>
+                <button mat-button *ngIf="!taches || taches.indexOf(nouvelleTache)===-1" (click)="annulerCreerTache()">Annuler</button>
+                <button mat-button *ngIf="taches && taches.indexOf(nouvelleTache)!==-1" (click)="annulerCreerTache()">Fermer</button>
+            </mat-card-actions>
+        </mat-card>
+    </mat-grid-tile>
 
-    <md-grid-tile *ngFor="let tache of taches">
-        <md-card class="{{tache.terminee?'terminee':'encours'}}">
-            <md-card-header>
-                <md-card-title>
+    <mat-grid-tile *ngFor="let tache of taches">
+        <mat-card class="{{tache.terminee?'terminee':'encours'}}">
+            <mat-card-header>
+                <mat-card-title>
                     {{tache.titre}}
-                    <em class="fa fa-edit" mdTooltip="Modifier" (click)="editer(tache)"></em>
-                    <em class="fa fa-copy" mdTooltip="Dupliquer" (click)="dupliquer(tache)"></em>
-                    <em class="fa fa-remove" mdTooltip="Supprimer" (click)="supprimerTache(tache)"></em>
-                </md-card-title>
-                <md-card-subtitle>
+                    <em class="fa fa-edit" matTooltip="Modifier" (click)="editer(tache)"></em>
+                    <em class="fa fa-copy" matTooltip="Dupliquer" (click)="dupliquer(tache)"></em>
+                    <em class="fa fa-remove" matTooltip="Supprimer" (click)="supprimerTache(tache)"></em>
+                </mat-card-title>
+                <mat-card-subtitle>
                     <span>{{tache.avancement}} |</span>
                     <em class="fa fa-clock-o"></em>
                     <span>{{tache.prochaineEcheance | date:'EEEE dd/MM'}}</span>
-                </md-card-subtitle>
-            </md-card-header>
-            <md-card-content>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
                 <div *ngFor="let eche of tache.echeances">
                     <em class="fa fa-check-square-o" *ngIf="!!eche.termine" (click)="changeEcheance(eche, false, $event)"></em>
                     <em class="fa fa-square-o" *ngIf="!eche.termine" (click)="changeEcheance(eche, true, $event)"></em>
                     <span>{{eche.nom}} pour le {{eche.date | date:'EEEE dd/MM'}}</span>
                     <br/>
                 </div>
-            </md-card-content>
-        </md-card>
-    </md-grid-tile>
-</md-grid-list>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

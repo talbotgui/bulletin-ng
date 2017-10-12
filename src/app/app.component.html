@@ -1,8 +1,8 @@
 <div id="page">
-	<md-sidenav-container>
-		<md-sidenav #sidenav class="example-sidenav">
+	<mat-sidenav-container>
+		<mat-sidenav #sidenav class="example-sidenav">
 			<div-selecteurstyle></div-selecteurstyle>
-		</md-sidenav>
+		</mat-sidenav>
 		<div id="entete">
 			<div id="entete-logo">
 				<img src="./assets/images/logo.png" alt="logo" (click)="rechargerPage()" />
@@ -11,21 +11,21 @@
 				<h1>Application de gestion de ma classe</h1>
 			</div>
 			<div id="entete-actions">
-				<em class="fa fa-2x fa-thermometer-half" mdTooltip="Changer le thème de l'application" md-button (click)="sidenav.open()"></em>
-				<em class="fa fa-2x fa-question-circle" mdTooltip="Afficher l'aide de l'application" md-button routerLink="/tab-aide-route"></em>
+				<em class="fa fa-2x fa-thermometer-half" matTooltip="Changer le thème de l'application" mat-button (click)="sidenav.open()"></em>
+				<em class="fa fa-2x fa-question-circle" matTooltip="Afficher l'aide de l'application" mat-button routerLink="/tab-aide-route"></em>
 				<br/>
 				<div-sauvegarde></div-sauvegarde>
 			</div>
 		</div>
-	</md-sidenav-container>
+	</mat-sidenav-container>
 
 	<div id="menu">
-		<nav md-tab-nav-bar>
-			<a *ngIf="!!anneeChargee" md-tab-link routerLink="/tab-competence-route" class="navCompetence" routerLinkActive="active">Compétences</a>
-			<a *ngIf="!!anneeChargee" md-tab-link routerLink="/tab-eleve-route" class="navEleve" routerLinkActive="active">Elèves</a>
-			<a *ngIf="!!anneeChargee" md-tab-link routerLink="/tab-tableaudebord-route" class="navTdb" routerLinkActive="active">Tableau de bord</a>
-			<a *ngIf="!!anneeChargee" md-tab-link routerLink="/tab-journal-route" class="navJournal" routerLinkActive="active">Cahier journal</a>
-			<a *ngIf="!!anneeChargee" md-tab-link routerLink="/tab-taches-route" class="navTaches" routerLinkActive="active">Tâches</a>
+		<nav mat-tab-nav-bar>
+			<a *ngIf="!!anneeChargee" mat-tab-link routerLink="/tab-competence-route" class="navCompetence" routerLinkActive="active">Compétences</a>
+			<a *ngIf="!!anneeChargee" mat-tab-link routerLink="/tab-eleve-route" class="navEleve" routerLinkActive="active">Elèves</a>
+			<a *ngIf="!!anneeChargee" mat-tab-link routerLink="/tab-tableaudebord-route" class="navTdb" routerLinkActive="active">Tableau de bord</a>
+			<a *ngIf="!!anneeChargee" mat-tab-link routerLink="/tab-journal-route" class="navJournal" routerLinkActive="active">Cahier journal</a>
+			<a *ngIf="!!anneeChargee" mat-tab-link routerLink="/tab-taches-route" class="navTaches" routerLinkActive="active">Tâches</a>
 		</nav>
 	</div>
 

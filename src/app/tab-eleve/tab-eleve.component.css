@@ -1,5 +1,5 @@
-.listeEleves md-chip { margin-bottom: 5px; }
-.listeEleves md-chip.eleveSelectionne { color: white; background-color: #6b6159; font-weight: bold; }
+.listeEleves mat-chip { margin-bottom: 5px; }
+.listeEleves mat-chip.eleveSelectionne { color: white; background-color: #6b6159; font-weight: bold; }
 
 .formulaireEleve .famille textarea { width: 24%; height: 100px; }
 .formulaireEleve .contacts textarea { width: 24%; height: 100px; }
