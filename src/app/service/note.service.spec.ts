@@ -11,7 +11,7 @@ import { donnees } from './donneesDeTest/donnees08AvecBeaucoupDeNotes';
 import { DataRepository } from '../service/data.repository';
 import { LectureService } from '../service/lecture.service';
 import { NoteService } from '../service/note.service';
-import { Utils } from './utils';
+import { UtilsTest } from './utilsTest';
 
 describe('NoteService', () => {
 
@@ -114,7 +114,7 @@ describe('NoteService', () => {
     const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
     annee.notes = [];
     mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
-    const ligne = Utils.prepareLignePourTest(annee);
+    const ligne = UtilsTest.prepareLignePourTest(annee);
 
     // Act
     noteService.supprimeNoteDepuisTdb(ligne, ligne.sousLignes[0], false);
@@ -129,7 +129,7 @@ describe('NoteService', () => {
     const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
     annee.notes = [];
     mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
-    const ligne = Utils.prepareLignePourTest(annee);
+    const ligne = UtilsTest.prepareLignePourTest(annee);
 
     // Act
     noteService.supprimeNoteDepuisTdb(ligne, ligne.sousLignes[0], false);

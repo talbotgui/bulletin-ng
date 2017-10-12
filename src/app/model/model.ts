@@ -1,3 +1,5 @@
+import { Utils } from '../service/utils';
+
 export class ModelUtil {
   static getUID() {
     const n = 8;
@@ -65,6 +67,7 @@ export class Tache {
       return '';
     }
   }
+
   get prochaineEcheance(): Date | undefined {
     if (this.echeances) {
       const listeTrieeFiltree = this.echeances.filter((el: Echeance) => !el.termine)
@@ -90,13 +93,17 @@ export class Tache {
   }
 
   compareTo(autre: Tache): number {
-    let resultat = -1;
-    if (!!this.terminee && !autre.terminee) {
-      resultat = 1;
-    } else if (!!this.prochaineEcheance && !!autre.prochaineEcheance && !!this.prochaineEcheance.getTime && !!autre.prochaineEcheance.getTime) {
-      resultat = this.prochaineEcheance.getTime() - autre.prochaineEcheance.getTime();
+    return this.getStringPourCompare().localeCompare(autre.getStringPourCompare());
+  }
+
+  private getStringPourCompare() {
+    let stringPourComparer = '' + this.terminee;
+    if (!!this.prochaineEcheance && !!this.prochaineEcheance.getTime) {
+      stringPourComparer += this.prochaineEcheance.getFullYear() + Utils.formatNumber(this.prochaineEcheance.getMonth());
+      stringPourComparer += Utils.formatNumber(this.prochaineEcheance.getDate());
     }
-    return resultat;
+    stringPourComparer += this.titre;
+    return stringPourComparer;
   }
 }
 
