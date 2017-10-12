@@ -63,6 +63,8 @@ export class DataRepository {
         newE.datesPPA = el.datesPPA;
         newE.datesPAP = el.datesPAP;
         newE.datesESS = el.datesESS;
+        newE.droitImage = el.droitImage;
+        newE.autorisationBaignade = el.autorisationBaignade;
         newE.cursus = [];
         if (el.cursus) {
           el.cursus.forEach((c) => {
