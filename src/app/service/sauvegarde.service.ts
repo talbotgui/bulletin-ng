@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscriber } from 'rxjs/Subscriber';
 import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
@@ -21,11 +21,7 @@ export class SauvegardeService {
   private readonly URL_SERVEUR_HTTP = 'http://192.168.1.52/download/upload.php';
   private readonly HEADERS_APPEL_SERVEUR = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
-  constructor(private http: HttpClient, private dataRepository: DataRepository, private snackBar: MatSnackBar) {
-    if (!SauvegardeService.dateDerniereSauvegardeDeLaSession) {
-      window.setInterval(() => { this.metEnAvantLeBoutonSauvegarde(); }, this.DELAI_MISE_EN_AVANT_BOUTON_SAUVEGARDE);
-    }
-  }
+  constructor(private http: HttpClient, private dataRepository: DataRepository, private snackBar: MatSnackBar, private ngZone: NgZone) { }
 
   metEnAvantLeBoutonSauvegarde(): void {
     const boutonSauvegarde = document.getElementsByClassName('fa-save').item(0) as HTMLElement;
@@ -82,9 +78,18 @@ export class SauvegardeService {
         // Sauvegarde de l'instance dans le service DataService
         this.dataRepository.setAnneeChargee(dataOk);
 
-        // notification
+        // Notification
         const message = 'Fichier \'' + fichier + '\' chargé depuis le serveur';
         this.snackBar.open(message, undefined, { duration: 3000 });
+
+        // Pour mettre en avant le bouton de sauvegarde
+        this.ngZone.runOutsideAngular(() => {
+          window.setInterval(() => {
+            this.ngZone.run(() => {
+              this.metEnAvantLeBoutonSauvegarde();
+            });
+          }, this.DELAI_MISE_EN_AVANT_BOUTON_SAUVEGARDE);
+        });
       }
     );
   }
@@ -115,6 +120,15 @@ export class SauvegardeService {
     // notification
     const message = 'Données chargées depuis le fichier local \'' + nomFichier + '\'';
     this.snackBar.open(message, undefined, { duration: 3000 });
+
+    // Pour mettre en avant le bouton de sauvegarde
+    this.ngZone.runOutsideAngular(() => {
+      window.setInterval(() => {
+        this.ngZone.run(() => {
+          this.metEnAvantLeBoutonSauvegarde();
+        });
+      }, this.DELAI_MISE_EN_AVANT_BOUTON_SAUVEGARDE);
+    });
   }
 
   /**
