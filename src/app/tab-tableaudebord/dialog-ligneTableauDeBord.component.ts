@@ -26,7 +26,7 @@ export class DialogLigneTableauDeBordComponent implements OnInit {
   }
 
   get statutActivationSaisieAide() {
-    const nbSousLignesPreparees = this.ligne.sousLignes.filter((sousLigne) => !!sousLigne.aide).length;
+    const nbSousLignesPreparees = this.ligne.sousLignes.filter((sousLigne) => !!sousLigne.proposition).length;
     if (nbSousLignesPreparees > 0) {
       return 'false';
     } else {

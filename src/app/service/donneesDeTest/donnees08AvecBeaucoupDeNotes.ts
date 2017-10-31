@@ -8282,7 +8282,7 @@ export var donnees = {
       "idEleve": "rvns1q6a",
       "idItem": "j1_263",
       "valeur": "n",
-      "modalitesAide": "aide proposée",
+      "proposition": "aide proposée",
       "constat": "etat de fait"
     },
     {

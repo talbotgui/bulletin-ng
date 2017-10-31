@@ -34,7 +34,7 @@ export class Competence {
 
 export class Note {
   id: string;
-  constructor(public valeur: string, public idEleve?: string, public idItem?: string, public date?: Date, public modalitesAide?: string, public constat?: string, public commentaire?: string) {
+  constructor(public valeur: string, public idEleve?: string, public idItem?: string, public date?: Date, public proposition?: string, public constat?: string, public commentaire?: string) {
     this.id = ModelUtil.getUID();
   }
 }
@@ -118,7 +118,7 @@ export class Annee {
   themeSelectionne: string; taches: Tache[] = [];
 }
 export class SousLigneTableauDeBord {
-  constructor(public competence?: Competence, public constatation?: Note, public aide?: Note) { }
+  constructor(public competence?: Competence, public constatation?: Note, public proposition?: Note) { }
 }
 export class LigneTableauDeBord {
   sousLignes: SousLigneTableauDeBord[] = [];
@@ -147,26 +147,26 @@ export class LigneTableauDeBord {
     }
     return this.tempConstat;
   }
-  set aide(value: string) {
+  set proposition(value: string) {
     this.tempAide = value;
     for (const sousLigne of this.sousLignes) {
-      if (sousLigne.aide) {
-        sousLigne.aide.modalitesAide = value;
+      if (sousLigne.proposition) {
+        sousLigne.proposition.proposition = value;
       }
     }
   }
-  get aide() {
+  get proposition() {
     if (this.sousLignes) {
       for (const sousLigne of this.sousLignes) {
-        if (sousLigne.aide && sousLigne.aide.modalitesAide) {
-          return sousLigne.aide.modalitesAide;
+        if (sousLigne.proposition && sousLigne.proposition.proposition) {
+          return sousLigne.proposition.proposition;
         }
       }
     }
     return this.tempAide;
   }
 
-  constructor(public idDomaine: string | undefined, public nomDomaine: string | undefined, constatations: Note[] = [], aides: Note[] = [], mapCompetences: Map<string, Competence>, public idEleve: string, public periodeEvaluee: Periode) {
+  constructor(public idDomaine: string | undefined, public nomDomaine: string | undefined, constatations: Note[] = [], propositions: Note[] = [], mapCompetences: Map<string, Competence>, public idEleve: string, public periodeEvaluee: Periode) {
     this.sousLignes = [];
 
     // Creation des sousLignes pour les constations
@@ -176,18 +176,18 @@ export class LigneTableauDeBord {
       }
     }
 
-    // Creation/complétion des sousLignes pour les aides
-    for (const aide of aides) {
+    // Creation/complétion des sousLignes pour les propositions
+    for (const proposition of propositions) {
 
       // Recherche de la sousLigne par identifiant de competence
-      const sousLigneTrouvee = this.sousLignes.find((l) => l.competence !== undefined && l.competence.id === aide.idItem);
-      if (sousLigneTrouvee && !sousLigneTrouvee.aide) {
-        sousLigneTrouvee.aide = aide;
+      const sousLigneTrouvee = this.sousLignes.find((l) => l.competence !== undefined && l.competence.id === proposition.idItem);
+      if (sousLigneTrouvee && !sousLigneTrouvee.proposition) {
+        sousLigneTrouvee.proposition = proposition;
       }
 
       // Si pas trouvé, création d'une sousLigne
-      else if (aide.idItem) {
-        this.sousLignes.push(new SousLigneTableauDeBord(mapCompetences.get(aide.idItem), undefined, aide));
+      else if (proposition.idItem) {
+        this.sousLignes.push(new SousLigneTableauDeBord(mapCompetences.get(proposition.idItem), undefined, proposition));
       }
     }
   }

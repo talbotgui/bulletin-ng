@@ -8,16 +8,16 @@ export class UtilsTest {
         const constatations: model.Note[] = [];
         const idEleve: string = annee.eleves[1].id;
         constatations.push(new model.Note('valeur', idEleve, annee.competences[4].id, new Date(), undefined, 'constat'));
-        const aides: model.Note[] = [];
-        aides.push(new model.Note('valeur', idEleve, annee.competences[4].id, new Date(), 'aide', undefined));
+        const propositions: model.Note[] = [];
+        propositions.push(new model.Note('valeur', idEleve, annee.competences[4].id, new Date(), 'proposition', undefined));
         annee.notes.push(constatations[0]);
-        annee.notes.push(aides[0]);
+        annee.notes.push(propositions[0]);
         const mapCompetences = new Map<string, model.Competence>();
         for (const competence of annee.competences) {
             mapCompetences.set(competence.id, competence);
         }
         const periodeEvaluee: model.Periode = annee.periodes[0];
-        return new model.LigneTableauDeBord(idDomaine, nomDomaine, constatations, aides, mapCompetences, idEleve, periodeEvaluee);
+        return new model.LigneTableauDeBord(idDomaine, nomDomaine, constatations, propositions, mapCompetences, idEleve, periodeEvaluee);
     }
 
     private constructor() { }

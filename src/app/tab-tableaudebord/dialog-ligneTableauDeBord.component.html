@@ -51,7 +51,8 @@
 	<br/>
 	<fieldset *ngIf="!!ligne.idDomaine">
 		<legend>Préparation pour la période préparée :</legend>
-		<textarea [(ngModel)]="ligne.aide" name="aide" placeholder="Aide pour la période préparée" rows="8" cols="80" [(disabled)]="statutActivationSaisieAide"></textarea>
+		<textarea [(ngModel)]="ligne.proposition" name="proposition" placeholder="Aide pour la période préparée" rows="8" cols="80"
+		 [(disabled)]="statutActivationSaisieAide"></textarea>
 		<br/>
 		<table class="ligneTableauDeBord">
 			<thead>
@@ -63,9 +64,9 @@
 				</tr>
 			</thead>
 			<tbody *ngFor="let sousLigne of ligne.sousLignes; let i = index">
-				<tr *ngIf="sousLigne.aide">
+				<tr *ngIf="sousLigne.proposition">
 					<td>
-						<compo-competence [idCompetenceRacine]="ligne.idDomaine" [note]="sousLigne.aide" [lectureSeule]="false"></compo-competence>
+						<compo-competence [idCompetenceRacine]="ligne.idDomaine" [note]="sousLigne.proposition" [lectureSeule]="false"></compo-competence>
 					</td>
 					<td>
 						<em class="fa fa-remove" matTooltip="Supprimer cette note" (click)="supprimerSousLigneProgrammeTravaille(sousLigne)"></em>

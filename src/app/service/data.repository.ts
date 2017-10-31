@@ -82,7 +82,7 @@ export class DataRepository {
     nouvelleAnnee.notes = [];
     if (annee.notes) {
       annee.notes.forEach((n) => {
-        const newN = new model.Note(n.valeur, n.idEleve, n.idItem, this.newDate(n.date), n.modalitesAide, n.constat, n.commentaire);
+        const newN = new model.Note(n.valeur, n.idEleve, n.idItem, this.newDate(n.date), n.proposition, n.constat, n.commentaire);
         newN.id = n.id;
         nouvelleAnnee.notes.push(newN);
       });

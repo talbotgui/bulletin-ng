@@ -81,7 +81,7 @@ describe('NoteService', () => {
     expect(resultat.length).toBe(1);
     expect(resultat[0].nomDomaine).toBe(libelleComplet);
     expect(resultat[0].sousLignes.length).toBe(1);
-    expect(resultat[0].sousLignes[0].aide).toBeUndefined();
+    expect(resultat[0].sousLignes[0].proposition).toBeUndefined();
     expect(resultat[0].sousLignes[0].constatation).not.toBeUndefined();
   });
 
@@ -92,14 +92,14 @@ describe('NoteService', () => {
     const idDomaine: string = annee.competences[3].id;
     const nomDomaine: string = annee.competences[3].text;
     const constatations: model.Note[] = [];
-    const aides: model.Note[] = [];
+    const propositions: model.Note[] = [];
     const mapCompetences = new Map<string, model.Competence>();
     for (const competence of annee.competences) {
       mapCompetences.set(competence.id, competence);
     }
     const idEleve: string = annee.eleves[1].id;
     const periodeEvaluee: model.Periode = annee.periodes[0];
-    const ligne = new model.LigneTableauDeBord(idDomaine, nomDomaine, constatations, aides, mapCompetences, idEleve, periodeEvaluee);
+    const ligne = new model.LigneTableauDeBord(idDomaine, nomDomaine, constatations, propositions, mapCompetences, idEleve, periodeEvaluee);
     mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
 
     // Act
@@ -109,7 +109,7 @@ describe('NoteService', () => {
     mockito.verify(dataRepositoryMock.getAnneeChargee()).never();
   });
 
-  it('supprimeNoteDepuisTdb avec une ligne contenant aide et constat', () => {
+  it('supprimeNoteDepuisTdb avec une ligne contenant proposition et constat', () => {
     // Arrange
     const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
     annee.notes = [];
@@ -124,7 +124,7 @@ describe('NoteService', () => {
     mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
   });
 
-  it('supprimeNoteDepuisTdb avec une ligne contenant aide et constat', () => {
+  it('supprimeNoteDepuisTdb avec une ligne contenant proposition et constat', () => {
     // Arrange
     const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
     annee.notes = [];
@@ -212,7 +212,7 @@ describe('NoteService', () => {
     // Assert
     expect(annee.notes.length).toBe(1);
     expect(ligne.sousLignes.length).toBe(1);
-    const nouvelleNote: model.Note = ligne.sousLignes[0].aide as model.Note;
+    const nouvelleNote: model.Note = ligne.sousLignes[0].proposition as model.Note;
     expect(nouvelleNote.idItem).toBe(competence.id);
     expect(nouvelleNote.idEleve).toBe(idEleve);
     expect(nouvelleNote.date).toBe(annee.periodes[1].debut);
@@ -261,7 +261,7 @@ describe('NoteService', () => {
     // Assert
     expect(annee.notes.length).toBe(0);
     expect(ligne.sousLignes.length).toBe(1);
-    expect(ligne.sousLignes[0].aide).toBeFalsy();
+    expect(ligne.sousLignes[0].proposition).toBeFalsy();
     mockito.verify(lectureServiceMock.getPeriodeSuivante(periodeEvaluee)).once();
     mockito.verify(dataRepositoryMock.getAnneeChargee()).never();
   });
@@ -286,8 +286,8 @@ describe('NoteService', () => {
     // Assert
     expect(annee.notes.length).toBe(1);
     expect(ligne.sousLignes.length).toBe(1);
-    expect(ligne.sousLignes[0].aide).toBeTruthy();
-    const nouvelleNote = ligne.sousLignes[0].aide as model.Note;
+    expect(ligne.sousLignes[0].proposition).toBeTruthy();
+    const nouvelleNote = ligne.sousLignes[0].proposition as model.Note;
     expect(nouvelleNote.idItem).toBe(competence.id);
     expect(nouvelleNote.date).toBe(periodePreparee.debut);
     expect(nouvelleNote.idEleve).toBe(idEleve);
@@ -338,7 +338,7 @@ describe('NoteService', () => {
     // Assert
     expect(annee.notes.length).toBe(0);
     expect(ligne.sousLignes.length).toBe(2);
-    expect(ligne.sousLignes[0].aide).toBeFalsy();
+    expect(ligne.sousLignes[0].proposition).toBeFalsy();
     mockito.verify(lectureServiceMock.getPeriodeSuivante(periodeEvaluee)).once();
     mockito.verify(dataRepositoryMock.getAnneeChargee()).never();
   });

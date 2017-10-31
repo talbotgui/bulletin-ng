@@ -11,7 +11,8 @@
             <h1>{{titre}}</h1>
         </div>
         <div class="annee">
-            <div>{{anneeScolaire}}<br/>{{nomPeriode}}</div>
+            <div>{{anneeScolaire}}
+                <br/>{{nomPeriode}}</div>
         </div>
     </div>
 
@@ -21,7 +22,7 @@
                 <th>Domaine</th>
                 <th>Compétence</th>
                 <th>Constat sur la période précédente</th>
-                <th>Modalité d'aide pour la période</th>
+                <th>Proposition pour la période</th>
             </tr>
         </thead>
         <!--Une ligne principale avec la première colonne et un rowspan-->
@@ -29,7 +30,7 @@
             <tr *ngFor="let ssLigne of ligne.sousLignes; let i = index">
                 <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">{{ligne.nomDomaine}}</td>
                 <td class="">{{ssLigne.competence.text}}</td>
-                <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">{{ligne.aide}}</td>
+                <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">{{ligne.proposition}}</td>
                 <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">{{ligne.constat}}</td>
             </tr>
         </tbody>

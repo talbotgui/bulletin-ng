@@ -25,21 +25,21 @@ export class NoteService {
     }
 
     // Si la sous-ligne contient déjà une note avec cette compétence pour l'année prochaine
-    if (sousLigne.aide) {
+    if (sousLigne.proposition) {
       return;
     }
 
     // S'il existe une sous-ligne avec cette compétence
-    if (ligne.sousLignes.filter((ssl) => ssl.aide && sousLigne.constatation && ssl.aide.idItem === sousLigne.constatation.idItem).length !== 0) {
+    if (ligne.sousLignes.filter((ssl) => ssl.proposition && sousLigne.constatation && ssl.proposition.idItem === sousLigne.constatation.idItem).length !== 0) {
       return;
     }
 
     // Ajout de la note dans l'année
-    const note = new model.Note('', ligne.idEleve, sousLigne.constatation.idItem, periodeSuivante.debut, ligne.aide, undefined, '');
+    const note = new model.Note('', ligne.idEleve, sousLigne.constatation.idItem, periodeSuivante.debut, ligne.proposition, undefined, '');
     this.dataRepository.getAnneeChargee().notes.push(note);
 
     // Mise à jour de la ligne avec une nouvelle sous ligne
-    sousLigne.aide = note;
+    sousLigne.proposition = note;
   }
 
   ajouteNoteDepuisTdb(ligne: model.LigneTableauDeBord, ajoutSurPeriodeEvaluee: boolean): void {
@@ -47,10 +47,10 @@ export class NoteService {
     // Lecture des données avec la sélection periodeEvaluee/periodePreparee
     let debutPeriode = ligne.periodeEvaluee.debut;
     let constat: string | undefined = ligne.constat;
-    let aide: string | undefined;
+    let proposition: string | undefined;
     if (!ajoutSurPeriodeEvaluee) {
       constat = undefined;
-      aide = ligne.aide;
+      proposition = ligne.proposition;
       const periodeSuivante = this.lectureService.getPeriodeSuivante(ligne.periodeEvaluee);
       if (periodeSuivante) {
         debutPeriode = periodeSuivante.debut;
@@ -61,7 +61,7 @@ export class NoteService {
     }
 
     // Ajout de la note dans l'année
-    const note = new model.Note('', ligne.idEleve, ligne.idDomaine, debutPeriode, aide, constat, '');
+    const note = new model.Note('', ligne.idEleve, ligne.idDomaine, debutPeriode, proposition, constat, '');
     this.dataRepository.getAnneeChargee().notes.push(note);
 
     // Mise à jour de la ligne avec une nouvelle sous ligne
@@ -138,8 +138,8 @@ export class NoteService {
     let note: model.Note;
     if (supprimeSurPeriodeEvaluee && sousLigne && sousLigne.constatation) {
       note = sousLigne.constatation;
-    } else if (!supprimeSurPeriodeEvaluee && sousLigne && sousLigne.aide) {
-      note = sousLigne.aide;
+    } else if (!supprimeSurPeriodeEvaluee && sousLigne && sousLigne.proposition) {
+      note = sousLigne.proposition;
     } else {
       return;
     }
@@ -149,10 +149,10 @@ export class NoteService {
     notes.splice(notes.indexOf(note), 1);
 
     // MaJ du DTO
-    if (supprimeSurPeriodeEvaluee && sousLigne.aide) {
+    if (supprimeSurPeriodeEvaluee && sousLigne.proposition) {
       sousLigne.constatation = undefined;
     } else if (!supprimeSurPeriodeEvaluee && sousLigne.constatation) {
-      sousLigne.aide = undefined;
+      sousLigne.proposition = undefined;
     } else {
       ligne.sousLignes.splice(ligne.sousLignes.indexOf(sousLigne), 1);
     }
