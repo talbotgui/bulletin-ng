@@ -3,6 +3,8 @@
 /* global */
 body { background-color:lightgray; font:12px/18px Arial,sans-serif; }
 textarea { font-family: Roboto,"Helvetica Neue",sans-serif; }
+.rappelSauvegarde { color: red; }
+.sauvegardeDejaFaite { color: green; }
 
 /* formulaire */
 .button {

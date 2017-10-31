@@ -16,11 +16,25 @@ export class SauvegardeService {
   private static horsReseau: boolean = false;
 
   private readonly DELAI_SAUVEGARDE_AUTOMATIQUE = 300000;
+  private readonly DELAI_MISE_EN_AVANT_BOUTON_SAUVEGARDE = 60000;
   private readonly URL_SERVEUR_HTTPS = 'https://192.168.1.52/download/upload.php';
   private readonly URL_SERVEUR_HTTP = 'http://192.168.1.52/download/upload.php';
   private readonly HEADERS_APPEL_SERVEUR = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
-  constructor(private http: HttpClient, private dataRepository: DataRepository, private snackBar: MatSnackBar) { }
+  constructor(private http: HttpClient, private dataRepository: DataRepository, private snackBar: MatSnackBar) {
+    if (!SauvegardeService.dateDerniereSauvegardeDeLaSession) {
+      window.setInterval(() => { this.metEnAvantLeBoutonSauvegarde(); }, this.DELAI_MISE_EN_AVANT_BOUTON_SAUVEGARDE);
+    }
+  }
+
+  metEnAvantLeBoutonSauvegarde(): void {
+    const boutonSauvegarde = document.getElementsByClassName('fa-save').item(0) as HTMLElement;
+    if (boutonSauvegarde) {
+      const classname = boutonSauvegarde.className;
+      boutonSauvegarde.className = 'fa fa-save fa-4x rappelSauvegarde';
+      window.setTimeout(() => { boutonSauvegarde.className = classname; }, 500);
+    }
+  }
 
   getNomsDerniersFichiersSauvegardesDansBrowser(): { nomFichierEnLocal: string | null, nomFichierSurServeur: string | null } {
     if (typeof (Storage) !== 'undefined') {
@@ -209,10 +223,12 @@ export class SauvegardeService {
     // Post
     this.http.post<model.Annee>(this.getUrlServeurDeDonnees(), paramsSansBug, { headers: this.HEADERS_APPEL_SERVEUR }).subscribe(
       (dataOk) => {
-        const message = 'Données sauvegardées sur le serveur dans le fichier \'' + nomFichier + '\'';
-        this.snackBar.open(message, undefined, { duration: 3000 });
         // Sauvegarde du nom du fichier dans le browser
         this.storeNomDernierFichierSauvegardeDansBrowser(nomFichier, true);
+        // Notifications
+        const message = 'Données sauvegardées sur le serveur dans le fichier \'' + nomFichier + '\'';
+        this.snackBar.open(message, undefined, { duration: 3000 });
+        document.getElementsByClassName('fa-save').item(0).className += ' sauvegardeDejaFaite';
       },
       (error: HttpErrorResponse) => {
         const message = 'Erreur durant la sauvegarde : {statut=' + error.status + ', message=' + error.message + '}';
@@ -243,6 +259,7 @@ export class SauvegardeService {
     // notification
     const message = 'Données sauvegardées par téléchargement';
     this.snackBar.open(message, undefined, { duration: 3000 });
+    document.getElementsByClassName('fa-save').item(0).className += ' sauvegardeDejaFaite';
   }
 
   private storeNomDernierFichierSauvegardeDansBrowser(value: string, surServeur: boolean) {
