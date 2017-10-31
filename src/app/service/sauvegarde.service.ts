@@ -228,7 +228,11 @@ export class SauvegardeService {
         // Notifications
         const message = 'Données sauvegardées sur le serveur dans le fichier \'' + nomFichier + '\'';
         this.snackBar.open(message, undefined, { duration: 3000 });
-        document.getElementsByClassName('fa-save').item(0).className += ' sauvegardeDejaFaite';
+        // Changement de l'icone
+        const elements = document.getElementsByClassName('fa-save');
+        if (elements && elements.length > 0) {
+          elements.item(0).className += ' sauvegardeDejaFaite';
+        }
       },
       (error: HttpErrorResponse) => {
         const message = 'Erreur durant la sauvegarde : {statut=' + error.status + ', message=' + error.message + '}';
@@ -259,7 +263,13 @@ export class SauvegardeService {
     // notification
     const message = 'Données sauvegardées par téléchargement';
     this.snackBar.open(message, undefined, { duration: 3000 });
-    document.getElementsByClassName('fa-save').item(0).className += ' sauvegardeDejaFaite';
+    const elements = document.getElementsByClassName('fa-save');
+
+    // Changement de l'icone
+    if (elements && elements.length > 0) {
+      elements.item(0).className += ' sauvegardeDejaFaite';
+    }
+
   }
 
   private storeNomDernierFichierSauvegardeDansBrowser(value: string, surServeur: boolean) {
