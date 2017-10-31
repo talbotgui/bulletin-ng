@@ -4,7 +4,8 @@
 	<fieldset *ngIf="!ligne.idDomaine">
 		<legend>Sélection du domaine :</legend>
 		<compo-competence [note]="premiereNote" [lectureSeule]="false" [profondeurMaximaleAutorisee]=4></compo-competence>
-		<br/><em class="fa fa-check fa-2x" matTooltip="Sélectionner ce domaine" (click)="validerDomaine()"></em>
+		<br/>
+		<em class="fa fa-check fa-2x" matTooltip="Sélectionner ce domaine" (click)="validerDomaine()"></em>
 	</fieldset>
 	<fieldset *ngIf="!!ligne.idDomaine">
 		<legend>Domaine :</legend>
@@ -13,15 +14,19 @@
 	<br/>
 	<fieldset *ngIf="!!ligne.idDomaine">
 		<legend>Evaluations sur la période évaluées :</legend>
-		<textarea [(ngModel)]="ligne.constat" name="constat" placeholder="Constat sur la période évaluée" rows="8" cols="80"></textarea>
+		<textarea [(ngModel)]="ligne.constat" name="constat" placeholder="Constat sur la période évaluée" rows="8" cols="80" [(disabled)]="statutActivationSaisieConstat"></textarea>
 		<br/>
 		<table class="ligneTableauDeBord">
 			<thead>
 				<tr>
 					<th>Elément du programme évalué</th>
 					<th>Positionnement et objectif d'apprentissage</th>
-					<th><span>Acquisition, progrès et difficultés</span></th>
-					<th><em class="fa fa-plus-circle" matTooltip="Ajouter une note dans la période évaluée" (click)="ajouterLigneProgrammeEvalue()"></em></th>
+					<th>
+						<span>Acquisition, progrès et difficultés</span>
+					</th>
+					<th>
+						<em class="fa fa-plus-circle" matTooltip="Ajouter une note dans la période évaluée" (click)="ajouterLigneProgrammeEvalue()"></em>
+					</th>
 				</tr>
 			</thead>
 			<tbody *ngFor="let sousLigne of ligne.sousLignes; let i = index">
@@ -46,13 +51,15 @@
 	<br/>
 	<fieldset *ngIf="!!ligne.idDomaine">
 		<legend>Préparation pour la période préparée :</legend>
-		<textarea [(ngModel)]="ligne.aide" name="aide" placeholder="Aide pour la période préparée" rows="8" cols="80"></textarea>
+		<textarea [(ngModel)]="ligne.aide" name="aide" placeholder="Aide pour la période préparée" rows="8" cols="80" [(disabled)]="statutActivationSaisieAide"></textarea>
 		<br/>
 		<table class="ligneTableauDeBord">
 			<thead>
 				<tr>
 					<th>Elément du programme à travailler</th>
-					<th><em class="fa fa-plus-circle" matTooltip="Ajouter une note pour la période préparée" (click)="ajouterLigneProgrammeTravaille()"></em></th>
+					<th>
+						<em class="fa fa-plus-circle" matTooltip="Ajouter une note pour la période préparée" (click)="ajouterLigneProgrammeTravaille()"></em>
+					</th>
 				</tr>
 			</thead>
 			<tbody *ngFor="let sousLigne of ligne.sousLignes; let i = index">

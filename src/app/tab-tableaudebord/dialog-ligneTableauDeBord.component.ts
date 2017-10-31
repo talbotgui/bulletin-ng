@@ -16,6 +16,24 @@ export class DialogLigneTableauDeBordComponent implements OnInit {
   // Note utilisée pour sélectionner le domaine
   premiereNote: model.Note | undefined;
 
+  get statutActivationSaisieConstat() {
+    const nbSousLignesEvaluees = this.ligne.sousLignes.filter((sousLigne) => !!sousLigne.constatation).length;
+    if (nbSousLignesEvaluees > 0) {
+      return 'false';
+    } else {
+      return 'disabled';
+    }
+  }
+
+  get statutActivationSaisieAide() {
+    const nbSousLignesPreparees = this.ligne.sousLignes.filter((sousLigne) => !!sousLigne.aide).length;
+    if (nbSousLignesPreparees > 0) {
+      return 'false';
+    } else {
+      return 'disabled';
+    }
+  }
+
   // Un constructeur pour se faire injecter les dépendances
   constructor(private noteService: NoteService, private lectureService: LectureService, private dialogRef: MatDialogRef<DialogLigneTableauDeBordComponent>) { }
 
