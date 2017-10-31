@@ -30,8 +30,8 @@
             <tr *ngFor="let ssLigne of ligne.sousLignes; let i = index">
                 <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">{{ligne.nomDomaine}}</td>
                 <td class="">{{ssLigne.competence.text}}</td>
-                <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">{{ligne.proposition}}</td>
                 <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">{{ligne.constat}}</td>
+                <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">{{ligne.proposition}}</td>
             </tr>
         </tbody>
     </table>
