@@ -3,16 +3,16 @@
 
     <div *ngIf="!lectureSeule" class="actions">
         <em *ngIf="!lectureSeule" class="retour fa fa-fast-backward" (click)="selectionnerParent()"></em>
-        <em *ngIf="!lectureSeule" class="retour fa fa-dot-circle-o" (click)="afficherPopupFiltre()"></em>
+        <em *ngIf="!lectureSeule && profondeurMaximaleAutorisee == 99" class="retour fa fa-dot-circle-o" (click)="afficherPopupFiltre()"></em>
         <div *ngIf="!!note">
             <select required #inputStatut="ngModel" [(ngModel)]="note.idItem" name="competence" *ngIf="!!listeCompetenceEnfant && listeCompetenceEnfant.length>0">
-                <option [value]="note.idItem"></option>        
+                <option [value]="note.idItem"></option>
                 <option *ngFor="let competence of listeCompetenceEnfant" [value]="competence.id">{{competence.text}}</option>
             </select>
         </div>
         <div *ngIf="!!temp">
             <select required #inputStatut="ngModel" [(ngModel)]="temp.competences[tempIndexCompetence]" name="competence" *ngIf="!!listeCompetenceEnfant && listeCompetenceEnfant.length>0">
-                <option [value]="temp.competences[tempIndexCompetence]"></option>        
+                <option [value]="temp.competences[tempIndexCompetence]"></option>
                 <option *ngFor="let competence of listeCompetenceEnfant" [value]="competence.id">{{competence.text}}</option>
             </select>
         </div>
