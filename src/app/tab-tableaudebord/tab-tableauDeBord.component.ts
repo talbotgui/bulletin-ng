@@ -45,7 +45,6 @@ export class TabTableauDeBordComponent {
   rechargeLesLignes() {
     if (this.eleveSelectionne && this.periodeSelectionnee) {
       this.lignes = this.noteService.calculerListeLigneTableauDeBord(this.eleveSelectionne, this.periodeSelectionnee);
-
     } else {
       this.lignes = [];
     }

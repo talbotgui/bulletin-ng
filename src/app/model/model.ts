@@ -199,5 +199,14 @@ export class LigneTableauDeBord {
         this.sousLignes.push(new SousLigneTableauDeBord(mapCompetences.get(proposition.idItem), undefined, proposition));
       }
     }
+
+    // Tri des lignes
+    this.sousLignes.sort((a, b) => {
+      if (a.competence && b.competence) {
+        return a.competence.text.localeCompare(b.competence.text)
+      } else {
+        return -1;
+      }
+    });
   }
 }

@@ -131,6 +131,17 @@ export class NoteService {
       liste.push(new model.LigneTableauDeBord(idCompetenceNiveau3, nomDomaine, dto.eval, dto.prepa, mapCompetences, eleve.id, periodeEvaluee));
     });
 
+    // Tri de la liste
+    liste.sort((a, b) => {
+      if (a.nomDomaine && b.nomDomaine) {
+        const aSplit = a.nomDomaine.split('>');
+        const bSplit = b.nomDomaine.split('>');
+        return (aSplit[2] + '|' + aSplit[1] + '|' + aSplit[3]).localeCompare(bSplit[2] + '|' + bSplit[1] + '|' + bSplit[3]);
+      } else {
+        return -1;
+      }
+    });
+
     return liste;
   }
 
