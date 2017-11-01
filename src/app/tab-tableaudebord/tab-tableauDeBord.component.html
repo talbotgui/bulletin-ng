@@ -31,7 +31,7 @@
 		</thead>
 		<tbody *ngFor="let ligne of lignes">
 			<tr *ngFor="let sousLigne of ligne.sousLignes; let i = index">
-				<td class="periodeEvaluee">
+				<td class="periodeEvaluee libelleCompetence">
 					<span *ngIf="sousLigne.constatation">
 						<compo-competence [idCompetenceRacine]="ligne.idDomaine" [note]="sousLigne.constatation" [lectureSeule]="true"></compo-competence>
 					</span>
@@ -41,14 +41,14 @@
 						<compo-note [note]="sousLigne.constatation" [lectureSeule]="true"></compo-note>
 					</span>
 				</td>
-				<td class="periodeEvaluee">
+				<td class="periodeEvaluee libelleSaisi">
 					<span *ngIf="sousLigne.constatation">{{sousLigne.constatation.commentaire}}</span>
 				</td>
-				<td class="domaine" (click)="onSelectLigne(ligne)" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.nomDomaine}}</td>
-				<td class="periodeEvaluee" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.constat}} </td>
-				<td class="periodeEvaluee" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.outil}} </td>
-				<td class="periodePreparee" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.proposition}} </td>
-				<td class="periodePreparee">
+				<td class="domaine libelleCompetence" (click)="onSelectLigne(ligne)" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.nomDomaine}}</td>
+				<td class="periodeEvaluee libelleSaisi" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.constat}} </td>
+				<td class="periodeEvaluee libelleSaisi" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.outil}} </td>
+				<td class="periodePreparee libelleSaisi" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.proposition}} </td>
+				<td class="periodePreparee libelleCompetence">
 					<span *ngIf="sousLigne.proposition">
 						<compo-competence [idCompetenceRacine]="ligne.idDomaine" [note]="sousLigne.proposition" [lectureSeule]="true"></compo-competence>
 					</span>

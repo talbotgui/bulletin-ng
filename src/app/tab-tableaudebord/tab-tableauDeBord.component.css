@@ -4,5 +4,7 @@
 td.periodeEvaluee { background-color:#f2f599; }
 td.domaine { background-color:#ffab00; cursor: pointer; }
 td.periodePreparee { background-color:lightgreen; }
+td.libelleCompetence { min-width: 200px; }
+td.libelleSaisi { min-width: 100px; }
 
 div.actions { float: right; }
