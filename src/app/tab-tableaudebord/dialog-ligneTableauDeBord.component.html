@@ -15,6 +15,7 @@
 	<fieldset *ngIf="!!ligne.idDomaine">
 		<legend>Evaluations sur la période évaluées :</legend>
 		<textarea [(ngModel)]="ligne.constat" name="constat" placeholder="Constat sur la période évaluée" rows="8" cols="80" [(disabled)]="statutActivationSaisieConstat"></textarea>
+		<textarea [(ngModel)]="ligne.outil" name="outil" placeholder="Outil sur la période évaluée" rows="8" cols="80" [(disabled)]="statutActivationSaisieConstat"></textarea>
 		<br/>
 		<table class="ligneTableauDeBord">
 			<thead>

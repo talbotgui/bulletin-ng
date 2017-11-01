@@ -22,6 +22,7 @@
                 <th>Domaine</th>
                 <th>Compétence</th>
                 <th>Constat sur la période précédente</th>
+                <th>Outil sur la période précédente</th>
                 <th>Proposition pour la période</th>
             </tr>
         </thead>
@@ -31,6 +32,7 @@
                 <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">{{ligne.nomDomaine}}</td>
                 <td class="">{{ssLigne.competence.text}}</td>
                 <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">{{ligne.constat}}</td>
+                <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">{{ligne.outil}}</td>
                 <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">{{ligne.proposition}}</td>
             </tr>
         </tbody>

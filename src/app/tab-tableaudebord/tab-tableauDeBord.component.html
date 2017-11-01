@@ -21,6 +21,7 @@
 				<th>Acquisition, progrès et difficultés</th>
 				<th>Nom du domaine</th>
 				<th>Constat sur la période</th>
+				<th>Outil sur la période</th>
 				<th>Proposition pour la période suivante</th>
 				<th>Elément du programme à travailler</th>
 				<th>
@@ -45,6 +46,7 @@
 				</td>
 				<td class="domaine" (click)="onSelectLigne(ligne)" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.nomDomaine}}</td>
 				<td class="periodeEvaluee" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.constat}} </td>
+				<td class="periodeEvaluee" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.outil}} </td>
 				<td class="periodePreparee" *ngIf="i === 0" [rowSpan]="ligne.sousLignes.length">{{ligne.proposition}} </td>
 				<td class="periodePreparee">
 					<span *ngIf="sousLigne.proposition">

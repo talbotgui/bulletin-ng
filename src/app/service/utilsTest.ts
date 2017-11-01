@@ -7,9 +7,9 @@ export class UtilsTest {
         const nomDomaine: string = annee.competences[3].text;
         const constatations: model.Note[] = [];
         const idEleve: string = annee.eleves[1].id;
-        constatations.push(new model.Note('valeur', idEleve, annee.competences[4].id, new Date(), undefined, 'constat'));
+        constatations.push(new model.Note('valeur', idEleve, annee.competences[4].id, new Date(), undefined, 'constat', 'outil'));
         const propositions: model.Note[] = [];
-        propositions.push(new model.Note('valeur', idEleve, annee.competences[4].id, new Date(), 'proposition', undefined));
+        propositions.push(new model.Note('valeur', idEleve, annee.competences[4].id, new Date(), 'proposition', undefined, undefined));
         annee.notes.push(constatations[0]);
         annee.notes.push(propositions[0]);
         const mapCompetences = new Map<string, model.Competence>();

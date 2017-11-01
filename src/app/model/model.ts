@@ -34,7 +34,7 @@ export class Competence {
 
 export class Note {
   id: string;
-  constructor(public valeur: string, public idEleve?: string, public idItem?: string, public date?: Date, public proposition?: string, public constat?: string, public commentaire?: string) {
+  constructor(public valeur: string, public idEleve?: string, public idItem?: string, public date?: Date, public proposition?: string, public constat?: string, public commentaire?: string, public outil?: string) {
     this.id = ModelUtil.getUID();
   }
 }
@@ -123,14 +123,7 @@ export class SousLigneTableauDeBord {
 export class LigneTableauDeBord {
   sousLignes: SousLigneTableauDeBord[] = [];
 
-  // Membre privé pour conserver une valeur saisie quand aucune note n'existe
-  private tempConstat: string = '';
-
-  // Membre privé pour conserver une valeur saisie quand aucune note n'existe
-  private tempAide: string = '';
-
   set constat(value: string) {
-    this.tempConstat = value;
     for (const sousLigne of this.sousLignes) {
       if (sousLigne.constatation) {
         sousLigne.constatation.constat = value;
@@ -145,10 +138,9 @@ export class LigneTableauDeBord {
         }
       }
     }
-    return this.tempConstat;
+    return '';
   }
   set proposition(value: string) {
-    this.tempAide = value;
     for (const sousLigne of this.sousLignes) {
       if (sousLigne.proposition) {
         sousLigne.proposition.proposition = value;
@@ -163,7 +155,24 @@ export class LigneTableauDeBord {
         }
       }
     }
-    return this.tempAide;
+    return '';
+  }
+  set outil(value: string | undefined) {
+    for (const sousLigne of this.sousLignes) {
+      if (sousLigne.constatation) {
+        sousLigne.constatation.outil = value;
+      }
+    }
+  }
+  get outil(): string | undefined {
+    if (this.sousLignes) {
+      for (const sousLigne of this.sousLignes) {
+        if (sousLigne.constatation && sousLigne.constatation.outil) {
+          return sousLigne.constatation.outil;
+        }
+      }
+    }
+    return '';
   }
 
   constructor(public idDomaine: string | undefined, public nomDomaine: string | undefined, constatations: Note[] = [], propositions: Note[] = [], mapCompetences: Map<string, Competence>, public idEleve: string, public periodeEvaluee: Periode) {

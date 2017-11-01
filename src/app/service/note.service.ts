@@ -47,9 +47,11 @@ export class NoteService {
     // Lecture des données avec la sélection periodeEvaluee/periodePreparee
     let debutPeriode = ligne.periodeEvaluee.debut;
     let constat: string | undefined = ligne.constat;
+    let outil: string | undefined = ligne.outil;
     let proposition: string | undefined;
     if (!ajoutSurPeriodeEvaluee) {
       constat = undefined;
+      outil = undefined;
       proposition = ligne.proposition;
       const periodeSuivante = this.lectureService.getPeriodeSuivante(ligne.periodeEvaluee);
       if (periodeSuivante) {
@@ -61,7 +63,7 @@ export class NoteService {
     }
 
     // Ajout de la note dans l'année
-    const note = new model.Note('', ligne.idEleve, ligne.idDomaine, debutPeriode, proposition, constat, '');
+    const note = new model.Note('', ligne.idEleve, ligne.idDomaine, debutPeriode, proposition, constat, '', outil);
     this.dataRepository.getAnneeChargee().notes.push(note);
 
     // Mise à jour de la ligne avec une nouvelle sous ligne
