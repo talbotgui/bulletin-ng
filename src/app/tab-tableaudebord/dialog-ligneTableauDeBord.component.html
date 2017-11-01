@@ -13,7 +13,7 @@
 	</fieldset>
 	<br/>
 	<fieldset *ngIf="!!ligne.idDomaine">
-		<legend>Evaluations sur la période évaluées :</legend>
+		<legend>Evaluations sur la période '{{ligne.periodeEvaluee.nom}}' :</legend>
 		<textarea [(ngModel)]="ligne.constat" name="constat" placeholder="Constat sur la période évaluée" rows="8" cols="80" [(disabled)]="statutActivationSaisieConstat"></textarea>
 		<textarea [(ngModel)]="ligne.outil" name="outil" placeholder="Outil sur la période évaluée" rows="8" cols="80" [(disabled)]="statutActivationSaisieConstat"></textarea>
 		<br/>
@@ -51,7 +51,7 @@
 	</fieldset>
 	<br/>
 	<fieldset *ngIf="!!ligne.idDomaine">
-		<legend>Préparation pour la période préparée :</legend>
+		<legend>Préparation pour la période suivante :</legend>
 		<textarea [(ngModel)]="ligne.proposition" name="proposition" placeholder="Aide pour la période préparée" rows="8" cols="80"
 		 [(disabled)]="statutActivationSaisieAide"></textarea>
 		<br/>
