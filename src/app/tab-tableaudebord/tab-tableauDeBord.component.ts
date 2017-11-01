@@ -39,7 +39,7 @@ export class TabTableauDeBordComponent implements OnInit {
       const idEleve = params['idEleve'];
       const idPeriode = parseInt(params['idPeriode'], 10);
 
-      // Si des paramètres sont résents, initialisation des filtres
+      // Si des paramètres sont présents, initialisation des filtres
       if (idEleve && idPeriode) {
         const eleveTrouve = this.lectureService.getEleve(idEleve);
         const periodeTrouvee = this.lectureService.getPeriodeById(idPeriode);
