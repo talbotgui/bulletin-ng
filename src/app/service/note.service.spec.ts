@@ -48,7 +48,7 @@ describe('NoteService', () => {
     mockito.when(lectureServiceMock.getMapCompetences()).thenReturn(mapCompetence);
     mockito.when(lectureServiceMock.getPeriodeSuivante(mockito.anything())).thenReturn(annee.periodes[1]);
     mockito.when(lectureServiceMock.getListeNote()).thenReturn(annee.notes);
-    mockito.when(lectureServiceMock.getLibelleCompletCompetence('j1_2')).thenReturn(libelleComplet);
+    mockito.when(lectureServiceMock.getLibelleCompletCompetence(mockito.anything())).thenReturn(libelleComplet);
 
     // Act
     const resultat = noteService.calculerListeLigneTableauDeBord(annee.eleves[1], annee.periodes[0]);
