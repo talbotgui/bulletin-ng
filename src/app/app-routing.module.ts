@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'tab-eleve-route', component: TabEleveComponent },
   { path: 'tab-tableaudebord-route/:idEleve/:idPeriode', component: TabTableauDeBordComponent },
   { path: 'tab-tableaudebord-route', component: TabTableauDeBordComponent },
+  { path: 'tab-journal-route/:timeJournal', component: TabCahierJournalComponent },
   { path: 'tab-journal-route', component: TabCahierJournalComponent },
   { path: 'tab-taches-route', component: TabTachesComponent },
   { path: 'tab-aide-route', component: TabAideComponent }

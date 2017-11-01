@@ -1,5 +1,6 @@
 <!-- Boutons d'action -->
 <div class="actions">
+    <em class="fa fa-2x fa-arrow-left" matTooltip="Retour au journal" (click)="retour()"></em>
     <em class="fa fa-2x fa-print" matTooltip="Imprimer les données" (click)="imprimerLaPage()"></em>
 </div>
 
@@ -26,14 +27,25 @@
         </thead>
         <tbody *ngIf="journal">
             <tr *ngFor="let temp of journal.temps">
-                <td class="cadre">{{temp.nom}}<br/><br/><em>{{temp.type}}</em><br/><br/>De {{temp.debut}}<br/>A {{temp.fin}}<br/></td>
+                <td class="cadre">{{temp.nom}}
+                    <br/>
+                    <br/>
+                    <em>{{temp.type}}</em>
+                    <br/>
+                    <br/>De {{temp.debut}}
+                    <br/>A {{temp.fin}}
+                    <br/>
+                </td>
                 <td class="eleves">
-                    <span class="nowrap" *ngFor="let idEleve of temp.eleves">{{getPrenomEleve(idEleve)}}<br/></span>
+                    <span class="nowrap" *ngFor="let idEleve of temp.eleves">{{getPrenomEleve(idEleve)}}
+                        <br/>
+                    </span>
                 </td>
                 <td class="competences">
                     <span *ngFor="let comp of temp.competences">
                         {{getLibelleCompetence(comp)}}
-                        <br/><br/>
+                        <br/>
+                        <br/>
                     </span>
                 </td>
                 <td class="commentaire" [innerHTML]="temp.commentaire"></td>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Utils } from '../service/utils';
 import { LectureService } from '../service/lecture.service';
@@ -20,7 +20,7 @@ export class TabEditionJournalComponent extends TabAbstractEditionComponent {
   journal: model.Journal;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(route: ActivatedRoute, editionService: EditionService,
+  constructor(private routeur: Router, route: ActivatedRoute, editionService: EditionService,
     private lectureService: LectureService, private dataRepository: DataRepository) {
     super(route, editionService);
   }
@@ -75,5 +75,9 @@ export class TabEditionJournalComponent extends TabAbstractEditionComponent {
   }
   getLibelleCompetence(idCompetence: string): string {
     return this.lectureService.getLibelleCompletCompetence(idCompetence);
+  }
+
+  retour() {
+    this.routeur.navigateByUrl('/tab-journal-route/' + this.dateJournal.getTime());
   }
 }

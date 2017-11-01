@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 
 import { DialogDuplicationComponent } from './dialog-duplication.component';
@@ -43,10 +44,11 @@ export class TabCahierJournalComponent implements OnInit {
   journal?: model.Journal;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private lectureService: LectureService, private journalService: JournalService, private dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute, private lectureService: LectureService, private journalService: JournalService, private dialog: MatDialog) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
+
     // Date par défaut : aujourd'hui
     this.dateJournal = new Date();
     this.dateJournal.setHours(0, 0, 0, 0);
@@ -60,6 +62,18 @@ export class TabCahierJournalComponent implements OnInit {
       this.tempsDisponibles.push(i + 'h45');
     }
     this.typesDeTemps = this.lectureService.getlisteTypeDeTemps();
+
+    this.route.params.subscribe((params: { [key: string]: any }) => {
+      // lecture des paramètres
+      const timeJournal = params['timeJournal'];
+
+      // Si des paramètres sont présents, initialisation des filtres
+      if (timeJournal) {
+        this.dateJournal = new Date();
+        this.dateJournal.setTime(parseInt(timeJournal, 10));
+        this.onChangementDateJournal();
+      }
+    });
   }
 
   onChangementDateJournal() {
