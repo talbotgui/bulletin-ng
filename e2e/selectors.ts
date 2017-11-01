@@ -33,10 +33,30 @@ export class TabCompetences {
 
 export class TabEleves {
   static BUTTON_AJOUT_ELEVE = by.css('tab-eleve .fa-plus');
+  static BUTTON_EDITER = by.css('tab-eleve .fa-print');
   static CHIP_ELEVES = [
     by.xpath('(//tab-eleve/mat-chip-list/div/mat-chip)[1]'), by.xpath('(//tab-eleve/mat-chip-list/div/mat-chip)[2]'),
     by.xpath('(//tab-eleve/mat-chip-list/div/mat-chip)[3]'), by.xpath('(//tab-eleve/mat-chip-list/div/mat-chip)[4]'),
     by.xpath('(//tab-eleve/mat-chip-list/div/mat-chip)[5]')
+  ];
+}
+
+export class TabTdb {
+  static BUTTON_EDITER = by.css('.fa-print');
+
+  static CHIP_ELEVES = [
+    by.xpath('(//mat-chip-list[@class="filtres listeEleves mat-chip-list"]/div/mat-chip)[1]'),
+    by.xpath('(//mat-chip-list[@class="filtres listeEleves mat-chip-list"]/div/mat-chip)[2]'),
+    by.xpath('(//mat-chip-list[@class="filtres listeEleves mat-chip-list"]/div/mat-chip)[3]'),
+    by.xpath('(//mat-chip-list[@class="filtres listeEleves mat-chip-list"]/div/mat-chip)[4]'),
+    by.xpath('(//mat-chip-list[@class="filtres listeEleves mat-chip-list"]/div/mat-chip)[5]')
+  ];
+  static CHIP_PERIODES = [
+    by.xpath('(//mat-chip-list[@class="filtres listePeriodes mat-chip-list"]/div/mat-chip)[1]'),
+    by.xpath('(//mat-chip-list[@class="filtres listePeriodes mat-chip-list"]/div/mat-chip)[2]'),
+    by.xpath('(//mat-chip-list[@class="filtres listePeriodes mat-chip-list"]/div/mat-chip)[3]'),
+    by.xpath('(//mat-chip-list[@class="filtres listePeriodes mat-chip-list"]/div/mat-chip)[4]'),
+    by.xpath('(//mat-chip-list[@class="filtres listePeriodes mat-chip-list"]/div/mat-chip)[5]')
   ];
 }
 
@@ -46,6 +66,7 @@ export class TabJournal {
   static BUTTON_CREER_JOURNAL = by.css('span.clickable');
   static BUTTON_AJOUT_TEMPS = by.css('em.fa-clock-o');
   static BUTTON_PASSER_JOUR_PLUS_UN = by.css('em.fa.fa-forward');
+  static BUTTON_EDITION = by.css('.fa-print');
 
   static BUTTON_DUPLIQUER_JOURNAL = by.css('em.fa.fa-copy.fa-2x');
   static INPUT_DIALOGDUPLICATION_DATECIBLE = by.xpath('//input[@name="dateCible"]');
@@ -142,4 +163,36 @@ export class TabTaches {
   static CARTE3_ECHEANCE1_CHECKBOXOFF = by.xpath('((//mat-card)[3]/mat-card-content/div)[1]/em[@class="fa fa-square-o"]');
   static CARTE3_ECHEANCE2_CHECKBOXON = by.xpath('((//mat-card)[3]/mat-card-content/div)[2]/em[@class="fa fa-check-square-o"]');
   static CARTE3_ECHEANCE2_CHECKBOXOFF = by.xpath('((//mat-card)[3]/mat-card-content/div)[2]/em[@class="fa fa-square-o"]');
+}
+
+export class EditionJournal {
+  static BUTTON_RETOUR = by.css('.fa-arrow-left');
+}
+
+export class EditionPpi {
+  static BUTTON_RETOUR = by.css('.fa-arrow-left');
+}
+
+export class EditionEleves {
+  static BUTTON_RETOUR = by.css('.fa-arrow-left');
+
+  static TITRE = by.css('div.titre');
+  static IDENTITE = by.css('.editionEleve-identite');
+  static DATES = by.css('.editionEleve-dates');
+  static CONTACTS = by.css('.editionEleve-contacts');
+  static PERE = by.css('.editionEleve-pere');
+  static MERE = by.css('.editionEleve-mere');
+  static FRATRIE = by.css('.editionEleve-fratrie');
+  static ACCUEIL = by.css('.editionEleve-accueil');
+  static DATES_PPA = by.css('.editionEleve-datesPPA');
+  static DATES_PAP = by.css('.editionEleve-datesPAP');
+  static DATES_ESS = by.css('.editionEleve-datesESS');
+  static DROIT = by.css('.editionEleve-droit');
+  static AUTORISATION = by.css('.editionEleve-autorisation');
+  static CURSUS = [
+    by.xpath('//div[@class="editionEleve-cursus"]/table/tbody[1]/tr[1]/td[1]'),
+    by.xpath('//div[@class="editionEleve-cursus"]/table/tbody[2]/tr[1]/td[1]'),
+    by.xpath('//div[@class="editionEleve-cursus"]/table/tbody[3]/tr[1]/td[1]'),
+    by.xpath('//div[@class="editionEleve-cursus"]/table/tbody[4]/tr[1]/td[1]')
+  ];
 }
