@@ -65,7 +65,7 @@ export class TabEditionPpiComponent extends TabAbstractEditionComponent {
     }
   }
 
-  retourAuTableauDeBord() {
+  retour() {
     this.routeur.navigateByUrl('/tab-tableaudebord-route/' + this.idEleve + '/' + this.idPeriode);
   }
 }
