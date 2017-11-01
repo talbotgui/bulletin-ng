@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Utils } from '../service/utils';
 import { LectureService } from '../service/lecture.service';
@@ -21,7 +21,7 @@ export class TabEditionPpiComponent extends TabAbstractEditionComponent {
   lignes: model.LigneTableauDeBord[];
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(route: ActivatedRoute, editionService: EditionService, private noteService: NoteService,
+  constructor(private routeur: Router, route: ActivatedRoute, editionService: EditionService, private noteService: NoteService,
     private lectureService: LectureService, private dataRepository: DataRepository) {
     super(route, editionService);
   }
@@ -63,5 +63,9 @@ export class TabEditionPpiComponent extends TabAbstractEditionComponent {
         this.entete = annee.enteteEdition;
       }
     }
+  }
+
+  retourAuTableauDeBord() {
+    this.routeur.navigateByUrl('/tab-tableaudebord-route/' + this.idEleve + '/' + this.idPeriode);
   }
 }

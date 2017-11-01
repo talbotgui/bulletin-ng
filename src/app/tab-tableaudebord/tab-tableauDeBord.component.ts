@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 
 import { LectureService } from '../service/lecture.service';
@@ -11,7 +12,7 @@ import { DialogLigneTableauDeBordComponent } from './dialog-ligneTableauDeBord.c
   selector: 'tab-tableauDeBord', templateUrl: './tab-tableauDeBord.component.html',
   styleUrls: ['./tab-tableauDeBord.component.css']
 })
-export class TabTableauDeBordComponent {
+export class TabTableauDeBordComponent implements OnInit {
 
   // Liste des filtres
   get eleves(): model.Eleve[] {
@@ -29,7 +30,29 @@ export class TabTableauDeBordComponent {
   lignes: model.LigneTableauDeBord[];
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private lectureService: LectureService, private noteService: NoteService, private dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute, private lectureService: LectureService, private noteService: NoteService, private dialog: MatDialog) { }
+
+  // Initialiation
+  ngOnInit(): void {
+    this.route.params.subscribe((params: { [key: string]: any }) => {
+      // lecture des paramètres
+      const idEleve = params['idEleve'];
+      const idPeriode = parseInt(params['idPeriode'], 10);
+
+      // Si des paramètres sont résents, initialisation des filtres
+      if (idEleve && idPeriode) {
+        const eleveTrouve = this.lectureService.getEleve(idEleve);
+        const periodeTrouvee = this.lectureService.getPeriodeById(idPeriode);
+        if (eleveTrouve && periodeTrouvee) {
+          this.eleveSelectionne = eleveTrouve;
+          this.periodeSelectionnee = periodeTrouvee;
+        }
+      }
+
+      // Rechargement des lignes
+      this.rechargeLesLignes();
+    });
+  }
 
   // A la sélection d'un filtre
   onSelectEleve(eleve: model.Eleve) {
