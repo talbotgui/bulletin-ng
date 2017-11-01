@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { DataRepository } from '../service/data.repository';
 import { LectureService } from '../service/lecture.service';
@@ -60,11 +61,24 @@ export class TabEleveComponent implements OnInit {
   }
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private lectureService: LectureService, private dataRepository: DataRepository) { }
+  constructor(private route: ActivatedRoute, private lectureService: LectureService, private dataRepository: DataRepository) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
     this.mapStatutEleve = this.lectureService.getMapLibelleStatutEleveMap();
+
+    this.route.params.subscribe((params: { [key: string]: any }) => {
+      // lecture des paramètres
+      const idEleve = params['idEleve'];
+
+      // Si des paramètres sont présents, initialisation des filtres
+      if (idEleve) {
+        const eleve = this.lectureService.getEleve(idEleve);
+        if (eleve) {
+          this.eleveSelectionne = eleve;
+        }
+      }
+    });
   }
 
   // A la sélection d'un élève

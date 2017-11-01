@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Utils } from '../service/utils';
 import { LectureService } from '../service/lecture.service';
@@ -20,7 +20,7 @@ export class TabEditionEleveComponent extends TabAbstractEditionComponent {
   eleve: model.Eleve;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(route: ActivatedRoute, editionService: EditionService,
+  constructor(private routeur: Router, route: ActivatedRoute, editionService: EditionService,
     private lectureService: LectureService, private dataRepository: DataRepository) {
     super(route, editionService);
   }
@@ -69,5 +69,9 @@ export class TabEditionEleveComponent extends TabAbstractEditionComponent {
   }
   nettoieString(valeur: string): string {
     return Utils.nettoieString(valeur);
+  }
+
+  retour() {
+    this.routeur.navigateByUrl('/tab-eleve-route/' + this.idEleve);
   }
 }
