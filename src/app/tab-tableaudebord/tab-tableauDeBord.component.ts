@@ -84,5 +84,6 @@ export class TabTableauDeBordComponent implements OnInit {
     const mapCompetences = this.lectureService.getMapCompetences();
     const dialog = this.dialog.open(DialogLigneTableauDeBordComponent).componentInstance;
     dialog.initialisePourUneSelectionDeDomaine(mapCompetences, this.eleveSelectionne.id, this.periodeSelectionnee);
+    dialog.lignes = this.lignes;
   }
 }

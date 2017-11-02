@@ -13,6 +13,9 @@ export class DialogLigneTableauDeBordComponent implements OnInit {
   @Input()
   ligne: model.LigneTableauDeBord;
 
+  // Lignes du tdb
+  lignes: model.LigneTableauDeBord[];
+
   // Note utilisée pour sélectionner le domaine
   premiereNote: model.Note | undefined;
 
@@ -66,11 +69,22 @@ export class DialogLigneTableauDeBordComponent implements OnInit {
   // Validation du domaine sélectionner
   validerDomaine() {
     if (this.premiereNote && this.premiereNote.idItem) {
-      const competenceSelectionnee = this.lectureService.getCompetence(this.premiereNote.idItem);
-      if (competenceSelectionnee) {
-        this.ligne.idDomaine = this.premiereNote.idItem;
-        this.ligne.nomDomaine = competenceSelectionnee.text;
-        this.premiereNote = undefined;
+
+      // Si une ligne existe déjà pour ce domaine, on l'utilise
+      const idDomaineSelectionne = this.premiereNote.idItem;
+      const ligneTdbExistantePourCeDomaine = this.lignes.find((uneDesLignes) => uneDesLignes.idDomaine === idDomaineSelectionne);
+      if (ligneTdbExistantePourCeDomaine) {
+        this.ligne = ligneTdbExistantePourCeDomaine;
+      }
+
+      // Sinon, on a crée une
+      else {
+        const competenceSelectionnee = this.lectureService.getCompetence(this.premiereNote.idItem);
+        if (competenceSelectionnee) {
+          this.ligne.idDomaine = this.premiereNote.idItem;
+          this.ligne.nomDomaine = this.lectureService.getLibelleCompletCompetence(competenceSelectionnee.id);
+          this.premiereNote = undefined;
+        }
       }
     }
   }
