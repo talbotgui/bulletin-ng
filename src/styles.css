@@ -19,6 +19,10 @@ label { margin: 0px 10px 0px 20px; }
 .mat-option { line-height: 30px; height: 30px; }
 .mat-input-infix { padding: 0!important; }
 
+/* Dialog */
+.mat-dialog-container { padding: 0px 24px 24px 24px!important; }
+.mat-dialog-container h2 { margin: 10px 0px; }
+
 /* grille */
 .mat-card-header-text { width: 100%!important; }
 .mat-grid-tile .mat-figure { align-items: start!important; }
