@@ -84,6 +84,7 @@ export class DialogLigneTableauDeBordComponent implements OnInit {
           this.ligne.idDomaine = this.premiereNote.idItem;
           this.ligne.nomDomaine = this.lectureService.getLibelleCompletCompetence(competenceSelectionnee.id);
           this.premiereNote = undefined;
+          this.lignes.unshift(this.ligne);
         }
       }
     }
