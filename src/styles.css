@@ -62,6 +62,9 @@ body.dynamique { background-image: url('./assets/images/fond.jpg'); }
 body.dynamique #contenu { opacity: 0.95; background-color: white; }
 body.dynamique #entete-actions .fa { color: white; }
 
+body.dynamique .rappelSauvegarde { color: red!important; }
+body.dynamique .sauvegardeDejaFaite { color: green!important; }
+
 body.dynamique nav a:not(.active) { color:black!important; }
 body.dynamique a.navCompetence { background-color: green!important; }
 body.dynamique a.navEleve { background-color: yellow!important; }
