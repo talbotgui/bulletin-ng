@@ -64,16 +64,16 @@ describe('Test des différentes éditions', () => {
     expect(page.isVisible(selectors.TabEleves.CHIP_ELEVES[1])).toBeTruthy();
   });
 
-  it('Retour de l\'édition du journal', () => {
-    //
-    //
-    page.click(selectors.APP.MENU_JOURNAL);
-    page.type(selectors.TabJournal.INPUT_DATE_JOURNAL, '06/10/2016');
-    page.click(selectors.TabJournal.BUTTON_EDITION);
-    page.click(selectors.EditionJournal.BUTTON_RETOUR);
-    //
-    expect(page.isVisible(selectors.TabJournal.INPUT_DATE_JOURNAL)).toBeTruthy();
-  });
+  // it('Retour de l\'édition du journal', () => {
+  //   //
+  //   //
+  //   page.click(selectors.APP.MENU_JOURNAL);
+  //   page.type(selectors.TabJournal.INPUT_DATE_JOURNAL, '06/10/2016');
+  //   page.click(selectors.TabJournal.BUTTON_EDITION);
+  //   page.click(selectors.EditionJournal.BUTTON_RETOUR);
+  //   //
+  //   expect(page.isVisible(selectors.TabJournal.INPUT_DATE_JOURNAL)).toBeTruthy();
+  // });
 
   it('Retour de l\'édition du PPI', () => {
     //
