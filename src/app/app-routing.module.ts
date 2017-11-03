@@ -10,6 +10,7 @@ import { TabEditionEleveComponent } from './tab-edition/tab-editioneleve.compone
 import { TabEditionJournalComponent } from './tab-edition/tab-editionjournal.component';
 import { TabEditionPpiComponent } from './tab-edition/tab-editionppi.component';
 import { TabEleveComponent } from './tab-eleve/tab-eleve.component';
+import { TabProjetComponent } from './tab-projet/tab-projet.component';
 import { TabTableauDeBordComponent } from './tab-tableaudebord/tab-tableauDeBord.component';
 import { TabTachesComponent } from './tab-taches/tab-taches.component';
 
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'tab-tableaudebord-route', component: TabTableauDeBordComponent },
   { path: 'tab-journal-route/:timeJournal', component: TabCahierJournalComponent },
   { path: 'tab-journal-route', component: TabCahierJournalComponent },
+  { path: 'tab-projet-route', component: TabProjetComponent },
   { path: 'tab-taches-route', component: TabTachesComponent },
   { path: 'tab-aide-route', component: TabAideComponent }
 ];

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
 import { DialogDuplicationComponent } from './dialog-duplication.component';
+import { DialogSelectionProjet } from '../tab-projet/dialog-selectionProjet.component';
 
 import { LectureService } from '../service/lecture.service';
 import { JournalService } from '../service/journal.service';
@@ -44,7 +46,8 @@ export class TabCahierJournalComponent implements OnInit {
   journal?: model.Journal;
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private route: ActivatedRoute, private lectureService: LectureService, private journalService: JournalService, private dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute, private lectureService: LectureService,
+    private journalService: JournalService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   // Appel au service à l'initialisation du composant
   ngOnInit(): void {
@@ -110,6 +113,25 @@ export class TabCahierJournalComponent implements OnInit {
 
   ajouterCompetence(temps: model.Temps) {
     temps.competences.push('#');
+  }
+
+  ajouterCompetenceDepuisProjet(temps: model.Temps) {
+    const dialog = this.dialog.open(DialogSelectionProjet).componentInstance;
+    dialog.onSelectionEmitter.subscribe((projet: model.Projet) => {
+      if (projet && projet.idCompetences) {
+
+        let nbAjoutees = 0;
+        projet.idCompetences.forEach((idCompetence: string) => {
+          if (temps.competences.indexOf(idCompetence) === -1) {
+            temps.competences.push(idCompetence);
+            nbAjoutees++;
+          }
+        });
+
+        const message = nbAjoutees + ' compétences ajoutées depuis les ' + projet.idCompetences.length + ' compétences du projet \'' + projet.nom + '\'';
+        this.snackBar.open(message, undefined, { duration: 3000 });
+      }
+    });
   }
 
   retirerCompetence(temps: model.Temps, index: number) {

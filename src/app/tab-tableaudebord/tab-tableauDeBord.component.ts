@@ -7,6 +7,7 @@ import { NoteService } from '../service/note.service';
 import * as model from '../model/model';
 
 import { DialogLigneTableauDeBordComponent } from './dialog-ligneTableauDeBord.component';
+import { DialogSelectionProjet } from '../tab-projet/dialog-selectionProjet.component';
 
 @Component({
   selector: 'tab-tableauDeBord', templateUrl: './tab-tableauDeBord.component.html',
@@ -85,5 +86,14 @@ export class TabTableauDeBordComponent implements OnInit {
     const dialog = this.dialog.open(DialogLigneTableauDeBordComponent).componentInstance;
     dialog.initialisePourUneSelectionDeDomaine(mapCompetences, this.eleveSelectionne.id, this.periodeSelectionnee);
     dialog.lignes = this.lignes;
+  }
+
+  // Pour créer les lignes correspondantes aux compétences d'un projet
+  creeNouvellesLignesDepuisUnProjet(): void {
+    const dialog = this.dialog.open(DialogSelectionProjet).componentInstance;
+    dialog.onSelectionEmitter.subscribe((projet: model.Projet) => {
+      this.noteService.ajouteNotesDepuisTdbPourUnProjet(projet, this.eleveSelectionne.id, this.periodeSelectionnee);
+      this.rechargeLesLignes();
+    });
   }
 }

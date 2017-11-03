@@ -21,7 +21,9 @@
 		</div>
 	</legend>
 
-	<div *ngIf="!journal">Aucun journal à cette date. Voulez-vous en créer un ? <span class="clickable" (click)="creerJournal()">OUI</span></div>
+	<div *ngIf="!journal">Aucun journal à cette date. Voulez-vous en créer un ?
+		<span class="clickable" (click)="creerJournal()">OUI</span>
+	</div>
 
 	<div *ngIf="!!journal">
 		<ckeditor [(ngModel)]="journal.remarque" [config]="configCkEditor" debounce="200"></ckeditor>
@@ -34,22 +36,27 @@
 					<th>Elèves</th>
 					<th>Compétences</th>
 					<th>Commentaire</th>
-					<th><em (click)="ajouterTemps()" matTooltip="Ajouter un temps" class="fa fa-clock-o fa-lg"></em></th>
+					<th>
+						<em (click)="ajouterTemps()" matTooltip="Ajouter un temps" class="fa fa-clock-o fa-lg"></em>
+					</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr *ngFor="let temp of journal.temps; let j = index" [class]="j%2==0 ? 'even' : 'odd'">
 					<td>
 						<input [(ngModel)]="temp.nom" name="nomTemps" placeholder="Nom" class="petitChamp" />
-						<br/><br/>
+						<br/>
+						<br/>
 						<mat-select [(ngModel)]="temp.debut" name="debutTemps" placeholder="Début" class="petitChamp">
 							<mat-option *ngFor="let t of tempsDisponibles" [value]="t">{{t}}</mat-option>
 						</mat-select>
-						<br/><br/>
+						<br/>
+						<br/>
 						<mat-select [(ngModel)]="temp.fin" name="finTemps" placeholder="Fin" class="petitChamp">
 							<mat-option *ngFor="let t of tempsDisponibles" [value]="t">{{t}}</mat-option>
 						</mat-select>
-						<br/><br/>
+						<br/>
+						<br/>
 						<mat-select [(ngModel)]="temp.type" name="typeTemps" placeholder="Type" class="petitChamp">
 							<mat-option *ngFor="let t of typesDeTemps" [value]="t">{{t}}</mat-option>
 						</mat-select>
@@ -74,6 +81,8 @@
 						<br/>
 						<em (click)="ajouterCompetence(temp)" matTooltip="Ajouter une compétence" class="fa fa-cogs fa-lg"></em>
 						<br/>
+						<em (click)="ajouterCompetenceDepuisProjet(temp)" matTooltip="Ajouter les compétences liées à un projet" class="fa fa-cogs fa-lg"></em>
+						<br/>
 						<em (click)="retirerTemp(j)" matTooltip="Supprimer le temps" class="fa fa-remove fa-lg"></em>
 						<br/>
 						<em *ngIf="j !== 0" (click)="deplacerTemps(j, -1)" matTooltip="Déplacer le temps vers le haut" class="fa fa-chevron-circle-up fa-lg"></em>
@@ -87,4 +96,21 @@
 	</div>
 </fieldset>
 <!-- Série de retour à la ligne pour tenter de résoudre le problème des dropdown qui s'affiche en haut de l'écran -->
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>&nbsp;
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>&nbsp;

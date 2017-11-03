@@ -17,7 +17,7 @@ import { MapValuesPipe, AttributesToMapPipe } from './pipes.component';
 
 // Tous les composants applicatifs de l'application
 import { AppComponent } from './app.component';
-import { ComposantCompetenceeComponent } from './compo-competence/compo-competence.component';
+import { ComposantCompetenceComponent } from './compo-competence/compo-competence.component';
 import { ComposantNoteComponent } from './compo-note/compo-note.component';
 import { ComposantMessageSauvegardeComponent } from './div-sauvegarde/compo-messagesauvegarde.component';
 import { DialogChargementComponent } from './div-sauvegarde/dialog-chargement.component';
@@ -25,6 +25,7 @@ import { DialogCompetenceFullTextComponent } from './compo-competence/dialog-com
 import { DialogDuplicationComponent } from './tab-cahierjournal/dialog-duplication.component';
 import { DialogLigneTableauDeBordComponent } from './tab-tableaudebord/dialog-ligneTableauDeBord.component';
 import { DialogSauvegardeComponent } from './div-sauvegarde/dialog-sauvegarde.component';
+import { DialogSelectionProjet } from './tab-projet/dialog-selectionProjet.component';
 import { DivSauvegardeComponent } from './div-sauvegarde/div-sauvegarde.component';
 import { DivSelecteurStyleComponent } from './div-selecteurstyle/div-selecteurstyle.component';
 import { TabAccueilComponent } from './tab-accueil/tab-accueil.component';
@@ -35,6 +36,7 @@ import { TabEditionEleveComponent } from './tab-edition/tab-editioneleve.compone
 import { TabEditionJournalComponent } from './tab-edition/tab-editionjournal.component';
 import { TabEditionPpiComponent } from './tab-edition/tab-editionppi.component';
 import { TabEleveComponent } from './tab-eleve/tab-eleve.component';
+import { TabProjetComponent } from './tab-projet/tab-projet.component';
 import { TabTableauDeBordComponent } from './tab-tableaudebord/tab-tableauDeBord.component';
 import { TabTachesComponent } from './tab-taches/tab-taches.component';
 
@@ -59,15 +61,17 @@ import { AppRoutingModule } from './app-routing.module';
 
   // Tous les composants applicatifs de l'application
   declarations: [
-    AppComponent, AttributesToMapPipe, ComposantCompetenceeComponent, ComposantMessageSauvegardeComponent, ComposantNoteComponent, DialogChargementComponent,
-    DialogCompetenceFullTextComponent, DialogDuplicationComponent, DialogLigneTableauDeBordComponent, DialogSauvegardeComponent, DivSauvegardeComponent,
-    DivSelecteurStyleComponent, MapValuesPipe, TabAccueilComponent, TabAideComponent, TabCahierJournalComponent, TabCompetenceComponent,
-    TabEditionEleveComponent, TabEditionJournalComponent, TabEditionPpiComponent, TabEleveComponent, TabTableauDeBordComponent, TabTachesComponent
+    AppComponent, AttributesToMapPipe, ComposantCompetenceComponent, ComposantMessageSauvegardeComponent, ComposantNoteComponent, DialogChargementComponent,
+    DialogCompetenceFullTextComponent, DialogDuplicationComponent, DialogLigneTableauDeBordComponent, DialogSauvegardeComponent, DialogSelectionProjet,
+    DivSauvegardeComponent, DivSelecteurStyleComponent, MapValuesPipe, TabAccueilComponent, TabAideComponent, TabCahierJournalComponent, TabCompetenceComponent,
+    TabEditionEleveComponent, TabEditionJournalComponent, TabEditionPpiComponent, TabEleveComponent, TabProjetComponent, TabTableauDeBordComponent,
+    TabTachesComponent
   ],
 
   // Tous les composants à afficher dans un Dialog
   entryComponents: [
-    DialogChargementComponent, DialogCompetenceFullTextComponent, DialogDuplicationComponent, DialogLigneTableauDeBordComponent, DialogSauvegardeComponent
+    DialogChargementComponent, DialogCompetenceFullTextComponent, DialogDuplicationComponent, DialogLigneTableauDeBordComponent, DialogSauvegardeComponent,
+    DialogSelectionProjet
   ],
 
   providers: [

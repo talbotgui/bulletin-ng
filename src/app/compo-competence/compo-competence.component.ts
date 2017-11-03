@@ -6,7 +6,7 @@ import { DialogCompetenceFullTextComponent } from './dialog-competencefulltext.c
 import * as model from '../model/model';
 
 @Component({ selector: 'compo-competence', templateUrl: './compo-competence.component.html', styleUrls: ['./compo-competence.component.css'] })
-export class ComposantCompetenceeComponent {
+export class ComposantCompetenceComponent {
 
   // Mode d'affichage
   @Input() lectureSeule: boolean;
@@ -25,12 +25,43 @@ export class ComposantCompetenceeComponent {
   // Profondeur maximale de la compétence sélectionnable (3 pour un domaine)
   @Input() profondeurMaximaleAutorisee: number = 99;
 
+  // Projet avec ses competences
+  @Input() projet: model.Projet;
+
+  // Index de la compétence dans le projet
+  @Input() projetIndexCompetence: number;
+
+  // Getter masquant la source de l'identifiant (note, temp ou projet)
+  get idCompetence(): string | undefined {
+    if (this.note && this.note.idItem) {
+      return this.note.idItem;
+    } else if (this.temp) {
+      return this.temp.competences[this.tempIndexCompetence];
+    } else if (this.projet) {
+      return this.projet.idCompetences[this.projetIndexCompetence];
+    } else {
+      return undefined;
+    }
+  }
+
+  // Setter masquant la source de l'identifiant (note, temp ou projet)
+  set idCompetence(valeur: string | undefined) {
+    if (valeur) {
+      if (this.note && this.note.idItem) {
+        this.note.idItem = valeur;
+      } else if (this.temp) {
+        this.temp.competences[this.tempIndexCompetence] = valeur;
+      } else if (this.projet) {
+        this.projet.idCompetences[this.projetIndexCompetence] = valeur;
+      }
+    }
+  }
+
   // Libellé complet de la compétence sélectionnée
   get libelleCompletCompetenceSelectionnee(): string {
-    if (this.note && this.note.idItem) {
-      return this.lectureService.getLibelleCompletCompetence(this.note.idItem, this.idCompetenceRacine);
-    } else if (this.temp) {
-      return this.lectureService.getLibelleCompletCompetence(this.temp.competences[this.tempIndexCompetence], this.idCompetenceRacine);
+    const idCompetence = this.idCompetence;
+    if (idCompetence) {
+      return this.lectureService.getLibelleCompletCompetence(idCompetence, this.idCompetenceRacine);
     } else {
       return '';
     }
@@ -38,13 +69,8 @@ export class ComposantCompetenceeComponent {
 
   // Liste des enfants
   get listeCompetenceEnfant(): model.Competence[] {
-    // Extraction de l'id de la compétence en fonction de l'usage du composant
-    let idCompetence;
-    if (this.note && this.note.idItem) {
-      idCompetence = this.note.idItem;
-    } else if (this.temp) {
-      idCompetence = this.temp.competences[this.tempIndexCompetence];
-    } else {
+    const idCompetence = this.idCompetence;
+    if (!idCompetence) {
       return [];
     }
 
@@ -65,15 +91,11 @@ export class ComposantCompetenceeComponent {
 
   // Pour remonter d'un niveau
   selectionnerParent() {
-    if (this.note && this.note.idItem && this.note.idItem !== this.idCompetenceRacine) {
-      const competence = this.lectureService.getCompetence(this.note.idItem);
+    const idCompetence = this.idCompetence;
+    if (idCompetence && idCompetence !== this.idCompetenceRacine) {
+      const competence = this.lectureService.getCompetence(idCompetence);
       if (competence && competence.parent) {
-        this.note.idItem = competence.parent;
-      }
-    } else if (this.temp && this.temp.competences[this.tempIndexCompetence] !== this.idCompetenceRacine) {
-      const competence = this.lectureService.getCompetence(this.temp.competences[this.tempIndexCompetence]);
-      if (competence && competence.parent) {
-        this.temp.competences[this.tempIndexCompetence] = competence.parent;
+        this.idCompetence = competence.parent;
       }
     }
   }
@@ -82,12 +104,6 @@ export class ComposantCompetenceeComponent {
   afficherPopupFiltre() {
     const popup = this.dialog.open(DialogCompetenceFullTextComponent, { height: '550px', width: '800px' });
     popup.componentInstance.idCompetenceRacine = this.idCompetenceRacine;
-    popup.componentInstance.onSelectionRealisee.subscribe((idCompetence: string) => {
-      if (this.note) {
-        this.note.idItem = idCompetence;
-      } else if (this.temp) {
-        this.temp.competences[this.tempIndexCompetence] = idCompetence;
-      }
-    });
+    popup.componentInstance.onSelectionRealisee.subscribe((idCompetence: string) => this.idCompetence = idCompetence);
   }
 }

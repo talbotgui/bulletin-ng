@@ -75,6 +75,7 @@ body.dynamique a.navEleve { background-color: yellow!important; }
 body.dynamique a.navEleve.active { color: black!important; }
 body.dynamique a.navTdb { background-color: orange!important; }
 body.dynamique a.navJournal { background-color: red!important; }
+body.dynamique a.navProjet { background-color: rgb(235, 44, 171)!important; }
 body.dynamique a.navTaches { background-color: #ba12a3!important; }
 body.dynamique a.active { opacity: 1!important; }
 

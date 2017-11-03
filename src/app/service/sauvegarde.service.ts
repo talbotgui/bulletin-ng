@@ -83,13 +83,9 @@ export class SauvegardeService {
         this.snackBar.open(message, undefined, { duration: 3000 });
 
         // Pour mettre en avant le bouton de sauvegarde
-        this.ngZone.runOutsideAngular(() => {
-          window.setInterval(() => {
-            this.ngZone.run(() => {
-              this.metEnAvantLeBoutonSauvegarde();
-            });
-          }, this.DELAI_MISE_EN_AVANT_BOUTON_SAUVEGARDE);
-        });
+        this.ngZone.runOutsideAngular(
+          () => window.setInterval(() => this.ngZone.run(() => this.metEnAvantLeBoutonSauvegarde()), this.DELAI_MISE_EN_AVANT_BOUTON_SAUVEGARDE)
+        );
       }
     );
   }
@@ -122,13 +118,9 @@ export class SauvegardeService {
     this.snackBar.open(message, undefined, { duration: 3000 });
 
     // Pour mettre en avant le bouton de sauvegarde
-    this.ngZone.runOutsideAngular(() => {
-      window.setInterval(() => {
-        this.ngZone.run(() => {
-          this.metEnAvantLeBoutonSauvegarde();
-        });
-      }, this.DELAI_MISE_EN_AVANT_BOUTON_SAUVEGARDE);
-    });
+    this.ngZone.runOutsideAngular(
+      () => window.setInterval(() => this.ngZone.run(() => this.metEnAvantLeBoutonSauvegarde()), this.DELAI_MISE_EN_AVANT_BOUTON_SAUVEGARDE)
+    );
   }
 
   /**
@@ -137,9 +129,7 @@ export class SauvegardeService {
   sauvegardeAnneeParTelechargement(): void {
     // Mise en place de la sauvegarde automatique
     if (!this.getDateDerniereSauvegardeDeLaSession()) {
-      window.setInterval(() => {
-        this.sauvegardeAnneeParTelechargementExecution();
-      }, this.DELAI_SAUVEGARDE_AUTOMATIQUE);
+      window.setInterval(() => this.sauvegardeAnneeParTelechargementExecution(), this.DELAI_SAUVEGARDE_AUTOMATIQUE);
     }
 
     // Execution de la sauvegarde
@@ -152,9 +142,7 @@ export class SauvegardeService {
   sauvegardeAnneeSurServeur(): void {
     // Mise en place de la sauvegarde automatique
     if (!this.getDateDerniereSauvegardeDeLaSession()) {
-      window.setInterval(() => {
-        this.sauvegardeAnneeSurServeurExecution();
-      }, this.DELAI_SAUVEGARDE_AUTOMATIQUE);
+      window.setInterval(() => this.sauvegardeAnneeSurServeurExecution(), this.DELAI_SAUVEGARDE_AUTOMATIQUE);
     }
     // Execution de la sauvegarde
     this.sauvegardeAnneeSurServeurExecution();

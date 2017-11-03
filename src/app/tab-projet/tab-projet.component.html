@@ -1,0 +1,32 @@
+<!-- Actions -->
+<div class="actions">
+	<em class="fa fa-plus fa-2x ajoutProjet" matTooltip="Ajouter un nouveau projet" (click)="creerProjet()"></em>
+</div>
+
+<!-- Liste des projets -->
+<mat-chip-list class="listeProjets" [selectable]="true">
+	<mat-chip *ngFor="let p of projets" (click)="onSelectProjet(p); projetForm.reset(p);" [class.projetSelectionne]="p === projet">{{p.nom}}</mat-chip>
+</mat-chip-list>
+
+<!-- Formulaire de modification -->
+<form novalidate #projetForm="ngForm">
+	<div *ngIf="projet" class="formulaireProjet">
+		<fieldset>
+			<legend>Détails</legend>
+			<div *ngIf="!inputNom.pristine && inputNom.errors?.required" class="alert-danger">Le nom est obligatoire</div>
+			<div *ngIf="!inputNom.pristine && inputNom.errors?.minlength" class="alert-danger">Le nom doit faire 3 caractères au minimum</div>
+			<input required minlength="3" #inputNom="ngModel" [(ngModel)]="projet.nom" name="nom" placeholder="Nom" />
+		</fieldset>
+		<fieldset>
+			<legend>
+				<span>Compétences </span>
+				<em (click)="ajouterCompetence()" matTooltip="Ajouter une compétence" class="fa fa-plus ajoutCompetence"></em>
+			</legend>
+			<div *ngFor="let idCompetence of projet.idCompetences; let i = index">
+				<em (click)="retirerCompetence(i)" matTooltip="Supprimer la compétence" class="fa fa-remove"></em>
+				<compo-competence [projet]="projet" [projetIndexCompetence]="i"></compo-competence>
+				<br/>
+			</div>
+		</fieldset>
+	</div>
+</form>
