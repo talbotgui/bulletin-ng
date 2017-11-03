@@ -6,7 +6,7 @@ import { DialogCompetenceFullTextComponent } from './dialog-competencefulltext.c
 import * as model from '../model/model';
 
 @Component({ selector: 'compo-competence', templateUrl: './compo-competence.component.html', styleUrls: ['./compo-competence.component.css'] })
-export class ComposantCompetenceeComponent {
+export class ComposantCompetenceComponent {
 
   // Mode d'affichage
   @Input() lectureSeule: boolean;

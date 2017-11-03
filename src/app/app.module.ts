@@ -17,7 +17,7 @@ import { MapValuesPipe, AttributesToMapPipe } from './pipes.component';
 
 // Tous les composants applicatifs de l'application
 import { AppComponent } from './app.component';
-import { ComposantCompetenceeComponent } from './compo-competence/compo-competence.component';
+import { ComposantCompetenceComponent } from './compo-competence/compo-competence.component';
 import { ComposantNoteComponent } from './compo-note/compo-note.component';
 import { ComposantMessageSauvegardeComponent } from './div-sauvegarde/compo-messagesauvegarde.component';
 import { DialogChargementComponent } from './div-sauvegarde/dialog-chargement.component';
@@ -60,7 +60,7 @@ import { AppRoutingModule } from './app-routing.module';
 
   // Tous les composants applicatifs de l'application
   declarations: [
-    AppComponent, AttributesToMapPipe, ComposantCompetenceeComponent, ComposantMessageSauvegardeComponent, ComposantNoteComponent, DialogChargementComponent,
+    AppComponent, AttributesToMapPipe, ComposantCompetenceComponent, ComposantMessageSauvegardeComponent, ComposantNoteComponent, DialogChargementComponent,
     DialogCompetenceFullTextComponent, DialogDuplicationComponent, DialogLigneTableauDeBordComponent, DialogSauvegardeComponent, DivSauvegardeComponent,
     DivSelecteurStyleComponent, MapValuesPipe, TabAccueilComponent, TabAideComponent, TabCahierJournalComponent, TabCompetenceComponent,
     TabEditionEleveComponent, TabEditionJournalComponent, TabEditionPpiComponent, TabEleveComponent, TabProjetComponent, TabTableauDeBordComponent,
