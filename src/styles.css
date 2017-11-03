@@ -96,3 +96,5 @@ body.dynamique .listePeriodes mat-chip:nth-child(2) { background-color: #FFA400!
 body.dynamique .listePeriodes mat-chip:nth-child(3) { background-color: #F85F05!important; }
 body.dynamique .listePeriodes mat-chip:nth-child(4) { background-color: #FF0000!important; }
 body.dynamique .listePeriodes mat-chip:nth-child(5) { background-color: #DF0F82!important; }
+
+body.dynamique .cahierJournal .mat-accent { background-color: red; }
