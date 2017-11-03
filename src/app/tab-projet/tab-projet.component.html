@@ -5,7 +5,7 @@
 
 <!-- Liste des projets -->
 <mat-chip-list class="listeProjets" [selectable]="true">
-	<mat-chip *ngFor="let p of projets" (click)="onSelectProjet(p); projetForm.reset(p);" [class.projetSelectionne]="p === projet">{{projet.nom}}</mat-chip>
+	<mat-chip *ngFor="let p of projets" (click)="onSelectProjet(p); projetForm.reset(p);" [class.projetSelectionne]="p === projet">{{p.nom}}</mat-chip>
 </mat-chip-list>
 
 <!-- Formulaire de modification -->

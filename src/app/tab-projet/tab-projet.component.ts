@@ -18,6 +18,9 @@ export class TabProjetComponent implements OnInit {
     this.projets = this.lectureService.getListeProjets();
   }
 
+  onSelectProjet(p: model.Projet): void {
+    this.projet = p;
+  }
   retirerCompetence(i: number): void {
     if (this.projet) {
       this.projet.idCompetences.splice(i, 1);
