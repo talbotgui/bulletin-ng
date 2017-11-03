@@ -1,6 +1,6 @@
 <!-- Actions -->
 <div class="actions">
-	<em class="fa fa-plus fa-2x" matTooltip="Ajouter un nouveau projet" (click)="creerProjet()"></em>
+	<em class="fa fa-plus fa-2x ajoutProjet" matTooltip="Ajouter un nouveau projet" (click)="creerProjet()"></em>
 </div>
 
 <!-- Liste des projets -->
@@ -20,7 +20,7 @@
 		<fieldset>
 			<legend>
 				<span>Compétences </span>
-				<em (click)="ajouterCompetence()" matTooltip="Ajouter une compétence" class="fa fa-plus"></em>
+				<em (click)="ajouterCompetence()" matTooltip="Ajouter une compétence" class="fa fa-plus ajoutCompetence"></em>
 			</legend>
 			<div *ngFor="let idCompetence of projet.idCompetences; let i = index">
 				<em (click)="retirerCompetence(i)" matTooltip="Supprimer la compétence" class="fa fa-remove"></em>

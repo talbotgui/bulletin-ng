@@ -4,6 +4,7 @@ export class APP {
   static TITLE = by.css('app-root h1');
   static MENU_COMPETENCES = by.css('a.navCompetence');
   static MENU_ELEVES = by.css('a.navEleve');
+  static MENU_PROJET = by.css('a.navProjet');
   static MENU_TDB = by.css('a.navTdb');
   static MENU_JOURNAL = by.css('a.navJournal');
   static MENU_TACHES = by.css('a.navTaches');
@@ -38,6 +39,18 @@ export class TabEleves {
     by.xpath('(//tab-eleve/mat-chip-list/div/mat-chip)[1]'), by.xpath('(//tab-eleve/mat-chip-list/div/mat-chip)[2]'),
     by.xpath('(//tab-eleve/mat-chip-list/div/mat-chip)[3]'), by.xpath('(//tab-eleve/mat-chip-list/div/mat-chip)[4]'),
     by.xpath('(//tab-eleve/mat-chip-list/div/mat-chip)[5]')
+  ];
+}
+
+export class TabProjet {
+  static BUTTON_AJOUT_PROJET = by.css('tab-projet .ajoutProjet');
+  static BUTTON_AJOUT_COMPETENCE = by.css('tab-projet .ajoutCompetence');
+  static INPUT_NOM_PROJET = by.name('nom');
+  static COMPETENCE_PREMIER_SELECT_VISIBLE = by.xpath('//compo-competence/div/div/div/select');
+  static CHIP_PROJETS = [
+    by.xpath('(//tab-projet/mat-chip-list/div/mat-chip)[1]'),
+    by.xpath('(//tab-projet/mat-chip-list/div/mat-chip)[2]'),
+    by.xpath('(//tab-projet/mat-chip-list/div/mat-chip)[3]')
   ];
 }
 
