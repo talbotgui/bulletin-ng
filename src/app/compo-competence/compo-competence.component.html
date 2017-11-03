@@ -16,5 +16,11 @@
                 <option *ngFor="let competence of listeCompetenceEnfant" [value]="competence.id">{{competence.text}}</option>
             </select>
         </div>
+        <div *ngIf="!!projet">
+            <select required #inputStatut="ngModel" [(ngModel)]="projet.idCompetences[projetIndexCompetence]" name="competence" *ngIf="!!listeCompetenceEnfant && listeCompetenceEnfant.length>0">
+                <option [value]="projet.idCompetences[projetIndexCompetence]"></option>
+                <option *ngFor="let competence of listeCompetenceEnfant" [value]="competence.id">{{competence.text}}</option>
+            </select>
+        </div>
     </div>
 </div>

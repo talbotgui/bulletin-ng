@@ -25,15 +25,26 @@ export class ComposantCompetenceeComponent {
   // Profondeur maximale de la compétence sélectionnable (3 pour un domaine)
   @Input() profondeurMaximaleAutorisee: number = 99;
 
+  // Projet avec ses competences
+  @Input() projet: model.Projet;
+
+  // Index de la compétence dans le projet
+  @Input() projetIndexCompetence: number;
+
   // Libellé complet de la compétence sélectionnée
   get libelleCompletCompetenceSelectionnee(): string {
+    let idCompetence;
     if (this.note && this.note.idItem) {
-      return this.lectureService.getLibelleCompletCompetence(this.note.idItem, this.idCompetenceRacine);
+      idCompetence = this.note.idItem;
     } else if (this.temp) {
-      return this.lectureService.getLibelleCompletCompetence(this.temp.competences[this.tempIndexCompetence], this.idCompetenceRacine);
+      idCompetence = this.temp.competences[this.tempIndexCompetence];
+    } else if (this.projet) {
+      idCompetence = this.projet.idCompetences[this.projetIndexCompetence];
+      console.info("libelleCompletCompetenceSelectionnee:idCompetence=" + idCompetence);
     } else {
       return '';
     }
+    return this.lectureService.getLibelleCompletCompetence(idCompetence, this.idCompetenceRacine);
   }
 
   // Liste des enfants
@@ -44,10 +55,12 @@ export class ComposantCompetenceeComponent {
       idCompetence = this.note.idItem;
     } else if (this.temp) {
       idCompetence = this.temp.competences[this.tempIndexCompetence];
+    } else if (this.projet) {
+      idCompetence = this.projet.idCompetences[this.projetIndexCompetence];
     } else {
       return [];
     }
-
+    console.info("listeCompetenceEnfant:idCompetence=" + idCompetence);
     // Vérification de la profondeur maximale
     if (this.profondeurMaximaleAutorisee !== 99) {
       const profondeurActuelle = this.lectureService.getAncetresCompetence(idCompetence).length;
@@ -74,6 +87,11 @@ export class ComposantCompetenceeComponent {
       const competence = this.lectureService.getCompetence(this.temp.competences[this.tempIndexCompetence]);
       if (competence && competence.parent) {
         this.temp.competences[this.tempIndexCompetence] = competence.parent;
+      }
+    } else if (this.projet && this.projet.idCompetences[this.projetIndexCompetence] !== this.idCompetenceRacine) {
+      const competence = this.lectureService.getCompetence(this.projet.idCompetences[this.projetIndexCompetence]);
+      if (competence && competence.parent) {
+        this.projet.idCompetences[this.projetIndexCompetence] = competence.parent;
       }
     }
   }

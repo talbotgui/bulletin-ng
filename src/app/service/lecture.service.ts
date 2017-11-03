@@ -119,6 +119,10 @@ export class LectureService {
     return resultat;
   }
 
+  getListeProjets(): model.Projet[] {
+    return this.dataRepository.getAnneeChargee().projets;
+  }
+
   /** Recherche des compétences "enfants" d'une compétence */
   getListeCompetencesEnfant(idCompetence: string): model.Competence[] {
 

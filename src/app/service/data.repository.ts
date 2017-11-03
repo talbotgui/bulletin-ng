@@ -87,6 +87,15 @@ export class DataRepository {
         nouvelleAnnee.notes.push(newN);
       });
     }
+    nouvelleAnnee.projets = [];
+    if (annee.projets) {
+      annee.projets.forEach((p) => {
+        const newP = new model.Projet();
+        newP.nom = p.nom;
+        newP.idCompetences = p.idCompetences;
+        nouvelleAnnee.projets.push(newP);
+      });
+    }
     nouvelleAnnee.journal = [];
     if (annee.journal) {
       annee.journal.forEach((j) => {

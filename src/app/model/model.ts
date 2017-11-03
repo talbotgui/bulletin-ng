@@ -115,11 +115,17 @@ export class Annee {
   dateDerniereSauvegarde: Date; historique: Historique[] = []; erreursChargement: string[] = [];
   mapLibelleStatutEleve: any; mapLibelleNotes: any;
   mapLibelleStatutEleveMap: Map<string, string>; mapLibelleNotesMap: Map<string, string>;
-  themeSelectionne: string; taches: Tache[] = [];
+  themeSelectionne: string; taches: Tache[] = []; projets: Projet[];
 }
+
+export class Projet {
+  nom: string; idCompetences: string[] = [];
+}
+
 export class SousLigneTableauDeBord {
   constructor(public competence?: Competence, public constatation?: Note, public proposition?: Note) { }
 }
+
 export class LigneTableauDeBord {
   sousLignes: SousLigneTableauDeBord[] = [];
 
