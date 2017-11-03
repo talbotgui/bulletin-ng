@@ -25,6 +25,7 @@ import { DialogCompetenceFullTextComponent } from './compo-competence/dialog-com
 import { DialogDuplicationComponent } from './tab-cahierjournal/dialog-duplication.component';
 import { DialogLigneTableauDeBordComponent } from './tab-tableaudebord/dialog-ligneTableauDeBord.component';
 import { DialogSauvegardeComponent } from './div-sauvegarde/dialog-sauvegarde.component';
+import { DialogSelectionProjet } from './tab-projet/dialog-selectionProjet.component';
 import { DivSauvegardeComponent } from './div-sauvegarde/div-sauvegarde.component';
 import { DivSelecteurStyleComponent } from './div-selecteurstyle/div-selecteurstyle.component';
 import { TabAccueilComponent } from './tab-accueil/tab-accueil.component';
@@ -61,15 +62,16 @@ import { AppRoutingModule } from './app-routing.module';
   // Tous les composants applicatifs de l'application
   declarations: [
     AppComponent, AttributesToMapPipe, ComposantCompetenceComponent, ComposantMessageSauvegardeComponent, ComposantNoteComponent, DialogChargementComponent,
-    DialogCompetenceFullTextComponent, DialogDuplicationComponent, DialogLigneTableauDeBordComponent, DialogSauvegardeComponent, DivSauvegardeComponent,
-    DivSelecteurStyleComponent, MapValuesPipe, TabAccueilComponent, TabAideComponent, TabCahierJournalComponent, TabCompetenceComponent,
+    DialogCompetenceFullTextComponent, DialogDuplicationComponent, DialogLigneTableauDeBordComponent, DialogSauvegardeComponent, DialogSelectionProjet,
+    DivSauvegardeComponent, DivSelecteurStyleComponent, MapValuesPipe, TabAccueilComponent, TabAideComponent, TabCahierJournalComponent, TabCompetenceComponent,
     TabEditionEleveComponent, TabEditionJournalComponent, TabEditionPpiComponent, TabEleveComponent, TabProjetComponent, TabTableauDeBordComponent,
     TabTachesComponent
   ],
 
   // Tous les composants à afficher dans un Dialog
   entryComponents: [
-    DialogChargementComponent, DialogCompetenceFullTextComponent, DialogDuplicationComponent, DialogLigneTableauDeBordComponent, DialogSauvegardeComponent
+    DialogChargementComponent, DialogCompetenceFullTextComponent, DialogDuplicationComponent, DialogLigneTableauDeBordComponent, DialogSauvegardeComponent,
+    DialogSelectionProjet
   ],
 
   providers: [

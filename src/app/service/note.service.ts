@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 
 import { DataRepository } from './data.repository';
 import { LectureService } from './lecture.service';
@@ -7,7 +8,7 @@ import * as model from '../model/model';
 @Injectable()
 export class NoteService {
 
-  constructor(private dataRepository: DataRepository, private lectureService: LectureService) { }
+  constructor(private dataRepository: DataRepository, private lectureService: LectureService, private snackBar: MatSnackBar) { }
 
   creerNotePourPeriodeSuivanteApartirDunNoteDePeriodePrecedente(ligne: model.LigneTableauDeBord, sousLigne: model.SousLigneTableauDeBord): void {
 
@@ -76,6 +77,25 @@ export class NoteService {
           ligne.sousLignes.push(new model.SousLigneTableauDeBord(competence, undefined, note));
         }
       }
+    }
+  }
+
+  // Ajout d'autant de note que de compétence dans le projet
+  ajouteNotesDepuisTdbPourUnProjet(projet: model.Projet, idEleve: string, periode: model.Periode): void {
+    if (projet && projet.idCompetences) {
+
+      // Pour chaque note, création d'une note (si aucune n'existe déjà pour cet élève et cette période)
+      let nbCompetencesAjoutees = 0;
+      projet.idCompetences.forEach((idCompetence: string) => {
+        if (this.lectureService.rechercheNotes(idEleve, periode, idCompetence).length === 0) {
+          const note = new model.Note('', idEleve, idCompetence, periode.debut);
+          this.dataRepository.getAnneeChargee().notes.push(note);
+          nbCompetencesAjoutees++;
+        }
+      });
+
+      const message = nbCompetencesAjoutees + ' notes ajoutées depuis les ' + projet.idCompetences.length + ' compétences du projet \'' + projet.nom + '\'';
+      this.snackBar.open(message, undefined, { duration: 3000 });
     }
   }
 

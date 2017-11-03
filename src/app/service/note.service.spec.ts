@@ -32,8 +32,18 @@ describe('NoteService', () => {
     mockito.reset(dataRepositoryMock);
     mockito.reset(lectureServiceMock);
 
+    // Creation de l'environnement de test du composant
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, MatSnackBarModule, BrowserAnimationsModule],
+      providers: [
+        NoteService,
+        { provide: DataRepository, useValue: mockito.instance(dataRepositoryMock) },
+        { provide: LectureService, useValue: mockito.instance(lectureServiceMock) }
+      ]
+    }).compileComponents();
+
     // Récupération des instances de composants
-    noteService = new NoteService(mockito.instance(dataRepositoryMock), mockito.instance(lectureServiceMock));
+    noteService = TestBed.get(NoteService);
   });
 
   it('calculerListeLigneTableauDeBord renvoie des lignes avec une année et des paramètres (1ère période)', () => {

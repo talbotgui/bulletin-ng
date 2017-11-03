@@ -71,6 +71,17 @@ export class LectureService {
   }
 
   /**
+   * Recherche de notes
+   * @param idEleve Identifiant d'un élève
+   * @param periode Période
+   * @param idCompetence Id de la compétence
+   */
+  rechercheNotes(idEleve: string, periode: model.Periode, idCompetence: string): model.Note[] {
+    return this.getListeNote().filter((note: model.Note) => note.idEleve === idEleve && note.idItem === idCompetence
+      && note.date && periode.debut <= note.date && note.date <= periode.fin);
+  }
+
+  /**
    * Calcul le libellé de la compétence à partir de son ID.
    * Si idCompetenceRacine est précisé, le libellé commence à cette compétence
    */
