@@ -352,4 +352,27 @@ describe('NoteService', () => {
     mockito.verify(lectureServiceMock.getPeriodeSuivante(periodeEvaluee)).once();
     mockito.verify(dataRepositoryMock.getAnneeChargee()).never();
   });
+
+  it('ajouteNotesDepuisTdbPourUnProjet', () => {
+    // Arrange
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    annee.notes = [];
+    const periode = annee.periodes[1];
+    const idEleve = annee.eleves[1].id;
+    const projet = annee.projets[0];
+    const competence1 = projet.idCompetences[0];
+    const competence2 = projet.idCompetences[1];
+    mockito.when(lectureServiceMock.rechercheNotes(idEleve, periode, competence1)).thenReturn([]);
+    mockito.when(lectureServiceMock.rechercheNotes(idEleve, periode, competence2)).thenReturn([new model.Note('')]);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+
+    // Act
+    noteService.ajouteNotesDepuisTdbPourUnProjet(projet, idEleve, periode);
+
+    // Assert
+    expect(annee.notes.length).toBe(1);
+    mockito.verify(lectureServiceMock.rechercheNotes(idEleve, periode, mockito.anything())).times(2);
+    mockito.verify(dataRepositoryMock.getAnneeChargee()).times(1);
+  });
+
 });

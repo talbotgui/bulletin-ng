@@ -637,4 +637,36 @@ describe('LectureService', () => {
     expect(resultat.size).toBe(1366);
     mockito.verify(dataRepositoryMock.getAnneeChargee()).times(3);
   });
+
+  it('getListeProjets', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.getListeProjets();
+    //
+    expect(resultat.length).toBe(1);
+    mockito.verify(dataRepositoryMock.getAnneeChargee());
+  });
+
+  it('rechercheNotes', () => {
+    //
+    const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
+    const idEleve = annee.eleves[1].id;
+    const periode = annee.periodes[1];
+    const idCompetence = annee.competences[33].id;
+    annee.notes = [];
+    annee.notes.push(new model.Note('', idEleve, idCompetence, periode.debut));
+    annee.notes.push(new model.Note('', annee.eleves[2].id, idCompetence, periode.debut));
+    annee.notes.push(new model.Note('', idEleve, annee.competences[2].id, periode.debut));
+    annee.notes.push(new model.Note('', idEleve, idCompetence, annee.periodes[0].debut));
+    mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
+    //
+    const resultat = lectureService.rechercheNotes(idEleve, periode, idCompetence);
+    //
+    expect(resultat.length).toBe(1);
+    mockito.verify(dataRepositoryMock.getAnneeChargee());
+  });
+
+
 });

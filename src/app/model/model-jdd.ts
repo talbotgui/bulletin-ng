@@ -27,6 +27,7 @@ export class Jdd {
     enseignant: 'M. Toto',
     cycleNiveau: '2 / CE1',
     anneeScolaire: '2016-2017',
+    projets: [{ nom: 'projet1', idCompetences: ['j1_268', 'j1_269'] }],
     periodes: [
       {
         id: 1,
