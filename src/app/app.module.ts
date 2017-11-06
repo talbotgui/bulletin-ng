@@ -32,6 +32,7 @@ import { TabAccueilComponent } from './tab-accueil/tab-accueil.component';
 import { TabAideComponent } from './tab-aide/tab-aide.component';
 import { TabCahierJournalComponent } from './tab-cahierjournal/tab-cahierjournal.component';
 import { TabCompetenceComponent } from './tab-competence/tab-competence.component';
+import { TabEditionBilanComponent } from './tab-edition/tab-editionbilan.component';
 import { TabEditionEleveComponent } from './tab-edition/tab-editioneleve.component';
 import { TabEditionJournalComponent } from './tab-edition/tab-editionjournal.component';
 import { TabEditionPpiComponent } from './tab-edition/tab-editionppi.component';
@@ -64,8 +65,8 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent, AttributesToMapPipe, ComposantCompetenceComponent, ComposantMessageSauvegardeComponent, ComposantNoteComponent, DialogChargementComponent,
     DialogCompetenceFullTextComponent, DialogDuplicationComponent, DialogLigneTableauDeBordComponent, DialogSauvegardeComponent, DialogSelectionProjet,
     DivSauvegardeComponent, DivSelecteurStyleComponent, MapValuesPipe, TabAccueilComponent, TabAideComponent, TabCahierJournalComponent, TabCompetenceComponent,
-    TabEditionEleveComponent, TabEditionJournalComponent, TabEditionPpiComponent, TabEleveComponent, TabProjetComponent, TabTableauDeBordComponent,
-    TabTachesComponent
+    TabEditionBilanComponent, TabEditionEleveComponent, TabEditionJournalComponent, TabEditionPpiComponent, TabEleveComponent, TabProjetComponent,
+    TabTableauDeBordComponent, TabTachesComponent
   ],
 
   // Tous les composants à afficher dans un Dialog

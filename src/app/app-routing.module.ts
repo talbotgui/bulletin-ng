@@ -6,6 +6,7 @@ import { TabAccueilComponent } from './tab-accueil/tab-accueil.component';
 import { TabAideComponent } from './tab-aide/tab-aide.component';
 import { TabCahierJournalComponent } from './tab-cahierjournal/tab-cahierjournal.component';
 import { TabCompetenceComponent } from './tab-competence/tab-competence.component';
+import { TabEditionBilanComponent } from './tab-edition/tab-editionbilan.component';
 import { TabEditionEleveComponent } from './tab-edition/tab-editioneleve.component';
 import { TabEditionJournalComponent } from './tab-edition/tab-editionjournal.component';
 import { TabEditionPpiComponent } from './tab-edition/tab-editionppi.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'tab-editioneleve-route/:idEleve', component: TabEditionEleveComponent },
   { path: 'tab-editionjournal-route/:timeJournal', component: TabEditionJournalComponent },
   { path: 'tab-editionppi-route/:idEleve/:idPeriode', component: TabEditionPpiComponent },
+  { path: 'tab-editionbilan-route/:idEleve/:idPeriode', component: TabEditionBilanComponent },
   { path: 'tab-eleve-route/:idEleve', component: TabEleveComponent },
   { path: 'tab-eleve-route', component: TabEleveComponent },
   { path: 'tab-tableaudebord-route/:idEleve/:idPeriode', component: TabTableauDeBordComponent },
