@@ -55,6 +55,15 @@ export class TabEditionPpiComponent extends TabAbstractEditionComponent {
         // Recalcul des lignes (pour qu'elles soient propres même après une édition directe depuis la popup du TDB)
         this.lignes = this.noteService.calculerListeLigneTableauDeBord(eleve, periode);
 
+        // Ne pas imprimer les lignes qui n'ont pas de notes dans la période évaluée
+        this.lignes = this.lignes.filter((ligne) => {
+
+          ligne.sousLignes = ligne.sousLignes.filter((sousLigne) => !!sousLigne.constatation);
+
+          // On affiche la ligne si il lui reste des sousLigne
+          return ligne.sousLignes.length > 0;
+        });
+
         // Préparation des données d'entête
         this.titre = 'PPI de ' + eleve.nom.toUpperCase() + ' ' + eleve.prenom;
         this.nomPeriode = periode.nom;
