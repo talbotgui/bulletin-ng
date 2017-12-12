@@ -1,3 +1,5 @@
+div.actions { text-align: right; }
+
 .mat-grid-tile { overflow: auto!important; }
 mat-card-title em { float: right; }
 span.action { float: right; }
