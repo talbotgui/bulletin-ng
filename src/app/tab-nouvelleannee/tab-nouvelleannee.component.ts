@@ -8,7 +8,7 @@ import { LectureService } from '../service/lecture.service';
 import * as model from '../model/model';
 import { Journal } from '../model/model';
 
-import {CompetencesParDefaut} from './CompetencesParDefaut';
+import {CompetencesParDefaut} from './competencesParDefaut';
 
 @Component({ selector: 'tab-nouvelleannee', templateUrl: './tab-nouvelleannee.component.html', styleUrls: ['./tab-nouvelleannee.component.css'] })
 export class TabNouvelleAnneeComponent implements OnInit {
