@@ -11,8 +11,9 @@
 				<h1>Application de gestion de ma classe</h1>
 			</div>
 			<div id="entete-actions">
-				<em class="fa fa-2x fa-thermometer-half" matTooltip="Changer le thème de l'application" mat-button (click)="sidenav.open()"></em>
+				<em class="fa fa-2x fa-vcard-o" matTooltip="Créer un nouveau fichier de données" mat-button routerLink="/tab-nouvelleAnnee-route"></em>
 				<em class="fa fa-2x fa-question-circle" matTooltip="Afficher l'aide de l'application" mat-button routerLink="/tab-aide-route"></em>
+				<em class="fa fa-2x fa-thermometer-half" matTooltip="Changer le thème de l'application" mat-button (click)="sidenav.open()"></em>
 				<br/>
 				<div-sauvegarde></div-sauvegarde>
 			</div>

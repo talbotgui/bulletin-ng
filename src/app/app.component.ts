@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     return this.dataRepository.isAnneeChargee();
   }
   get anneChargeeOuSansDonnees() {
-    return this.anneeChargee || window.location.href.indexOf('aide') !== -1 || window.location.href.indexOf('accueil') !== -1;
+    return this.anneeChargee || window.location.href.indexOf('aide') !== -1 || window.location.href.indexOf('accueil') !== -1 || window.location.href.indexOf('nouvelleAnnee') !== -1;
   }
   rechargerPage() {
     window.location.reload();
