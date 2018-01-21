@@ -13,7 +13,7 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-coverage'),
-      require('karma-phantomjs-launcher'),
+      require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-junit-reporter'),
       require('karma-coverage-istanbul-reporter'),
@@ -30,11 +30,11 @@ module.exports = function (config) {
     // Niveau de log
     logLevel: config.LOG_INFO,
     // Active la surveillance des fichiers et la ré-exécution des tests en cas de modification
-    autoWatch: true,
+    autoWatch: false,
     // Execution unique des tests
     singleRun: true,
     // Le(s) browser(s) à utiliser pour les tests
-    browsers: ['PhantomJS'],
+    browsers: ['ChromeHeadless'],
     // Configuration pour Istanbul
     coverageIstanbulReporter: {
       // Types des rapports
