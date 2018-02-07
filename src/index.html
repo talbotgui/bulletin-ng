@@ -9,17 +9,15 @@
 	<link rel="icon" type="image/x-icon" href="favicon.ico" />
 
 	<!-- Car le package NPM de CkEditor n'embarque pas la librairie -->
-	<script src="https://cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
+	<script src="./assets/ckeditor/ckeditor.js"></script>
 	<script>
 		/**
 		 * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
 		 * For licensing, see LICENSE.md or http://ckeditor.com/license
 		 */
-
 		/**
 		 * @see https://github.com/ckeditor/ckeditor-dev/blob/master/plugins/divarea/plugin.js
 		*/
-
 		CKEDITOR.plugins.add('divarea', {
 			afterInit: function (editor) {
 				// Add the "wysiwyg" mode.
