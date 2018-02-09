@@ -16,12 +16,12 @@ export class DivSauvegarder {
 
 export class DivSauvegarderDialogChargement {
   static TITRE = by.xpath('//dialog-chargement/h2');
-  static INPUTFILE_LOCAL = by.xpath('//dialog-chargement/mat-dialog-content/fieldset/label/input[@type="file"]');
-  static INPUTFILE_LOCAL_LABEL_NOT_DONE = by.xpath('//dialog-chargement/mat-dialog-content/fieldset/label[@class="inputFile"]');
-  static INPUTFILE_LOCAL_LABEL_DONE = by.xpath('//dialog-chargement/mat-dialog-content/fieldset/label[@class="inputFile inputFileDone"]');
-  static SELECT = by.xpath('//dialog-chargement/mat-dialog-content/fieldset[2]/div/mat-select');
-  static BUTTON_ANNULER = by.xpath('//dialog-chargement/mat-dialog-actions/button[1]');
-  static BUTTON_CHARGER = by.xpath('//dialog-chargement/mat-dialog-actions/button[2]');
+  static INPUTFILE_LOCAL = by.xpath('//dialog-chargement/fieldset/label/input[@type="file"]');
+  static INPUTFILE_LOCAL_LABEL_NOT_DONE = by.xpath('//dialog-chargement/fieldset/label[@class="inputFile"]');
+  static INPUTFILE_LOCAL_LABEL_DONE = by.xpath('//dialog-chargement/fieldset/label[@class="inputFile inputFileDone"]');
+  static SELECT = by.xpath('//dialog-chargement/fieldset[2]/div/mat-select');
+  static BUTTON_ANNULER = by.xpath('//dialog-chargement/button[1]');
+  static BUTTON_CHARGER = by.xpath('//dialog-chargement/button[2]');
 }
 
 export class TabCompetences {

@@ -1,24 +1,21 @@
 <h2 mat-dialog-title>Recherche de compétence par texte</h2>
 
-<mat-dialog-content>
-	<span>Filtre : </span>
-	<input [(ngModel)]="filtreLibelleCompetence" name="filtreLibelleCompetence" />
-	<fieldset>
-		<legend>Compétences correspondantes :</legend>
-		<div>
-			<mat-radio-group [(ngModel)]="idCompetenceSelectionnee">
-				<ul>
-					<li *ngFor="let c of competencesTrouvees">
-						<mat-radio-button value="{{c.id}}">
-						</mat-radio-button>
-						<span>{{c.text}}</span>
-					</li>
-				</ul>
-			</mat-radio-group>
-		</div>
-	</fieldset>
-</mat-dialog-content>
+<span>Filtre : </span>
+<input [(ngModel)]="filtreLibelleCompetence" name="filtreLibelleCompetence" />
+<fieldset>
+	<legend>Compétences correspondantes :</legend>
+	<div>
+		<mat-radio-group [(ngModel)]="idCompetenceSelectionnee">
+			<ul>
+				<li *ngFor="let c of competencesTrouvees">
+					<mat-radio-button value="{{c.id}}">
+					</mat-radio-button>
+					<span>{{c.text}}</span>
+				</li>
+			</ul>
+		</mat-radio-group>
+	</div>
+</fieldset>
 
-<mat-dialog-actions>
-	<button class="button" (click)=selectionner()>Fermer</button>
-</mat-dialog-actions>
+
+<button class="button" (click)=selectionner()>Fermer</button>

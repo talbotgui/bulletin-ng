@@ -6,7 +6,7 @@ import * as model from '../model/model';
 @Injectable()
 export class EditionService {
 
-    private static popupOuverte: Window;
+    private static popupOuverte: Window | null;
 
     creePageEtOuvrePopup(contenu: string, styleCss: string, titre: string): void {
         const page = `
@@ -34,7 +34,9 @@ export class EditionService {
         }
 
         // Remplissage de la popup
-        EditionService.popupOuverte.document.write(page);
-        EditionService.popupOuverte.document.close();
+        if (EditionService.popupOuverte) {
+            EditionService.popupOuverte.document.write(page);
+            EditionService.popupOuverte.document.close();
+        }
     }
 }

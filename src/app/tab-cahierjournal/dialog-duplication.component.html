@@ -1,17 +1,15 @@
 <h2 mat-dialog-title>Duplication depuis le journal</h2>
 
-<mat-dialog-content>
-    <div *ngIf="!!journal">
-        Duplication <span *ngIf="!!temps">du temps '{{temps.nom}}</span> du journal du {{journal.date | date:'EEEE dd/MM/yyyy'}}
-        <br/>
-        <span>vers le journal du :</span>
-        <input [matDatepicker]="myDatepicker" [(ngModel)]="dateCible" name="dateCible">
-        <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
-        <mat-datepicker #myDatepicker (click)="paliatifBugDatepickerDansDialog()"></mat-datepicker>
-    </div>
-</mat-dialog-content>
+<div *ngIf="!!journal">
+    Duplication
+    <span *ngIf="!!temps">du temps '{{temps.nom}}</span> du journal du {{journal.date | date:'EEEE dd/MM/yyyy'}}
+    <br/>
+    <span>vers le journal du :</span>
+    <input [matDatepicker]="myDatepicker" [(ngModel)]="dateCible" name="dateCible">
+    <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+    <mat-datepicker #myDatepicker (click)="paliatifBugDatepickerDansDialog()"></mat-datepicker>
+</div>
 
-<mat-dialog-actions>
-    <button class="button" (click)="annuler()">Annuler</button>
-    <button class="button" (click)="dupliquer()">Dupliquer</button>
-</mat-dialog-actions>
+
+<button class="button" (click)="annuler()">Annuler</button>
+<button class="button" (click)="dupliquer()">Dupliquer</button>
