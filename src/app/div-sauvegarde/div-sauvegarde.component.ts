@@ -6,7 +6,7 @@ import { DialogSauvegardeComponent } from './dialog-sauvegarde.component';
 import { DataRepository } from '../service/data.repository';
 import { SauvegardeService } from '../service/sauvegarde.service';
 
-@Component({ selector: 'div-sauvegarde', templateUrl: './div-sauvegarde.component.html' })
+@Component({ selector: 'div-sauvegarde', templateUrl: './div-sauvegarde.component.html', styleUrls: ['./div-sauvegarde.component.css'] })
 export class DivSauvegardeComponent {
 
   get messageSauvegarde() {

@@ -1,19 +1,19 @@
-<div id="page">
+<div id="page" class="container-fluid">
 	<mat-sidenav-container>
 		<mat-sidenav #sidenav class="example-sidenav">
 			<div-selecteurstyle></div-selecteurstyle>
 		</mat-sidenav>
-		<div id="entete">
-			<div id="entete-logo">
+		<div id="entete" class="row">
+			<div id="entete-logo" class="col-2">
 				<img src="./assets/images/logo.png" alt="logo" (click)="rechargerPage()" />
 			</div>
-			<div id="entete-titre">
-				<h1>Application de gestion de ma classe</h1>
+			<div id="entete-titre" class="col-7">
+				<span class="d-none d-sm-block">Application de gestion de ma classe</span>
 			</div>
-			<div id="entete-actions">
-				<em class="fa fa-2x fa-vcard-o" matTooltip="Créer un nouveau fichier de données" mat-button routerLink="/tab-nouvelleAnnee-route"></em>
-				<em class="fa fa-2x fa-question-circle" matTooltip="Afficher l'aide de l'application" mat-button routerLink="/tab-aide-route"></em>
-				<em class="fa fa-2x fa-thermometer-half" matTooltip="Changer le thème de l'application" mat-button (click)="sidenav.open()"></em>
+			<div id="entete-actions" class="col-3">
+				<em class="fa fa-vcard-o" matTooltip="Créer un nouveau fichier de données" mat-button routerLink="/tab-nouvelleAnnee-route"></em>
+				<em class="fa fa-question-circle" matTooltip="Afficher l'aide de l'application" mat-button routerLink="/tab-aide-route"></em>
+				<em class="fa fa-thermometer-half" matTooltip="Changer le thème de l'application" mat-button (click)="sidenav.open()"></em>
 				<br/>
 				<div-sauvegarde></div-sauvegarde>
 			</div>

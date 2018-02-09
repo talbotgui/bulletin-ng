@@ -15,6 +15,9 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { TreeModule } from 'angular-tree-component';
 import { MapValuesPipe, AttributesToMapPipe } from './pipes.component';
 
+// Import de bootstrap
+import { AlertModule } from 'ngx-bootstrap';
+
 // Tous les composants applicatifs de l'application
 import { AppComponent } from './app.component';
 import { ComposantCompetenceComponent } from './compo-competence/compo-competence.component';
@@ -66,7 +69,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent, AttributesToMapPipe, ComposantCompetenceComponent, ComposantMessageSauvegardeComponent, ComposantNoteComponent, DialogChargementComponent,
     DialogCompetenceFullTextComponent, DialogDuplicationComponent, DialogLigneTableauDeBordComponent, DialogSauvegardeComponent, DialogSelectionProjet,
     DivSauvegardeComponent, DivSelecteurStyleComponent, MapValuesPipe, TabAccueilComponent, TabAideComponent, TabCahierJournalComponent, TabCompetenceComponent,
-    TabEditionBilanComponent, TabEditionEleveComponent, TabEditionJournalComponent, TabEditionPpiComponent, TabEleveComponent, TabNouvelleAnneeComponent, 
+    TabEditionBilanComponent, TabEditionEleveComponent, TabEditionJournalComponent, TabEditionPpiComponent, TabEleveComponent, TabNouvelleAnneeComponent,
     TabProjetComponent, TabTableauDeBordComponent, TabTachesComponent
   ],
 
@@ -101,7 +104,10 @@ import { AppRoutingModule } from './app-routing.module';
     CKEditorModule, TreeModule,
 
     // Déclaration des routes
-    AppRoutingModule
+    AppRoutingModule,
+
+    // Import de bootstrap
+    AlertModule.forRoot()
   ]
 })
 export class AppModule { }

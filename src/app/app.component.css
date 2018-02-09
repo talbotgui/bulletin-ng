@@ -1,9 +1,9 @@
-#page { width:1400px; margin:auto; }
-#entete { height: 90px; margin: 0px 3px 0px 3px; }
-#entete-logo { float: left; cursor: pointer; }
-#entete-titre { float: left; text-align: center; color: white; height: 100%; font-size: 15px; line-height: 40px; width: 1130px; }
-#entete-actions { float: right; width: 125px; height: 100%; padding-top: 10px; text-align: right; }
-#contenu { width:100%; margin-top:15px; }
+#entete { margin: 0px; }
+#entete-logo { cursor: pointer; }
+#entete-titre { text-align: center; color: white; font-size: 25px; }
+#entete-actions { text-align: right; }
+#entete-actions .fa { font-size: 1.5em; }
+#contenu { margin-top:15px; }
 
 nav a { padding: 15px 40px; text-decoration: none; margin-top: 10px; display: inline-block; background-color: #eee; border-radius: 4px; font-size: 16px; }
 nav a:visited, a:link { color: #607D8B; }
