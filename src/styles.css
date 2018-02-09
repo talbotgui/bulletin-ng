@@ -21,7 +21,7 @@ label { margin: 0px 10px 0px 20px; }
 
 /* Dialog */
 .mat-dialog-container { padding: 0px 24px 24px 24px!important; }
-.mat-dialog-container h2 { margin: 10px 0px; }
+.mat-dialog-container h2 { margin: 10px 0px; font-size: 1.5em; }
 
 /* grille */
 .mat-card-header-text { width: 100%!important; }
@@ -31,6 +31,10 @@ label { margin: 0px 10px 0px 20px; }
 table { width: 100%; }
 th { height: 35px; font-size: 14; background-color: #CFD8DC; background-image: linear-gradient(to bottom,#f5f5f5,#CFD8DC) }
 td { font-size: 12; padding: 5px 0px; }
+
+/** Integration de bootstrap */
+fieldset { border-width: 2px!important; border-style: groove!important; border-color: threedface!important; border-image: initial!important; }
+legend { width: auto!important; font-size: 1rem!important;}
 
 /* validation */
 .alert-danger {background-color: red; color: white; font-size: 15px; line-height: 25px; padding: 5px; margin-right: 10px; }
