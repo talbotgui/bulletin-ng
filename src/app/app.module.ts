@@ -81,7 +81,7 @@ import { AppRoutingModule } from './app-routing.module';
 
   providers: [
     // Paramétrage global
-    { provide: LOCALE_ID, useValue: 'fr-FR' },
+    { provide: LOCALE_ID, useValue: 'fr' },
     { provide: DateAdapter, useClass: MyDateAdapter },
     { provide: MAT_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'never' } },
 
