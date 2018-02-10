@@ -54,14 +54,14 @@
                 <mat-card-subtitle>
                     <span>{{tache.avancement}} |</span>
                     <em class="fa fa-clock-o"></em>
-                    <span>{{tache.prochaineEcheance | date:'EEEE dd/MM'}}</span>
+                    <span>{{tache.prochaineEcheance | date:'dd/MM'}}</span>
                 </mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
                 <div *ngFor="let eche of tache.echeances">
                     <em class="fa fa-check-square-o" *ngIf="!!eche.termine" (click)="changeEcheance(eche, false, $event)"></em>
                     <em class="fa fa-square-o" *ngIf="!eche.termine" (click)="changeEcheance(eche, true, $event)"></em>
-                    <span>{{eche.nom}} pour le {{eche.date | date:'EEEE dd/MM'}}</span>
+                    <span>{{eche.nom}} pour le {{eche.date | date:'dd/MM'}}</span>
                     <br/>
                 </div>
             </mat-card-content>

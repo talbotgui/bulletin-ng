@@ -32,9 +32,21 @@ table { width: 100%; }
 th { height: 35px; font-size: 14; background-color: #CFD8DC; background-image: linear-gradient(to bottom,#f5f5f5,#CFD8DC) }
 td { font-size: 12; padding: 5px 0px; }
 
-/** Integration de bootstrap */
-fieldset { border-width: 2px!important; border-style: groove!important; border-color: threedface!important; border-image: initial!important; }
-legend { width: auto!important; font-size: 1rem!important;}
+/** Refonte des fieldset avec bootstrap */
+/*
+<div class="container-fluid">
+  <div class="row odd titre-row"></div>
+	<div class="row odd">
+	</div>
+</div
+*/
+.row.even, .form-row.even { background-color: lightgrey ; padding-bottom: 5px; }
+.row.odd, .form-row.odd { background-color: lightblue ; padding-bottom: 5px; }
+.row button, .form-row button { margin-top: 10px; }
+.row.titre-row { font-size: 22px; margin-top: 10px; }
+.col input { width: 100%; margin: 5px 0px; min-width: 150px; }
+.col textarea { width: 100%; margin: 5px 0px; min-width: 150px; }
+.col mat-select { width: 100%; margin: 5px 0px; min-width: 150px; min-height: 25px; }
 
 /* validation */
 .alert-danger {background-color: red; color: white; font-size: 15px; line-height: 25px; padding: 5px; margin-right: 10px; }

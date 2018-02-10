@@ -1,10 +1,7 @@
 <!-- Actions -->
 <div class="actions">
-	<em *ngIf="eleveSelectionne" matTooltip="Imprimer la fiche de l'élève" class="fa fa-print fa-2x" mat-button [routerLink]="['/tab-editioneleve-route', eleveSelectionne.id]"></em>
-    <span class="fa-stack fa-lg" matTooltip="Ajouter un nouvel élève" (click)="creerEleve()">
-        <em class="fa fa-circle-o fa-stack-2x"></em>
-        <em class="fa fa-plus fa-stack-1x"></em>
-    </span>
+	<em *ngIf="eleveSelectionne" matTooltip="Imprimer la fiche de l'élève" class="fa fa-print" mat-button [routerLink]="['/tab-editioneleve-route', eleveSelectionne.id]"></em>
+	<em class="fa fa-plus" matTooltip="Ajouter un nouvel élève" (click)="creerEleve()"></em>
 </div>
 
 <!-- Liste des élèves -->
@@ -13,80 +10,120 @@
 </mat-chip-list>
 
 <!-- Formulaire de modification -->
-<form novalidate #eleveForm="ngForm">
-	<div *ngIf="eleveSelectionne" class="formulaireEleve">
-		<fieldset>
-			<legend>Elève</legend>
+<form novalidate #eleveForm="ngForm" class="container-fluid">
+	<div *ngIf="eleveSelectionne">
+		<div class="row odd titre-row">Elève</div>
+		<div class="row odd">
 			<div *ngIf="!inputNom.pristine && inputNom.errors?.required" class="alert-danger">Le nom est obligatoire</div>
 			<div *ngIf="!inputNom.pristine && inputNom.errors?.minlength" class="alert-danger">Le nom doit faire 3 caractères au minimum</div>
 			<div [hidden]="inputPrenom.valid || inputPrenom.pristine" class="alert-danger">Le prénom est obligatoire</div>
 			<div [hidden]="inputDateNaissance.valid || inputDateNaissance.pristine" class="alert-danger">La date de naissance est obligatoire</div>
 			<div [hidden]="inputStatut.valid || inputStatut.pristine" class="alert-danger">Le statut est obligatoire</div>
+		</div>
+		<div class="row odd">
+			<div class="col">
+				<input required minlength="3" #inputNom="ngModel" [(ngModel)]="eleveSelectionne.nom" name="nom" placeholder="Nom" />
+			</div>
+			<div class="col">
+				<input required #inputPrenom="ngModel" [(ngModel)]="eleveSelectionne.prenom" name="prenom" placeholder="Prénom" />
+			</div>
+			<div class="col">
+				<input matInput required #inputDateNaissance="ngModel" [(ngModel)]="dateNaissanceEleveSelectionne" name="dateNaissanceEleveSelectionne"
+				 placeholder="Date de naissance" />
+			</div>
+			<div class="col">
+				<input matInput [(ngModel)]="dateAdmissionEleveSelectionne" name="dateAdmissionEleveSelectionne" placeholder="Date d'admission"
+				/>
+			</div>
+			<div class="col">
+				<mat-select required #inputStatut="ngModel" [(ngModel)]="eleveSelectionne.statut" placeholder="Statut" name="statut">
+					<mat-option *ngFor="let entry of mapStatutEleve | mapValues" [value]="entry.key">{{entry.val}}</mat-option>
+				</mat-select>
+			</div>
+		</div>
 
-			<input required minlength="3" #inputNom="ngModel" [(ngModel)]="eleveSelectionne.nom" name="nom" placeholder="Nom" />
-			<input required #inputPrenom="ngModel" [(ngModel)]="eleveSelectionne.prenom" name="prenom" placeholder="Prénom" />
-			<input matInput required #inputDateNaissance="ngModel" [(ngModel)]="dateNaissanceEleveSelectionne" name="dateNaissanceEleveSelectionne"
-			 placeholder="Date de naissance" />
-			<input matInput [(ngModel)]="dateAdmissionEleveSelectionne" name="dateAdmissionEleveSelectionne" placeholder="Date d'admission"
-			/>
+		<div class="row even titre-row">Famille</div>
+		<div class="row even">
+			<div class="col">
+				<textarea [(ngModel)]="eleveSelectionne.pere" rows=6 name="pere" placeholder="Père"></textarea>
+			</div>
+			<div class="col">
+				<textarea [(ngModel)]="eleveSelectionne.mere" rows=6 name="mere" placeholder="Mère"></textarea>
+			</div>
+			<div class="col">
+				<textarea [(ngModel)]="eleveSelectionne.fratrie" rows=6 name="fratrie" placeholder="Fratrie"></textarea>
+			</div>
+			<div class="col">
+				<textarea [(ngModel)]="eleveSelectionne.accueil" rows=6 name="accueil" placeholder="Informations diverses"></textarea>
+			</div>
+		</div>
 
-			<mat-select required #inputStatut="ngModel" [(ngModel)]="eleveSelectionne.statut" placeholder="Statut" name="statut">
-				<mat-option *ngFor="let entry of mapStatutEleve | mapValues" [value]="entry.key">{{entry.val}}</mat-option>
-			</mat-select>
-		</fieldset>
-		<fieldset class="famille">
-			<legend>Famille</legend>
-			<textarea [(ngModel)]="eleveSelectionne.pere" name="pere" placeholder="Père"></textarea>
-			<textarea [(ngModel)]="eleveSelectionne.mere" name="mere" placeholder="Mère"></textarea>
-			<textarea [(ngModel)]="eleveSelectionne.fratrie" name="fratrie" placeholder="Fratrie"></textarea>
-			<textarea [(ngModel)]="eleveSelectionne.accueil" name="accueil" placeholder="Informations diverses"></textarea>
-		</fieldset>
-		<fieldset class="contacts">
-			<legend>Contacts</legend>
-			<textarea [(ngModel)]="eleveSelectionne.adresses" name="adresses" placeholder="Adresses"></textarea>
-			<textarea [(ngModel)]="eleveSelectionne.telephones" name="telephones" placeholder="Téléphones"></textarea>
-		</fieldset>
-		<fieldset class="dateBilans">
-			<legend>Date de bilans (PPI, dates rencontres parents et ESS)</legend>
-			<textarea [(ngModel)]="eleveSelectionne.datesPPA" name="datesPPA" placeholder="datesPPA" rows="6"></textarea>
-			<textarea [(ngModel)]="eleveSelectionne.datesPAP" name="datesPAP" placeholder="datesRencontresParents" rows="6"></textarea>
-			<textarea [(ngModel)]="eleveSelectionne.datesESS" name="datesESS" placeholder="datesESS" rows="6"></textarea>
-		</fieldset>
-		<fieldset class="droitsEtAutorisations">
-			<legend>Droit à l'image et autorisation de baignade</legend>
-			<textarea [(ngModel)]="eleveSelectionne.droitImage" name="droitImage" placeholder="droit à l'image envoyé/reçu/validé" rows="2"></textarea>
-			<textarea [(ngModel)]="eleveSelectionne.autorisationBaignade" name="autorisationBaignade" placeholder="autorisation de baignade envoyée/reçue/validée"
-			 rows="2"></textarea>
-		</fieldset>
+		<div class="row odd titre-row">Contacts</div>
+		<div class="row odd">
+			<div class="col">
+				<textarea [(ngModel)]="eleveSelectionne.adresses" rows=4 name="adresses" placeholder="Adresses"></textarea>
+			</div>
+			<div class="col">
+				<textarea [(ngModel)]="eleveSelectionne.telephones" rows=4 name="telephones" placeholder="Téléphones"></textarea>
+			</div>
+		</div>
+
+		<div class="row even titre-row">Date de bilans (PPI, dates rencontres parents et ESS)</div>
+		<div class="row even">
+			<div class="col">
+				<textarea [(ngModel)]="eleveSelectionne.datesPPA" name="datesPPA" placeholder="datesPPA" rows="6"></textarea>
+			</div>
+			<div class="col">
+				<textarea [(ngModel)]="eleveSelectionne.datesPAP" name="datesPAP" placeholder="datesRencontresParents" rows="6"></textarea>
+			</div>
+			<div class="col">
+				<textarea [(ngModel)]="eleveSelectionne.datesESS" name="datesESS" placeholder="datesESS" rows="6"></textarea>
+			</div>
+		</div>
+
+		<div class="row odd titre-row">Droit à l'image et autorisation de baignade</div>
+		<div class="row odd">
+			<div class="col">
+				<textarea [(ngModel)]="eleveSelectionne.droitImage" name="droitImage" placeholder="droit à l'image envoyé/reçu/validé" rows="2"></textarea>
+			</div>
+			<div class="col">
+				<textarea [(ngModel)]="eleveSelectionne.autorisationBaignade" name="autorisationBaignade" placeholder="autorisation de baignade envoyée/reçue/validée"
+				 rows="2"></textarea>
+			</div>
+		</div>
 	</div>
 </form>
-<div *ngIf="eleveSelectionne" class="formulaireEleve">
-	<fieldset class="cursus">
-		<legend>Cursus scolaire</legend>
-		<table>
-			<thead>
-				<tr>
-					<th>Année scolaire</th>
-					<th>Niveau</th>
-					<th>Etablissement</th>
-					<th>Accompagnement</th>
-					<th><em class="fa fa-plus" matTooltip="Ajouter une ligne dans le cursus" (click)="ajouterCursus()"></em></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let cur of eleveSelectionne.cursus; let i = index;">
-					<td>{{cur.annee}}</td>
-					<td><input matInput [(ngModel)]="cur.niveau" name="niveau-{{i}}" /></td>
-					<td><input matInput [(ngModel)]="cur.etablissement" name="etablissement-{{i}}" /></td>
-					<td><input matInput [(ngModel)]="cur.accompagnement" name="accompagnement-{{i}}" /></td>
-					<td><em class="fa fa-remove" matTooltip="Supprimer cette ligne du cursus" (click)="retirerCursus(cur)"></em></td>
-				</tr>
-			</tbody>
-		</table>
 
-	</fieldset>
-	<fieldset class="bilans">
-		<legend>Bilans</legend>
-		<ckeditor [(ngModel)]="eleveSelectionne.bilans" name="bilans" [config]="configCkEditor" debounce="200"></ckeditor>
-	</fieldset>
+<div *ngIf="eleveSelectionne" class="formulaireEleve container-fluid">
+	<div class="row odd titre-row">Cursus scolaire</div>
+	<div class="row odd">
+		<div class="col">Année scolaire</div>
+		<div class="col">Niveau</div>
+		<div class="col">Etablissement</div>
+		<div class="col">Accompagnement</div>
+		<div class="col">
+			<em class="fa fa-plus" matTooltip="Ajouter une ligne dans le cursus" (click)="ajouterCursus()"></em>
+		</div>
+	</div>
+	<div class="row odd" *ngFor="let cur of eleveSelectionne.cursus; let i = index;">
+		<div class="col">{{cur.annee}}</div>
+		<div class="col">
+			<input matInput [(ngModel)]="cur.niveau" name="niveau-{{i}}" />
+		</div>
+		<div class="col">
+			<input matInput [(ngModel)]="cur.etablissement" name="etablissement-{{i}}" />
+		</div>
+		<div class="col">
+			<input matInput [(ngModel)]="cur.accompagnement" name="accompagnement-{{i}}" />
+		</div>
+		<div class="col">
+			<em class="fa fa-remove" matTooltip="Supprimer cette ligne du cursus" (click)="retirerCursus(cur)"></em>
+		</div>
+	</div>
+	<div class="row even titre-row">Bilans</div>
+	<div class="row even">
+		<div class="col">
+			<ckeditor [(ngModel)]="eleveSelectionne.bilans" name="bilans" [config]="configCkEditor" debounce="200"></ckeditor>
+		</div>
+	</div>
 </div>

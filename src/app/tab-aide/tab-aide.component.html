@@ -1,60 +1,86 @@
-<h1>Aide</h1>
+<div class="container-fluid">
+    <div class="row odd titre-row">Aide</div>
+    <div class="row odd">Cette page d'aide est accessible depuis le bouton ? situé en haut à droite de la page.</div>
 
-Cette page d'aide est accessible depuis le bouton ? situé en haut à droite de la page.
-
-<h2>Liste des sujets traités :</h2>
-<ul>
-    <li><a href="javascript:document.getElementById('aide1').scrollIntoView()">Conservation du dernier fichier sauvegardé</a></li>
-    <li><a href="javascript:document.getElementById('aide3').scrollIntoView()">Sauvegarder un fichier depuis le serveur de données</a></li>
-    <li><a href="javascript:document.getElementById('aide2').scrollIntoView()">Chargement d'un fichier depuis le serveur de données</a></li>
-    <li><a href="javascript:document.getElementById('aide4').scrollIntoView()">Expressions de recherche</a></li>
-</ul>
-
-<hr />
-<h2>Chargement d'un fichier depuis le serveur de données</h2>
-<a id="aide2"></a>
-<span>Au clic sur le bouton de chargement de l'écran principale, l'application tente de lister les
-sauvegardes disponibles sur le serveur présent à l'adresse 192.168.1.52. Hors les navigateurs refusent de laisser s'exécuter
-cette requête car l'adresse demandée n'est pas celle du site affichant la page. </span>
-<ul>
-    <li>Sous <strong>Chrome</strong>, une icône du type <img src="./assets/images/aide_bloquageChrome.png" alt="aide_bloquageChrome"
-            style="display: inline" /> s'affiche alors dans la barre d'adresse. Pour autoriser l'affichage de la liste des sauvegardes
-        du serveur, il suffit de cliquer sur cette icone puis de cliquer sur le message <em>'Charger les scripts à risque'</em>.</li>
-</ul>
-
-<hr />
-<h2>Sauvegarder un fichier depuis le serveur de données</h2>
-<a id="aide3"></a>
-<span>Si, au clic sur le bouton "Sur le serveur" dans la popup de sauvegarde, apparait un message indiquant une erreur alors votre navigateur a certainement du tenter vous protéger.</span>
-<ul>
-    <li>Sous <strong>Chrome</strong>, une icône du type <img src="./assets/images/aide_bloquageChrome.png" alt="aide_bloquageChrome"
-            style="display: inline" /> est certainement apparue dans la barre d'adresse. <strong>Surtout ne cliquer pas dessus</strong>        car cela raffraichira la page et les données seront perdues. Utiliser d'abord la sauvegarde en local puis cliquer
-        sur l'icone pour autoriser les scripts. Enfin, recharger les données locales depuis réaliser votre sauvegarde sur
-        le serveur.</li>
-</ul>
-
-<hr />
-<h2>Conservation du dernier fichier sauvegardé</h2>
-<a id="aide1"></a>L'application est en mesure de se souvenir du nom de votre dernière sauvegarde et de vous afficher un avertissement
-si vous charger un fichier qui n'est pas le dernier modifié.
-<br/>Mais pour cela, l'application doit être en mesure de stocker ce nom de fichier dans votre navigateur et ce dernier ne
-doit pas le détruire lors de sa fermeture.
-<br/><br/>Si cette fonctionnalité n'est pas opérante dans votre navigateur, suivez la procédure ci-dessous :
-<ul>
-    <li><strong>Chrome</strong> :
+    <div class="row even titre-row">Liste des sujets traités :</div>
+    <div class="row even">
         <ul>
-            <li>Saisir dans la barre d'adresse "chrome://settings/content/cookies"</li>
-            <li>En face de "autoriser", cliquer sur le bouton Ajouter et ajouter le site "https://me.guillaumetalbot.com/maclasse"</li>
-            <li>Pour les développeurs, ajouter aussi "http://localhost:4200"</li>
+            <li>
+                <a href="javascript:document.getElementById('aide1').scrollIntoView()">Conservation du dernier fichier sauvegardé</a>
+            </li>
+            <li>
+                <a href="javascript:document.getElementById('aide3').scrollIntoView()">Sauvegarder un fichier depuis le serveur de données</a>
+            </li>
+            <li>
+                <a href="javascript:document.getElementById('aide2').scrollIntoView()">Chargement d'un fichier depuis le serveur de données</a>
+            </li>
+            <li>
+                <a href="javascript:document.getElementById('aide4').scrollIntoView()">Expressions de recherche</a>
+            </li>
         </ul>
-        <br/> Si vous utiliser une extension de Chrome supprimant les données à la fermeture du navigateur, pensez à ne pas
-        supprimer les "local storage data".
-    </li>
-</ul>
+    </div>
 
-<hr />
-<h2>Expressions de recherche</h2>
-<a id="aide4"></a>Dans les recherches de textes (recherche de compétences dans l'onglet 'Compétences' et dans les composants
-de sélection de compétence), il est possible de rechercher un mot et/ou d'exclure un mot (en le préfixant d'un tiret).
-<br/>Exemple : <em>Multiplication -addition</em> va rechercher les compétences contenant le mot "Multiplication" mais sans
-le mot "Addition"
+    <div class="row odd titre-row">Chargement d'un fichier depuis le serveur de données
+        <a id="aide2"></a>
+    </div>
+    <div class="row odd">
+        <span>Au clic sur le bouton de chargement de l'écran principale, l'application tente de lister les sauvegardes disponibles
+            sur le serveur présent à l'adresse 192.168.1.52. Hors les navigateurs refusent de laisser s'exécuter cette requête
+            car l'adresse demandée n'est pas celle du site affichant la page. </span>
+        <ul>
+            <li>Sous
+                <strong>Chrome</strong>, une icône du type
+                <img src="./assets/images/aide_bloquageChrome.png" alt="aide_bloquageChrome" style="display: inline" /> s'affiche alors dans la barre d'adresse. Pour autoriser l'affichage de la liste des sauvegardes du serveur,
+                il suffit de cliquer sur cette icone puis de cliquer sur le message
+                <em>'Charger les scripts à risque'</em>.</li>
+        </ul>
+    </div>
+
+    <div class="row even titre-row">Sauvegarder un fichier depuis le serveur de données
+        <a id="aide3"></a>
+    </div>
+    <div class="row even">
+        <span>Si, au clic sur le bouton "Sur le serveur" dans la popup de sauvegarde, apparait un message indiquant une erreur
+            alors votre navigateur a certainement du tenter vous protéger.</span>
+        <ul>
+            <li>Sous
+                <strong>Chrome</strong>, une icône du type
+                <img src="./assets/images/aide_bloquageChrome.png" alt="aide_bloquageChrome" style="display: inline" /> est certainement apparue dans la barre d'adresse.
+                <strong>Surtout ne cliquer pas dessus</strong> car cela raffraichira la page et les données seront perdues. Utiliser
+                d'abord la sauvegarde en local puis cliquer sur l'icone pour autoriser les scripts. Enfin, recharger les
+                données locales depuis réaliser votre sauvegarde sur le serveur.</li>
+        </ul>
+    </div>
+    <div class="row odd titre-row">Conservation du dernier fichier sauvegardé
+        <a id="aide1"></a>
+    </div>
+    <div class="row odd">
+        L'application est en mesure de se souvenir du nom de votre dernière sauvegarde et de vous afficher un avertissement si vous
+        charger un fichier qui n'est pas le dernier modifié.
+        <br/>Mais pour cela, l'application doit être en mesure de stocker ce nom de fichier dans votre navigateur et ce dernier
+        ne doit pas le détruire lors de sa fermeture.
+        <br/>
+        <br/>Si cette fonctionnalité n'est pas opérante dans votre navigateur, suivez la procédure ci-dessous :
+        <ul>
+            <li>
+                <strong>Chrome</strong> :
+                <ul>
+                    <li>Saisir dans la barre d'adresse "chrome://settings/content/cookies"</li>
+                    <li>En face de "autoriser", cliquer sur le bouton Ajouter et ajouter le site "https://me.guillaumetalbot.com/maclasse"</li>
+                    <li>Pour les développeurs, ajouter aussi "http://localhost:4200"</li>
+                </ul>
+                <br/> Si vous utiliser une extension de Chrome supprimant les données à la fermeture du navigateur, pensez à ne
+                pas supprimer les "local storage data".
+            </li>
+        </ul>
+    </div>
+    <div class="row even titre-row">Expressions de recherche
+        <a id="aide4"></a>
+    </div>
+    <div class="row even">
+        Dans les recherches de textes (recherche de compétences dans l'onglet 'Compétences' et dans les composants de sélection de
+        compétence), il est possible de rechercher un mot et/ou d'exclure un mot (en le préfixant d'un tiret).
+        <br/>Exemple :
+        <em>Multiplication -addition</em> va rechercher les compétences contenant le mot "Multiplication" mais sans le mot "Addition"
+    </div>
+</div>

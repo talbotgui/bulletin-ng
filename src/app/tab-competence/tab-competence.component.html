@@ -1,20 +1,21 @@
-<fieldset>
-    <legend>Filtre : </legend>
-    <input [(ngModel)]="filtre" (change)="recherche()" />
-</fieldset>
-<fieldset *ngIf="!!libelleCompletCompetenceSelectionnee">
-    <legend>Compétence sélectionnée :</legend>
-    <span>{{libelleCompletCompetenceSelectionnee}}</span>
-</fieldset>
+<div class="container-fluid">
+    <div class="row odd titre-row">Filtre :</div>
+    <div class="row odd">
+        <input [(ngModel)]="filtre" (change)="recherche()" />
+    </div>
 
-<br/>
+    <div class="row even titre-row" *ngIf="!!libelleCompletCompetenceSelectionnee">Compétence sélectionnée :</div>
+    <div class="row even">{{libelleCompletCompetenceSelectionnee}}</div>
 
-<!-- https://github.com/500tech/angular-tree-component -->
-<tree-root [nodes]="noeuds">
-    <ng-template #treeNodeTemplate let-node let-index="index">
-        <div (click)="onActivationDunNoeud(node.data.id)">
-            <span class="level{{node.level}}">{{node.level}}</span>&nbsp;
-            <span id="competence{{index}}">{{ node.data.name }}</span>
-        </div>
-    </ng-template>
-</tree-root>
+    <!-- https://github.com/500tech/angular-tree-component -->
+    <div class="row">
+        <tree-root [nodes]="noeuds">
+            <ng-template #treeNodeTemplate let-node let-index="index">
+                <div (click)="onActivationDunNoeud(node.data.id)">
+                    <span class="level{{node.level}}">{{node.level}}</span>&nbsp;
+                    <span id="competence{{index}}">{{ node.data.name }}</span>
+                </div>
+            </ng-template>
+        </tree-root>
+    </div>
+</div>

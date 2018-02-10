@@ -1,89 +1,105 @@
-<div class="consigne">
-    Cette application ne stocke aucune donnée. C'est à vous, utilisateur, de charger et sauvegarder vos données dans un fichier
-    que vous conservez sur votre ordinateur. Ces données sont donc sous votre responsabilité.
+<div class="container-fluid">
+    <div class="row odd titre-row">Consignes</div>
+    <div class="row odd">
+        Cette application ne stocke aucune donnée. C'est à vous, utilisateur, de charger et sauvegarder vos données dans un fichier
+        que vous conservez sur votre ordinateur. Ces données sont donc sous votre responsabilité.
+        <div *ngIf="!anneeCharge">
+            <br/> Après avoir rempli le formulaire ci-dessous, en cliquant sur le bouton
+            <em>Créer et charger les données</em>, vous allez ouvrir l'application avec un fichier de données initial. Ce fichier
+            de données comprend un élève, le socle commun 2017 des cycles 2, 3 et 4.
+        </div>
+    </div>
+
+    <div class="row even titre-row">Données utilisées dans les éditions de bilan, de PPI et de cahier journal</div>
+    <div class="row even">
+        <div class="col">
+            <input [(ngModel)]="anneeAtelecharger.enseignant" name="enseignant" placeholder="Nom de l'enseignant" />
+        </div>
+        <div class="col">
+            <input [(ngModel)]="anneeAtelecharger.cycleNiveau" name="cycleNiveau" placeholder="Classe / niveau / groupe" />
+        </div>
+        <div class="col">
+            <input [(ngModel)]="anneeAtelecharger.anneeScolaire" name="anneeScolaire" placeholder="Année scolaire" />
+        </div>
+    </div>
+    <div class="row even">
+        <div class="col-12">
+            <ckeditor [(ngModel)]="anneeAtelecharger.enteteEdition" [config]="configCkEditor" debounce="200"></ckeditor>
+        </div>
+    </div>
+
+    <div class="row odd titre-row">Date de début et de fin des périodes</div>
+
+    <div class="row odd">
+        <div class="col-12">
+            <label>Période 1</label>
+            <input [matDatepicker]="myDatepicker1d" [(ngModel)]="anneeAtelecharger.periodes[0].debut" name="debutPeriode1" placeholder="Date de début de la période 1"
+            />
+            <mat-datepicker-toggle [for]="myDatepicker1d"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker1d></mat-datepicker>
+            <input [matDatepicker]="myDatepicker1f" [(ngModel)]="anneeAtelecharger.periodes[0].fin" name="finPeriode1" placeholder="Date de fin de la période 1"
+            />
+            <mat-datepicker-toggle [for]="myDatepicker1f"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker1f></mat-datepicker>
+        </div>
+        <div class="col-12">
+            <label>Période 2</label>
+            <input [matDatepicker]="myDatepicker2d" [(ngModel)]="anneeAtelecharger.periodes[1].debut" name="debutPeriode2" placeholder="Date de début de la période 2"
+            />
+            <mat-datepicker-toggle [for]="myDatepicker2d"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker2d></mat-datepicker>
+            <input [matDatepicker]="myDatepicker2f" [(ngModel)]="anneeAtelecharger.periodes[1].fin" name="finPeriode2" placeholder="Date de fin de la période 2"
+            />
+            <mat-datepicker-toggle [for]="myDatepicker2f"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker2f></mat-datepicker>
+        </div>
+        <div class="col-12">
+            <label>Période 3</label>
+            <input [matDatepicker]="myDatepicker3d" [(ngModel)]="anneeAtelecharger.periodes[2].debut" name="debutPeriode3" placeholder="Date de début de la période 3"
+            />
+            <mat-datepicker-toggle [for]="myDatepicker3d"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker3d></mat-datepicker>
+            <input [matDatepicker]="myDatepicker3f" [(ngModel)]="anneeAtelecharger.periodes[2].fin" name="finPeriode3" placeholder="Date de fin de la période 3"
+            />
+            <mat-datepicker-toggle [for]="myDatepicker3f"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker3f></mat-datepicker>
+        </div>
+        <div class="col-12">
+            <label>Période 4</label>
+            <input [matDatepicker]="myDatepicker4d" [(ngModel)]="anneeAtelecharger.periodes[3].debut" name="debutPeriode4" placeholder="Date de début de la période 4"
+            />
+            <mat-datepicker-toggle [for]="myDatepicker4d"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker4d></mat-datepicker>
+            <input [matDatepicker]="myDatepicker4f" [(ngModel)]="anneeAtelecharger.periodes[3].fin" name="finPeriode4" placeholder="Date de fin de la période 4"
+            />
+            <mat-datepicker-toggle [for]="myDatepicker4f"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker4f></mat-datepicker>
+        </div>
+        <div class="col-12">
+            <label>Période 5</label>
+            <input [matDatepicker]="myDatepicker5d" [(ngModel)]="anneeAtelecharger.periodes[4].debut" name="debutPeriode5" placeholder="Date de début de la période 5"
+            />
+            <mat-datepicker-toggle [for]="myDatepicker5d"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker5d></mat-datepicker>
+            <input [matDatepicker]="myDatepicker5f" [(ngModel)]="anneeAtelecharger.periodes[4].fin" name="finPeriode5" placeholder="Date de fin de la période 5"
+            />
+            <mat-datepicker-toggle [for]="myDatepicker5f"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker5f></mat-datepicker>
+        </div>
+    </div>
+
+    <div class="row odd" *ngIf="anneeCharge">
+        <div class="col">
+            <label>Reprendre la liste des élèves de l'année précédente : </label>
+            <input type="checkbox" [(ngModel)]="repriseEleves" />
+        </div>
+        <div class="col">
+            <label>Reprendre les compétences l'année précédente : </label>
+            <input type="checkbox" [(ngModel)]="repriseCompetences" />
+        </div>
+    </div>
+
+    <div class="row">
+        <button class="button" (click)="onDemandeCreationFichier()">Créer et télécharger le fichier de données</button>
+    </div>
 </div>
-
-<div class="consigneCreation" *ngIf="!anneeCharge">
-    Après avoir rempli le formulaire ci-dessous, en cliquant sur le bouton
-    <em>Créer et charger les données</em>, vous allez ouvrir l'application avec un fichier de données initial. Ce fichier de
-    données comprend un élève, le socle commun 2017 des cycles 2, 3 et 4.
-</div>
-
-<fieldset class="donneesAdministrative">
-    <legend>Données utilisées dans les éditions de bilan, de PPI et de cahier journal</legend>
-
-    <input [(ngModel)]="anneeAtelecharger.enseignant" name="enseignant" placeholder="Nom de l'enseignant" />
-    <input [(ngModel)]="anneeAtelecharger.cycleNiveau" name="cycleNiveau" placeholder="Classe / niveau / groupe" />
-    <input [(ngModel)]="anneeAtelecharger.anneeScolaire" name="anneeScolaire" placeholder="Année scolaire" />
-
-    <br/>
-    <ckeditor [(ngModel)]="anneeAtelecharger.enteteEdition" [config]="configCkEditor" debounce="200"></ckeditor>
-</fieldset>
-
-<fieldset class="donneesPeriodes">
-    <legend>Date de début et de fin des périodes</legend>
-
-    <label>Période 1</label>
-    <input [matDatepicker]="myDatepicker1d" [(ngModel)]="anneeAtelecharger.periodes[0].debut" name="debutPeriode1" placeholder="Date de début de la période 1"
-    />
-    <mat-datepicker-toggle [for]="myDatepicker1d"></mat-datepicker-toggle>
-    <mat-datepicker #myDatepicker1d></mat-datepicker>
-    <input [matDatepicker]="myDatepicker1f" [(ngModel)]="anneeAtelecharger.periodes[0].fin" name="finPeriode1" placeholder="Date de fin de la période 1"
-    />
-    <mat-datepicker-toggle [for]="myDatepicker1f"></mat-datepicker-toggle>
-    <mat-datepicker #myDatepicker1f></mat-datepicker>
-
-    <br/>
-    <label>Période 2</label>
-    <input [matDatepicker]="myDatepicker2d" [(ngModel)]="anneeAtelecharger.periodes[1].debut" name="debutPeriode2" placeholder="Date de début de la période 2"
-    />
-    <mat-datepicker-toggle [for]="myDatepicker2d"></mat-datepicker-toggle>
-    <mat-datepicker #myDatepicker2d></mat-datepicker>
-    <input [matDatepicker]="myDatepicker2f" [(ngModel)]="anneeAtelecharger.periodes[1].fin" name="finPeriode2" placeholder="Date de fin de la période 2"
-    />
-    <mat-datepicker-toggle [for]="myDatepicker2f"></mat-datepicker-toggle>
-    <mat-datepicker #myDatepicker2f></mat-datepicker>
-
-    <br/>
-    <label>Période 3</label>
-    <input [matDatepicker]="myDatepicker3d" [(ngModel)]="anneeAtelecharger.periodes[2].debut" name="debutPeriode3" placeholder="Date de début de la période 3"
-    />
-    <mat-datepicker-toggle [for]="myDatepicker3d"></mat-datepicker-toggle>
-    <mat-datepicker #myDatepicker3d></mat-datepicker>
-    <input [matDatepicker]="myDatepicker3f" [(ngModel)]="anneeAtelecharger.periodes[2].fin" name="finPeriode3" placeholder="Date de fin de la période 3"
-    />
-    <mat-datepicker-toggle [for]="myDatepicker3f"></mat-datepicker-toggle>
-    <mat-datepicker #myDatepicker3f></mat-datepicker>
-
-    <br/>
-    <label>Période 4</label>
-    <input [matDatepicker]="myDatepicker4d" [(ngModel)]="anneeAtelecharger.periodes[3].debut" name="debutPeriode4" placeholder="Date de début de la période 4"
-    />
-    <mat-datepicker-toggle [for]="myDatepicker4d"></mat-datepicker-toggle>
-    <mat-datepicker #myDatepicker4d></mat-datepicker>
-    <input [matDatepicker]="myDatepicker4f" [(ngModel)]="anneeAtelecharger.periodes[3].fin" name="finPeriode4" placeholder="Date de fin de la période 4"
-    />
-    <mat-datepicker-toggle [for]="myDatepicker4f"></mat-datepicker-toggle>
-    <mat-datepicker #myDatepicker4f></mat-datepicker>
-
-    <br/>
-    <label>Période 5</label>
-    <input [matDatepicker]="myDatepicker5d" [(ngModel)]="anneeAtelecharger.periodes[4].debut" name="debutPeriode5" placeholder="Date de début de la période 5"
-    />
-    <mat-datepicker-toggle [for]="myDatepicker5d"></mat-datepicker-toggle>
-    <mat-datepicker #myDatepicker5d></mat-datepicker>
-    <input [matDatepicker]="myDatepicker5f" [(ngModel)]="anneeAtelecharger.periodes[4].fin" name="finPeriode5" placeholder="Date de fin de la période 5"
-    />
-    <mat-datepicker-toggle [for]="myDatepicker5f"></mat-datepicker-toggle>
-    <mat-datepicker #myDatepicker5f></mat-datepicker>
-</fieldset>
-
-<div class="repriseDonneesExistante" *ngIf="anneeCharge">
-    <label>Reprendre la liste des élèves de l'année précédente : </label>
-    <input type="checkbox" [(ngModel)]="repriseEleves" />
-
-    <label>Reprendre les compétences l'année précédente : </label>
-    <input type="checkbox" [(ngModel)]="repriseCompetences" />
-</div>
-
-<button class="button" (click)="onDemandeCreationFichier()">Créer et télécharger le fichier de données</button>
