@@ -24,11 +24,13 @@ export class SauvegardeService {
   constructor(private http: HttpClient, private dataRepository: DataRepository, private snackBar: MatSnackBar, private ngZone: NgZone) { }
 
   metEnAvantLeBoutonSauvegarde(): void {
-    const boutonSauvegarde = document.getElementsByClassName('fa-save').item(0) as HTMLElement;
-    if (boutonSauvegarde) {
-      const classname = boutonSauvegarde.className;
-      boutonSauvegarde.className = 'fa fa-save fa-2x faa-horizontal animated rappelSauvegarde';
-      window.setTimeout(() => { boutonSauvegarde.className = classname; }, 5000);
+    if (!this.getDateDerniereSauvegardeDeLaSession()) {
+      const boutonSauvegarde = document.getElementsByClassName('fa-save').item(0) as HTMLElement;
+      if (boutonSauvegarde) {
+        const classname = boutonSauvegarde.className;
+        boutonSauvegarde.className = 'fa fa-save fa-2x faa-horizontal animated rappelSauvegarde';
+        window.setTimeout(() => { boutonSauvegarde.className = classname; }, 5000);
+      }
     }
   }
 
