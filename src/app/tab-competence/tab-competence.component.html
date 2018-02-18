@@ -5,7 +5,7 @@
     </div>
 
     <div class="row even titre-row" *ngIf="!!libelleCompletCompetenceSelectionnee">Compétence sélectionnée :</div>
-    <div class="row even">{{libelleCompletCompetenceSelectionnee}}</div>
+    <div class="row even" *ngIf="!!libelleCompletCompetenceSelectionnee">{{libelleCompletCompetenceSelectionnee}}</div>
 
     <!-- https://github.com/500tech/angular-tree-component -->
     <div class="row">
