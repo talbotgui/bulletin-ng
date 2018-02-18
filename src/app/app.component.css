@@ -1,8 +1,7 @@
 #entete { margin: 0px; }
 #entete-logo { cursor: pointer; }
 #entete-titre { text-align: center; color: white; font-size: 25px; }
-#entete-actions { text-align: right; }
-#entete-actions .fa { font-size: 1.5em; }
+#entete-actions { text-align: right; font-size: 1.5em; }
 #contenu { margin-top:15px; }
 
 nav a { padding: 5px 20px; text-decoration: none; margin-top: 10px; display: inline-block; background-color: #eee; border-radius: 4px; font-size: 16px; }
