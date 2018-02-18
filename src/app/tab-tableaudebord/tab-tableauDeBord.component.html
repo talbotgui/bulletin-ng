@@ -1,7 +1,7 @@
 <!-- Boutons d'action -->
 <div class="actions" *ngIf="eleveSelectionne && periodeSelectionnee">
-	<em class="fa fa-2x fa-print" matTooltip="Afficher l'édution de PPI" mat-button [routerLink]="['/tab-editionppi-route', eleveSelectionne.id, periodeSelectionnee.id]"></em>
-	<em class="fa fa-2x fa-print" matTooltip="Afficher l'édition de bilan de compétences" mat-button [routerLink]="['/tab-editionbilan-route', eleveSelectionne.id, periodeSelectionnee.id]"></em>
+	<em class="fa fa-print" matTooltip="Afficher l'édution de PPI" mat-button [routerLink]="['/tab-editionppi-route', eleveSelectionne.id, periodeSelectionnee.id]"></em>
+	<em class="fa fa-print" matTooltip="Afficher l'édition de bilan de compétences" mat-button [routerLink]="['/tab-editionbilan-route', eleveSelectionne.id, periodeSelectionnee.id]"></em>
 </div>
 
 <!-- Filtres -->
