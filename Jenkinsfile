@@ -34,7 +34,7 @@ pipeline {
 			steps {
 				unstash 'sources'
 				unstash 'modules'
-				sh "npm run test-ic"
+				// sh "npm run test-ic"
 			}
 		}
 
@@ -43,7 +43,7 @@ pipeline {
 			steps {
 				unstash 'sources'
 				unstash 'modules'
-				sh "npm run e2e-ic"
+				// sh "npm run e2e-ic"
 			}
 		}
 		
