@@ -7,3 +7,5 @@ td:nth-child(3) { max-width: 300px; }
 td:nth-child(5) { text-align: center; line-height: 25px; }
 
 .mat-chip:not(.mat-basic-chip) { padding: 4px 6px 4px 6px; text-align: center; }
+
+.tdSelectionEleve { padding: 15px 0px; }

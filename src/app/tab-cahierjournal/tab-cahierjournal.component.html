@@ -65,7 +65,7 @@
 								<mat-option *ngFor="let t of typesDeTemps" [value]="t">{{t}}</mat-option>
 							</mat-select>
 						</td>
-						<td>
+						<td class="tdSelectionEleve">
 							<mat-chip-list class="mat-chip-list-stacked selectionEleve">
 								<mat-chip *ngFor="let ele of eleves" selected="true" color="{{(temp.eleves.indexOf(ele.id)!==-1)?'accent':''}}" (click)="ajouterOuSupprimerEleve(temp, ele.id)">{{ele.prenom}}</mat-chip>
 							</mat-chip-list>
