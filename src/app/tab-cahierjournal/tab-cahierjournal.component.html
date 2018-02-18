@@ -11,106 +11,112 @@
 <em class="fa fa-forward" matTooltip="Avancer d'une journée" (click)="changeDate(1)"></em>
 <em class="fa fa-fast-forward" matTooltip="Avancer d'une semaine" (click)="changeDate(7)"></em>
 
+<div class="container-fluid">
 
-<fieldset *ngIf="!!dateJournal">
-	<legend>
-		<span class="dateDuJournal">{{aze}} Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}}</span>
-		<div class="actions">
-			<em *ngIf="journal" class="fa fa-print fa-2x" matTooltip="Afficher les données à imprimer" mat-button [routerLink]="['/tab-editionjournal-route', timeJournal]"></em>
-			<em *ngIf="journal" class="fa fa-copy fa-2x" matTooltip="Dupliquer" (click)="demandeDuplicationJournal()"></em>
+	<div *ngIf="!!dateJournal" class="row odd titre-row">
+		<div class="col">
+			<span class="dateDuJournal">{{aze}} Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}}</span>
+
+			<div class="float-right">
+				<em *ngIf="journal" class="fa fa-print" matTooltip="Afficher les données à imprimer" mat-button [routerLink]="['/tab-editionjournal-route', timeJournal]"></em>
+				<em *ngIf="journal" class="fa fa-copy" matTooltip="Dupliquer" (click)="demandeDuplicationJournal()"></em>
+			</div>
 		</div>
-	</legend>
-
-	<div *ngIf="!journal">Aucun journal à cette date. Voulez-vous en créer un ?
-		<span class="clickable" (click)="creerJournal()">OUI</span>
 	</div>
 
-	<div *ngIf="!!journal">
-		<ckeditor [(ngModel)]="journal.remarque" [config]="configCkEditor" debounce="200"></ckeditor>
-		<br/>
-		<br/>
-		<table class="cahierJournal">
-			<thead>
-				<tr>
-					<th>Temps</th>
-					<th>Elèves</th>
-					<th>Compétences</th>
-					<th>Commentaire</th>
-					<th>
-						<em (click)="ajouterTemps()" matTooltip="Ajouter un temps" class="fa fa-clock-o fa-lg"></em>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let temp of journal.temps; let j = index" [class]="j%2==0 ? 'even' : 'odd'">
-					<td>
-						<input [(ngModel)]="temp.nom" name="nomTemps" placeholder="Nom" class="petitChamp" />
-						<br/>
-						<br/>
-						<mat-select [(ngModel)]="temp.debut" name="debutTemps" placeholder="Début" class="petitChamp">
-							<mat-option *ngFor="let t of tempsDisponibles" [value]="t">{{t}}</mat-option>
-						</mat-select>
-						<br/>
-						<br/>
-						<mat-select [(ngModel)]="temp.fin" name="finTemps" placeholder="Fin" class="petitChamp">
-							<mat-option *ngFor="let t of tempsDisponibles" [value]="t">{{t}}</mat-option>
-						</mat-select>
-						<br/>
-						<br/>
-						<mat-select [(ngModel)]="temp.type" name="typeTemps" placeholder="Type" class="petitChamp">
-							<mat-option *ngFor="let t of typesDeTemps" [value]="t">{{t}}</mat-option>
-						</mat-select>
-					</td>
-					<td>
-						<mat-chip-list class="mat-chip-list-stacked selectionEleve">
-							<mat-chip *ngFor="let ele of eleves" selected="true" color="{{(temp.eleves.indexOf(ele.id)!==-1)?'accent':''}}" (click)="ajouterOuSupprimerEleve(temp, ele.id)">{{ele.prenom}}</mat-chip>
-						</mat-chip-list>
-					</td>
-					<td>
-						<div *ngFor="let c of temp.competences; let i = index" style="display: inline-flex">
-							<em (click)="retirerCompetence(temp, i)" matTooltip="Supprimer la compétence" class="fa fa-remove"></em>
-							<compo-competence [temp]="temp" [tempIndexCompetence]="i"></compo-competence>
+	<div *ngIf="!!dateJournal" class="row odd">
+
+		<div *ngIf="!journal">Aucun journal à cette date. Voulez-vous en créer un ?
+			<span class="clickable" (click)="creerJournal()">OUI</span>
+		</div>
+
+		<div *ngIf="!!journal">
+			<ckeditor [(ngModel)]="journal.remarque" [config]="configCkEditor" debounce="200"></ckeditor>
+			<br/>
+			<table class="cahierJournal">
+				<thead>
+					<tr>
+						<th>Temps</th>
+						<th>Elèves</th>
+						<th>Compétences</th>
+						<th>Commentaire</th>
+						<th>
+							<em (click)="ajouterTemps()" matTooltip="Ajouter un temps" class="fa fa-clock-o fa-lg"></em>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let temp of journal.temps; let j = index" [class]="j%2==0 ? 'even' : 'odd'">
+						<td>
+							<input [(ngModel)]="temp.nom" name="nomTemps" placeholder="Nom" class="petitChamp" />
 							<br/>
-						</div>
-					</td>
-					<td>
-						<ckeditor [(ngModel)]="temp.commentaire" [config]="configCkEditorTemps" debounce="200"></ckeditor>
-					</td>
-					<td>
-						<em (click)="demandeDuplicationTemps(temp)" matTooltip="Dupliquer ce temps" class="fa fa-copy"></em>
-						<br/>
-						<em (click)="ajouterCompetence(temp)" matTooltip="Ajouter une compétence" class="fa fa-cogs fa-lg"></em>
-						<br/>
-						<em (click)="ajouterCompetenceDepuisProjet(temp)" matTooltip="Ajouter les compétences liées à un projet" class="fa fa-puzzle-piece fa-lg"></em>
-						<br/>
-						<em (click)="retirerTemp(j)" matTooltip="Supprimer le temps" class="fa fa-remove fa-lg"></em>
-						<br/>
-						<em *ngIf="j !== 0" (click)="deplacerTemps(j, -1)" matTooltip="Déplacer le temps vers le haut" class="fa fa-chevron-circle-up fa-lg"></em>
-						<br/>
-						<em *ngIf="j !== journal.temps.length-1" (click)="deplacerTemps(j, 1)" matTooltip="Déplacer le temps vers le bas" class="fa fa-chevron-circle-down fa-lg"></em>
-						<br/>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+							<br/>
+							<mat-select [(ngModel)]="temp.debut" name="debutTemps" placeholder="Début" class="petitChamp">
+								<mat-option *ngFor="let t of tempsDisponibles" [value]="t">{{t}}</mat-option>
+							</mat-select>
+							<br/>
+							<br/>
+							<mat-select [(ngModel)]="temp.fin" name="finTemps" placeholder="Fin" class="petitChamp">
+								<mat-option *ngFor="let t of tempsDisponibles" [value]="t">{{t}}</mat-option>
+							</mat-select>
+							<br/>
+							<br/>
+							<mat-select [(ngModel)]="temp.type" name="typeTemps" placeholder="Type" class="petitChamp">
+								<mat-option *ngFor="let t of typesDeTemps" [value]="t">{{t}}</mat-option>
+							</mat-select>
+						</td>
+						<td>
+							<mat-chip-list class="mat-chip-list-stacked selectionEleve">
+								<mat-chip *ngFor="let ele of eleves" selected="true" color="{{(temp.eleves.indexOf(ele.id)!==-1)?'accent':''}}" (click)="ajouterOuSupprimerEleve(temp, ele.id)">{{ele.prenom}}</mat-chip>
+							</mat-chip-list>
+						</td>
+						<td>
+							<div *ngFor="let c of temp.competences; let i = index" style="display: inline-flex">
+								<em (click)="retirerCompetence(temp, i)" matTooltip="Supprimer la compétence" class="fa fa-remove"></em>
+								<compo-competence [temp]="temp" [tempIndexCompetence]="i"></compo-competence>
+								<br/>
+							</div>
+						</td>
+						<td>
+							<ckeditor [(ngModel)]="temp.commentaire" [config]="configCkEditorTemps" debounce="200"></ckeditor>
+						</td>
+						<td>
+							<em (click)="demandeDuplicationTemps(temp)" matTooltip="Dupliquer ce temps" class="fa fa-copy"></em>
+							<br/>
+							<em (click)="ajouterCompetence(temp)" matTooltip="Ajouter une compétence" class="fa fa-cogs fa-lg"></em>
+							<br/>
+							<em (click)="ajouterCompetenceDepuisProjet(temp)" matTooltip="Ajouter les compétences liées à un projet" class="fa fa-puzzle-piece fa-lg"></em>
+							<br/>
+							<em (click)="retirerTemp(j)" matTooltip="Supprimer le temps" class="fa fa-remove fa-lg"></em>
+							<br/>
+							<em *ngIf="j !== 0" (click)="deplacerTemps(j, -1)" matTooltip="Déplacer le temps vers le haut" class="fa fa-chevron-circle-up fa-lg"></em>
+							<br/>
+							<em *ngIf="j !== journal.temps.length-1" (click)="deplacerTemps(j, 1)" matTooltip="Déplacer le temps vers le bas" class="fa fa-chevron-circle-down fa-lg"></em>
+							<br/>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
-</fieldset>
-<!-- Série de retour à la ligne pour tenter de résoudre le problème des dropdown qui s'affiche en haut de l'écran -->
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>&nbsp;
+
+	<!-- Série de retour à la ligne pour tenter de résoudre le problème des dropdown qui s'affiche en haut de l'écran -->
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>&nbsp;
+</div>

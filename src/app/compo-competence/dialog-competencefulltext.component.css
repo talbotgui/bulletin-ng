@@ -1,3 +1,3 @@
-fieldset { height: 360px; }
-fieldset div { height: 350px; overflow: auto; }
 ul { -webkit-padding-start: 0px; }
+.listeResultats { height: 320px; overflow: auto; line-height: 1em; font-size: 1em; }
+
