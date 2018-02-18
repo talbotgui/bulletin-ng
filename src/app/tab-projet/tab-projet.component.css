@@ -1,3 +1,5 @@
+input { width: -webkit-fill-available; }
 div.actions { text-align: right; }
 mat-chip.projetSelectionne { color: white; background-color: #6b6159; font-weight: bold; }
 compo-competence { display: inline-block; }
+.ligneCompetence { display: inherit; }

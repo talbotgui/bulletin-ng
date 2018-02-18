@@ -1,9 +1,6 @@
 <!-- Actions -->
 <div class="actions">
-	<span class="fa-stack fa-lg ajoutProjet" matTooltip="Ajouter un nouveau projet" (click)="creerProjet()">
-		<em class="fa fa-circle-o fa-stack-2x"></em>
-		<em class="fa fa-plus fa-stack-1x"></em>
-	</span>
+	<em class="fa fa-plus" matTooltip="Ajouter un nouveau projet" (click)="creerProjet()"></em>
 </div>
 
 <!-- Liste des projets -->
@@ -13,23 +10,26 @@
 
 <!-- Formulaire de modification -->
 <form novalidate #projetForm="ngForm">
-	<div *ngIf="projet" class="formulaireProjet">
-		<fieldset>
-			<legend>Détails</legend>
+	<div *ngIf="projet" class="formulaireProjet container-fluid">
+
+		<div class="row odd titre-row">Détails</div>
+		<div class="row odd">
 			<div *ngIf="!inputNom.pristine && inputNom.errors?.required" class="alert-danger">Le nom est obligatoire</div>
 			<div *ngIf="!inputNom.pristine && inputNom.errors?.minlength" class="alert-danger">Le nom doit faire 3 caractères au minimum</div>
 			<input required minlength="3" #inputNom="ngModel" [(ngModel)]="projet.nom" name="nom" placeholder="Nom" />
-		</fieldset>
-		<fieldset>
-			<legend>
-				<span>Compétences </span>
-				<em (click)="ajouterCompetence()" matTooltip="Ajouter une compétence" class="fa fa-plus ajoutCompetence"></em>
-			</legend>
-			<div *ngFor="let idCompetence of projet.idCompetences; let i = index">
+		</div>
+
+		<div class="row even titre-row">
+			<span>Détails </span>
+			<em (click)="ajouterCompetence()" matTooltip="Ajouter une compétence" class="fa fa-plus ajoutCompetence"></em>
+		</div>
+		<div class="row even">
+			<div *ngFor="let idCompetence of projet.idCompetences; let i = index" class="ligneCompetence">
 				<em (click)="retirerCompetence(i)" matTooltip="Supprimer la compétence" class="fa fa-remove"></em>
 				<compo-competence [projet]="projet" [projetIndexCompetence]="i"></compo-competence>
 				<br/>
 			</div>
-		</fieldset>
+		</div>
+
 	</div>
 </form>
