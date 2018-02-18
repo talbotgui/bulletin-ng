@@ -58,6 +58,12 @@ import { TacheService } from './service/tache.service';
 // Le composant contenant les routes
 import { AppRoutingModule } from './app-routing.module';
 
+// Gestion des locales et des formats de date pour Angular 5
+// @see https://angular.io/guide/i18n#i18n-pipes
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
+
 // Déclaration du module
 @NgModule({
 
