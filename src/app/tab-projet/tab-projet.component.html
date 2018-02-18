@@ -20,8 +20,13 @@
 		</div>
 
 		<div class="row even titre-row">
-			<span>Détails </span>
-			<em (click)="ajouterCompetence()" matTooltip="Ajouter une compétence" class="fa fa-plus ajoutCompetence"></em>
+			<div class="col">
+				<span>Détails </span>
+
+				<div class="float-right">
+					<em (click)="ajouterCompetence()" matTooltip="Ajouter une compétence" class="fa fa-plus ajoutCompetence"></em>
+				</div>
+			</div>
 		</div>
 		<div class="row even">
 			<div *ngFor="let idCompetence of projet.idCompetences; let i = index" class="ligneCompetence">
