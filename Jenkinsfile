@@ -13,9 +13,6 @@ pipeline {
 			agent any
 			steps {
 				checkout scm
-				script {
-					stash name: 'sources', includes: '*'
-				}
 			}
 		}
 
@@ -24,33 +21,26 @@ pipeline {
 			steps {
 				sh "npm install --no-optional"
 				sh "npm run build-prod"
-				stash name:'modules', includes: 'node_modules/**'
-				stash name:'binaires', includes: 'dist/**'
 			}
 		}
 
 		stage ('Unit test') {
 			agent any
 			steps {
-				unstash 'sources'
-				unstash 'modules'
-				// sh "npm run test-ic"
+				sh "npm run test-ic"
 			}
 		}
 
 		stage ('Integration test') {
 			agent any
 			steps {
-				unstash 'sources'
-				unstash 'modules'
-				// sh "npm run e2e-ic"
+				sh "npm run e2e-ic"
 			}
 		}
 		
 		stage ('Quality') {
 			agent any
 			steps {
-				unstash 'sources'
 				withCredentials([string(credentialsId: 'sonarSecretKey', variable: 'SONAR_KEY')]) {
 					sh "sed -i 's/XXXXXXXXX/${SONAR_KEY}/' ./sonar-bulletinNG.properties"
 					sh "npm run quality"
@@ -81,13 +71,13 @@ pipeline {
 							if (userInput) {
 								node {
 									currentBuild.displayName = currentBuild.displayName + " - deployed to production"
-									unstash 'binaires'
 									sh "sed -i 's/\"\\/\"/\"\\/maclasse\\/\"/' ./dist/index.html"
 									sh "mv ./dist/index.html ./dist/indexArenommer.html"
 									sh 'echo "Déploiement de la nouvelle version en cours" > /var/www/html/maclasse/index.html'
 									sh "rm -rf /var/www/html/maclasse/*"
 									sh "cp -r ./dist/* /var/www/html/maclasse/"
 									sh "mv /var/www/html/maclasse/indexArenommer.html /var/www/html/maclasse/index.html"
+									sh "cd /var/www/html/maclasse/ && zip -r maclasse.zip *"
 								}
 							}
 						}
