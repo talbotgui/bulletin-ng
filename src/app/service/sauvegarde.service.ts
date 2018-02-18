@@ -27,8 +27,8 @@ export class SauvegardeService {
     const boutonSauvegarde = document.getElementsByClassName('fa-save').item(0) as HTMLElement;
     if (boutonSauvegarde) {
       const classname = boutonSauvegarde.className;
-      boutonSauvegarde.className = 'fa fa-save fa-4x rappelSauvegarde';
-      window.setTimeout(() => { boutonSauvegarde.className = classname; }, 500);
+      boutonSauvegarde.className = 'fa fa-save fa-2x faa-horizontal animated rappelSauvegarde';
+      window.setTimeout(() => { boutonSauvegarde.className = classname; }, 5000);
     }
   }
 
