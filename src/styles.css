@@ -38,7 +38,7 @@ td { font-size: 12; padding: 5px 0px; }
   <div class="row odd titre-row"></div>
 	<div class="row odd">
 	</div>
-</div
+</div>
 */
 .row.even, .form-row.even { background-color: lightgrey ; padding-bottom: 5px; }
 .row.odd, .form-row.odd { background-color: lightblue ; padding-bottom: 5px; }
