@@ -31,22 +31,22 @@ export class TabEditionBilanComponent extends TabAbstractEditionComponent implem
     super(route, editionService);
   }
 
-  // CSS à utiliser à l'impression (entete à 200px et titre à 600px pour impression en paysage dans chrome)
+  // CSS à utiliser à l'impression
+  // Modifier les hauteurs de 123px à 11px
+  // Passer de calc(50% - 105px) à calc(50% - 126px)
   getCssImpression() {
     return `.edition { font-size: 12px; }
-    .entete { width: 100%; height: 155px; }
+    .entete { width: 100%; height: 126px; margin-top: 5px }
     .entete > div { float: left; }
     .logoEN { margin-left: 10%; }
-    .enteteEN { width: 20%; margin: 0px 10px; border: 1px solid; padding: 5px; height: 143px; }
-    .designation { border: 1px solid; padding: 5px; height: 143px; width: 40%; }
+    .enteteEN { width: 30%; margin: 0px 10px; border: 1px solid; padding: 5px; height: 111px; }
+    .designation { border: 1px solid; padding: 5px; height: 111px ; width: calc(50% - 126px); }
     .anneeScolaire { font-weight: bold; font-size: 1.2em; text-align: center; }
-    .titre { clear: both; width: 80%; margin-left: 10%; text-align: center; border: 1px solid; }
-    .titreBleu { width: 80%; margin-left: 10%; text-align: center; margin-top: 20px; line-height: 60px; height: 60px; }
+    .titre { clear: both; width: 80%; margin: 10px 10% 10px 10%; text-align: center; border: 1px solid; }
     .edition table { width:100%; text-align: center; vertical-align: middle; border-collapse: collapse!important; }
     .edition td,.edition th { border: solid 1px black!important; }
-    .edition table, tr, td, th { position: relative; padding: 10px; }
-    th.text-vertical span { transform-origin: 0 50%; transform: rotate(-90deg);  white-space: nowrap;  display: block; 
-      position: absolute; bottom: 0; left: 50%;}`;
+    .edition table, tr, td, th { position: relative; padding: 3px; min-width: 10px; }
+    th.text-vertical span { transform-origin: 0 50%; transform: rotate(-90deg);  white-space: nowrap;  display: block; position: absolute; bottom: 0; left: 50%;}`;
   }
 
   // Initialisation de l'édition
@@ -97,7 +97,7 @@ export class TabEditionBilanComponent extends TabAbstractEditionComponent implem
 
     // Initialisation de la hauteur des THs
     const ths = document.getElementsByTagName('th');
-    const hauteur = 7 * nbCaracteresMaxDansLibelleNote;
+    const hauteur = 5.2 * nbCaracteresMaxDansLibelleNote;
     ths[ths.length - 1].style.height = hauteur + 'px';
   }
 

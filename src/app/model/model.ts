@@ -180,6 +180,17 @@ export class LigneTableauDeBord {
     }
     return '';
   }
+  get sousLignesAvecNotes(): SousLigneTableauDeBord[] {
+    const sousLignesAvecNotes: SousLigneTableauDeBord[] = [];
+    if (this.sousLignes) {
+      for (const sousLigne of this.sousLignes) {
+        if (!!sousLigne.constatation && !!sousLigne.constatation.valeur) {
+          sousLignesAvecNotes.push(sousLigne);
+        }
+      }
+    }
+    return sousLignesAvecNotes;
+  }
 
   constructor(public idDomaine: string | undefined, public nomDomaine: string | undefined, constatations: Note[] = [], propositions: Note[] = [], mapCompetences: Map<string, Competence>, public idEleve: string, public periodeEvaluee: Periode) {
     this.sousLignes = [];
