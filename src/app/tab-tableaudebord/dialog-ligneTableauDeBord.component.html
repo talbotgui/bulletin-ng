@@ -1,80 +1,88 @@
 <h2 mat-dialog-title>Evaluation et préparation d'un domaine</h2>
 
-<fieldset *ngIf="!ligne.idDomaine">
-	<legend>Sélection du domaine :</legend>
-	<compo-competence [note]="premiereNote" [lectureSeule]="false" [profondeurMaximaleAutorisee]=4></compo-competence>
-	<br/>
-	<em class="fa fa-check fa-2x" matTooltip="Sélectionner ce domaine" (click)="validerDomaine()"></em>
-</fieldset>
-<fieldset *ngIf="!!ligne.idDomaine">
-	<legend>Domaine :</legend>
-	{{ligne.nomDomaine}}
-</fieldset>
-<br/>
-<fieldset *ngIf="!!ligne.idDomaine">
-	<legend>Evaluations sur la période '{{ligne.periodeEvaluee.nom}}' :</legend>
-	<textarea [(ngModel)]="ligne.constat" name="constat" placeholder="Constat sur la période précédente" rows="8" cols="80" [(disabled)]="statutActivationSaisieConstat"></textarea>
-	<textarea [(ngModel)]="ligne.outil" name="outil" placeholder="Outil sur la période précédente" rows="8" cols="80" [(disabled)]="statutActivationSaisieConstat"></textarea>
-	<br/>
-	<table class="ligneTableauDeBord">
-		<thead>
-			<tr>
-				<th>Elément du programme évalué</th>
-				<th>Positionnement et objectif d'apprentissage</th>
-				<th>
-					<span>Acquisition, progrès et difficultés</span>
-				</th>
-				<th>
-					<em class="fa fa-plus-circle" matTooltip="Ajouter une note dans la période précédente" (click)="ajouterLigneProgrammeEvalue()"></em>
-				</th>
-			</tr>
-		</thead>
-		<tbody *ngFor="let sousLigne of ligne.sousLignes; let i = index">
-			<tr *ngIf="sousLigne.constatation">
-				<td>
-					<compo-competence [idCompetenceRacine]="ligne.idDomaine" [note]="sousLigne.constatation" [lectureSeule]="false"></compo-competence>
-				</td>
-				<td>
-					<compo-note [note]="sousLigne.constatation" [lectureSeule]="false"></compo-note>
-				</td>
-				<td>
-					<textarea [(ngModel)]="sousLigne.constatation.commentaire" name="commentaire" rows="2" cols="20"></textarea>
-				</td>
-				<td>
-					<em class="fa fa-remove" matTooltip="Supprimer cette note" (click)="supprimerSousLigneProgrammeEvalue(sousLigne)"></em>
-					<em class="fa fa-magic" matTooltip="Reporter la compétence dans les compétences à travailler à la prochaine période" (click)="reporteSousLigneDansPeriodePreparee(sousLigne)"></em>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</fieldset>
-<br/>
-<fieldset *ngIf="!!ligne.idDomaine">
-	<legend>Préparation pour la période suivante :</legend>
-	<textarea [(ngModel)]="ligne.proposition" name="proposition" placeholder="Aide pour la période suivante" rows="8" cols="80"
-	 [(disabled)]="statutActivationSaisieAide"></textarea>
-	<br/>
-	<table class="ligneTableauDeBord">
-		<thead>
-			<tr>
-				<th>Elément du programme à travailler</th>
-				<th>
-					<em class="fa fa-plus-circle" matTooltip="Ajouter une note pour la période suivante" (click)="ajouterLigneProgrammeTravaille()"></em>
-				</th>
-			</tr>
-		</thead>
-		<tbody *ngFor="let sousLigne of ligne.sousLignes; let i = index">
-			<tr *ngIf="sousLigne.proposition">
-				<td>
-					<compo-competence [idCompetenceRacine]="ligne.idDomaine" [note]="sousLigne.proposition" [lectureSeule]="false"></compo-competence>
-				</td>
-				<td>
-					<em class="fa fa-remove" matTooltip="Supprimer cette note" (click)="supprimerSousLigneProgrammeTravaille(sousLigne)"></em>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</fieldset>
 
+<div class="container-fluid">
+	<div *ngIf="!ligne.idDomaine" class="row odd titre-row">Sélection du domaine :</div>
+	<div *ngIf="!ligne.idDomaine" class="row odd">
+		<compo-competence [note]="premiereNote" [lectureSeule]="false" [profondeurMaximaleAutorisee]=4></compo-competence>
+		<br/>
+		<em class="fa fa-check fa-2x" matTooltip="Sélectionner ce domaine" (click)="validerDomaine()"></em>
+	</div>
+
+	<div *ngIf="!!ligne.idDomaine" class="row even titre-row">Domaine :</div>
+	<div *ngIf="!!ligne.idDomaine" class="row even">
+		{{ligne.nomDomaine}}
+	</div>
+
+	<div *ngIf="!!ligne.idDomaine" class="row odd titre-row">Evaluations sur la période '{{ligne.periodeEvaluee.nom}}' :</div>
+	<div *ngIf="!!ligne.idDomaine" class="row odd">
+		<div class="col-6">
+			<textarea [(ngModel)]="ligne.constat" name="constat" placeholder="Constat sur la période précédente" rows="8" [(disabled)]="statutActivationSaisieConstat"></textarea>
+		</div>
+		<div class="col-6">
+			<textarea [(ngModel)]="ligne.outil" name="outil" placeholder="Outil sur la période précédente" rows="8" [(disabled)]="statutActivationSaisieConstat"></textarea>
+		</div>
+	</div>
+	<div *ngIf="!!ligne.idDomaine" class="row odd">
+		<table class="ligneTableauDeBord">
+			<thead>
+				<tr>
+					<th>Elément du programme évalué</th>
+					<th>Positionnement et objectif d'apprentissage</th>
+					<th>
+						<span>Acquisition, progrès et difficultés</span>
+					</th>
+					<th>
+						<em class="fa fa-plus-circle" matTooltip="Ajouter une note dans la période précédente" (click)="ajouterLigneProgrammeEvalue()"></em>
+					</th>
+				</tr>
+			</thead>
+			<tbody *ngFor="let sousLigne of ligne.sousLignes; let i = index">
+				<tr *ngIf="sousLigne.constatation">
+					<td>
+						<compo-competence [idCompetenceRacine]="ligne.idDomaine" [note]="sousLigne.constatation" [lectureSeule]="false"></compo-competence>
+					</td>
+					<td>
+						<compo-note [note]="sousLigne.constatation" [lectureSeule]="false"></compo-note>
+					</td>
+					<td>
+						<textarea [(ngModel)]="sousLigne.constatation.commentaire" name="commentaire" rows="2" cols="20"></textarea>
+					</td>
+					<td>
+						<em class="fa fa-remove" matTooltip="Supprimer cette note" (click)="supprimerSousLigneProgrammeEvalue(sousLigne)"></em>
+						<em class="fa fa-magic" matTooltip="Reporter la compétence dans les compétences à travailler à la prochaine période" (click)="reporteSousLigneDansPeriodePreparee(sousLigne)"></em>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div *ngIf="!!ligne.idDomaine" class="row even titre-row">Préparation pour la période suivante :</div>
+	<div *ngIf="!!ligne.idDomaine" class="row even">
+		<textarea [(ngModel)]="ligne.proposition" name="proposition" placeholder="Aide pour la période suivante" rows="8" cols="80"
+		 [(disabled)]="statutActivationSaisieAide"></textarea>
+		<br/>
+		<table class="ligneTableauDeBord">
+			<thead>
+				<tr>
+					<th>Elément du programme à travailler</th>
+					<th>
+						<em class="fa fa-plus-circle" matTooltip="Ajouter une note pour la période suivante" (click)="ajouterLigneProgrammeTravaille()"></em>
+					</th>
+				</tr>
+			</thead>
+			<tbody *ngFor="let sousLigne of ligne.sousLignes; let i = index">
+				<tr *ngIf="sousLigne.proposition">
+					<td>
+						<compo-competence [idCompetenceRacine]="ligne.idDomaine" [note]="sousLigne.proposition" [lectureSeule]="false"></compo-competence>
+					</td>
+					<td>
+						<em class="fa fa-remove" matTooltip="Supprimer cette note" (click)="supprimerSousLigneProgrammeTravaille(sousLigne)"></em>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
 
 <button class="button" (click)="fermer()">Fermer</button>
