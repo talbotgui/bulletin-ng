@@ -34,7 +34,13 @@ module.exports = function (config) {
     // Execution unique des tests
     singleRun: true,
     // Le(s) browser(s) à utiliser pour les tests
-    browsers: ['ChromeHeadless'],
+    browsers: ['ChromeHeadless_without_security'],
+	customLaunchers: {
+      ChromeHeadless_without_security: {
+        base: 'ChromeHeadless',
+        flags: ['--disable-web-security', '--no-sandbox', '--disable-setuid-sandbox']
+      }
+    }
     // Configuration pour Istanbul
     coverageIstanbulReporter: {
       // Types des rapports
