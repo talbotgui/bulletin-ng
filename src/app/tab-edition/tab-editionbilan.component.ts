@@ -46,6 +46,7 @@ export class TabEditionBilanComponent extends TabAbstractEditionComponent implem
     .edition table { width:100%; text-align: center; vertical-align: middle; border-collapse: collapse!important; }
     .edition td,.edition th { border: solid 1px black!important; }
     .edition table, tr, td, th { position: relative; padding: 3px; min-width: 10px; }
+    th.text-vertical { height:109px; }
     th.text-vertical span { transform-origin: 0 50%; transform: rotate(-90deg);  white-space: nowrap;  display: block; position: absolute; bottom: 0; left: 50%;}`;
   }
 
