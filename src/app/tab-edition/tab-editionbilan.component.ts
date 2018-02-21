@@ -75,7 +75,7 @@ export class TabEditionBilanComponent extends TabAbstractEditionComponent implem
         });
 
         // Préparation des données d'entête
-        this.titre = 'Bilan de compétence - ' + eleve.nom.toUpperCase() + ' ' + eleve.prenom;
+        this.titre = 'Bilan de compétence - ' + eleve.nom.toUpperCase() + ' ' + eleve.prenom + ' - P' + periode.id;
         this.nomPeriode = periode.nom;
         const annee = this.dataRepository.getAnneeChargee();
         this.anneeScolaire = annee.anneeScolaire;
