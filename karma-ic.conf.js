@@ -40,7 +40,7 @@ module.exports = function (config) {
         base: 'ChromeHeadless',
         flags: ['--disable-web-security', '--no-sandbox', '--disable-setuid-sandbox']
       }
-    }
+    },
     // Configuration pour Istanbul
     coverageIstanbulReporter: {
       // Types des rapports
