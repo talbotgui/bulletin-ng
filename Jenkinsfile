@@ -23,19 +23,19 @@ pipeline {
 			}
 		}
 
-		stage ('Unit test') {
-			agent any
-			steps {
-				sh "mvn test"//
-			}
-		}
+		//stage ('Unit test') {
+		//	agent any
+		//	steps {
+		//		sh "mvn test"
+		//	}
+		//}
 
-		stage ('Integration test') {
-			agent any
-			steps {
-				//sh "mvn integration-test"
-			}
-		}
+		//stage ('Integration test') {
+		//	agent any
+		//	steps {
+		//		sh "mvn integration-test"
+		//	}
+		//}
 		
 		stage ('Quality') {
 			agent any
