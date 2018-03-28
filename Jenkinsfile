@@ -19,22 +19,21 @@ pipeline {
 		stage ('Build') {
 			agent any
 			steps {
-				sh "npm install --no-optional"
-				sh "npm run build-prod"
+				sh "mvn clean compile"
 			}
 		}
 
 		stage ('Unit test') {
 			agent any
 			steps {
-				sh "npm run test-ic"
+				sh "mvn test"//
 			}
 		}
 
 		stage ('Integration test') {
 			agent any
 			steps {
-				sh "npm run e2e-ic"
+				//sh "mvn integration-test"
 			}
 		}
 		
@@ -43,7 +42,7 @@ pipeline {
 			steps {
 				withCredentials([string(credentialsId: 'sonarSecretKey', variable: 'SONAR_KEY')]) {
 					sh "sed -i 's/XXXXXXXXX/${SONAR_KEY}/' ./sonar-bulletinNG.properties"
-					sh "npm run quality"
+					sh "mvn frontend:npm@npmRunQuality"
 					sh "sed -i 's/${SONAR_KEY}/XXXXXXXXX/' ./sonar-bulletinNG.properties"
 				}
 			}
