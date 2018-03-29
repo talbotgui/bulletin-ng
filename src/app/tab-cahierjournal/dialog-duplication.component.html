@@ -2,12 +2,12 @@
 
 <div *ngIf="!!journal">
     Duplication
-    <span *ngIf="!!temps">du temps '{{temps.nom}}</span> du journal du {{journal.date | date:'EEEE dd/MM/yyyy'}}
+    <span *ngIf="!!temps">du temps '{{temps.nom}}'</span> du journal du {{journal.date | date:'EEEE dd/MM/yyyy'}}
     <br/>
     <span>vers le journal du :</span>
-    <input [matDatepicker]="myDatepicker" [(ngModel)]="dateCible" name="dateCible">
-    <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
-    <mat-datepicker #myDatepicker (click)="paliatifBugDatepickerDansDialog()"></mat-datepicker>
+    <input [matDatepicker]="leDatepicker" [(ngModel)]="dateCible" name="dateCible">
+    <mat-datepicker-toggle [for]="leDatepicker" class="leDatepickerAOuvrirAutomatiquement"></mat-datepicker-toggle>
+    <mat-datepicker #leDatepicker></mat-datepicker>
 </div>
 
 

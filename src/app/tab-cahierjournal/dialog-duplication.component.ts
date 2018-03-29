@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
 
 import { JournalService } from '../service/journal.service';
@@ -7,7 +7,7 @@ import * as model from '../model/model';
 @Component({
   selector: 'dialog-duplication', templateUrl: './dialog-duplication.component.html', styleUrls: ['./dialog-duplication.component.css']
 })
-export class DialogDuplicationComponent {
+export class DialogDuplicationComponent implements OnInit {
 
   @Input()
   journal: model.Journal;
@@ -19,6 +19,16 @@ export class DialogDuplicationComponent {
 
   // Un constructeur pour se faire injecter les dépendances
   constructor(private journalService: JournalService, private dialogRef: MatDialogRef<DialogDuplicationComponent>, private snackBar: MatSnackBar) { }
+
+  // A l'initialisation, ouverture automatique du calendrier
+  ngOnInit(): void {
+    setTimeout(function () {
+      ((document.getElementsByClassName("leDatepickerAOuvrirAutomatiquement")[0] as HTMLElement).children[0] as HTMLElement).click();
+      setTimeout(function () {
+        (document.getElementsByClassName("mat-datepicker-popup")[0] as HTMLElement).style.bottom = '0px';
+      }, 5000);
+    }, 200);
+  }
 
   annuler() {
     this.dialogRef.close();
@@ -45,11 +55,5 @@ export class DialogDuplicationComponent {
     }
 
     this.dialogRef.close();
-  }
-
-  paliatifBugDatepickerDansDialog() {
-    const elements = document.getElementsByClassName('cdk-overlay-pane');
-    const element = elements[elements.length - 1];
-    (element as HTMLElement).style.bottom = '0px';
   }
 }
