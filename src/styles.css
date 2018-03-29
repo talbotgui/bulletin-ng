@@ -114,3 +114,7 @@ body.dynamique .listePeriodes mat-chip:nth-child(4) { background-color: #FF0000!
 body.dynamique .listePeriodes mat-chip:nth-child(5) { background-color: #DF0F82!important; }
 
 body.dynamique .cahierJournal .mat-accent { background-color: red; }
+
+body.dynamique .row.even,body.dynamique .form-row.even { background-color: #fd3d3c63!important; }
+body.dynamique .row.odd,body.dynamique .form-row.odd { background-color: #7cb42b61!important; }
+
