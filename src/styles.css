@@ -40,8 +40,8 @@ td { font-size: 12; padding: 5px 0px; }
 	</div>
 </div>
 */
-.row.even, .form-row.even { background-color: lightgrey ; padding-bottom: 5px; }
-.row.odd, .form-row.odd { background-color: lightblue ; padding-bottom: 5px; }
+.row.even, .form-row.even { background-color: #62a0ce21 ; padding-bottom: 5px; }
+.row.odd, .form-row.odd { background-color: #8dbadc6e ; padding-bottom: 5px; }
 .row button, .form-row button { margin-top: 10px; }
 .row.titre-row { font-size: 22px; margin-top: 10px; }
 .col input { width: 100%; margin: 5px 0px; min-width: 150px; }
