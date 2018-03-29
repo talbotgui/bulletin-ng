@@ -26,11 +26,11 @@
 
 	<div *ngIf="!!dateJournal" class="row odd">
 
-		<div *ngIf="!journal">Aucun journal à cette date. Voulez-vous en créer un ?
+		<div *ngIf="!journal" class="col">Aucun journal à cette date. Voulez-vous en créer un ?
 			<span class="clickable" (click)="creerJournal()">OUI</span>
 		</div>
 
-		<div *ngIf="!!journal">
+		<div *ngIf="!!journal" class="col">
 			<ckeditor [(ngModel)]="journal.remarque" [config]="configCkEditor" debounce="200"></ckeditor>
 			<br/>
 			<table class="cahierJournal">
