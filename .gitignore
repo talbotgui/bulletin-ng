@@ -1,6 +1,7 @@
 # misc & compiled output
 /build/*
 /dist/*
+/target/*
 .scannerwork
 package-lock.json
 debug.log

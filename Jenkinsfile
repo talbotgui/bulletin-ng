@@ -22,6 +22,14 @@ pipeline {
 				sh "mvn clean compile"
 			}
 		}
+		
+		stage ('Package') {
+			agent any
+			steps {
+				sh "mvn assembly:single"
+				sh "mv target/bulletinNG-1.0.0.zip dist/maclasse.zip"
+			}
+		}
 
 		//stage ('Unit test') {
 		//	agent any
@@ -76,7 +84,6 @@ pipeline {
 									sh "rm -rf /var/www/html/maclasse/*"
 									sh "cp -r ./dist/* /var/www/html/maclasse/"
 									sh "mv /var/www/html/maclasse/indexArenommer.html /var/www/html/maclasse/index.html"
-									sh "cd /var/www/html/maclasse/ && zip -r maclasse.zip *"
 								}
 							}
 						}
