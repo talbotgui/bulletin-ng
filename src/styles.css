@@ -118,3 +118,4 @@ body.dynamique .cahierJournal .mat-accent { background-color: red; }
 body.dynamique .row.even,body.dynamique .form-row.even { background-color: #fd3d3c63!important; }
 body.dynamique .row.odd,body.dynamique .form-row.odd { background-color: #7cb42b61!important; }
 
+body.dynamique tr.odd { background-color: #27A8C39C!important }
