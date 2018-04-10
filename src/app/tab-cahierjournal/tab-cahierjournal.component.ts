@@ -97,6 +97,7 @@ export class TabCahierJournalComponent implements OnInit {
 
   onChangementDateJournal() {
     this.journal = this.lectureService.getJournal(this.dateJournal);
+    this.forceEditionJournalDuPasse = false;
   }
 
   creerJournal() {
