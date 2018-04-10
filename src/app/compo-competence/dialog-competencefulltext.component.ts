@@ -19,13 +19,18 @@ export class DialogCompetenceFullTextComponent {
   filtreLibelleCompetence: string;
   competencesTrouvees: model.Competence[];
 
+  // Un constructeur pour se faire injecter les dépendances
+  constructor(private lectureService: LectureService, private dialogRef: MatDialogRef<DialogCompetenceFullTextComponent>) { }
+
+  // Affichage du libellé complet de la compétence
+  afficherLibelleComplet(competence: model.Competence) {
+    (competence as any).libelleComplet = this.lectureService.getLibelleCompletCompetence(competence.id);
+  }
+
   // Recherche des compétences correspondantes
   rechercher() {
     this.competencesTrouvees = this.lectureService.getCompetenceParTexte(this.filtreLibelleCompetence, this.idCompetenceRacine);
   }
-
-  // Un constructeur pour se faire injecter les dépendances
-  constructor(private lectureService: LectureService, private dialogRef: MatDialogRef<DialogCompetenceFullTextComponent>) { }
 
   selectionner() {
     if (this.idCompetenceSelectionnee) {
@@ -33,5 +38,4 @@ export class DialogCompetenceFullTextComponent {
     }
     this.dialogRef.close();
   }
-
 }

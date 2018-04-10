@@ -14,7 +14,9 @@
 				<div class="col-12">
 					<mat-radio-button value="{{c.id}}">
 					</mat-radio-button>
-					<span>{{c.text}}</span>
+					<span *ngIf="!c.libelleComplet">{{c.text}}</span>
+					<span *ngIf="c.libelleComplet">{{c.libelleComplet}}</span>
+					<em (click)="afficherLibelleComplet(c)" class="fa fa-info"></em>
 				</div>
 			</div>
 		</div>
