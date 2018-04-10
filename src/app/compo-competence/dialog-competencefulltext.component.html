@@ -8,13 +8,15 @@
 <div class="row even titre-row">Compétences correspondantes :</div>
 <div class="row even listeResultats">
 	<mat-radio-group [(ngModel)]="idCompetenceSelectionnee">
-		<ul>
-			<li *ngFor="let c of competencesTrouvees">
-				<mat-radio-button value="{{c.id}}">
-				</mat-radio-button>
-				<span>{{c.text}}</span>
-			</li>
-		</ul>
+		<div class="col-12">
+			<div *ngFor="let c of competencesTrouvees; let j = index" [class]="j%2==0 ? 'row even' : 'row odd'">
+				<div class="col-12">
+					<mat-radio-button value="{{c.id}}">
+					</mat-radio-button>
+					<span>{{c.text}}</span>
+				</div>
+			</div>
+		</div>
 	</mat-radio-group>
 </div>
 
