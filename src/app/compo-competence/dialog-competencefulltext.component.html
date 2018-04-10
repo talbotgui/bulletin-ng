@@ -2,7 +2,8 @@
 
 <div class="row odd titre-row">Filtre</div>
 <div class="row odd">
-	<input [(ngModel)]="filtreLibelleCompetence" name="filtreLibelleCompetence" />
+	<input [(ngModel)]="filtreLibelleCompetence" name="filtreLibelleCompetence" class="inputFiltre" />
+	<button class="button" (click)=rechercher()>Rechercher</button>
 </div>
 
 <div class="row even titre-row">Compétences correspondantes :</div>

@@ -16,16 +16,12 @@ export class DialogCompetenceFullTextComponent {
   @Output() onSelectionRealisee = new EventEmitter<string>();
   idCompetenceSelectionnee: string;
 
-  tempFiltreLibelleCompetence: string;
+  filtreLibelleCompetence: string;
   competencesTrouvees: model.Competence[];
 
-  get filtreLibelleCompetence() {
-    return this.tempFiltreLibelleCompetence;
-  }
-
-  set filtreLibelleCompetence(value: string) {
-    this.tempFiltreLibelleCompetence = value;
-    this.competencesTrouvees = this.lectureService.getCompetenceParTexte(value, this.idCompetenceRacine);
+  // Recherche des compétences correspondantes
+  rechercher() {
+    this.competencesTrouvees = this.lectureService.getCompetenceParTexte(this.filtreLibelleCompetence, this.idCompetenceRacine);
   }
 
   // Un constructeur pour se faire injecter les dépendances
