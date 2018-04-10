@@ -119,7 +119,7 @@ describe('NoteService', () => {
     mockito.verify(dataRepositoryMock.getAnneeChargee()).never();
   });
 
-  it('supprimeNoteDepuisTdb avec une ligne contenant proposition et constat', () => {
+  it('supprimeNoteDepuisTdb avec une ligne contenant proposition et constat 1', () => {
     // Arrange
     const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
     annee.notes = [];
@@ -134,7 +134,7 @@ describe('NoteService', () => {
     mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
   });
 
-  it('supprimeNoteDepuisTdb avec une ligne contenant proposition et constat', () => {
+  it('supprimeNoteDepuisTdb avec une ligne contenant proposition et constat 2', () => {
     // Arrange
     const annee = Jdd.getAnnee(Jdd.JDD_RICHE);
     annee.notes = [];

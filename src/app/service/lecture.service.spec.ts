@@ -463,7 +463,7 @@ describe('LectureService', () => {
     mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
   });
 
-  it('getCompetenceParTexte case insensitive', () => {
+  it('getCompetenceParTexte case insensitive 1', () => {
     //
     const annee = Jdd.getAnnee(Jdd.JDD_SIMPLISTE);
     annee.competences = [];
@@ -482,7 +482,7 @@ describe('LectureService', () => {
     mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
   });
 
-  it('getCompetenceParTexte case insensitive', () => {
+  it('getCompetenceParTexte case insensitive 2', () => {
     //
     const annee = Jdd.getAnnee(Jdd.JDD_SIMPLISTE);
     annee.competences = [];
@@ -501,7 +501,7 @@ describe('LectureService', () => {
     mockito.verify(dataRepositoryMock.getAnneeChargee()).once();
   });
 
-  it('getCompetenceParTexte case insensitive', () => {
+  it('getCompetenceParTexte case insensitive 3', () => {
     //
     const annee = Jdd.getAnnee(Jdd.JDD_SIMPLISTE);
     annee.competences = [];
