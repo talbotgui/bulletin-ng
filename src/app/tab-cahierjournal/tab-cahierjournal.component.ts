@@ -45,6 +45,22 @@ export class TabCahierJournalComponent implements OnInit {
   // journal en cours d'édition
   journal?: model.Journal;
 
+  // Flag utilisé pour éviter la modification d'un journal du passé
+  forceEditionJournalDuPasse: boolean = false;
+  get journalEditable(): boolean {
+    return !this.journalDuPasse || this.forceEditionJournalDuPasse;
+  }
+  get journalDuPasse(): boolean {
+    if (this.journal) {
+      return this.journal.date < new Date();
+    } else {
+      return false;
+    }
+  }
+  forcerEditionDunJournalDuPasse() {
+    this.forceEditionJournalDuPasse = true;
+  }
+
   // Un constructeur pour se faire injecter les dépendances
   constructor(private route: ActivatedRoute, private lectureService: LectureService,
     private journalService: JournalService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
@@ -88,6 +104,9 @@ export class TabCahierJournalComponent implements OnInit {
   }
 
   ajouterOuSupprimerEleve(temps: model.Temps, idEleve: string) {
+    if (!this.journalEditable) {
+      return;
+    }
     const index = temps.eleves.indexOf(idEleve);
     if (index !== -1) {
       temps.eleves.splice(index, 1);
