@@ -34,7 +34,7 @@ module.exports = function (config) {
     // Execution unique des tests
     singleRun: true,
     // Le(s) browser(s) à utiliser pour les tests
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadless'],
     // Configuration pour Istanbul
     coverageIstanbulReporter: {
       // Types des rapports
