@@ -16,8 +16,8 @@ export class DivSauvegarder {
 
 export class DivSauvegarderDialogChargement {
   static INPUTFILE_LOCAL = by.css('input.inputFichierChargement');
-  static INPUTFILE_LOCAL_LABEL_NOT_DONE = by.xpath('label[@class="inputFile inputFileDone"]');
-  static INPUTFILE_LOCAL_LABEL_DONE = by.css('label.inputFile');
+  static INPUTFILE_LOCAL_LABEL_NOT_DONE = by.xpath('//label[@class="inputFile"]');
+  static INPUTFILE_LOCAL_LABEL_DONE = by.xpath('//label[@class="inputFile inputFileDone"]');
   static SELECT = by.css('mat-select.selectFichierChargement');
   static BUTTON_ANNULER = by.css('button.annuler');
   static BUTTON_CHARGER = by.css('button.charger');
@@ -96,9 +96,9 @@ export class TabJournal {
     by.xpath('(//mat-select[@name="finTemps"])[3]')
   ];
   static TEMPS_AJOUTER_COMPETENCE = [
-    by.css('(//em[@class="fa fa-cogs fa-lg ng-star-inserted"])[1]'),
-    by.css('(//em[@class="fa fa-cogs fa-lg ng-star-inserted"])[2]'),
-    by.css('(//em[@class="fa fa-cogs fa-lg ng-star-inserted"])[3]')
+    by.xpath('(//em[@class="fa fa-cogs fa-lg ng-star-inserted"])[1]'),
+    by.xpath('(//em[@class="fa fa-cogs fa-lg ng-star-inserted"])[2]'),
+    by.xpath('(//em[@class="fa fa-cogs fa-lg ng-star-inserted"])[3]')
   ];
   static TEMPS_MONTER = [
     by.xpath('(//em[@class="fa fa-chevron-circle-up fa-lg ng-star-inserted"])[1]'),
@@ -159,22 +159,22 @@ export class TabTaches {
   static CARTE1_SSTITRE_SPAN1 = by.xpath('((//mat-card)[1]/mat-card-header/div/mat-card-subtitle/span)[1]');
   static CARTE1_SSTITRE_SPAN2 = by.xpath('((//mat-card)[1]/mat-card-header/div/mat-card-subtitle/span)[2]');
   static CARTE1_ECHEANCE1 = by.xpath('((//mat-card)[1]/mat-card-content/div)[1]/span');
-  static CARTE1_ECHEANCE1_CHECKBOXON = by.xpath('((//mat-card)[1]/mat-card-content/div)[1]/em[@class="fa fa-check-square-o"]');
-  static CARTE1_ECHEANCE1_CHECKBOXOFF = by.xpath('((//mat-card)[1]/mat-card-content/div)[1]/em[@class="fa fa-square-o"]');
+  static CARTE1_ECHEANCE1_CHECKBOXON = by.xpath('((//mat-card)[1]/mat-card-content/div)[1]/em[@class="fa fa-check-square-o ng-star-inserted"]');
+  static CARTE1_ECHEANCE1_CHECKBOXOFF = by.xpath('((//mat-card)[1]/mat-card-content/div)[1]/em[@class="fa fa-square-o ng-star-inserted"]');
   static CARTE1_ECHEANCE2 = by.xpath('((//mat-card)[1]/mat-card-content/div)[2]/span');
-  static CARTE1_ECHEANCE2_CHECKBOXON = by.xpath('((//mat-card)[1]/mat-card-content/div)[2]/em[@class="fa fa-check-square-o"]');
-  static CARTE1_ECHEANCE2_CHECKBOXOFF = by.xpath('((//mat-card)[1]/mat-card-content/div)[2]/em[@class="fa fa-square-o"]');
+  static CARTE1_ECHEANCE2_CHECKBOXON = by.xpath('((//mat-card)[1]/mat-card-content/div)[2]/em[@class="fa fa-check-square-o ng-star-inserted"]');
+  static CARTE1_ECHEANCE2_CHECKBOXOFF = by.xpath('((//mat-card)[1]/mat-card-content/div)[2]/em[@class="fa fa-square-o ng-star-inserted"]');
 
   static CARTE2_TITRE = by.xpath('(//mat-card)[2]/mat-card-header/div/mat-card-title');
-  static CARTE2_ECHEANCE1_CHECKBOXON = by.xpath('((//mat-card)[2]/mat-card-content/div)[1]/em[@class="fa fa-check-square-o"]');
-  static CARTE2_ECHEANCE1_CHECKBOXOFF = by.xpath('((//mat-card)[2]/mat-card-content/div)[1]/em[@class="fa fa-square-o"]');
-  static CARTE2_ECHEANCE2_CHECKBOXON = by.xpath('((//mat-card)[2]/mat-card-content/div)[2]/em[@class="fa fa-check-square-o"]');
-  static CARTE2_ECHEANCE2_CHECKBOXOFF = by.xpath('((//mat-card)[2]/mat-card-content/div)[2]/em[@class="fa fa-square-o"]');
+  static CARTE2_ECHEANCE1_CHECKBOXON = by.xpath('((//mat-card)[2]/mat-card-content/div)[1]/em[@class="fa fa-check-square-o ng-star-inserted"]');
+  static CARTE2_ECHEANCE1_CHECKBOXOFF = by.xpath('((//mat-card)[2]/mat-card-content/div)[1]/em[@class="fa fa-square-o ng-star-inserted"]');
+  static CARTE2_ECHEANCE2_CHECKBOXON = by.xpath('((//mat-card)[2]/mat-card-content/div)[2]/em[@class="fa fa-check-square-o ng-star-inserted"]');
+  static CARTE2_ECHEANCE2_CHECKBOXOFF = by.xpath('((//mat-card)[2]/mat-card-content/div)[2]/em[@class="fa fa-square-o ng-star-inserted"]');
   static CARTE3_TITRE = by.xpath('(//mat-card)[3]/mat-card-header/div/mat-card-title');
-  static CARTE3_ECHEANCE1_CHECKBOXON = by.xpath('((//mat-card)[3]/mat-card-content/div)[1]/em[@class="fa fa-check-square-o"]');
-  static CARTE3_ECHEANCE1_CHECKBOXOFF = by.xpath('((//mat-card)[3]/mat-card-content/div)[1]/em[@class="fa fa-square-o"]');
-  static CARTE3_ECHEANCE2_CHECKBOXON = by.xpath('((//mat-card)[3]/mat-card-content/div)[2]/em[@class="fa fa-check-square-o"]');
-  static CARTE3_ECHEANCE2_CHECKBOXOFF = by.xpath('((//mat-card)[3]/mat-card-content/div)[2]/em[@class="fa fa-square-o"]');
+  static CARTE3_ECHEANCE1_CHECKBOXON = by.xpath('((//mat-card)[3]/mat-card-content/div)[1]/em[@class="fa fa-check-square-o ng-star-inserted"]');
+  static CARTE3_ECHEANCE1_CHECKBOXOFF = by.xpath('((//mat-card)[3]/mat-card-content/div)[1]/em[@class="fa fa-square-o ng-star-inserted"]');
+  static CARTE3_ECHEANCE2_CHECKBOXON = by.xpath('((//mat-card)[3]/mat-card-content/div)[2]/em[@class="fa fa-check-square-o ng-star-inserted"]');
+  static CARTE3_ECHEANCE2_CHECKBOXOFF = by.xpath('((//mat-card)[3]/mat-card-content/div)[2]/em[@class="fa fa-square-o ng-star-inserted"]');
 }
 
 export class EditionJournal {

@@ -42,22 +42,22 @@ describe('Onglet des tâches', () => {
     const titre = 'Titre';
     const echeance1 = 'Echeance 1';
     const date1 = '12/09/2017';
-    const date1Longue = 'mardi 12/09';
+    const date1Affichee = '12/09';
     const echeance2 = 'Echeance 2';
     const date2 = '13/09/2017';
-    const date2Longue = 'mercredi 13/09';
+    const date2Affichee = '13/09';
     page.click(selectors.APP.MENU_TACHES);
     const s = selectors.TabTaches;
     //
-    creerTache(page, titre, echeance1, date1, date1Longue, echeance2, date2, date2Longue);
+    creerTache(page, titre, echeance1, date1, echeance2, date2);
     //
     expect(page.compterElements(s.CARTES_ENCOURS)).toBe(1);
     expect(page.getText(s.CARTE1_SSTITRE_SPAN1)).toBe('0/2 |');
-    expect(page.getText(s.CARTE1_SSTITRE_SPAN2)).toBe(date1Longue);
+    expect(page.getText(s.CARTE1_SSTITRE_SPAN2)).toBe(date1Affichee);
     expect(page.getText(s.CARTE1_TITRE)).toBe(titre);
-    expect(page.getText(s.CARTE1_ECHEANCE1)).toBe(echeance1 + ' pour le ' + date1Longue);
+    expect(page.getText(s.CARTE1_ECHEANCE1)).toBe(echeance1 + ' pour le ' + date1Affichee);
     expect(page.isVisible(s.CARTE1_ECHEANCE1_CHECKBOXOFF)).toBeTruthy();
-    expect(page.getText(s.CARTE1_ECHEANCE2)).toBe(echeance2 + ' pour le ' + date2Longue);
+    expect(page.getText(s.CARTE1_ECHEANCE2)).toBe(echeance2 + ' pour le ' + date2Affichee);
     expect(page.isVisible(s.CARTE1_ECHEANCE2_CHECKBOXOFF)).toBeTruthy();
   });
 
@@ -66,12 +66,12 @@ describe('Onglet des tâches', () => {
     const titre = 'Titre';
     const echeance1 = 'Echeance 1';
     const date1 = '12/09/2017';
-    const date1Longue = 'mardi 12/09';
+    const date1Affichee = '12/09';
     const echeance2 = 'Echeance 2';
     const date2 = '13/09/2017';
-    const date2Longue = 'mercredi 13/09';
+    const date2Affichee = '13/09';
     page.click(selectors.APP.MENU_TACHES);
-    creerTache(page, titre, echeance1, date1, date1Longue, echeance2, date2, date2Longue);
+    creerTache(page, titre, echeance1, date1, echeance2, date2);
     const s = selectors.TabTaches;
 
     // échance 1 terminée
@@ -80,7 +80,7 @@ describe('Onglet des tâches', () => {
     expect(page.compterElements(s.CARTES_ENCOURS)).toBe(1);
     expect(page.compterElements(s.CARTES_TERMINEES)).toBe(0);
     expect(page.getText(s.CARTE1_SSTITRE_SPAN1)).toBe('1/2 |');
-    expect(page.getText(s.CARTE1_SSTITRE_SPAN2)).toBe(date2Longue);
+    expect(page.getText(s.CARTE1_SSTITRE_SPAN2)).toBe(date2Affichee);
 
     // échéance 2 terminée
     page.click(s.CARTE1_ECHEANCE2_CHECKBOXOFF);
@@ -96,7 +96,7 @@ describe('Onglet des tâches', () => {
     expect(page.compterElements(s.CARTES_TERMINEES)).toBe(0);
     expect(page.isVisible(s.CARTE1_ECHEANCE1_CHECKBOXOFF)).toBeTruthy();
     expect(page.getText(s.CARTE1_SSTITRE_SPAN1)).toBe('1/2 |');
-    expect(page.getText(s.CARTE1_SSTITRE_SPAN2)).toBe(date1Longue);
+    expect(page.getText(s.CARTE1_SSTITRE_SPAN2)).toBe(date1Affichee);
 
     // échéance 2 non terminée
     page.click(s.CARTE1_ECHEANCE2_CHECKBOXON);
@@ -104,7 +104,7 @@ describe('Onglet des tâches', () => {
     expect(page.compterElements(s.CARTES_TERMINEES)).toBe(0);
     expect(page.isVisible(s.CARTE1_ECHEANCE2_CHECKBOXOFF)).toBeTruthy();
     expect(page.getText(s.CARTE1_SSTITRE_SPAN1)).toBe('0/2 |');
-    expect(page.getText(s.CARTE1_SSTITRE_SPAN2)).toBe(date1Longue);
+    expect(page.getText(s.CARTE1_SSTITRE_SPAN2)).toBe(date1Affichee);
   });
 
   it('Tri des tâches', () => {
@@ -113,9 +113,9 @@ describe('Onglet des tâches', () => {
     const titreA = 'TitreA';
     const titreB = 'TitreB';
     const titreC = 'TitreC';
-    creerTache(page, titreA, 'Echeance A.1', '12/09/2017', 'mardi 12/09', 'Echeance A.2', '20/09/2017', 'mercredi 20/09');
-    creerTache(page, titreB, 'Echeance B.1', '13/09/2017', 'mercredi 13/09', 'Echeance B.2', '21/09/2017', 'jeudi 21/09');
-    creerTache(page, titreC, 'Echeance C.1', '14/09/2017', 'jeudi 14/09', 'Echeance C.2', '22/09/2017', 'vendredi 22/09');
+    creerTache(page, titreA, 'Echeance A.1', '12/09/2017', 'Echeance A.2', '20/09/2017');
+    creerTache(page, titreB, 'Echeance B.1', '13/09/2017', 'Echeance B.2', '21/09/2017');
+    creerTache(page, titreC, 'Echeance C.1', '14/09/2017', 'Echeance C.2', '22/09/2017');
     const s = selectors.TabTaches;
 
     // Ordre sans echeance terminée => A-B-C
@@ -155,8 +155,7 @@ describe('Onglet des tâches', () => {
 });
 
 /** fonction mutualisant la création d'une tâche */
-function creerTache(page: BulletinPage, titre: string, echeance1: string, date1: string, date1Longue: string, echeance2: string, date2: string,
-  date2Longue: string): void {
+function creerTache(page: BulletinPage, titre: string, echeance1: string, date1: string, echeance2: string, date2: string): void {
 
   const s = selectors.TabTaches;
   page.click(s.BUTTON_AJOUTER);

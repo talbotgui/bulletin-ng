@@ -73,7 +73,7 @@ describe('Onglet des journaux', () => {
     page.click(selectors.APP.MENU_JOURNAL);
     page.type(selectors.TabJournal.INPUT_DATE_JOURNAL, '03/01/2020');
     page.click(selectors.TabJournal.BUTTON_CREER_JOURNAL);
-    expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du mardi 03/01/2020');
+    expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du vendredi 03/01/2020');
     //
     page.click(selectors.TabJournal.BUTTON_AJOUT_TEMPS);
     page.type(selectors.TabJournal.TEMPS_LIBELLE[0], 'TEMPS A');
