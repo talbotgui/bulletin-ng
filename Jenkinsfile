@@ -38,12 +38,12 @@ pipeline {
 			}
 		}
 
-		//stage ('Integration test') {
-		//	agent any
-		//	steps {
-		//		sh "mvn integration-test"
-		//	}
-		//}
+		stage ('Integration test') {
+			agent any
+			steps {
+				sh "mvn integration-test"
+			}
+		}
 		
 		stage ('Quality') {
 			agent any
