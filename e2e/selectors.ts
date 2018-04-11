@@ -1,7 +1,7 @@
 import { by } from 'protractor';
 
 export class APP {
-  static TITLE = by.css('app-root h1');
+  static TITRE = by.css('#entete-titre span');
   static MENU_COMPETENCES = by.css('a.navCompetence');
   static MENU_ELEVES = by.css('a.navEleve');
   static MENU_PROJET = by.css('a.navProjet');
@@ -10,22 +10,21 @@ export class APP {
   static MENU_TACHES = by.css('a.navTaches');
 }
 export class DivSauvegarder {
-  static BUTTON_CHARGER = by.xpath('//div-sauvegarde/em[@class="fa fa-folder-open fa-2x"]');
-  static BUTTON_SAUVEGARDER = by.xpath('//div-sauvegarde/em[@class="fa fa-save fa-2x"]');
+  static BUTTON_CHARGER = by.css('em.fa-folder-open');
+  static BUTTON_SAUVEGARDER = by.css('em.fa-save');
 }
 
 export class DivSauvegarderDialogChargement {
-  static TITRE = by.xpath('//dialog-chargement/h2');
-  static INPUTFILE_LOCAL = by.xpath('//dialog-chargement/fieldset/label/input[@type="file"]');
-  static INPUTFILE_LOCAL_LABEL_NOT_DONE = by.xpath('//dialog-chargement/fieldset/label[@class="inputFile"]');
-  static INPUTFILE_LOCAL_LABEL_DONE = by.xpath('//dialog-chargement/fieldset/label[@class="inputFile inputFileDone"]');
-  static SELECT = by.xpath('//dialog-chargement/fieldset[2]/div/mat-select');
-  static BUTTON_ANNULER = by.xpath('//dialog-chargement/button[1]');
-  static BUTTON_CHARGER = by.xpath('//dialog-chargement/button[2]');
+  static INPUTFILE_LOCAL = by.css('input.inputFichierChargement');
+  static INPUTFILE_LOCAL_LABEL_NOT_DONE = by.xpath('label[@class="inputFile inputFileDone"]');
+  static INPUTFILE_LOCAL_LABEL_DONE = by.css('label.inputFile');
+  static SELECT = by.css('mat-select.selectFichierChargement');
+  static BUTTON_ANNULER = by.css('button.annuler');
+  static BUTTON_CHARGER = by.css('button.charger');
 }
 
 export class TabCompetences {
-  static INPUT_FILTRE = by.xpath('//tab-competence/fieldset/input');
+  static INPUT_FILTRE = by.css('input.filtreCompetences');
   static TREE_ROOT = by.xpath('//tree-root');
   static TREE_NODES = by.css('span.toggle-children');
   static TREE_NODE_COLLAPSED = by.css('span.toggle-children-wrapper-collapsed');
@@ -97,29 +96,29 @@ export class TabJournal {
     by.xpath('(//mat-select[@name="finTemps"])[3]')
   ];
   static TEMPS_AJOUTER_COMPETENCE = [
-    by.xpath('(//em[@class="fa fa-cogs fa-lg"])[1]'),
-    by.xpath('(//em[@class="fa fa-cogs fa-lg"])[2]'),
-    by.xpath('(//em[@class="fa fa-cogs fa-lg"])[3]')
+    by.css('(//em[@class="fa fa-cogs fa-lg ng-star-inserted"])[1]'),
+    by.css('(//em[@class="fa fa-cogs fa-lg ng-star-inserted"])[2]'),
+    by.css('(//em[@class="fa fa-cogs fa-lg ng-star-inserted"])[3]')
   ];
   static TEMPS_MONTER = [
-    by.xpath('(//em[@class="fa fa-chevron-circle-up fa-lg"])[1]'),
-    by.xpath('(//em[@class="fa fa-chevron-circle-up fa-lg"])[2]'),
-    by.xpath('(//em[@class="fa fa-chevron-circle-up fa-lg"])[3]')
+    by.xpath('(//em[@class="fa fa-chevron-circle-up fa-lg ng-star-inserted"])[1]'),
+    by.xpath('(//em[@class="fa fa-chevron-circle-up fa-lg ng-star-inserted"])[2]'),
+    by.xpath('(//em[@class="fa fa-chevron-circle-up fa-lg ng-star-inserted"])[3]')
   ];
   static TEMPS_DESCENDRE = [
-    by.xpath('(//em[@class="fa fa-chevron-circle-down fa-lg"])[1]'),
-    by.xpath('(//em[@class="fa fa-chevron-circle-down fa-lg"])[2]'),
-    by.xpath('(//em[@class="fa fa-chevron-circle-down fa-lg"])[3]')
+    by.xpath('(//em[@class="fa fa-chevron-circle-down fa-lg ng-star-inserted"])[1]'),
+    by.xpath('(//em[@class="fa fa-chevron-circle-down fa-lg ng-star-inserted"])[2]'),
+    by.xpath('(//em[@class="fa fa-chevron-circle-down fa- ng-star-inserted"])[3]')
   ];
   static TEMPS_SUPPRIMER = [
-    by.xpath('(//em[@class="fa fa-remove fa-lg"])[1]'),
-    by.xpath('(//em[@class="fa fa-remove fa-lg"])[2]'),
-    by.xpath('(//em[@class="fa fa-remove fa-lg"])[3]')
+    by.xpath('(//em[@class="fa fa-remove fa-lg ng-star-inserted"])[1]'),
+    by.xpath('(//em[@class="fa fa-remove fa-lg ng-star-inserted"])[2]'),
+    by.xpath('(//em[@class="fa fa-remove fa-lg ng-star-inserted"])[3]')
   ];
   static TEMPS_DUPLIQUER = [
-    by.xpath('(//em[@class="fa fa-copy"])[1]'),
-    by.xpath('(//em[@class="fa fa-copy"])[2]'),
-    by.xpath('(//em[@class="fa fa-copy"])[3]')
+    by.xpath('(//em[@class="fa fa-copy ng-star-inserted"])[1]'),
+    by.xpath('(//em[@class="fa fa-copy ng-star-inserted"])[2]'),
+    by.xpath('(//em[@class="fa fa-copy ng-star-inserted"])[3]')
   ];
   static TEMPS_ELEVES = [
     [
@@ -142,7 +141,7 @@ export class TabJournal {
 }
 
 export class TabTaches {
-  static BUTTON_AJOUTER = by.css('span.fa-stack');
+  static BUTTON_AJOUTER = by.css('em.ajouterTache');
 
   static FORM_AJOUTER_TITRE = by.xpath('//input[@name="titre"]');
   static FORM_AJOUTER_PLUS = by.css('span.action');

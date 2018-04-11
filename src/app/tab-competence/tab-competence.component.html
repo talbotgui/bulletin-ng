@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row odd titre-row">Filtre :</div>
     <div class="row odd">
-        <input [(ngModel)]="filtre" (change)="recherche()" />
+        <input [(ngModel)]="filtre" class="filtreCompetences" (change)="recherche()" />
     </div>
 
     <div class="row even titre-row" *ngIf="!!libelleCompletCompetenceSelectionnee">Compétence sélectionnée :</div>

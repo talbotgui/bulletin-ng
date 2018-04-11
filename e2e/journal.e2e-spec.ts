@@ -36,23 +36,23 @@ describe('Onglet des journaux', () => {
     expect(page.isVisible(selectors.TabJournal.BUTTON_CREER_JOURNAL)).toBeTruthy();
   });
 
-  it('Créer un journal pour le 01/01/2017', () => {
+  it('Créer un journal pour le 05/01/2020', () => {
     //
     page.click(selectors.APP.MENU_JOURNAL);
     //
-    page.type(selectors.TabJournal.INPUT_DATE_JOURNAL, '01/01/2017');
+    page.type(selectors.TabJournal.INPUT_DATE_JOURNAL, '05/01/2020');
     page.click(selectors.TabJournal.BUTTON_CREER_JOURNAL);
     //
-    expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du dimanche 01/01/2017');
+    expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du dimanche 05/01/2020');
     expect(page.isVisible(selectors.TabJournal.BUTTON_AJOUT_TEMPS)).toBeTruthy();
   });
 
-  it('Créer un journal pour le 02/01/2017 et ajouter un temps', () => {
+  it('Créer un journal pour le 06/01/2020 et ajouter un temps', () => {
     //
     page.click(selectors.APP.MENU_JOURNAL);
-    page.type(selectors.TabJournal.INPUT_DATE_JOURNAL, '02/01/2017');
+    page.type(selectors.TabJournal.INPUT_DATE_JOURNAL, '06/01/2020');
     page.click(selectors.TabJournal.BUTTON_CREER_JOURNAL);
-    expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du lundi 02/01/2017');
+    expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du lundi 06/01/2020');
     //
     page.click(selectors.TabJournal.BUTTON_AJOUT_TEMPS);
     page.type(selectors.TabJournal.TEMPS_LIBELLE[0], 'TEMPS A');
@@ -68,12 +68,12 @@ describe('Onglet des journaux', () => {
     expect(page.isVisible(selectors.TabJournal.TEMPS_DESCENDRE[0])).toBeFalsy();
   });
 
-  it('Créer un journal pour le 03/01/2017, ajouter deux temps et monter/descendre', () => {
+  it('Créer un journal pour le 03/01/2020, ajouter deux temps et monter/descendre', () => {
     //
     page.click(selectors.APP.MENU_JOURNAL);
-    page.type(selectors.TabJournal.INPUT_DATE_JOURNAL, '03/01/2017');
+    page.type(selectors.TabJournal.INPUT_DATE_JOURNAL, '03/01/2020');
     page.click(selectors.TabJournal.BUTTON_CREER_JOURNAL);
-    expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du mardi 03/01/2017');
+    expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du mardi 03/01/2020');
     //
     page.click(selectors.TabJournal.BUTTON_AJOUT_TEMPS);
     page.type(selectors.TabJournal.TEMPS_LIBELLE[0], 'TEMPS A');
@@ -89,12 +89,12 @@ describe('Onglet des journaux', () => {
     expect(page.isVisible(selectors.TabJournal.TEMPS_MONTER[1])).toBeFalsy();
   });
 
-  it('Créer un journal pour le 04/01/2017, ajouter deux temps et des compétences', () => {
+  it('Créer un journal pour le 08/01/2020, ajouter deux temps et des compétences', () => {
     //
     page.click(selectors.APP.MENU_JOURNAL);
-    page.type(selectors.TabJournal.INPUT_DATE_JOURNAL, '04/01/2017');
+    page.type(selectors.TabJournal.INPUT_DATE_JOURNAL, '08/01/2020');
     page.click(selectors.TabJournal.BUTTON_CREER_JOURNAL);
-    expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du mercredi 04/01/2017');
+    expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du mercredi 08/01/2020');
     page.click(selectors.TabJournal.BUTTON_AJOUT_TEMPS);
     page.type(selectors.TabJournal.TEMPS_LIBELLE[0], 'TEMPS A');
     page.click(selectors.TabJournal.BUTTON_AJOUT_TEMPS);
@@ -114,12 +114,12 @@ describe('Onglet des journaux', () => {
       .toBe('Compétences travaillées > CYCLE 2 > Français > Lire > Pratiquer différentes formes de lecture.');
   });
 
-  // it('Créer un journal pour le 05/01/2017 avec 2 temps et des compétences puis le dupliquer au 06/01/2017', () => {
+  // it('Créer un journal pour le 05/01/2020 avec 2 temps et des compétences puis le dupliquer au 06/01/2020', () => {
   //   //
   //   page.click(selectors.APP.MENU_JOURNAL);
-  //   page.type(selectors.TabJournal.INPUT_DATE_JOURNAL, '05/01/2017');
+  //   page.type(selectors.TabJournal.INPUT_DATE_JOURNAL, '05/01/2020');
   //   page.click(selectors.TabJournal.BUTTON_CREER_JOURNAL);
-  //   expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du jeudi 05/01/2017');
+  //   expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du jeudi 05/01/2020');
   //   page.click(selectors.TabJournal.BUTTON_AJOUT_TEMPS);
   //   page.type(selectors.TabJournal.TEMPS_LIBELLE[0], 'TEMPS A');
   //   page.click(selectors.TabJournal.BUTTON_AJOUT_TEMPS);
@@ -132,11 +132,11 @@ describe('Onglet des journaux', () => {
   //   page.select(selectors.TabJournal.TEMPS_COMPETENCE_PREMIER_SELECT_VISIBLE, 'compTrav', 'W', 'W1', 'W12', 'W123');
   //   //
   //   page.click(selectors.TabJournal.BUTTON_DUPLIQUER_JOURNAL);
-  //   page.type(selectors.TabJournal.INPUT_DIALOGDUPLICATION_DATECIBLE, '06/01/2017');
+  //   page.type(selectors.TabJournal.INPUT_DIALOGDUPLICATION_DATECIBLE, '06/01/2020');
   //   page.click(selectors.TabJournal.BUTTON_DIALOGDUPLICATION_VALIDER);
   //   page.click(selectors.TabJournal.BUTTON_PASSER_JOUR_PLUS_UN);
   //   //
-  //   expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du vendredi 06/01/2017');
+  //   expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du vendredi 06/01/2020');
   //   expect(page.isVisible(selectors.TabJournal.BUTTON_CREER_JOURNAL)).toBeFalsy();
   //   expect(page.isVisible(selectors.TabJournal.TEMPS_DESCENDRE[0])).toBeTruthy();
   //   expect(page.isVisible(selectors.TabJournal.TEMPS_MONTER[0])).toBeTruthy();

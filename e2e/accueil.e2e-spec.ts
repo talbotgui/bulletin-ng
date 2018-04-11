@@ -22,7 +22,7 @@ describe('Accueil de l\'application', () => {
     //
     page.navigateToRoot();
     //
-    expect(page.getText(selectors.APP.TITLE)).toEqual('Application de gestion de ma classe');
+    expect(page.getText(selectors.APP.TITRE)).toEqual('Application de gestion de ma classe');
     expect(page.isVisible(selectors.DivSauvegarder.BUTTON_CHARGER)).toBeTruthy('le bouton charger est visible');
     expect(page.isVisible(selectors.DivSauvegarder.BUTTON_SAUVEGARDER)).toBeFalsy('le bouton sauvegarder n\'est pas visible');
   });
@@ -35,8 +35,6 @@ describe('Accueil de l\'application', () => {
     //
     page.click(DIV.BUTTON_CHARGER);
     //
-    expect(page.isVisible(DIALOG.TITRE)).toBeTruthy('Le titre est là');
-    expect(page.getText(DIALOG.TITRE)).toEqual('Chargement d\'une sauvegarde');
     expect(page.isVisible(DIALOG.INPUTFILE_LOCAL)).toBeTruthy('l\'input est là');
     expect(page.isVisible(DIALOG.INPUTFILE_LOCAL_LABEL_NOT_DONE)).toBeTruthy('l\'input a la bonne classe');
     expect(page.isVisible(DIALOG.INPUTFILE_LOCAL_LABEL_DONE)).toBeFalsy('l\'input a la bonne classe2');

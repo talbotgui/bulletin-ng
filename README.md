@@ -23,3 +23,7 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/). Before running the tests make sure you are serving the app via `ng serve`.
 
 En cas de problème avec fsevents, exécuter npm run preinstall avant npm install (voir https://github.com/npm/npm/issues/9204#issuecomment-252076522)
+
+# Protractor offline
+
+En cas de difficulté de démarrage des tests e2e, modifier la date des fichiers textes du répertoire node_modules\protractor\node_modules\webdriver-manager\selenium. Ainsi Selenium acceptera de démarrer Chrome.

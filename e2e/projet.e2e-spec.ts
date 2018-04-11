@@ -10,7 +10,7 @@ import * as path from 'path';
  *
  * Pour n'exécuter qu'un seul test depuis la ligne de commande : "npm run debug-e2e" après avoir modifier le script à lancer dans package.json
  */
-describe('Onglet des élèves', () => {
+describe('Onglet des projets', () => {
   let page: BulletinPage;
 
   beforeEach(() => {
