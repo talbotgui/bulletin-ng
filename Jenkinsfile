@@ -85,7 +85,7 @@ pipeline {
 									sh "sed -i 's/\"\\/\"/\"\\/maclasse\\/\"/' ./dist/index.html"
 									sh "sed -i 's/\"\\/\"/\"\\/maclasse\\/\"/' ./dist/index.html"
 									sh "rm -rf /var/www/html/maclasse/*"
-									sh "mv -r ./dist/* /var/www/html/maclasse/"
+									sh "mv ./dist /var/www/html/maclasse"
 									sh "mv ./target/bulletinNG-1.0.0.zip /var/www/html/maclasse/maclasse.zip"
 									currentBuild.displayName = currentBuild.displayName + " - deployed to production"
 								}
