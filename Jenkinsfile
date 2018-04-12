@@ -5,48 +5,50 @@ properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKe
 
 pipeline {
 	
+	// pas d'agent  par défaut pour l'ensemble du pipeline pour ne pas mobiliser son exécution durant l'attente de validation
 	agent none
 
 	stages {
 		
 		stage ('Checkout') {
-			agent any
+			agent { label 'master' }
 			steps {
 				checkout scm
 			}
 		}
 
 		stage ('Build') {
-			agent any
+			agent { label 'master' }
 			steps {
 				sh "mvn clean compile"
+				stash name:'site', includes: 'dist/*'
 			}
 		}
 		
 		stage ('Package') {
-			agent any
+			agent { label 'master' }
 			steps {
 				sh "mvn assembly:single"
-				sh "mv target/bulletinNG-1.0.0.zip dist/maclasse.zip"
+				stash name:'archive', includes: 'target/bulletinNG-1.0.0.zip'
 			}
 		}
 
 		stage ('Unit test') {
-			agent any
+			agent { label 'master' }
 			steps {
 				sh "mvn test"
 			}
 		}
 
 		stage ('Integration test') {
-			agent any
+			agent { label 'master' }
 			steps {
 				sh "mvn integration-test"
 			}
 		}
 		
 		stage ('Quality') {
-			agent any
+			agent { label 'master' }
 			steps {
 				withCredentials([string(credentialsId: 'sonarSecretKey', variable: 'SONAR_KEY')]) {
 					sh "sed -i 's/XXXXXXXXX/${SONAR_KEY}/' ./sonar-bulletinNG.properties"
@@ -77,13 +79,15 @@ pipeline {
 							// Installation en production et changement du nom indiquant le statut
 							if (userInput) {
 								node {
-									currentBuild.displayName = currentBuild.displayName + " - deployed to production"
+									unstash 'archive'
+									unstash 'site'
+									sh "unzip target/bulletinNG-1.0.0.zip"
 									sh "sed -i 's/\"\\/\"/\"\\/maclasse\\/\"/' ./dist/index.html"
-									sh "mv ./dist/index.html ./dist/indexArenommer.html"
-									sh 'echo "Déploiement de la nouvelle version en cours" > /var/www/html/maclasse/index.html'
+									sh "sed -i 's/\"\\/\"/\"\\/maclasse\\/\"/' ./dist/index.html"
 									sh "rm -rf /var/www/html/maclasse/*"
-									sh "cp -r ./dist/* /var/www/html/maclasse/"
-									sh "mv /var/www/html/maclasse/indexArenommer.html /var/www/html/maclasse/index.html"
+									sh "mv -r ./dist/* /var/www/html/maclasse/"
+									sh "mv ./target/bulletinNG-1.0.0.zip /var/www/html/maclasse/maclasse.zip"
+									currentBuild.displayName = currentBuild.displayName + " - deployed to production"
 								}
 							}
 						}
