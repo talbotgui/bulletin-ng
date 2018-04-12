@@ -21,32 +21,34 @@ pipeline {
 			agent { label 'master' }
 			steps {
 				sh "mvn clean compile"
-				stash name:'site', includes: 'dist/*'
+				stash name:'resultats', includes: 'dist/**'
 			}
 		}
 		
-		stage ('Package') {
-			agent { label 'master' }
-			steps {
-				sh "mvn assembly:single"
-				stash name:'archive', includes: 'target/bulletinNG-1.0.0.zip'
-			}
-		}
-
 		stage ('Unit test') {
 			agent { label 'master' }
 			steps {
-				sh "mvn test"
+				sh "mvn frontend:npm@npmRunTest"
 			}
 		}
 
 		stage ('Integration test') {
 			agent { label 'master' }
 			steps {
-				sh "mvn integration-test"
+				sh "mvn frontend:npm@npmRunE2e"
 			}
 		}
 		
+		stage ('Package') {
+			agent { label 'master' }
+			steps {
+			    unstash 'resultats'
+				sh "sed -i 's/\"\\/\"/\"\\/maclasse\\/\"/' ./dist/index.html"
+				sh "mvn assembly:single"
+				stash name:'archive', includes: 'target/bulletinNG-1.0.0.zip'
+			}
+		}
+
 		stage ('Quality') {
 			agent { label 'master' }
 			steps {
@@ -80,13 +82,9 @@ pipeline {
 							if (userInput) {
 								node {
 									unstash 'archive'
-									unstash 'site'
-									sh "unzip target/bulletinNG-1.0.0.zip"
-									sh "sed -i 's/\"\\/\"/\"\\/maclasse\\/\"/' ./dist/index.html"
-									sh "sed -i 's/\"\\/\"/\"\\/maclasse\\/\"/' ./dist/index.html"
 									sh "rm -rf /var/www/html/maclasse/*"
-									sh "mv ./dist /var/www/html/maclasse"
-									sh "mv ./target/bulletinNG-1.0.0.zip /var/www/html/maclasse/maclasse.zip"
+									sh "cp ./target/bulletinNG-1.0.0.zip /var/www/html/maclasse/maclasse.zip"
+									sh "unzip /var/www/html/maclasse/maclasse.zip -d /var/www/html/maclasse/"
 									currentBuild.displayName = currentBuild.displayName + " - deployed to production"
 								}
 							}
@@ -121,10 +119,3 @@ pipeline {
         //changed {}
     }
 }
-
-/* Fonctions utilitaires */
-
-/* Variables disponibles : env.PATH, env.BUILD_TAG, env.BRANCH_NAME, currentBuild.result, currentBuild.displayName, currentBuild.description */
-
-// Exemple de definition de parametres dans le job : https://issues.jenkins-ci.org/browse/JENKINS-32780
-
