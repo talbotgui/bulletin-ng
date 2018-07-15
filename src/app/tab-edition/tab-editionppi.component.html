@@ -12,8 +12,11 @@
             <h1>{{titre}}</h1>
         </div>
         <div class="annee">
-            <div>{{anneeScolaire}}
-                <br/>{{nomPeriode}}</div>
+            <div>
+                <span>{{anneeScolaire}}</span>
+                <br/>
+                <span class="periode">{{nomPeriode}}</span>
+            </div>
         </div>
     </div>
 
@@ -28,9 +31,16 @@
             </tr>
         </thead>
         <!--Une ligne principale avec la première colonne et un rowspan-->
-        <tbody *ngFor="let ligne of lignes">
+        <tbody *ngFor="let ligne of lignes; let odd = odd" [class.odd]="odd">
             <tr *ngFor="let ssLigne of ligne.sousLignes; let i = index">
-                <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">{{ligne.nomDomaine}}</td>
+                <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">
+                    <div class="competence">
+                        <span *ngFor="let partie of ligne.nomDomaineCoupe; let j = index">
+                            {{partie}}
+                            <span *ngIf="j < ligne.nomDomaineCoupe.length-1">></span>
+                        </span>
+                    </div>
+                </td>
                 <td class="">{{ssLigne.competence.text}}</td>
                 <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">{{ligne.constat}}</td>
                 <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">{{ligne.outil}}</td>

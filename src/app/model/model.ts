@@ -192,6 +192,14 @@ export class LigneTableauDeBord {
     return sousLignesAvecNotes;
   }
 
+  get nomDomaineCoupe(): string[] {
+    if (this.nomDomaine) {
+      return this.nomDomaine.split(' > ');
+    } else {
+      return [];
+    }
+  }
+
   constructor(public idDomaine: string | undefined, public nomDomaine: string | undefined, constatations: Note[] = [], propositions: Note[] = [], mapCompetences: Map<string, Competence>, public idEleve: string, public periodeEvaluee: Periode) {
     this.sousLignes = [];
 

@@ -8,3 +8,6 @@ div.titre  { float:left; width:900px; text-align: center; }
 div.annee  { float:right; width:200px; text-align: right; padding-top:30px; }
 .edition table { width:100%; text-align: center; vertical-align: middle; border-collapse: collapse!important; }
 .edition td,.edition th { border: solid 1px black!important; }
+.odd { background-color: aliceblue;}
+span.periode { font-size: 1.2em; font-weight: bold; }
+.competence span:nth-child(3) { color: red; }

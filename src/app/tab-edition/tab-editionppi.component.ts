@@ -29,12 +29,16 @@ export class TabEditionPpiComponent extends TabAbstractEditionComponent {
   // CSS à utiliser à l'impression (entete à 200px et titre à 600px pour impression en paysage dans chrome)
   getCssImpression() {
     return `.edition { font-size: 12px; }
-    div.barre  { height:180px; margin-top: 15px; }
+    div.barre  { height:120px; margin-top: 15px; }
     div.entete  { float:left; width:200px; }
     div.titre  { float:left; width:600px; text-align: center; }
     div.annee  { float:right; width:200px; text-align: right; padding-top:30px; }
     .edition table { width:100%; text-align: center; vertical-align: middle; border-collapse: collapse!important; }
-    .edition td,.edition th { border: solid 1px black!important; }`;
+    .edition td,.edition th { border: solid 1px black!important; }
+    .odd { background-color: aliceblue; }
+    body { -webkit-print-color-adjust:exact }
+    span.periode { font-size: 1.2em; font-weight: bold; }
+    .competence > span:nth-child(3) { color: red; }`;
   }
 
   // Initialisation de l'édition
