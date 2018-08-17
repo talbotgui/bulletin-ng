@@ -8,6 +8,7 @@ import { TabCahierJournalComponent } from './tab-cahierjournal/tab-cahierjournal
 import { TabCompetenceComponent } from './tab-competence/tab-competence.component';
 import { TabEditionBilanComponent } from './tab-edition/tab-editionbilan.component';
 import { TabEditionEleveComponent } from './tab-edition/tab-editioneleve.component';
+import { TabEditionListeEleveComponent } from './tab-edition/tab-editionlisteeleve.component';
 import { TabEditionJournalComponent } from './tab-edition/tab-editionjournal.component';
 import { TabEditionPpiComponent } from './tab-edition/tab-editionppi.component';
 import { TabEleveComponent } from './tab-eleve/tab-eleve.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'tab-accueil-route', component: TabAccueilComponent },
   { path: 'tab-competence-route', component: TabCompetenceComponent },
   { path: 'tab-editioneleve-route/:idEleve', component: TabEditionEleveComponent },
+  { path: 'tab-editionlisteeleve-route', component: TabEditionListeEleveComponent },
   { path: 'tab-editionjournal-route/:timeJournal', component: TabEditionJournalComponent },
   { path: 'tab-editionppi-route/:idEleve/:idPeriode', component: TabEditionPpiComponent },
   { path: 'tab-editionbilan-route/:idEleve/:idPeriode', component: TabEditionBilanComponent },

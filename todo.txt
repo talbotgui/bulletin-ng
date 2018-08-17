@@ -1,0 +1,23 @@
+édition liste des élèves
+	x sous forme de tableau
+	o en mode paysage
+	x trié par ordre alpha
+	x avec nom, prenom, dateNaissance, dateAdmission
+
+toutes les éditions, mettre un pied de pagge avec le titre et le numéro de page (à tester pour Chrome principalement)
+
+reprendre la popup du tableau de bord :
+	"constat de la période" + "outils proposés" en lieu et place des deux premiers textarea (changer les placeholder)
+	"Proposition de travail" en bas (changer le placeholder)
+	
+	et ajouter en période >2 la proposition de travail de la période précédente en lecture seule
+
+x édition de la fiche élève : supprimer  le saut de page présent sous le tableau des années scolaires
+x mot "vebes" dans les compétences
+	dans le fichier de Marie sur le serveur
+	dans le fichier de l'application des compétences
+x édition PPI :	
+	x div.barre de height:180 à 120px
+	x agrandir le nom de la période en haut à droite
+	x even/odd sur les lignes de domaine (avec la gestion des rowspan)
+	x mettre en bleu la 3ème partie de chaque compétence

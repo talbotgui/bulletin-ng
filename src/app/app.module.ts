@@ -37,6 +37,7 @@ import { TabCahierJournalComponent } from './tab-cahierjournal/tab-cahierjournal
 import { TabCompetenceComponent } from './tab-competence/tab-competence.component';
 import { TabEditionBilanComponent } from './tab-edition/tab-editionbilan.component';
 import { TabEditionEleveComponent } from './tab-edition/tab-editioneleve.component';
+import { TabEditionListeEleveComponent } from './tab-edition/tab-editionlisteeleve.component';
 import { TabEditionJournalComponent } from './tab-edition/tab-editionjournal.component';
 import { TabEditionPpiComponent } from './tab-edition/tab-editionppi.component';
 import { TabEleveComponent } from './tab-eleve/tab-eleve.component';
@@ -75,8 +76,8 @@ registerLocaleData(localeFr, 'fr');
     AppComponent, AttributesToMapPipe, ComposantCompetenceComponent, ComposantMessageSauvegardeComponent, ComposantNoteComponent, DialogChargementComponent,
     DialogCompetenceFullTextComponent, DialogDuplicationComponent, DialogLigneTableauDeBordComponent, DialogSauvegardeComponent, DialogSelectionProjet,
     DivSauvegardeComponent, DivSelecteurStyleComponent, MapValuesPipe, TabAccueilComponent, TabAideComponent, TabCahierJournalComponent, TabCompetenceComponent,
-    TabEditionBilanComponent, TabEditionEleveComponent, TabEditionJournalComponent, TabEditionPpiComponent, TabEleveComponent, TabNouvelleAnneeComponent,
-    TabProjetComponent, TabTableauDeBordComponent, TabTachesComponent
+    TabEditionBilanComponent, TabEditionEleveComponent, TabEditionListeEleveComponent, TabEditionJournalComponent, TabEditionPpiComponent, TabEleveComponent,
+    TabNouvelleAnneeComponent, TabProjetComponent, TabTableauDeBordComponent, TabTachesComponent
   ],
 
   // Tous les composants à afficher dans un Dialog

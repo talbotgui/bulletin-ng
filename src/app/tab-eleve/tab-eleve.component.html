@@ -2,6 +2,7 @@
 <div class="actions">
 	<em *ngIf="eleveSelectionne" matTooltip="Imprimer la fiche de l'élève" class="fa fa-print" mat-button [routerLink]="['/tab-editioneleve-route', eleveSelectionne.id]"></em>
 	<em class="fa fa-plus" matTooltip="Ajouter un nouvel élève" (click)="creerEleve()"></em>
+	<em matTooltip="Imprimer la liste des élèves" class="fa fa-print" mat-button [routerLink]="['/tab-editionlisteeleve-route']"></em>
 </div>
 
 <!-- Liste des élèves -->
