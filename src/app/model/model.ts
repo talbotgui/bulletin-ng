@@ -163,6 +163,16 @@ export class LigneTableauDeBord {
     }
     return '';
   }
+  get propositionPrecedente() {
+    if (this.sousLignes) {
+      for (const sousLigne of this.sousLignes) {
+        if (sousLigne.constatation && sousLigne.constatation.proposition) {
+          return sousLigne.constatation.proposition;
+        }
+      }
+    }
+    return '';
+  }
   set outil(value: string | undefined) {
     for (const sousLigne of this.sousLignes) {
       if (sousLigne.constatation) {

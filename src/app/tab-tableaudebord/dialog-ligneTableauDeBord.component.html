@@ -2,25 +2,30 @@
 
 
 <div class="container-fluid">
-	<div *ngIf="!ligne.idDomaine" class="row odd titre-row">Sélection du domaine :</div>
-	<div *ngIf="!ligne.idDomaine" class="row odd">
+	<div *ngIf="!ligne.idDomaine" class="row even titre-row">Sélection du domaine :</div>
+	<div *ngIf="!ligne.idDomaine" class="row even">
 		<compo-competence [note]="premiereNote" [lectureSeule]="false" [profondeurMaximaleAutorisee]=4></compo-competence>
 		<br/>
 		<em class="fa fa-check fa-2x" matTooltip="Sélectionner ce domaine" (click)="validerDomaine()"></em>
 	</div>
 
-	<div *ngIf="!!ligne.idDomaine" class="row even titre-row">Domaine :</div>
-	<div *ngIf="!!ligne.idDomaine" class="row even">
+	<div *ngIf="!!ligne.idDomaine" class="row odd titre-row">Domaine :</div>
+	<div *ngIf="!!ligne.idDomaine" class="row odd">
 		{{ligne.nomDomaine}}
+	</div>
+
+	<div *ngIf="!!ligne.propositionPrecedente" class="row even titre-row">Proposition de la période précédente :</div>
+	<div *ngIf="!!ligne.propositionPrecedente" class="row even">
+		{{ligne.propositionPrecedente}}
 	</div>
 
 	<div *ngIf="!!ligne.idDomaine" class="row odd titre-row">Evaluations sur la période '{{ligne.periodeEvaluee.nom}}' :</div>
 	<div *ngIf="!!ligne.idDomaine" class="row odd">
 		<div class="col-6">
-			<textarea [(ngModel)]="ligne.constat" name="constat" placeholder="Constat sur la période précédente" rows="8" [(disabled)]="statutActivationSaisieConstat"></textarea>
+			<textarea [(ngModel)]="ligne.constat" name="constat" placeholder="Constat sur la période" rows="8" [(disabled)]="statutActivationSaisieConstat"></textarea>
 		</div>
 		<div class="col-6">
-			<textarea [(ngModel)]="ligne.outil" name="outil" placeholder="Outil sur la période précédente" rows="8" [(disabled)]="statutActivationSaisieConstat"></textarea>
+			<textarea [(ngModel)]="ligne.outil" name="outil" placeholder="Outil sur la période" rows="8" [(disabled)]="statutActivationSaisieConstat"></textarea>
 		</div>
 	</div>
 	<div *ngIf="!!ligne.idDomaine" class="row odd">
@@ -59,8 +64,7 @@
 
 	<div *ngIf="!!ligne.idDomaine" class="row even titre-row">Préparation pour la période suivante :</div>
 	<div *ngIf="!!ligne.idDomaine" class="row even">
-		<textarea [(ngModel)]="ligne.proposition" name="proposition" placeholder="Aide pour la période suivante" rows="8" cols="80"
-		 [(disabled)]="statutActivationSaisieAide"></textarea>
+		<textarea [(ngModel)]="ligne.proposition" name="proposition" placeholder="Proposition de travail" rows="8" cols="80" [(disabled)]="statutActivationSaisieAide"></textarea>
 		<br/>
 		<table class="ligneTableauDeBord">
 			<thead>
