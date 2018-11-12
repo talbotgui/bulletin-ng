@@ -31,7 +31,7 @@ export class TabEditionEleveComponent extends TabAbstractEditionComponent {
     .edition table { width:100%; text-align: center; vertical-align: middle; border-collapse: collapse!important; }
     .edition td,.edition  th { border: solid 1px black!important; }
     .edition span.libelle { font-weight: bold; }
-    .editionEleve-identite { width: 50%; height: 250px; font-size: 30px; }
+    .editionEleve-identite { width: 50%; height: 150px; font-size: 30px; }
     .editionEleve-dates { width: 50%; }
     .editionEleve-pere, .editionEleve-mere, .editionEleve-fratrie, .editionEleve-accueil { width: 25%; }
     .editionEleve-datesPPA, .editionEleve-datesPAP, .editionEleve-datesESS { width: 33%; }
@@ -46,7 +46,7 @@ export class TabEditionEleveComponent extends TabAbstractEditionComponent {
   // Initialisation de l'édition
   initialiseEdition(params: { [key: string]: any }): void {
     // lecture des paramètres
-    this.idEleve = params['idEleve'];
+    this.idEleve = params.idEleve;
 
     if (this.idEleve) {
 
