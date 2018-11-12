@@ -14,7 +14,7 @@
         <div class="annee">
             <div>
                 <span>{{anneeScolaire}}</span>
-                <br/>
+                <br />
                 <span class="periode">{{nomPeriode}}</span>
             </div>
         </div>
@@ -27,7 +27,6 @@
                 <th>Compétence</th>
                 <th>Constat sur la période précédente</th>
                 <th>Outil sur la période précédente</th>
-                <th>Proposition pour la période</th>
             </tr>
         </thead>
         <!--Une ligne principale avec la première colonne et un rowspan-->
@@ -44,7 +43,6 @@
                 <td class="">{{ssLigne.competence.text}}</td>
                 <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">{{ligne.constat}}</td>
                 <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">{{ligne.outil}}</td>
-                <td class="" *ngIf="i == 0" [attr.rowspan]="ligne.sousLignes.length">{{ligne.proposition}}</td>
             </tr>
         </tbody>
     </table>
