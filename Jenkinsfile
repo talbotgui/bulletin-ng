@@ -83,7 +83,7 @@ pipeline {
 								node {
 									unstash 'archive'
 									sh "rm -rf /var/www/html/maclasse/*"
-									sh "cp ./target/bulletinNG-1.0.0.zip /var/www/html/maclasse/maclasse.zip"
+									sh "cp -f ./target/bulletinNG-1.0.0.zip /var/www/html/maclasse/maclasse.zip"
 									sh "unzip /var/www/html/maclasse/maclasse.zip -d /var/www/html/maclasse/"
 									currentBuild.displayName = currentBuild.displayName + " - deployed to production"
 								}
