@@ -15,7 +15,7 @@
 
 	<div *ngIf="!!dateJournal" class="row odd titre-row">
 		<div class="col">
-			<span class="dateDuJournal">{{aze}} Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}}</span>
+			<span class="dateDuJournal">Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}} (semaine {{dateJournal | date:'ww'}})</span>
 
 			<div class="float-right">
 				<em *ngIf="journal && journalDuPasse" class="fa fa-edit" matTooltip="Permettre l'édition d'un journal du passé" (click)="forcerEditionDunJournalDuPasse()"></em>
