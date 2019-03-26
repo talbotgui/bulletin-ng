@@ -43,7 +43,7 @@ describe('Onglet des journaux', () => {
     page.type(selectors.TabJournal.INPUT_DATE_JOURNAL, '05/01/2020');
     page.click(selectors.TabJournal.BUTTON_CREER_JOURNAL);
     //
-    expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du dimanche 05/01/2020');
+    expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du dimanche 05/01/2020 (semaine 02)');
     expect(page.isVisible(selectors.TabJournal.BUTTON_AJOUT_TEMPS)).toBeTruthy();
   });
 
@@ -52,7 +52,7 @@ describe('Onglet des journaux', () => {
     page.click(selectors.APP.MENU_JOURNAL);
     page.type(selectors.TabJournal.INPUT_DATE_JOURNAL, '06/01/2020');
     page.click(selectors.TabJournal.BUTTON_CREER_JOURNAL);
-    expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du lundi 06/01/2020');
+    expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du lundi 06/01/2020 (semaine 02)');
     //
     page.click(selectors.TabJournal.BUTTON_AJOUT_TEMPS);
     page.type(selectors.TabJournal.TEMPS_LIBELLE[0], 'TEMPS A');
@@ -73,7 +73,7 @@ describe('Onglet des journaux', () => {
     page.click(selectors.APP.MENU_JOURNAL);
     page.type(selectors.TabJournal.INPUT_DATE_JOURNAL, '03/01/2020');
     page.click(selectors.TabJournal.BUTTON_CREER_JOURNAL);
-    expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du vendredi 03/01/2020');
+    expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du vendredi 03/01/2020 (semaine 01)');
     //
     page.click(selectors.TabJournal.BUTTON_AJOUT_TEMPS);
     page.type(selectors.TabJournal.TEMPS_LIBELLE[0], 'TEMPS A');
@@ -94,7 +94,7 @@ describe('Onglet des journaux', () => {
     page.click(selectors.APP.MENU_JOURNAL);
     page.type(selectors.TabJournal.INPUT_DATE_JOURNAL, '08/01/2020');
     page.click(selectors.TabJournal.BUTTON_CREER_JOURNAL);
-    expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du mercredi 08/01/2020');
+    expect(page.getText(selectors.TabJournal.LIBELLE_DATE_JOURNAL)).toBe('Journal du mercredi 08/01/2020 (semaine 02)');
     page.click(selectors.TabJournal.BUTTON_AJOUT_TEMPS);
     page.type(selectors.TabJournal.TEMPS_LIBELLE[0], 'TEMPS A');
     page.click(selectors.TabJournal.BUTTON_AJOUT_TEMPS);
