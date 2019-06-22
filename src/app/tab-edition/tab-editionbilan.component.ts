@@ -1,18 +1,22 @@
-import { Component, AfterViewInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, AfterViewInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 
-import { Utils } from '../service/utils';
-import { LectureService } from '../service/lecture.service';
-import { DataRepository } from '../service/data.repository';
-import { NoteService } from '../service/note.service';
-import { EditionService } from '../service/edition.service';
-import * as model from '../model/model';
+import { Utils } from "../service/utils";
+import { LectureService } from "../service/lecture.service";
+import { DataRepository } from "../service/data.repository";
+import { NoteService } from "../service/note.service";
+import { EditionService } from "../service/edition.service";
+import * as model from "../model/model";
 
-import { TabAbstractEditionComponent } from './tab-abstractedition.component';
+import { TabAbstractEditionComponent } from "./tab-abstractedition.component";
 
-@Component({ selector: 'tab-editionbilan', templateUrl: './tab-editionbilan.component.html', styleUrls: ['./tab-editionbilan.component.css'] })
-export class TabEditionBilanComponent extends TabAbstractEditionComponent implements AfterViewInit {
-
+@Component({
+  selector: "tab-editionbilan",
+  templateUrl: "./tab-editionbilan.component.html",
+  styleUrls: ["./tab-editionbilan.component.css"]
+})
+export class TabEditionBilanComponent extends TabAbstractEditionComponent
+  implements AfterViewInit {
   // Paramètres venant de la route
   idPeriode: number;
   idEleve: string;
@@ -26,8 +30,14 @@ export class TabEditionBilanComponent extends TabAbstractEditionComponent implem
   lignes: model.LigneTableauDeBord[];
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private routeur: Router, route: ActivatedRoute, editionService: EditionService, private noteService: NoteService,
-    private lectureService: LectureService, private dataRepository: DataRepository) {
+  constructor(
+    private routeur: Router,
+    route: ActivatedRoute,
+    editionService: EditionService,
+    private noteService: NoteService,
+    private lectureService: LectureService,
+    private dataRepository: DataRepository
+  ) {
     super(route, editionService);
   }
 
@@ -47,35 +57,47 @@ export class TabEditionBilanComponent extends TabAbstractEditionComponent implem
     .edition td,.edition th { border: solid 1px black!important; }
     .edition table, tr, td, th { position: relative; padding: 3px; min-width: 10px; }
     th.text-vertical { height:109px; }
-    th.text-vertical span { transform-origin: 0 50%; transform: rotate(-90deg);  white-space: nowrap;  display: block; position: absolute; bottom: 0; left: 50%;}`;
+    th.text-vertical span { transform-origin: 0 50%; transform: rotate(-90deg);  white-space: nowrap;  display: block; position: absolute; bottom: 0; left: 50%;}
+    .appreciation { font-weight: bold; }
+    .signature { padding-left: 50%; }
+    .aligneGauche td { text-align: left; }
+    .aligneCentre { text-align: center !important; }`;
   }
 
   // Initialisation de l'édition
   initialiseEdition(params: { [key: string]: any }): void {
-
     // lecture des paramètres
-    this.idEleve = params['idEleve'];
-    this.idPeriode = parseInt(params['idPeriode'], 10);
+    this.idEleve = params["idEleve"];
+    this.idPeriode = parseInt(params["idPeriode"], 10);
 
     this.lignes = [];
     if (this.idEleve && this.idPeriode) {
-
       // Recherche des objets de référene
       const eleve = this.lectureService.getEleve(this.idEleve);
       const periode = this.lectureService.getPeriodeById(this.idPeriode);
       if (eleve && periode) {
-
         // Alimentation des données à afficher
         this.eleve = eleve;
         this.periode = periode;
 
         // Recalcul des lignes (pour qu'elles soient propres) mais avec uniquement des lignes contenant des évaluations
-        this.lignes = this.noteService.calculerListeLigneTableauDeBord(eleve, periode).filter((ligne) => {
-          return ligne.sousLignes.filter((sousLigne) => !!sousLigne.constatation).length > 0;
-        });
+        this.lignes = this.noteService
+          .calculerListeLigneTableauDeBord(eleve, periode)
+          .filter(ligne => {
+            return (
+              ligne.sousLignes.filter(sousLigne => !!sousLigne.constatation)
+                .length > 0
+            );
+          });
 
         // Préparation des données d'entête
-        this.titre = 'Bilan de compétence - ' + eleve.nom.toUpperCase() + ' ' + eleve.prenom + ' - P' + periode.id;
+        this.titre =
+          "Bilan de compétence - " +
+          eleve.nom.toUpperCase() +
+          " " +
+          eleve.prenom +
+          " - P" +
+          periode.id;
         this.nomPeriode = periode.nom;
         const annee = this.dataRepository.getAnneeChargee();
         this.anneeScolaire = annee.anneeScolaire;
@@ -90,19 +112,21 @@ export class TabEditionBilanComponent extends TabAbstractEditionComponent implem
   ngAfterViewInit(): void {
     // Recherche de la taille du libellé de note le plus long
     let nbCaracteresMaxDansLibelleNote = 1;
-    this.dataRepository.getAnneeChargee().mapLibelleNotesMap.forEach((entree) => {
+    this.dataRepository.getAnneeChargee().mapLibelleNotesMap.forEach(entree => {
       if (nbCaracteresMaxDansLibelleNote < entree.length) {
         nbCaracteresMaxDansLibelleNote = entree.length;
       }
     });
 
     // Initialisation de la hauteur des THs
-    const ths = document.getElementsByTagName('th');
+    const ths = document.getElementsByTagName("th");
     const hauteur = 5.2 * nbCaracteresMaxDansLibelleNote;
-    ths[ths.length - 1].style.height = hauteur + 'px';
+    ths[ths.length - 1].style.height = hauteur + "px";
   }
 
   retour() {
-    this.routeur.navigateByUrl('/tab-tableaudebord-route/' + this.idEleve + '/' + this.idPeriode);
+    this.routeur.navigateByUrl(
+      "/tab-tableaudebord-route/" + this.idEleve + "/" + this.idPeriode
+    );
   }
 }

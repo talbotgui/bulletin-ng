@@ -20,7 +20,7 @@ pipeline {
 		stage ('Build') {
 			agent { label 'master' }
 			steps {
-				sh "mvn clean compile"
+				sh "mvn clean compile --batch-mode"
 				stash name:'resultats', includes: 'dist/**'
 			}
 		}
@@ -28,14 +28,14 @@ pipeline {
 		stage ('Unit test') {
 			agent { label 'master' }
 			steps {
-				sh "mvn frontend:npm@npmRunTest"
+				sh "mvn frontend:npm@npmRunTest --batch-mode"
 			}
 		}
 
 		stage ('Integration test') {
 			agent { label 'master' }
 			steps {
-				sh "mvn frontend:npm@npmRunE2e"
+				sh "mvn frontend:npm@npmRunE2e --batch-mode"
 			}
 		}
 		
@@ -44,7 +44,7 @@ pipeline {
 			steps {
 			    unstash 'resultats'
 				sh "sed -i 's/\"\\/\"/\"\\/maclasse\\/\"/' ./dist/index.html"
-				sh "mvn assembly:single"
+				sh "mvn assembly:single --batch-mode"
 				stash name:'archive', includes: 'target/bulletinNG-1.0.0.zip'
 			}
 		}
@@ -54,7 +54,7 @@ pipeline {
 			steps {
 				withCredentials([string(credentialsId: 'sonarSecretKey', variable: 'SONAR_KEY')]) {
 					sh "sed -i 's/XXXXXXXXX/${SONAR_KEY}/' ./sonar-bulletinNG.properties"
-					sh "mvn frontend:npm@npmRunQuality"
+					sh "mvn frontend:npm@npmRunQuality --batch-mode"
 					sh "sed -i 's/${SONAR_KEY}/XXXXXXXXX/' ./sonar-bulletinNG.properties"
 				}
 			}
@@ -112,7 +112,7 @@ pipeline {
 			node ('') { step([$class: 'WsCleanup', notFailBuild: true]) }
 		}
         failure {
-			node ('') { emailext subject: "${env.JOB_NAME}#${env.BUILD_NUMBER} - Error during the build !", to: "talbotgui@gmail.com", body: "failure : ${e}"; }
+			node ('') { emailext subject: "${env.JOB_NAME}#${env.BUILD_NUMBER} - Error during the build !", to: "talbotgui@gmail.com", body: "failure"; }
 			node ('') { step([$class: 'WsCleanup', notFailBuild: true]) }
         }
         //always {}

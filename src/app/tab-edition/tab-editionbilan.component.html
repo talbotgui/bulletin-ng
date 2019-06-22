@@ -1,63 +1,135 @@
 <!-- Boutons d'action -->
 <div class="actions">
-    <em class="fa fa-arrow-left" matTooltip="Retour au tableau de bord" (click)="retour()"></em>
-    <em class="fa fa-print" matTooltip="Imprimer les données" (click)="imprimerLaPage()"></em>
+  <em class="fa fa-arrow-left" matTooltip="Retour au tableau de bord" (click)="retour()"></em>
+  <em class="fa fa-print" matTooltip="Imprimer les données" (click)="imprimerLaPage()"></em>
 </div>
 
 <!-- Page à imprimer -->
 <div class="edition" *ngIf="lignes.length > 0 && !!eleve && !!periode">
-    <div class="entete">
-        <div class="logoEN">
-            <img alt="logoEducationNationale" src="./assets/images/logoEducationNationale.png" />
-        </div>
-        <div class="enteteEN" [innerHTML]="entete"></div>
-        <div class="designation">
-            <div class="anneeScolaire">Année scolaire {{anneeScolaire}}</div>
-            <br/>
-            <div class="eleve">Eleve : {{eleve.prenom}} {{eleve.nom}}</div>
-            <div class="naissance">Né le : {{eleve.dateNaissance | date:'dd/MM/yyyy'}}</div>
-            <br/>
-            <div class="enseignant(e)">Enseignant(e) : {{enseignant}}</div>
-        </div>
+  <div class="entete">
+    <div class="logoEN">
+      <img alt="logoEducationNationale" src="./assets/images/logoEducationNationale.png" />
     </div>
-
-    <div class="titre">
-        <div class="sstitre1">Bilan des acquis scolaires de l’élève</div>
-        <div class="sstitre2">Période {{periode.id}} du {{periode.debut | date:'dd/MM/yyyy'}} au {{periode.fin | date:'dd/MM/yyyy'}}</div>
+    <div class="enteteEN" [innerHTML]="entete"></div>
+    <div class="designation">
+      <div class="anneeScolaire">Année scolaire {{anneeScolaire}}</div>
+      <br />
+      <div class="eleve">Eleve : {{eleve.prenom}} {{eleve.nom}}</div>
+      <div class="naissance">Né le : {{eleve.dateNaissance | date:'dd/MM/yyyy'}}</div>
+      <br />
+      <div class="enseignant(e)">Enseignant(e) : {{enseignant}}</div>
     </div>
+  </div>
 
-    <table>
-        <tbody>
-            <tr>
-                <th [attr.colspan]="nbLibellesNote + 3">Acquis scolaires</th>
-            </tr>
-            <tr>
-                <th rowspan="2">Domaine d'enseignement</th>
-                <th rowspan="2">Principaux éléments du programme travaillés durant la période</th>
-                <th rowspan="2">Acquisitions, progrès et difficultés éventuelles</th>
-                <th [attr.colspan]="nbLibellesNote">
-                    <span>Positionnement</span>
-                    <br/>
-                    <span>Objectifs d'apprentissage</span>
-                </th>
-            </tr>
-            <tr>
-                <th *ngFor="let libelle of libellesNote | attributesToMap" class="text-vertical">
-                    <span>{{libelle.val}}</span>
-                </th>
-            </tr>
-        </tbody>
-        <tbody *ngFor="let ligne of lignes">
-            <tr *ngFor="let ssLigne of ligne.sousLignesAvecNotes; let i = index">
-                <td *ngIf="i == 0" [attr.rowspan]="ligne.sousLignesAvecNotes.length">{{ligne.nomDomaine}}</td>
-                <td>{{ssLigne.competence.text}}</td>
-                <td>
-                    <span>{{ssLigne.constatation.commentaire}}</span>
-                </td>
-                <td *ngFor="let libelle of libellesNote | attributesToMap">
-                    <span *ngIf="libelle.key === ssLigne.constatation.valeur">X</span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <div class="titre">
+    <div class="sstitre1">Bilan des acquis scolaires de l’élève</div>
+    <div class="sstitre2">Période {{periode.id}} du {{periode.debut | date:'dd/MM/yyyy'}} au
+      {{periode.fin | date:'dd/MM/yyyy'}}</div>
+  </div>
+
+  <table>
+    <tbody>
+      <tr>
+        <th [attr.colspan]="nbLibellesNote + 3">Acquis scolaires</th>
+      </tr>
+      <tr>
+        <th rowspan="2">Domaine d'enseignement</th>
+        <th rowspan="2">Principaux éléments du programme travaillés durant la période</th>
+        <th rowspan="2">Acquisitions, progrès et difficultés éventuelles</th>
+        <th [attr.colspan]="nbLibellesNote">
+          <span>Positionnement</span>
+          <br />
+          <span>Objectifs d'apprentissage</span>
+        </th>
+      </tr>
+      <tr>
+        <th *ngFor="let libelle of libellesNote | attributesToMap" class="text-vertical">
+          <span>{{libelle.val}}</span>
+        </th>
+      </tr>
+    </tbody>
+    <tbody *ngFor="let ligne of lignes">
+      <tr *ngFor="let ssLigne of ligne.sousLignesAvecNotes; let i = index">
+        <td *ngIf="i == 0" [attr.rowspan]="ligne.sousLignesAvecNotes.length">{{ligne.nomDomaine}}</td>
+        <td>{{ssLigne.competence.text}}</td>
+        <td>
+          <span>{{ssLigne.constatation.commentaire}}</span>
+        </td>
+        <td *ngFor="let libelle of libellesNote | attributesToMap">
+          <span *ngIf="libelle.key === ssLigne.constatation.valeur">X</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+  <table>
+    <tr>
+      <td>Bilan de l'acquisition des connaissances et compétences</td>
+    </tr>
+    <tr class="aligneGauche">
+      <td>
+        <div class="appreciation">Appréciation générale sur la progression de l'élève<br /><br /></div>
+        <div class="signature">
+          Le<br />Signature de l’enseignant(e) / des enseignants(es)<br /><br />
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <br />
+  <table class="aligneGauche">
+    <tr>
+      <td class="aligneCentre">Parcours éducatifs : Projet(s) mis en œuvre dans l'année</td>
+    </tr>
+    <tr>
+      <td><u>Parcours citoyen</u></td>
+    </tr>
+    <tr>
+      <td>Appréciation commune pour la classe :<br /><br /></td>
+    </tr>
+    <tr>
+      <td>Appréciation spécifique pour l'élève :<br /><br /></td>
+    </tr>
+    <tr>
+      <td><u>Parcours d'éducation artistique et culturelle</u></td>
+    </tr>
+    <tr>
+      <td>Appréciation commune pour la classe :<br /><br /></td>
+    </tr>
+    <tr>
+      <td>Appréciation spécifique pour l'élève :<br /><br /></td>
+    </tr>
+    <tr>
+      <td><u>Parcours éducatif de santé</u></td>
+    </tr>
+    <tr>
+      <td>Appréciation commune pour la classe :<br /><br /></td>
+    </tr>
+    <tr>
+      <td>Appréciation spécifique pour l'élève :<br /><br /></td>
+    </tr>
+  </table>
+
+  <br />
+  <table class="aligneGauche">
+    <tr>
+      <td colspan="2" class="aligneCentre">Modalités d'accompagnement pédagogique spécifique</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox"><b>PAP</b> [plan d'accompagnement personnalisé]</td>
+      <td><input type="checkbox"><b>RASED</b> [réseau d'aides spécialisées aux élèves en difficulté]</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox"><b>PPRE</b> [projet personnalisé de réussite éducative]</td>
+      <td><input type="checkbox"><b>ULIS</b> [unité localisée pour l'inclusion scolaire]</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox"><b>PPS</b> [projet personnalisé de scolarisation]</td>
+      <td><input type="checkbox"><b>PAI</b> [projet d'accueil individualisé]</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox"><b>UPE2A</b> [unité pédagogique pour élèves allophones arrivants]</td>
+    </tr>
+  </table>
 </div>
